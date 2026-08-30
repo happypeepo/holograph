@@ -68,94 +68,107 @@ def state():
     return w.state()
 
 
-@app.get("/3d")
-def holo():
-    return FileResponse("holo.html")
-
-
-@app.get("/3d/state")
-def holo_state():
-    return csmt.state()
-
-
-@app.get("/3d/route")
-def holo_route(from_id: str = Query(..., alias="from"), to: str = Query(...), accessible: bool = False):
-    return csmt.route(from_id, to, accessible=accessible)
-
-
-@app.post("/3d/block")
-def holo_block(node: str, passable: bool = False):
-    if not csmt.has(node):
-        return {"error": f"unknown node id '{node}'"}
-    csmt.set_passable(node, passable)
-    return {"node": node, "passable": passable}
-
-
-# --- /3d chat ---------------------------------------------------------------
-# gemini.chat parses the sentence; every route, distance and blockage below is
-# computed here against the networkx world, never by the model.
-
-ENTRANCE = next((i for i, n in csmt.nodes.items() if n["type"] == "entrance"), next(iter(csmt.nodes)))
-
-
 class ChatIn(BaseModel):
     message: str
     history: str = ""
 
 
-def _node_of(id):
-    """A node id stays put; an equipment id resolves to the node it sits at."""
-    if id in csmt.nodes:
-        return id
-    eq = csmt.equipment.get(id)
-    return eq["node"] if eq else None
+TWINS = []   # every mounted building, so the page can offer a switcher without guessing
 
 
-@app.post("/3d/chat")
-def holo_chat(body: ChatIn):
-    c = gemini.chat(body.message, body.history, csmt)
-    out = {"action": c.action, "reply": c.reply, "route": None, "level": None, "changed": []}
+def mount_twin(prefix, w):
+    """Serve one building's holographic view under `prefix`. Called once per
+    building — the page derives its own API base from the URL it was served at."""
+    TWINS.append({"prefix": prefix, "name": w.building})
+    entrance = next((i for i, n in w.nodes.items() if n["type"] == "entrance"), next(iter(w.nodes)))
 
-    if c.action == "route":
-        a, b = _node_of(c.from_id) or ENTRANCE, _node_of(c.to_id)
-        if not b:
-            out["action"] = "none"
-            out["reply"] = "I couldn't tell which place you meant — try naming it as it appears on the model."
-            return out
-        r = csmt.route(a, b, accessible=c.accessible)
-        out["route"] = r
-        out["req"] = {"from": a, "to": b, "accessible": c.accessible}   # so the page can replay it after a blockage
-        out["reply"] = r["reason"] if not r["path"] else (
-            f"{csmt.nodes[a]['name']} to {csmt.nodes[b]['name']}"
-            + (", step-free" if c.accessible else "")
-            + f" — {r['distance_m']} m, {len(r['steps'])} steps. Drawn on the model."
-        )
+    def node_of(id):
+        """A node id stays put; an equipment id resolves to the node it sits at."""
+        if id in w.nodes:
+            return id
+        eq = w.equipment.get(id)
+        return eq["node"] if eq else None
 
-    elif c.action in ("block", "unblock"):
-        passable = c.action == "unblock"
-        target = _node_of(c.node_id)
-        if target:
-            targets = [target]
-        elif passable:
-            targets = [i for i, n in csmt.nodes.items() if not n["passable"]]   # "clear everything"
-        else:
-            targets = []
-        for t in targets:
-            csmt.set_passable(t, passable)
-        out["changed"] = targets
-        names = ", ".join(csmt.nodes[t]["name"] for t in targets)
-        out["reply"] = (f"{names} is now {'open' if passable else 'blocked'}." if targets
-                        else "Nothing to change — which place did you mean?")
+    @app.get(prefix)
+    def holo():
+        return FileResponse("holo.html")
 
-    elif c.action == "show_level":
-        levels = {str(n.get("floor", 1)) for n in csmt.nodes.values()}
-        out["level"] = c.level if c.level in levels or c.level == "all" else None
-        out["reply"] = (f"Showing {'every level' if out['level'] == 'all' else 'level ' + out['level']}."
-                        if out["level"] else "I only know about levels " + ", ".join(sorted(levels)) + ".")
+    @app.get(prefix + "/state")
+    def holo_state():
+        return w.state()
 
-    elif c.action == "reset_view":
-        out["reply"] = "View reset."
+    @app.get(prefix + "/route")
+    def holo_route(from_id: str = Query(..., alias="from"), to: str = Query(...), accessible: bool = False):
+        return w.route(from_id, to, accessible=accessible)
 
-    if not out["reply"]:
-        out["reply"] = "Ask me to take you somewhere, block a space, or switch level."
-    return out
+    @app.post(prefix + "/block")
+    def holo_block(node: str, passable: bool = False):
+        if not w.has(node):
+            return {"error": f"unknown node id '{node}'"}
+        w.set_passable(node, passable)
+        return {"node": node, "passable": passable}
+
+    # gemini.chat only parses the sentence; every route, distance and blockage
+    # below is computed here against networkx, never by the model.
+    @app.post(prefix + "/chat")
+    def holo_chat(body: ChatIn):
+        c = gemini.chat(body.message, body.history, w)
+        out = {"action": c.action, "reply": c.reply, "route": None, "level": None, "changed": []}
+
+        if c.action == "route":
+            a, b = node_of(c.from_id) or entrance, node_of(c.to_id)
+            if not b:
+                out["action"] = "none"
+                out["reply"] = "I couldn't tell which place you meant — try naming it as it appears on the model."
+                return out
+            r = w.route(a, b, accessible=c.accessible)
+            out["route"] = r
+            out["req"] = {"from": a, "to": b, "accessible": c.accessible}   # so the page can replay it after a blockage
+            out["reply"] = r["reason"] if not r["path"] else (
+                f"{w.nodes[a]['name']} to {w.nodes[b]['name']}"
+                + (", step-free" if c.accessible else "")
+                + f" — {r['distance_m']} m, {len(r['steps'])} steps. Drawn on the model."
+            )
+
+        elif c.action in ("block", "unblock"):
+            passable = c.action == "unblock"
+            target = node_of(c.node_id)
+            if target:
+                targets = [target]
+            elif passable:
+                targets = [i for i, n in w.nodes.items() if not n["passable"]]   # "clear everything"
+            else:
+                targets = []
+            for t in targets:
+                w.set_passable(t, passable)
+            out["changed"] = targets
+            names = ", ".join(w.nodes[t]["name"] for t in targets)
+            out["reply"] = (f"{names} is now {'open' if passable else 'blocked'}." if targets
+                            else "Nothing to change — which place did you mean?")
+
+        elif c.action == "show_level":
+            levels = {str(n.get("floor", 1)) for n in w.nodes.values()}
+            out["level"] = c.level if c.level in levels or c.level == "all" else None
+            out["reply"] = (f"Showing {'every level' if out['level'] == 'all' else 'level ' + out['level']}."
+                            if out["level"] else "I only know about levels " + ", ".join(sorted(levels)) + ".")
+
+        elif c.action == "reset_view":
+            out["reply"] = "View reset."
+
+        if not out["reply"]:
+            out["reply"] = "Ask me to take you somewhere, block a space, or switch level."
+        return out
+
+
+@app.get("/twins")
+def twins():
+    return TWINS
+
+
+mount_twin("/3d", csmt)
+
+# the Bhaskaracharya block, modelled from its seven Emergency Escape Route boards
+if os.path.exists("fixtures/building.bhaskaracharya.json"):
+    bhaskar = world.load("fixtures/building.bhaskaracharya.json")
+    mount_twin("/3d/bhaskaracharya", bhaskar)
+    print(f"loaded bhaskaracharya: {len(bhaskar.nodes)} nodes, {len(bhaskar.equipment)} equipment")

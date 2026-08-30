@@ -5,75 +5,111 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Indoor Spatial Twin</title>
 <style>
+/* Same system as /3d: monochrome building, and colour only where the twin is
+   asserting something. cyan = a route it computed. amber = something it
+   visually identified. red = blocked. Nothing is coloured for decoration. */
+:root{
+  --void:#07090c; --plate:#0b0f14; --sunk:#080b0f;
+  --rule:#18222b; --rule2:#26333d;
+  --ink:#e9eef3; --dim:#6d808c; --dimmer:#3f4e58;
+  --live:#00e5ff; --loc:#ffb01f; --halt:#ff3b5c; --ok:#5ef2a8;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","Segoe UI Mono",Consolas,monospace;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#070b10;--panel:#101821;--line:#2b3c4e;--ink:#eef4fb;--dim:#94aac0;
-      --acc:#22d3ee;--loc:#fbbf24;--bad:#ff4d4d;--ok:#4ade80}
 html,body{height:100%}
-body{background:var(--bg);color:var(--ink);overflow:hidden;display:flex;flex-direction:column;
-     font:16px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
-header{display:flex;align-items:center;gap:22px;padding:12px 22px;border-bottom:1px solid var(--line);background:#0b1219}
-h1{font-size:26px;letter-spacing:.4px;white-space:nowrap}
-#bld{font-size:15px;color:var(--dim);white-space:nowrap}
-#mode{font-size:12px;letter-spacing:2px;color:#0a0f14;background:var(--loc);padding:4px 9px;border-radius:4px;font-weight:700}
-.acts{margin-left:auto;display:flex;gap:10px}
-.btn{font:600 17px/1 inherit;color:var(--ink);background:#1a2836;border:1px solid var(--line);
-     border-radius:8px;padding:14px 18px;cursor:pointer;white-space:nowrap}
-.btn:hover{background:#24384b;border-color:#4f6d8b}
-main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(380px,1fr);gap:14px;padding:14px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-height:0;display:flex;flex-direction:column}
-#planwrap{padding:12px 14px}
-#bar{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--dim);padding-bottom:10px}
-select{font:600 16px/1 inherit;color:var(--ink);background:#1a2836;border:1px solid var(--line);border-radius:7px;padding:10px}
-label.chk{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--ink)}
-#plan{flex:1;min-height:0;width:100%}
-#steps{border-top:1px solid var(--line);padding-top:11px;margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.step{background:#16232f;border:1px solid var(--line);border-radius:20px;padding:8px 14px;font-size:16px}
-.step b{color:var(--acc);margin-right:6px}
-.dist{background:var(--acc);color:#04222a;font-weight:800;font-size:17px;border-radius:20px;padding:8px 15px}
-.hint{color:var(--dim);font-size:16px}
-.fail{color:var(--bad);font-weight:700;font-size:17px}
-#panel{padding:18px 20px;overflow-y:auto;display:block}
-.kicker{font-size:13px;letter-spacing:2.5px;color:var(--dim);margin-bottom:14px}
-.sec{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+body{background:var(--void);color:var(--ink);font:14px/1.5 var(--sans);
+     overflow:hidden;display:flex;flex-direction:column}
+
+header{display:flex;align-items:center;gap:20px;padding:0 20px;height:52px;
+       border-bottom:1px solid var(--rule);background:var(--plate)}
+h1{font:600 13px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;white-space:nowrap}
+#bld{font:400 12px/1 var(--mono);color:var(--dim);letter-spacing:.06em;white-space:nowrap;
+     overflow:hidden;text-overflow:ellipsis}
+#mode{font:600 9px/1 var(--mono);letter-spacing:.2em;color:var(--void);background:var(--live);padding:5px 7px}
+.acts{margin-left:auto;display:flex;gap:7px}
+.btn{font:500 10px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--dim);
+     background:transparent;border:1px solid var(--rule2);padding:10px 13px;cursor:pointer;white-space:nowrap}
+.btn:hover{color:var(--ink);border-color:var(--dim)}
+
+main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(360px,1fr)}
+.card{min-height:0;display:flex;flex-direction:column}
+#planwrap{padding:14px 18px;border-right:1px solid var(--rule)}
+#bar{display:flex;align-items:center;gap:9px;padding-bottom:12px;
+     font:400 10px/1 var(--mono);letter-spacing:.15em;color:var(--dimmer);text-transform:uppercase}
+select{background:var(--sunk);color:var(--ink);border:1px solid var(--rule2);
+       padding:9px 10px;font:400 12.5px/1 var(--mono);border-radius:0;appearance:none;max-width:210px}
+select:hover{border-color:var(--dim)}
+select:focus{outline:none;border-color:var(--live)}
+label.chk{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--dim);letter-spacing:.15em}
+input[type=checkbox]{width:14px;height:14px;accent-color:var(--live)}
+#go{color:var(--void);background:var(--live);border-color:var(--live);font-weight:600}
+#go:hover{background:#4af1ff;border-color:#4af1ff;color:var(--void)}
+#plan{flex:1;min-height:0;width:100%;-webkit-user-select:none;user-select:none}
+#steps{border-top:1px solid var(--rule);padding-top:12px;margin-top:10px;
+       display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.step{font:400 12px/1 var(--mono);color:#c3ced7;border:1px solid var(--rule2);padding:7px 10px}
+.step b{color:var(--dimmer);margin-right:7px;font-weight:400}
+.dist{font:500 12px/1 var(--mono);letter-spacing:.1em;background:var(--live);color:var(--void);padding:7px 11px}
+.hint,.fail{font:400 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.hint{color:var(--dimmer)}
+.fail{color:var(--halt)}
+
+#panel{padding:16px 18px;overflow-y:auto;display:block}
+.kicker{font:500 10px/1 var(--mono);letter-spacing:.22em;color:var(--dimmer);text-transform:uppercase;
+        margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.kicker::after{content:"";flex:1;height:1px;background:var(--rule)}
+.sec{border-top:1px solid var(--rule);padding-top:15px;margin-top:15px}
 .sec:first-of-type{border-top:0;padding-top:0;margin-top:0}
-.title{font-size:29px;font-weight:700;line-height:1.15}
-.sub{font-size:15px;color:var(--dim);font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:3px}
-.badge{display:inline-block;font-size:13px;letter-spacing:2px;font-weight:800;padding:5px 10px;border-radius:4px;margin-top:9px}
-.badge.ok{background:var(--ok);color:#062812}.badge.bad{background:var(--bad);color:#2b0000}
-.confrow{display:flex;align-items:center;gap:12px;margin:12px 0 4px}
-.bar{flex:1;height:18px;background:#1a2836;border-radius:9px;overflow:hidden}
-.bar i{display:block;height:100%;background:linear-gradient(90deg,#22d3ee,#4ade80)}
-.confnum{font-size:23px;font-weight:800;font-variant-numeric:tabular-nums}
-.ev{list-style:none;margin-top:10px}
-.ev li{font-size:17px;line-height:1.5;padding:10px 13px;margin-bottom:8px;background:#0c151e;
-       border-left:3px solid var(--acc);border-radius:0 6px 6px 0;white-space:pre-wrap}
-.alts{font-size:15px;color:var(--dim);margin-top:8px;font-family:ui-monospace,Menlo,Consolas,monospace}
-.room{fill:#16212d;stroke:#5d7e9c}.corridor{fill:#0d1720;stroke:#41576c}
-.stairs{fill:#1c2237;stroke:#9a9ae0}.lift{fill:#0e2430;stroke:#3fb6c9}.entrance{fill:#10261a;stroke:#4ade80}
-.n{stroke-width:2.5}.n.blocked{fill:#4a1113;stroke:var(--bad);stroke-width:4}
-.tread{stroke:#9a9ae0;stroke-width:1.5;opacity:.55}.car{fill:none;stroke:#3fb6c9;stroke-width:2}
-.lbl,.tag{paint-order:stroke fill;stroke:#070b10;stroke-width:5;stroke-linejoin:round;text-anchor:middle}
-.lbl{fill:#eef4fb;font-size:20px;font-weight:700}
-.tag{fill:#94aac0;font-size:14px;letter-spacing:2px;font-weight:700;stroke-width:4}
-.tag.bad{fill:var(--bad)}
-.edge{stroke:#33475c;stroke-width:2;stroke-dasharray:4 5}
-.edge.cut{stroke:var(--bad);stroke-width:3.5;stroke-dasharray:7 6}
-.cutdot{fill:#070b10;stroke:var(--bad);stroke-width:2.5}
-.cutx{stroke:var(--bad);stroke-width:4;stroke-linecap:round}
-.locked{fill:none;stroke:var(--loc);stroke-width:4}
-.halo{fill:none;stroke:var(--loc);stroke-width:5;transform-box:fill-box;transform-origin:center;animation:halo 1.5s ease-out infinite}
-@keyframes halo{0%{transform:scale(1);opacity:.95}100%{transform:scale(1.16);opacity:0}}
-.rline{fill:none;stroke:#062d36;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
-.rmain{fill:none;stroke:var(--acc);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
-.rflow{fill:none;stroke:#f2ffff;stroke-width:4;stroke-linecap:round;stroke-dasharray:10 24;animation:ants 1s linear infinite}
-@keyframes ants{to{stroke-dashoffset:-34}}
-.wp{fill:#04222a;stroke:var(--acc);stroke-width:3}
-.rend{fill:var(--acc)}.rstart{fill:var(--ok)}
+.title{font:400 23px/1.2 var(--sans);letter-spacing:-.01em}
+.sub{font:400 11px/1 var(--mono);color:var(--dimmer);letter-spacing:.08em;margin-top:6px}
+.badge{display:inline-block;font:600 9px/1 var(--mono);letter-spacing:.2em;padding:6px 8px;margin-top:10px}
+.badge.ok{background:var(--ok);color:#04220f}.badge.bad{background:var(--halt);color:#2b0008}
+.confrow{display:flex;align-items:center;gap:11px;margin:14px 0 4px}
+.bar{flex:1;height:3px;background:var(--rule2)}
+.bar i{display:block;height:100%;background:var(--live)}
+.confnum{font:300 22px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--live)}
+.ev{list-style:none;margin-top:12px}
+.ev li{font-size:13.5px;line-height:1.55;color:#c3ced7;padding:9px 12px;margin-bottom:7px;
+       background:var(--sunk);border-left:2px solid var(--rule2);white-space:pre-wrap}
+.alts{font:400 11px/1.6 var(--mono);color:var(--dimmer);letter-spacing:.06em;margin-top:10px}
+
+/* --- plan --- */
+.room,.corridor,.stairs,.lift,.entrance{fill:rgba(143,163,174,.05);stroke:#54666f}
+.entrance{stroke:#7d8f99}
+.n{stroke-width:1.2}
+.n.blocked{fill:rgba(255,59,92,.14);stroke:var(--halt);stroke-width:1.8}
+.tread{stroke:#54666f;stroke-width:1;opacity:.5}
+.car{fill:none;stroke:#54666f;stroke-width:1.2}
+.lbl,.tag{paint-order:stroke fill;stroke:var(--void);stroke-width:4;stroke-linejoin:round;
+          text-anchor:middle;font-family:var(--mono)}
+.lbl{fill:var(--ink);font-size:14px;font-weight:500}
+.tag{fill:var(--dimmer);font-size:9px;letter-spacing:.2em;font-weight:500;stroke-width:3}
+.tag.bad{fill:var(--halt)}
+.edge{stroke:var(--rule2);stroke-width:1;stroke-dasharray:3 5}
+.edge.cut{stroke:var(--halt);stroke-width:1.4;stroke-dasharray:4 4;opacity:.7}
+.cutdot{fill:var(--void);stroke:var(--halt);stroke-width:1.4}
+.cutx{stroke:var(--halt);stroke-width:2;stroke-linecap:round}
+.locked{fill:none;stroke:var(--loc);stroke-width:1.6}
+.halo{fill:none;stroke:var(--loc);stroke-width:1.6;transform-box:fill-box;transform-origin:center;
+      animation:halo 1.8s ease-out infinite}
+@keyframes halo{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.2);opacity:0}}
+.rline{fill:none;stroke:var(--live);stroke-opacity:.13;stroke-width:11;stroke-linecap:round;stroke-linejoin:round}
+.rmain{fill:none;stroke:var(--live);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.rflow{fill:none;stroke:var(--live);stroke-width:2;stroke-linecap:round;stroke-dasharray:9 20;
+       animation:ants 1.1s linear infinite}
+@keyframes ants{to{stroke-dashoffset:-29}}
+.wp{fill:var(--void);stroke:var(--live);stroke-width:1.4}
+.rend{fill:var(--live);stroke:none}.rstart{fill:var(--void);stroke:var(--live);stroke-width:1.8}
+@media (prefers-reduced-motion:reduce){.rflow,.halo{animation:none}}
+:focus-visible{outline:1px solid var(--live);outline-offset:2px}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:var(--rule2)}
+::-webkit-scrollbar-track{background:transparent}
 </style>
 </head>
 <body>
 <header>
-  <h1>Indoor Spatial Twin</h1><span id="bld">loading…</span><span id="mode"></span>
+  <h1>Indoor&middot;Spatial&middot;Twin</h1><span id="bld">connecting…</span><span id="mode"></span>
   <div class="acts">
     <button class="btn" data-for="f-locate">Where am I?</button>
     <button class="btn" data-for="f-identify">What is this?</button>
@@ -88,7 +124,7 @@ label.chk{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--ink
     <div id="bar">
       From <select id="from"></select> to <select id="to"></select>
       <label class="chk"><input type="checkbox" id="acc"> step-free</label>
-      <button class="btn" id="go" style="padding:10px 16px">Route</button>
+      <button class="btn" id="go">Route</button>
     </div>
     <svg id="plan" preserveAspectRatio="xMidYMid meet">
       <g id="gEdges"></g><g id="gNodes"></g><g id="gCut"></g>
