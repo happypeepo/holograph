@@ -109,6 +109,9 @@ class World:
                 distance=dist,
                 accessible=bool(e.get("accessible", True)),
                 passable=bool(e.get("passable", True)),
+                # the authored value, never overwritten - an edge sealed in the
+                # building file must stay sealed across any block/unblock cycle
+                base_passable=bool(e.get("passable", True)),
             )
             self.edge_keys.append((a, b))
 
@@ -178,8 +181,10 @@ class World:
         passable = bool(passable)
         self.nodes[node_id]["passable"] = passable
         for other in self.g[node_id]:
-            # reopening an edge only counts if the far end is open too
-            self.g[node_id][other]["passable"] = passable and self.nodes[other]["passable"]
+            # an edge is passable only if the building file authored it so AND
+            # both endpoints are currently open
+            d = self.g[node_id][other]
+            d["passable"] = d["base_passable"] and passable and self.nodes[other]["passable"]
 
     def state(self):
         return {
