@@ -210,3 +210,80 @@ def observe(frame_bytes_list, world):
         if obs.node_id == "unknown":
             obs.confidence = 0.0  # main.py's confidence > 0.6 filter drops it
     return r
+
+
+# --- chat: plain English -> one command --------------------------------------
+# The model only parses intent. It never routes, never measures, never names a
+# distance — main.py runs the command against the networkx world and writes the
+# factual half of the reply itself.
+
+CHAT_ACTIONS = ("route", "block", "unblock", "show_level", "reset_view", "none")
+
+CHAT_PROMPT = """You turn a visitor's plain-English request into ONE command for the
+navigation system of {building}.
+
+Locations (id: name, type, level):
+{nodes}
+
+Equipment (id: name, at location):
+{equipment}
+
+Recent conversation:
+{history}
+
+The visitor now says: {message}
+
+Choose exactly one action:
+- "route"       they want to get somewhere. Set from_id and to_id.
+- "block"       they report a place shut, blocked, flooded, closed or under repair. Set node_id.
+- "unblock"     they report a place open or clear again. Set node_id, or leave node_id empty
+                to clear every blockage at once.
+- "show_level"  they want to look at one level or at all of them. Set level to a level number or "all".
+- "reset_view"  they want the camera back where it started.
+- "none"        anything else: a greeting, a question you cannot express as the actions above,
+                or a request naming a place that is not in the lists.
+
+Rules:
+- Every id MUST be copied from the lists above. Never invent one. Leave a field "" when it does not apply.
+- If they name a piece of equipment as the destination, put the EQUIPMENT id in to_id.
+- If they never say where they are starting from, leave from_id "" and the system starts at the entrance.
+- accessible is true only when they ask for step-free, no stairs, wheelchair, pram, luggage or lift access.
+- Resolve "there", "it", "that one", "the same place" against the recent conversation above.
+- reply: ONE short friendly sentence, used only when the action is "none". Never state a distance,
+  a number of metres, a level count or a list of steps — the system works those out itself.
+"""
+
+
+class ChatCommand(BaseModel):
+    action: str
+    from_id: str
+    to_id: str
+    node_id: str
+    level: str
+    accessible: bool
+    reply: str
+
+
+def chat(message, history, world):
+    nodes = "\n".join(
+        f"- {n['id']}: {n['name']}, {n['type']}, level {n.get('floor', 1)}"
+        for n in world.nodes.values()
+    )
+    equipment = "\n".join(
+        f"- {e['id']}: {e['name']}, at {e['node']}" for e in world.equipment.values()
+    ) or "- (none)"
+    prompt = CHAT_PROMPT.format(
+        building=world.building, nodes=nodes, equipment=equipment,
+        history=history or "(nothing yet)", message=message,
+    )
+    r = _call([], prompt, ChatCommand)
+
+    if r.action not in CHAT_ACTIONS:
+        _reject("chat action", r.action)
+        r.action = "none"
+    for field in ("from_id", "to_id", "node_id"):
+        value = getattr(r, field)
+        if value and not world.has(value):
+            _reject(f"chat {field}", value)
+            setattr(r, field, "")
+    return r

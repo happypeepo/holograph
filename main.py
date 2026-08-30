@@ -4,6 +4,7 @@ import os
 from fastapi import FastAPI, File, Query, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 import gemini
 import world
@@ -88,3 +89,73 @@ def holo_block(node: str, passable: bool = False):
         return {"error": f"unknown node id '{node}'"}
     csmt.set_passable(node, passable)
     return {"node": node, "passable": passable}
+
+
+# --- /3d chat ---------------------------------------------------------------
+# gemini.chat parses the sentence; every route, distance and blockage below is
+# computed here against the networkx world, never by the model.
+
+ENTRANCE = next((i for i, n in csmt.nodes.items() if n["type"] == "entrance"), next(iter(csmt.nodes)))
+
+
+class ChatIn(BaseModel):
+    message: str
+    history: str = ""
+
+
+def _node_of(id):
+    """A node id stays put; an equipment id resolves to the node it sits at."""
+    if id in csmt.nodes:
+        return id
+    eq = csmt.equipment.get(id)
+    return eq["node"] if eq else None
+
+
+@app.post("/3d/chat")
+def holo_chat(body: ChatIn):
+    c = gemini.chat(body.message, body.history, csmt)
+    out = {"action": c.action, "reply": c.reply, "route": None, "level": None, "changed": []}
+
+    if c.action == "route":
+        a, b = _node_of(c.from_id) or ENTRANCE, _node_of(c.to_id)
+        if not b:
+            out["action"] = "none"
+            out["reply"] = "I couldn't tell which place you meant — try naming it as it appears on the model."
+            return out
+        r = csmt.route(a, b, accessible=c.accessible)
+        out["route"] = r
+        out["req"] = {"from": a, "to": b, "accessible": c.accessible}   # so the page can replay it after a blockage
+        out["reply"] = r["reason"] if not r["path"] else (
+            f"{csmt.nodes[a]['name']} to {csmt.nodes[b]['name']}"
+            + (", step-free" if c.accessible else "")
+            + f" — {r['distance_m']} m, {len(r['steps'])} steps. Drawn on the model."
+        )
+
+    elif c.action in ("block", "unblock"):
+        passable = c.action == "unblock"
+        target = _node_of(c.node_id)
+        if target:
+            targets = [target]
+        elif passable:
+            targets = [i for i, n in csmt.nodes.items() if not n["passable"]]   # "clear everything"
+        else:
+            targets = []
+        for t in targets:
+            csmt.set_passable(t, passable)
+        out["changed"] = targets
+        names = ", ".join(csmt.nodes[t]["name"] for t in targets)
+        out["reply"] = (f"{names} is now {'open' if passable else 'blocked'}." if targets
+                        else "Nothing to change — which place did you mean?")
+
+    elif c.action == "show_level":
+        levels = {str(n.get("floor", 1)) for n in csmt.nodes.values()}
+        out["level"] = c.level if c.level in levels or c.level == "all" else None
+        out["reply"] = (f"Showing {'every level' if out['level'] == 'all' else 'level ' + out['level']}."
+                        if out["level"] else "I only know about levels " + ", ".join(sorted(levels)) + ".")
+
+    elif c.action == "reset_view":
+        out["reply"] = "View reset."
+
+    if not out["reply"]:
+        out["reply"] = "Ask me to take you somewhere, block a space, or switch level."
+    return out
