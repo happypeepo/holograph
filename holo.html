@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <title>Spatial Twin — Holographic View</title>
 <style>
-:root{ --cy:#5eead4; --cy2:#22d3ee; --red:#ff4d6d; --amb:#fbbf24; --bg:#03080e; --ink:#dff7f4; }
+:root{ --cy:#5eead4; --cy2:#22d3ee; --red:#ff4d6d; --bg:#03080e; --ink:#dff7f4; }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;height:100vh;overflow:hidden;
      display:grid;grid-template-rows:auto 1fr auto}
@@ -21,9 +21,11 @@ main{display:grid;grid-template-columns:1fr 400px;min-height:0}
 svg{width:100%;height:100%;display:block}
 aside{border-left:1px solid #0e2a33;padding:18px;overflow:auto;background:#04101a}
 .k{font-size:11px;letter-spacing:2px;color:#4f818b;text-transform:uppercase;margin:0 0 8px}
-.dist{font-size:40px;font-weight:800;color:var(--cy);line-height:1;margin:2px 0 14px}
+.dist{font-size:40px;font-weight:800;color:var(--cy);line-height:1;margin:2px 0 6px}
+.via{font-size:13px;color:#4f818b;margin:0 0 14px}
 ol{margin:0 0 20px;padding-left:24px}
 ol li{margin:7px 0;font-size:16px}
+ol li.up{color:var(--cy2);font-weight:700}
 .blocked{color:var(--red);font-weight:700;font-size:16px;margin:4px 0}
 .reason{color:var(--red);font-size:16px;border-left:3px solid var(--red);padding-left:12px;margin-bottom:18px}
 .leg{display:flex;align-items:center;gap:9px;margin:6px 0;font-size:13px;color:#8fb6bc}
@@ -60,6 +62,7 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;paint-order:stroke;
     <div class="leg"><span class="sw" style="background:rgba(94,234,212,.22);border-color:#5eead4"></span>space</div>
     <div class="leg"><span class="sw" style="background:rgba(34,211,238,.35);border-color:#22d3ee"></span>on route</div>
     <div class="leg"><span class="sw" style="background:rgba(255,77,109,.3);border-color:#ff4d6d"></span>blocked</div>
+    <div class="leg"><span class="sw" style="border-color:#22d3ee;background:none;border-style:dashed"></span>stair / lift shaft</div>
     <div class="leg" style="margin-top:14px;color:#4f818b">drag to orbit · scroll to zoom · shift-drag to pan</div>
   </aside>
 </main>
@@ -69,7 +72,9 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;paint-order:stroke;
   <label>to</label><select id="to"></select>
   <span class="chk"><input type="checkbox" id="acc"><label for="acc" style="cursor:pointer">step-free</label></span>
   <button class="go" id="go">Route</button>
-  <span style="width:22px"></span>
+  <span style="width:16px"></span>
+  <label>level</label><select id="lvl"><option value="all">all</option></select>
+  <span style="width:16px"></span>
   <label>node</label><select id="blk"></select>
   <button id="block">Block</button><button id="unblock">Clear</button>
   <span class="spacer" style="flex:1"></span>
@@ -79,13 +84,19 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;paint-order:stroke;
 <script>
 const API = { state:'/3d/state', route:'/3d/route', block:'/3d/block' };
 const HGT = { room:92, corridor:30, stairs:74, lift:132, entrance:56 };
+const LEVEL = 360;                       // vertical separation between levels, in plan units
 const VW = 1400, VH = 780;
+const DEFCAM = {yaw:-0.5,pitch:0.90,scale:0.82,ox:0,oy:104};
 const svg = document.getElementById('svg');
 const NS = 'http://www.w3.org/2000/svg';
 const el = (t,a,tx)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(tx!=null)e.textContent=tx;return e};
 
-let ST=null, BY={}, ROUTE=null, cam={yaw:-0.5,pitch:0.86,scale:1.02,ox:0,oy:34};
+let ST=null, BY={}, ROUTE=null, show='all', cam={...DEFCAM};
 let CX=0, CY=0;
+
+const flr  = n => n.floor||1;
+const base = n => (flr(n)-1)*LEVEL;
+const vis  = n => show==='all' || String(flr(n))===show;
 
 function project(x,y,z){
   const dx=x-CX, dy=y-CY;
@@ -109,24 +120,41 @@ function render(){
   if(!ST) return;
   while(svg.firstChild) svg.removeChild(svg.firstChild);
   const [,,vw,vh] = ST.svg_viewbox;
+  const floors = [...new Set(ST.nodes.map(flr))].sort();
 
-  // ground grid
-  const g = el('g',{opacity:'.28'});
-  for(let x=0;x<=vw;x+=100){ const a=project(x,0,0), b=project(x,vh,0);
-    g.appendChild(el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#125561','stroke-width':1})); }
-  for(let y=0;y<=vh;y+=100){ const a=project(0,y,0), b=project(vw,y,0);
-    g.appendChild(el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#125561','stroke-width':1})); }
-  svg.appendChild(g);
+  // one ground grid per level, fainter as you go up
+  for(const f of floors){
+    if(!(show==='all'||String(f)===show)) continue;
+    const z=(f-1)*LEVEL, g=el('g',{opacity:f===1?'.28':'.15'});
+    for(let x=0;x<=vw;x+=100){ const a=project(x,0,z), b=project(x,vh,z);
+      g.appendChild(el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#125561','stroke-width':1})); }
+    for(let y=0;y<=vh;y+=100){ const a=project(0,y,z), b=project(vw,y,z);
+      g.appendChild(el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#125561','stroke-width':1})); }
+    svg.appendChild(g);
+  }
 
-  // every face of every node, painter-sorted
+  // stair / lift shafts: any edge whose endpoints sit on different levels
+  if(show==='all') for(const e of ST.edges){
+    const a=BY[e.a], b=BY[e.b];
+    if(!a||!b||flr(a)===flr(b)) continue;
+    const lo=flr(a)<flr(b)?a:b, hi=lo===a?b:a;
+    const p1=project(lo.xy[0],lo.xy[1],base(lo)+(HGT[lo.type]||40));
+    const p2=project(hi.xy[0],hi.xy[1],base(hi));
+    svg.appendChild(el('line',{x1:p1[0],y1:p1[1],x2:p2[0],y2:p2[1],
+      stroke:e.accessible?'#22d3ee':'#7dd3fc','stroke-width':2.2,
+      'stroke-dasharray':e.accessible?'none':'7 5','stroke-opacity':e.passable?.75:.2}));
+  }
+
+  // every face of every visible volume, painter-sorted
   const faces=[];
   for(const n of ST.nodes){
-    const [x,y,w,h]=n.svg_rect, z=HGT[n.type]||40;
+    if(!vis(n)) continue;
+    const [x,y,w,h]=n.svg_rect, z1=base(n), z2=z1+(HGT[n.type]||40);
     const c=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]];
-    faces.push({p:c.map(q=>project(q[0],q[1],z)), n, top:true});
+    faces.push({p:c.map(q=>project(q[0],q[1],z2)), n, top:true});
     for(let i=0;i<4;i++){
       const a=c[i], b=c[(i+1)%4];
-      faces.push({p:[project(a[0],a[1],0),project(b[0],b[1],0),project(b[0],b[1],z),project(a[0],a[1],z)], n, top:false});
+      faces.push({p:[project(a[0],a[1],z1),project(b[0],b[1],z1),project(b[0],b[1],z2),project(a[0],a[1],z2)], n, top:false});
     }
   }
   faces.sort((a,b)=>avgz(a.p)-avgz(b.p));
@@ -137,9 +165,9 @@ function render(){
       class: f.n.passable?'':'pulse'}));
   }
 
-  // route polyline, floating above the volumes
+  // route floats above the volumes, drawn in full even when a level is filtered out
   if(ROUTE && ROUTE.length>1){
-    const rp = ROUTE.map(id=>{const n=BY[id]; return project(n.xy[0],n.xy[1],(HGT[n.type]||40)+16)});
+    const rp = ROUTE.map(id=>{const n=BY[id]; return project(n.xy[0],n.xy[1],base(n)+(HGT[n.type]||40)+16)});
     svg.appendChild(el('polyline',{points:pts(rp),fill:'none',stroke:'#0e7490','stroke-width':9,
       'stroke-linejoin':'round','stroke-linecap':'round','stroke-opacity':.5}));
     svg.appendChild(el('polyline',{points:pts(rp),fill:'none',stroke:'#67e8f9','stroke-width':3.5,
@@ -150,8 +178,9 @@ function render(){
 
   // screen-aligned labels last
   for(const n of ST.nodes){
-    const [x,y,w,h]=n.svg_rect, z=HGT[n.type]||40;
-    const q=project(x+w/2,y+h/2,z+8);
+    if(!vis(n)) continue;
+    const [x,y,w,h]=n.svg_rect, z=base(n)+(HGT[n.type]||40)+8;
+    const q=project(x+w/2,y+h/2,z);
     svg.appendChild(el('text',{x:q[0],y:q[1],'text-anchor':'middle','font-size':15,
       fill:n.passable?'#dff7f4':'#ff90a4','font-weight':600}, n.name));
   }
@@ -161,8 +190,14 @@ function panel(r){
   const o=document.getElementById('out');
   if(!r){o.innerHTML='<p style="color:#4f818b">Pick a start and destination below.</p>';return}
   if(!r.path.length){o.innerHTML='<div class="reason">'+(r.reason||'No route.')+'</div>';return}
-  o.innerHTML='<div class="dist">'+r.distance_m+' m</div><ol>'+
-    r.steps.map(s=>'<li>'+s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</li>').join('')+'</ol>';
+  const lv=[...new Set(r.path.map(id=>flr(BY[id])))].sort();
+  o.innerHTML='<div class="dist">'+r.distance_m+' m</div>'+
+    '<p class="via">'+(lv.length>1?'crosses level '+lv.join(' → '):'level '+lv[0])+'</p><ol>'+
+    r.steps.map((s,i)=>{
+      const t=BY[r.path[i]] ? BY[r.path[i]].type : '';
+      const up=(t==='stairs'||t==='lift');
+      return '<li class="'+(up?'up':'')+'">'+s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</li>';
+    }).join('')+'</ol>';
   const bl=ST.nodes.filter(n=>!n.passable);
   if(bl.length) o.innerHTML+='<p class="k">Blocked</p>'+bl.map(n=>'<div class="blocked">✕ '+n.name+'</div>').join('');
 }
@@ -171,13 +206,20 @@ async function loadState(){
   ST = await (await fetch(API.state)).json();
   BY = Object.fromEntries(ST.nodes.map(n=>[n.id,n]));
   const [,,vw,vh]=ST.svg_viewbox; CX=vw/2; CY=vh/2;
-  document.getElementById('bld').textContent = ST.building+' · level '+ST.floor+' · '+ST.nodes.length+' spaces';
+  const floors=[...new Set(ST.nodes.map(flr))].sort();
+  document.getElementById('bld').textContent =
+    ST.building+' · level'+(floors.length>1?'s '+floors[0]+'–'+floors[floors.length-1]:' '+floors[0])+
+    ' · '+ST.nodes.length+' spaces';
+  const lvl=document.getElementById('lvl');
+  lvl.innerHTML=''; lvl.appendChild(new Option('all','all'));
+  floors.forEach(f=>lvl.appendChild(new Option('level '+f,String(f))));
+  lvl.value=show;
   for(const id of ['from','to','blk']){
     const s=document.getElementById(id); s.innerHTML='';
-    ST.nodes.forEach(n=>s.appendChild(new Option(n.name,n.id)));
+    ST.nodes.forEach(n=>s.appendChild(new Option(n.name+'  (L'+flr(n)+')',n.id)));
   }
   document.getElementById('from').value='entrance_porch';
-  document.getElementById('to').value='heritage_gallery';
+  document.getElementById('to').value='gm_office';
   render();
 }
 
@@ -197,7 +239,8 @@ async function setBlock(p){
 document.getElementById('go').onclick=doRoute;
 document.getElementById('block').onclick=()=>setBlock(false);
 document.getElementById('unblock').onclick=()=>setBlock(true);
-document.getElementById('reset').onclick=()=>{cam={yaw:-0.5,pitch:0.86,scale:1.02,ox:0,oy:34};render()};
+document.getElementById('lvl').onchange=e=>{show=e.target.value;render()};
+document.getElementById('reset').onclick=()=>{cam={...DEFCAM};render()};
 
 const stage=document.getElementById('stage');
 let drag=null;

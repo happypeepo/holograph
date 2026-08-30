@@ -1,104 +1,699 @@
 {
   "building": "Chhatrapati Shivaji Maharaj Terminus",
   "floor": 1,
-  "svg_viewbox": [0, 0, 1200, 800],
+  "svg_viewbox": [
+    0,
+    0,
+    1200,
+    800
+  ],
   "nodes": [
-    { "id": "entrance_porch", "name": "West Carriage Porch", "type": "entrance",
-      "xy": [90, 405], "svg_rect": [40, 360, 100, 90],
+    {
+      "id": "entrance_porch",
+      "name": "West Carriage Porch",
+      "type": "entrance",
+      "xy": [
+        90,
+        405
+      ],
+      "svg_rect": [
+        40,
+        360,
+        100,
+        90
+      ],
       "visual_signature": "Pointed Gothic arched carriage porch on the western facade, gate piers crowned by the carved stone lion and tiger, ornamental wrought iron gates folded back against the buff sandstone",
-      "attributes": { "accessible": true } },
-
-    { "id": "corridor_west", "name": "West Vestibule", "type": "corridor",
-      "xy": [210, 405], "svg_rect": [140, 375, 140, 60],
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "corridor_west",
+      "name": "West Vestibule",
+      "type": "corridor",
+      "xy": [
+        210,
+        405
+      ],
+      "svg_rect": [
+        140,
+        375,
+        140,
+        60
+      ],
       "visual_signature": "Short vaulted vestibule in polished Kurla stone, clustered columns with carved foliate capitals either side, doorway ahead opening into the domed central hall",
-      "attributes": { "width_m": 4.0, "accessible": true } },
-
-    { "id": "central_dome", "name": "Central Dome Hall", "type": "room",
-      "xy": [365, 405], "svg_rect": [280, 330, 170, 150],
+      "attributes": {
+        "width_m": 4.0,
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "central_dome",
+      "name": "Central Dome Hall",
+      "type": "room",
+      "xy": [
+        365,
+        405
+      ],
+      "svg_rect": [
+        280,
+        330,
+        170,
+        150
+      ],
       "visual_signature": "Octagonal ribbed dome overhead with alternating bands of buff and blue stone, tall stained glass lancet windows, open floor with the grand staircase rising to the north",
-      "attributes": { "accessible": true } },
-
-    { "id": "grand_stair", "name": "Grand Staircase", "type": "stairs",
-      "xy": [365, 250], "svg_rect": [305, 170, 120, 140],
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "grand_stair",
+      "name": "Grand Staircase",
+      "type": "stairs",
+      "xy": [
+        365,
+        250
+      ],
+      "svg_rect": [
+        305,
+        170,
+        120,
+        140
+      ],
       "visual_signature": "Broad stone staircase splitting at a half landing, ornate wrought iron balustrade with brass handrail, carved newel posts, stained glass window on the landing wall",
-      "attributes": { "handrail": true, "accessible": false } },
-
-    { "id": "booking_hall", "name": "Booking Hall", "type": "room",
-      "xy": [390, 570], "svg_rect": [290, 500, 200, 140],
+      "attributes": {
+        "handrail": true,
+        "accessible": false
+      },
+      "floor": 1
+    },
+    {
+      "id": "booking_hall",
+      "name": "Booking Hall",
+      "type": "room",
+      "xy": [
+        390,
+        570
+      ],
+      "svg_rect": [
+        290,
+        500,
+        200,
+        140
+      ],
       "visual_signature": "High ribbed vaulted ceiling with timber ribs, large stained glass windows in reds and blues, star patterned polished stone floor, ticket counters in carved teak along the far wall",
-      "attributes": { "accessible": true } },
-
-    { "id": "admin_north_wing", "name": "North Administration Wing", "type": "room",
-      "xy": [210, 195], "svg_rect": [130, 120, 160, 150],
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "admin_north_wing",
+      "name": "North Administration Wing",
+      "type": "room",
+      "xy": [
+        210,
+        195
+      ],
+      "svg_rect": [
+        130,
+        120,
+        160,
+        150
+      ],
       "visual_signature": "Range of office doors in dark teak with brass numerals along one side, arcaded windows opposite looking onto the street, worn stone floor with a central runner",
-      "attributes": { "accessible": true } },
-
-    { "id": "admin_south_wing", "name": "South Administration Wing", "type": "room",
-      "xy": [200, 635], "svg_rect": [130, 560, 140, 150],
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "admin_south_wing",
+      "name": "South Administration Wing",
+      "type": "room",
+      "xy": [
+        200,
+        635
+      ],
+      "svg_rect": [
+        130,
+        560,
+        140,
+        150
+      ],
       "visual_signature": "Office range mirroring the north wing, glazed partition screens above waist height, ceiling fans on long down rods, noticeboard with railway circulars beside the entry",
-      "attributes": { "accessible": true } },
-
-    { "id": "corridor_north", "name": "North Gallery", "type": "corridor",
-      "xy": [440, 145], "svg_rect": [290, 120, 300, 50],
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "corridor_north",
+      "name": "North Gallery",
+      "type": "corridor",
+      "xy": [
+        440,
+        145
+      ],
+      "svg_rect": [
+        290,
+        120,
+        300,
+        50
+      ],
       "visual_signature": "Long arcaded gallery with a run of pointed arches on carved columns, open to the courtyard on one side, framed archive photographs of the station along the inner wall",
-      "attributes": { "width_m": 3.2, "accessible": true } },
-
-    { "id": "corridor_spine", "name": "East Spine Corridor", "type": "corridor",
-      "xy": [575, 405], "svg_rect": [450, 375, 250, 60],
+      "attributes": {
+        "width_m": 3.2,
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "corridor_spine",
+      "name": "East Spine Corridor",
+      "type": "corridor",
+      "xy": [
+        575,
+        405
+      ],
+      "svg_rect": [
+        450,
+        375,
+        250,
+        60
+      ],
       "visual_signature": "Straight corridor running east from the dome hall toward the concourse, cast iron columns at intervals, daylight increasing toward the far end where the train shed begins",
-      "attributes": { "width_m": 4.5, "accessible": true } },
-
-    { "id": "heritage_gallery", "name": "Railway Heritage Gallery", "type": "room",
-      "xy": [565, 250], "svg_rect": [470, 180, 190, 140],
+      "attributes": {
+        "width_m": 4.5,
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "heritage_gallery",
+      "name": "Railway Heritage Gallery",
+      "type": "room",
+      "xy": [
+        565,
+        250
+      ],
+      "svg_rect": [
+        470,
+        180,
+        190,
+        140
+      ],
       "visual_signature": "Museum room with glass display cases on cast iron legs, brass signalling instruments and old timetables mounted on the walls, a large scale locomotive model on a plinth at the centre",
-      "attributes": { "accessible": true } },
-
-    { "id": "lift_heritage", "name": "Heritage Lift", "type": "lift",
-      "xy": [600, 500], "svg_rect": [560, 460, 80, 80],
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "lift_heritage",
+      "name": "Heritage Lift",
+      "type": "lift",
+      "xy": [
+        600,
+        500
+      ],
+      "svg_rect": [
+        560,
+        460,
+        80,
+        80
+      ],
       "visual_signature": "Retrofitted lift in a glazed shaft set into the old fabric, brushed steel doors with a modern call panel mounted on a stone reveal, small blue accessibility pictogram beside it",
-      "attributes": { "accessible": true } },
-
-    { "id": "concourse", "name": "Main Line Concourse", "type": "corridor",
-      "xy": [790, 450], "svg_rect": [700, 300, 180, 300],
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "concourse",
+      "name": "Main Line Concourse",
+      "type": "corridor",
+      "xy": [
+        790,
+        450
+      ],
+      "svg_rect": [
+        700,
+        300,
+        180,
+        300
+      ],
       "visual_signature": "Wide open concourse under an iron and glass roof, riveted lattice girders overhead, departure board suspended at the centre, crowd barriers funnelling toward the platform gates",
-      "attributes": { "width_m": 12.0, "accessible": true } },
-
-    { "id": "platform_1", "name": "Platform 1", "type": "corridor",
-      "xy": [1015, 365], "svg_rect": [880, 320, 270, 90],
+      "attributes": {
+        "width_m": 12.0,
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "platform_1",
+      "name": "Platform 1",
+      "type": "corridor",
+      "xy": [
+        1015,
+        365
+      ],
+      "svg_rect": [
+        880,
+        320,
+        270,
+        90
+      ],
       "visual_signature": "Long platform under the ridge and furrow train shed, cast iron columns with decorative brackets carrying the roof, yellow safety line along the platform edge, numbered pillar signs",
-      "attributes": { "accessible": true } },
-
-    { "id": "platform_2", "name": "Platform 2", "type": "corridor",
-      "xy": [1015, 475], "svg_rect": [880, 430, 270, 90],
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "platform_2",
+      "name": "Platform 2",
+      "type": "corridor",
+      "xy": [
+        1015,
+        475
+      ],
+      "svg_rect": [
+        880,
+        430,
+        270,
+        90
+      ],
       "visual_signature": "Second platform sharing the shed, benches in cast iron and timber along the centre line, overhead indicator boards at intervals, water booth near the concourse end",
-      "attributes": { "accessible": true } }
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 1
+    },
+    {
+      "id": "grand_stair_l2",
+      "name": "Grand Staircase (Upper)",
+      "type": "stairs",
+      "xy": [
+        365,
+        250
+      ],
+      "svg_rect": [
+        305,
+        170,
+        120,
+        140
+      ],
+      "visual_signature": "Upper flight of the same stone staircase arriving at a balustraded landing, ornate iron scrollwork at the head of the stairs, tall stained glass window filling the wall opposite",
+      "attributes": {
+        "handrail": true,
+        "accessible": false
+      },
+      "floor": 2
+    },
+    {
+      "id": "upper_landing",
+      "name": "Dome Gallery",
+      "type": "corridor",
+      "xy": [
+        365,
+        405
+      ],
+      "svg_rect": [
+        280,
+        330,
+        170,
+        150
+      ],
+      "visual_signature": "Gallery running around the open well of the dome, carved stone balustrade looking down into the hall below, ribbed underside of the dome directly overhead with painted bosses",
+      "attributes": {
+        "width_m": 3.0,
+        "accessible": true
+      },
+      "floor": 2
+    },
+    {
+      "id": "upper_gallery_n",
+      "name": "Upper North Gallery",
+      "type": "corridor",
+      "xy": [
+        440,
+        145
+      ],
+      "svg_rect": [
+        290,
+        120,
+        300,
+        50
+      ],
+      "visual_signature": "Arcaded upper corridor mirroring the gallery below, pointed arches glazed against the weather, framed engineering drawings of the terminus hung between the piers",
+      "attributes": {
+        "width_m": 3.0,
+        "accessible": true
+      },
+      "floor": 2
+    },
+    {
+      "id": "upper_gallery_e",
+      "name": "Upper East Gallery",
+      "type": "corridor",
+      "xy": [
+        575,
+        405
+      ],
+      "svg_rect": [
+        450,
+        375,
+        250,
+        60
+      ],
+      "visual_signature": "Upper corridor running east above the spine, timber floor with a worn central strip, doors to the senior offices on one side and tall windows onto the train shed on the other",
+      "attributes": {
+        "width_m": 3.4,
+        "accessible": true
+      },
+      "floor": 2
+    },
+    {
+      "id": "gm_office",
+      "name": "General Manager's Office",
+      "type": "room",
+      "xy": [
+        210,
+        195
+      ],
+      "svg_rect": [
+        130,
+        120,
+        160,
+        150
+      ],
+      "visual_signature": "Panelled door in polished teak with a brass nameplate, heavy moulded architrave, carpeted anteroom visible inside with a long table and a marble fireplace on the far wall",
+      "attributes": {
+        "seats": 12,
+        "accessible": true
+      },
+      "floor": 2
+    },
+    {
+      "id": "conference_hall",
+      "name": "Board Room",
+      "type": "room",
+      "xy": [
+        565,
+        250
+      ],
+      "svg_rect": [
+        470,
+        180,
+        190,
+        140
+      ],
+      "visual_signature": "Large room with a single long polished table down the centre, portraits of former chief engineers in gilt frames, pendant lights on long chains from a coffered ceiling",
+      "attributes": {
+        "seats": 30,
+        "projector": true,
+        "accessible": true
+      },
+      "floor": 2
+    },
+    {
+      "id": "drawing_office",
+      "name": "Drawing Office",
+      "type": "room",
+      "xy": [
+        390,
+        570
+      ],
+      "svg_rect": [
+        290,
+        500,
+        200,
+        140
+      ],
+      "visual_signature": "Long top-lit room with rows of sloped drafting tables, plan chests in dark wood along the walls, rolled drawings stacked in pigeonholes near the door",
+      "attributes": {
+        "seats": 20,
+        "accessible": true
+      },
+      "floor": 2
+    },
+    {
+      "id": "record_room",
+      "name": "Record Room",
+      "type": "room",
+      "xy": [
+        200,
+        635
+      ],
+      "svg_rect": [
+        130,
+        560,
+        140,
+        150
+      ],
+      "visual_signature": "Archive room lined floor to ceiling with steel shelving, bound ledgers and linen backed plans in labelled bundles, single caged bulb and a rolling ladder on a rail",
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 2
+    },
+    {
+      "id": "lift_l2",
+      "name": "Heritage Lift (Upper)",
+      "type": "lift",
+      "xy": [
+        600,
+        500
+      ],
+      "svg_rect": [
+        560,
+        460,
+        80,
+        80
+      ],
+      "visual_signature": "Upper landing of the retrofitted lift, same brushed steel doors set into a stone reveal, call panel with the floor indicator above, accessibility pictogram beside the frame",
+      "attributes": {
+        "accessible": true
+      },
+      "floor": 2
+    }
   ],
   "edges": [
-    { "a": "entrance_porch", "b": "corridor_west", "distance": 8, "accessible": true, "passable": true },
-    { "a": "corridor_west", "b": "central_dome", "distance": 10, "accessible": true, "passable": true },
-    { "a": "corridor_west", "b": "admin_north_wing", "distance": 14, "accessible": true, "passable": true },
-    { "a": "central_dome", "b": "grand_stair", "distance": 6, "accessible": false, "passable": true },
-    { "a": "central_dome", "b": "booking_hall", "distance": 8, "accessible": true, "passable": true },
-    { "a": "central_dome", "b": "corridor_spine", "distance": 10, "accessible": true, "passable": true },
-    { "a": "grand_stair", "b": "corridor_north", "distance": 7, "accessible": false, "passable": true },
-    { "a": "corridor_north", "b": "admin_north_wing", "distance": 9, "accessible": true, "passable": true },
-    { "a": "corridor_north", "b": "heritage_gallery", "distance": 8, "accessible": true, "passable": true },
-    { "a": "corridor_spine", "b": "lift_heritage", "distance": 6, "accessible": true, "passable": true },
-    { "a": "lift_heritage", "b": "heritage_gallery", "distance": 10, "accessible": true, "passable": true },
-    { "a": "corridor_spine", "b": "concourse", "distance": 12, "accessible": true, "passable": true },
-    { "a": "concourse", "b": "platform_1", "distance": 10, "accessible": true, "passable": true },
-    { "a": "concourse", "b": "platform_2", "distance": 12, "accessible": true, "passable": true },
-    { "a": "booking_hall", "b": "admin_south_wing", "distance": 11, "accessible": true, "passable": true }
+    {
+      "a": "entrance_porch",
+      "b": "corridor_west",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_west",
+      "b": "central_dome",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_west",
+      "b": "admin_north_wing",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "central_dome",
+      "b": "grand_stair",
+      "distance": 6,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "central_dome",
+      "b": "booking_hall",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "central_dome",
+      "b": "corridor_spine",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "grand_stair",
+      "b": "corridor_north",
+      "distance": 7,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "corridor_north",
+      "b": "admin_north_wing",
+      "distance": 9,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_north",
+      "b": "heritage_gallery",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_spine",
+      "b": "lift_heritage",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_heritage",
+      "b": "heritage_gallery",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_spine",
+      "b": "concourse",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "concourse",
+      "b": "platform_1",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "concourse",
+      "b": "platform_2",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "booking_hall",
+      "b": "admin_south_wing",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "grand_stair",
+      "b": "grand_stair_l2",
+      "distance": 8,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "lift_heritage",
+      "b": "lift_l2",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "grand_stair_l2",
+      "b": "upper_landing",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "upper_landing",
+      "b": "upper_gallery_n",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "upper_landing",
+      "b": "upper_gallery_e",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "upper_landing",
+      "b": "drawing_office",
+      "distance": 9,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "upper_gallery_n",
+      "b": "gm_office",
+      "distance": 9,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "upper_gallery_n",
+      "b": "conference_hall",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "upper_gallery_e",
+      "b": "conference_hall",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "upper_gallery_e",
+      "b": "lift_l2",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "drawing_office",
+      "b": "record_room",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    }
   ],
   "equipment": [
-    { "id": "atvm_3", "name": "Automatic Ticket Vending Machine 3", "node": "booking_hall",
+    {
+      "id": "atvm_3",
+      "name": "Automatic Ticket Vending Machine 3",
+      "node": "booking_hall",
       "visual_signature": "free standing steel kiosk with a blue fascia and a small touchscreen, coin slot and smart card reader below, queue rail in front",
-      "manual_snippet": "Accepts smart cards and coins only. For season tickets use the staffed counter. If the screen is unresponsive, report the kiosk number to the counter supervisor - do not strike the panel." },
-    { "id": "heritage_loco", "name": "Heritage Locomotive Model", "node": "heritage_gallery",
+      "manual_snippet": "Accepts smart cards and coins only. For season tickets use the staffed counter. If the screen is unresponsive, report the kiosk number to the counter supervisor - do not strike the panel."
+    },
+    {
+      "id": "heritage_loco",
+      "name": "Heritage Locomotive Model",
+      "node": "heritage_gallery",
       "visual_signature": "large scale black and brass steam locomotive model on a raised timber plinth under a glass hood, brass nameplate on the plinth face",
-      "manual_snippet": "Display only - do not open the hood. Cleaning is scheduled quarterly by the conservation team. Report any condensation inside the glass to the gallery curator immediately." },
-    { "id": "departure_board", "name": "Main Departure Board", "node": "concourse",
+      "manual_snippet": "Display only - do not open the hood. Cleaning is scheduled quarterly by the conservation team. Report any condensation inside the glass to the gallery curator immediately."
+    },
+    {
+      "id": "departure_board",
+      "name": "Main Departure Board",
+      "node": "concourse",
       "visual_signature": "wide suspended display board hung from the shed girders above the centre of the concourse, amber characters on a dark ground, twin panels for main line and suburban services",
-      "manual_snippet": "Feed comes from the control office; do not reset locally. If a panel blanks, log the fault reference and call control on the internal line before the next departure window." }
+      "manual_snippet": "Feed comes from the control office; do not reset locally. If a panel blanks, log the fault reference and call control on the internal line before the next departure window."
+    },
+    {
+      "id": "plan_chest_4",
+      "name": "Plan Chest 4",
+      "node": "drawing_office",
+      "visual_signature": "wide shallow drawer cabinet in dark wood against the wall, brass drawer pulls and card label holders, drawing board resting on top",
+      "manual_snippet": "Drawers hold linen backed originals - handle with the cotton gloves kept on top. Do not remove a sheet from the room. Log any withdrawal in the register with your staff number."
+    }
   ]
 }
