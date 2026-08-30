@@ -2,259 +2,894 @@
 <meta charset="utf-8">
 <title>Spatial Twin — Holographic View</title>
 <style>
-:root{ --cy:#5eead4; --cy2:#22d3ee; --red:#ff4d6d; --bg:#03080e; --ink:#dff7f4; }
+/* ---------------------------------------------------------------------------
+   ctOS-over-Gothic. White is the voice of the building, cyan is the voice of
+   the system: cyan appears ONLY on something the twin is currently asserting
+   (the traced route, the live selection, a reading). Everything else stays
+   monochrome, which is what keeps the HUD at a garnish rather than a costume.
+   Monospace = instrument layer. Sans = the human conversation.
+--------------------------------------------------------------------------- */
+:root{
+  --void:#07090c; --plate:#0b0f14; --sunk:#080b0f;
+  --rule:#18222b; --rule2:#26333d;
+  --ink:#e9eef3; --dim:#6d808c; --dimmer:#3f4e58;
+  --live:#00e5ff; --halt:#ff3b5c; --ok:#5ef2a8;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","Segoe UI Mono",Consolas,monospace;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;height:100vh;overflow:hidden;
-     display:grid;grid-template-rows:auto 1fr auto}
-header{display:flex;align-items:baseline;gap:18px;padding:14px 22px;border-bottom:1px solid #0e2a33;background:linear-gradient(180deg,#06131b,#03080e)}
-h1{margin:0;font-size:24px;letter-spacing:.5px;color:#fff}
-.bld{font-size:18px;color:var(--cy)}
-.note{font-size:12px;color:#5b8a92;font-style:italic}
-.spacer{flex:1}
-a.b2d{color:var(--cy2);text-decoration:none;border:1px solid #164e5b;padding:7px 14px;border-radius:7px;font-size:14px}
-a.b2d:hover{background:#0b2028}
-main{display:grid;grid-template-columns:1fr 400px;min-height:0}
-#stage{position:relative;min-height:0;overflow:hidden;cursor:grab}
+html,body{height:100%}
+body{margin:0;background:var(--void);color:var(--ink);font:14px/1.5 var(--sans);
+     overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+
+/* ---- header: one hairline, no chrome ---- */
+header{display:flex;align-items:center;gap:20px;padding:0 20px;height:52px;
+       border-bottom:1px solid var(--rule);background:var(--plate)}
+.mark{font:600 13px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase}
+.mark i{color:var(--live);font-style:normal}
+.bld{font:400 12px/1 var(--mono);color:var(--dim);letter-spacing:.06em;
+     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.grow{flex:1}
+.disc{font:400 10px/1 var(--mono);color:var(--dimmer);letter-spacing:.1em;text-transform:uppercase}
+a.exit{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+       text-decoration:none;border:1px solid var(--rule2);padding:8px 12px}
+a.exit:hover{color:var(--ink);border-color:var(--dim)}
+
+main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
+
+/* ---- stage ---- */
+/* user-select off across the whole stage: dragging over SVG labels was selecting
+   them. Scoped here so chat text in the sidebar stays selectable. */
+#stage{position:relative;min-height:0;overflow:hidden;background:var(--void);
+       cursor:grab;touch-action:none;
+       -webkit-user-select:none;user-select:none}
 #stage.drag{cursor:grabbing}
-#stage::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:repeating-linear-gradient(0deg,rgba(94,234,212,.05) 0 1px,transparent 1px 4px)}
+#stage.hot{cursor:pointer}
 svg{width:100%;height:100%;display:block}
-aside{border-left:1px solid #0e2a33;padding:18px;overflow:auto;background:#04101a}
-.k{font-size:11px;letter-spacing:2px;color:#4f818b;text-transform:uppercase;margin:0 0 8px}
-.dist{font-size:40px;font-weight:800;color:var(--cy);line-height:1;margin:2px 0 6px}
-.via{font-size:13px;color:#4f818b;margin:0 0 14px}
-ol{margin:0 0 20px;padding-left:24px}
-ol li{margin:7px 0;font-size:16px}
-ol li.up{color:var(--cy2);font-weight:700}
-.blocked{color:var(--red);font-weight:700;font-size:16px;margin:4px 0}
-.reason{color:var(--red);font-size:16px;border-left:3px solid var(--red);padding-left:12px;margin-bottom:18px}
-.leg{display:flex;align-items:center;gap:9px;margin:6px 0;font-size:13px;color:#8fb6bc}
-.sw{width:15px;height:15px;border-radius:3px;border:1px solid}
-footer{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 22px;border-top:1px solid #0e2a33;background:#06131b}
-label{font-size:12px;color:#6d9aa2;letter-spacing:1px;text-transform:uppercase}
-select,button{background:#0a1f28;color:var(--ink);border:1px solid #164e5b;border-radius:7px;padding:9px 12px;font-size:15px;font-family:inherit}
-button{cursor:pointer}
-button:hover{background:#12333d;border-color:var(--cy)}
-button.go{background:#0d3b44;border-color:var(--cy);color:#fff;font-weight:700}
-input[type=checkbox]{width:17px;height:17px;accent-color:var(--cy)}
-.chk{display:flex;align-items:center;gap:7px}
-text{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;paint-order:stroke;stroke:#03080e;stroke-width:4px;stroke-linejoin:round}
-@keyframes march{to{stroke-dashoffset:-40}}
-@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
-.route{animation:march 1.1s linear infinite}
-.pulse{animation:pulse 1.5s ease-in-out infinite}
+/* corner ticks: the frame reads as an instrument viewport, four 1px marks total */
+.tick{position:absolute;width:14px;height:14px;pointer-events:none;border:0 solid var(--rule2)}
+.tick.tl{top:12px;left:12px;border-top-width:1px;border-left-width:1px}
+.tick.tr{top:12px;right:12px;border-top-width:1px;border-right-width:1px}
+.tick.bl{bottom:12px;left:12px;border-bottom-width:1px;border-left-width:1px}
+.tick.br{bottom:12px;right:12px;border-bottom-width:1px;border-right-width:1px}
+
+.hud{position:absolute;font:400 10px/1.7 var(--mono);letter-spacing:.11em;
+     color:var(--dim);pointer-events:none;text-transform:uppercase}
+.hud.tr{top:26px;right:26px;text-align:right}
+.hud.bl{bottom:26px;left:26px}
+.hud.br{bottom:26px;right:26px;text-align:right}
+.hud b{color:var(--ink);font-weight:500}
+.hud .cy{color:var(--live)}
+.lg{display:flex;align-items:center;gap:8px;margin-top:5px}
+.lg s{width:16px;height:0;border-top:2px solid;display:block;text-decoration:none}
+
+#cube{width:116px;height:116px;display:block;margin:6px 0 2px auto;pointer-events:auto;overflow:visible}
+.cubebar{display:flex;gap:9px;align-items:center;justify-content:flex-end;
+  pointer-events:auto;margin-top:3px}
+.cubebar button{font:500 10px/1 var(--mono);letter-spacing:.14em;color:var(--dim);
+  background:none;border:0;padding:0;cursor:pointer;text-transform:uppercase}
+.cubebar button:hover{color:var(--live)}
+.cubebar .arr{font-size:13px;line-height:1;letter-spacing:0;width:13px;text-align:center}
+#cube polygon{cursor:pointer}
+button.lnk{background:none;border:none;padding:0;font:500 10px/1 var(--mono);letter-spacing:.14em;
+  color:var(--dim);cursor:pointer;text-transform:uppercase;pointer-events:auto}
+button.lnk:hover{color:var(--live)}
+
+/* ---- sidebar ---- */
+aside{border-left:1px solid var(--rule);background:var(--plate);min-height:0;overflow:hidden;
+      display:flex;flex-direction:column}
+.k{font:500 10px/1 var(--mono);letter-spacing:.22em;color:var(--dimmer);text-transform:uppercase;
+   margin:0 0 9px;display:flex;align-items:center;gap:10px}
+.k::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+/* manual control — the deliberate, precise half of the interface */
+#ctrl{padding:12px 18px 14px;border-bottom:1px solid var(--rule)}
+.fld{display:grid;grid-template-columns:34px 1fr;align-items:center;gap:9px;margin-bottom:5px}
+.fld.sw{grid-template-columns:34px 1fr 34px}
+.ghost.ico{padding:9px 0;text-align:center;font-size:13px;letter-spacing:0}
+.fld > span{font:500 10px/1 var(--mono);letter-spacing:.14em;color:var(--dimmer)}
+select,input[type=text]{width:100%;background:var(--sunk);color:var(--ink);border:1px solid var(--rule2);
+  padding:8px 10px;font:400 13px/1 var(--mono);border-radius:0;appearance:none}
+select:focus,input:focus{outline:none;border-color:var(--live)}
+select:hover{border-color:var(--dim)}
+.row{display:flex;gap:7px;align-items:center;margin-top:8px}
+.seg{display:flex;flex:1}
+.seg button{flex:1;font:500 10px/1 var(--mono);letter-spacing:.12em;color:var(--dim);background:var(--sunk);
+  border:1px solid var(--rule2);border-right:0;padding:9px 4px;cursor:pointer;text-transform:uppercase}
+.seg button:last-child{border-right:1px solid var(--rule2)}
+.seg button:hover{color:var(--ink)}
+.seg button.on{color:var(--void);background:var(--ink);border-color:var(--ink)}
+.trace{width:100%;margin-top:8px;font:600 11px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--void);background:var(--live);border:1px solid var(--live);padding:11px;cursor:pointer}
+.trace:hover{background:#4af1ff;border-color:#4af1ff}
+.ghost{font:500 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+  background:transparent;border:1px solid var(--rule2);padding:9px 11px;cursor:pointer}
+.ghost:hover{color:var(--ink);border-color:var(--dim)}
+.ghost.halt:hover{color:var(--halt);border-color:var(--halt)}
+
+/* route readout */
+#read{padding:13px 18px;overflow:auto;flex:1 1 auto;min-height:120px;border-bottom:1px solid var(--rule)}
+.hdr{display:flex;align-items:baseline;gap:11px;margin-bottom:9px}
+.dist{font:300 30px/1 var(--mono);letter-spacing:-.02em;color:var(--live)}
+.dist s{font-size:13px;color:var(--dim);text-decoration:none;margin-left:4px;letter-spacing:.1em}
+.meta{font:400 10px/1 var(--mono);letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+/* route profile: x is distance walked, y is which level you are on, so a climb
+   is a visible riser rather than a word buried in a list */
+.prof{width:100%;display:block;margin-bottom:12px;overflow:visible}
+
+/* the spine. Marker shape encodes node type; the rail is one continuous line so
+   a level change reads as a break in a journey, not as row 5 of a table. */
+.stp{position:relative;display:grid;grid-template-columns:18px 1fr auto;gap:11px;
+     align-items:baseline;padding:6px 0;font-size:13.5px;color:#c3ced7}
+.stp .g{position:relative;height:1em}
+.stp .g::before{content:"";position:absolute;left:5px;top:-13px;bottom:-13px;width:1px;background:var(--rule2)}
+.stp:first-of-type .g::before{top:7px}
+.stp:last-of-type .g::before{bottom:auto;height:5px}
+.stp .g i{position:absolute;left:1px;top:2px;width:9px;height:9px;display:block;
+          border:1px solid var(--dim);background:var(--plate)}
+.stp[data-t=corridor] .g i{height:1px;top:7px;left:0;width:12px;border:0;background:var(--rule2)}
+.stp[data-t=stairs]   .g i{transform:rotate(45deg)}
+.stp[data-t=lift]     .g i{border-radius:50%}
+.stp[data-t=entrance] .g i{background:var(--dim);border-color:var(--dim)}
+.stp.up{color:var(--live)}
+.stp.up .g i{border-color:var(--live);background:var(--live)}
+.stp.end .g i{border-color:var(--live);background:var(--live);border-radius:50%}
+.stp .at{font:400 10px/1.6 var(--mono);color:var(--dimmer);letter-spacing:.06em;white-space:nowrap}
+.void{font:400 12px/1.6 var(--mono);color:var(--dimmer);letter-spacing:.06em}
+.err{font:400 12.5px/1.6 var(--mono);color:var(--halt);border-left:2px solid var(--halt);padding-left:11px}
+.blk{font:400 11px/1 var(--mono);color:var(--halt);letter-spacing:.08em;margin-top:6px}
+
+/* chat — stays exactly where it was, bottom of the sidebar */
+#chat{flex:0 0 auto;height:232px;display:flex;flex-direction:column;overflow:hidden;
+  padding:14px 18px 16px;background:var(--sunk)}
+#log{flex:1 1 auto;overflow:auto;min-height:40px;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.msg{max-width:90%;padding:9px 12px;font-size:13.5px;line-height:1.5;white-space:pre-wrap}
+.msg.u{align-self:flex-end;background:#12212a;border-left:2px solid var(--live);color:var(--ink)}
+.msg.a{align-self:flex-start;background:#0e141a;border-left:2px solid var(--rule2);color:#c3ced7}
+.msg.a.err{border-left-color:var(--halt);color:#ff9aad}
+.msg.wait{color:var(--dimmer);font:400 11px/1.6 var(--mono);letter-spacing:.1em;background:none;border-left-color:transparent}
+#chips{flex:0 0 auto;display:flex;gap:5px;margin-bottom:9px;
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+#chips::-webkit-scrollbar{height:0}
+#chips[hidden]{display:none}
+.chip{flex:0 0 auto;max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  background:transparent;border:1px solid var(--rule2);color:var(--dim);padding:6px 9px;
+  font:400 11px/1.3 var(--mono);cursor:pointer;text-align:left}
+.chip:hover{border-color:var(--live);color:var(--live)}
+#cf{flex:0 0 auto;display:flex;gap:8px}
+#ci{flex:1;min-width:0;font-family:var(--sans);font-size:13.5px}
+#cf button{font:600 11px/1 var(--mono);letter-spacing:.16em;color:var(--void);background:var(--ink);
+  border:1px solid var(--ink);padding:0 15px;cursor:pointer}
+#cf button:hover{background:var(--live);border-color:var(--live)}
+
+:focus-visible{outline:1px solid var(--live);outline-offset:2px}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:var(--rule2)}
+::-webkit-scrollbar-track{background:transparent}
+
+text{font-family:var(--mono);pointer-events:none}
+@keyframes march{to{stroke-dashoffset:-32}}
+@keyframes climb{to{stroke-dashoffset:-24}}
+@keyframes hoist{to{stroke-dashoffset:-129}}
+.route{animation:march 1.3s linear infinite}
+/* stairs step in discrete beats like footfalls; the lift car glides and settles */
+.climb{animation:climb .8s steps(6,end) infinite}
+.hoist{animation:hoist 2s cubic-bezier(.5,0,.5,1) infinite}
+@media (prefers-reduced-motion:reduce){.route,.climb,.hoist{animation:none}}
 </style>
 
 <header>
-  <h1>Spatial Twin</h1>
-  <span class="bld" id="bld">loading…</span>
-  <span class="note">illustrative approximation — not a survey drawing</span>
-  <span class="spacer"></span>
-  <a class="b2d" href="/">← 2D plan</a>
+  <span class="mark">Spatial<i>·</i>Twin</span>
+  <span class="bld" id="bld">connecting…</span>
+  <span class="grow"></span>
+  <span class="disc">illustrative approximation</span>
+  <a class="exit" id="alt" hidden>—</a>
+  <a class="exit" href="/">2D plan</a>
 </header>
 
 <main>
-  <div id="stage"><svg id="svg" viewBox="0 0 1400 780" preserveAspectRatio="xMidYMid meet"></svg></div>
+  <div id="stage">
+    <svg id="svg" viewBox="0 0 1400 780" preserveAspectRatio="xMidYMid meet"></svg>
+    <span class="tick tl"></span><span class="tick tr"></span>
+    <span class="tick bl"></span><span class="tick br"></span>
+
+    <div class="hud tr">
+      <div>BRG <b id="oYaw">—</b> · ELV <b id="oPit">—</b> · ZM <b id="oZm">—</b></div>
+      <svg id="cube" viewBox="-50 -50 100 100" aria-label="View orientation cube"></svg>
+      <div class="cubebar">
+        <button class="lnk arr" id="rotL" title="Rotate 90° left" aria-label="Rotate 90 degrees left">&#8630;</button>
+        <button class="lnk" id="home" title="Home / isometric">Iso</button>
+        <button class="lnk arr" id="rotR" title="Rotate 90° right" aria-label="Rotate 90 degrees right">&#8631;</button>
+      </div>
+    </div>
+
+    <div class="hud bl">
+      <div class="lg"><s style="border-color:#8fa3ae"></s>space</div>
+      <div class="lg"><s style="border-color:#00e5ff"></s>traced route</div>
+      <div class="lg"><s style="border-color:#ff3b5c"></s>blocked</div>
+      <div class="lg"><s style="border-color:#26333d;border-top-style:dashed"></s>stair / lift shaft</div>
+    </div>
+
+    <div class="hud br"><span id="prompt">drag to orbit · scroll to zoom · shift-drag to pan</span></div>
+  </div>
+
   <aside>
-    <p class="k">Route</p>
-    <div id="out"><p style="color:#4f818b">Pick a start and destination below.</p></div>
-    <p class="k">Legend</p>
-    <div class="leg"><span class="sw" style="background:rgba(94,234,212,.22);border-color:#5eead4"></span>space</div>
-    <div class="leg"><span class="sw" style="background:rgba(34,211,238,.35);border-color:#22d3ee"></span>on route</div>
-    <div class="leg"><span class="sw" style="background:rgba(255,77,109,.3);border-color:#ff4d6d"></span>blocked</div>
-    <div class="leg"><span class="sw" style="border-color:#22d3ee;background:none;border-style:dashed"></span>stair / lift shaft</div>
-    <div class="leg" style="margin-top:14px;color:#4f818b">drag to orbit · scroll to zoom · shift-drag to pan</div>
+    <div id="ctrl">
+      <p class="k">Manual control</p>
+      <div class="fld"><span>From</span><select id="from"></select></div>
+      <div class="fld sw"><span>To</span><select id="to"></select>
+        <button class="ghost ico" id="swap" title="Swap origin and destination" aria-label="Swap origin and destination">⇅</button></div>
+      <div class="row">
+        <div class="seg" style="flex:0 0 108px"><button id="acc" data-on="0">Step-free</button></div>
+        <div class="seg" id="lvl"></div>
+      </div>
+      <button class="trace" id="go">Trace route</button>
+      <div class="row">
+        <select id="blk" style="flex:1"></select>
+        <button class="ghost halt" id="block">Block</button>
+        <button class="ghost" id="clear" title="Lift every blockage">Clear all</button>
+      </div>
+    </div>
+
+    <div id="read"><p class="k">Route</p><p class="void">No route traced.</p></div>
+
+    <div id="chat">
+      <p class="k">Ask</p>
+      <div id="log"></div>
+      <div id="chips"></div>
+      <form id="cf" autocomplete="off">
+        <input id="ci" type="text" placeholder="Where do you want to go?" aria-label="Ask about the building">
+        <button type="submit">Send</button>
+      </form>
+    </div>
   </aside>
 </main>
 
-<footer>
-  <label>from</label><select id="from"></select>
-  <label>to</label><select id="to"></select>
-  <span class="chk"><input type="checkbox" id="acc"><label for="acc" style="cursor:pointer">step-free</label></span>
-  <button class="go" id="go">Route</button>
-  <span style="width:16px"></span>
-  <label>level</label><select id="lvl"><option value="all">all</option></select>
-  <span style="width:16px"></span>
-  <label>node</label><select id="blk"></select>
-  <button id="block">Block</button><button id="unblock">Clear</button>
-  <span class="spacer" style="flex:1"></span>
-  <button id="reset">Reset view</button>
-</footer>
-
 <script>
-const API = { state:'/3d/state', route:'/3d/route', block:'/3d/block' };
-const HGT = { room:92, corridor:30, stairs:74, lift:132, entrance:56 };
-const LEVEL = 360;                       // vertical separation between levels, in plan units
-const VW = 1400, VH = 780;
-const DEFCAM = {yaw:-0.5,pitch:0.90,scale:0.82,ox:0,oy:104};
-const svg = document.getElementById('svg');
-const NS = 'http://www.w3.org/2000/svg';
-const el = (t,a,tx)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(tx!=null)e.textContent=tx;return e};
+// the page is served at both /3d and /3d/<building>; it talks to whichever
+// prefix it was loaded from, so one file serves every twin
+const BASE=location.pathname.replace(/\/+$/,'')||'/3d';
+const API={state:BASE+'/state',route:BASE+'/route',block:BASE+'/block',chat:BASE+'/chat'};
+const HGT={room:80,corridor:24,stairs:66,lift:110,entrance:48};
+let LEVEL=340;                 // deck spacing, set from the floor count in loadState
+const VW=1400, VH=780;
+const ISO={yaw:-0.50,pitch:0.90,scale:0.82,ox:0,oy:104};   // the home view; the cube covers the rest
 
-let ST=null, BY={}, ROUTE=null, show='all', cam={...DEFCAM};
-let CX=0, CY=0;
+const svg=document.getElementById('svg'), stage=document.getElementById('stage');
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a,tx)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);
+  if(tx!=null)e.textContent=tx;return e};
+const $=id=>document.getElementById(id);
 
-const flr  = n => n.floor||1;
-const base = n => (flr(n)-1)*LEVEL;
-const vis  = n => show==='all' || String(flr(n))===show;
+let ST=null, BY={}, ROUTE=null, LASTR=null;
+let show=new Set();          // which decks are on; every floor is its own toggle
+const DULL=/toilet|corridor|lobby|lift|staircase|store|cabin/i;
+let HOVER=null, FROM=null, TO=null, PICK='from', seeded=false;   // click-to-pick walks from -> to -> from
+let CX=0, CY=0, dirty=true;
+let cam={...ISO}, aim={...ISO};        // cam chases aim: that gap is the whole feel
+
+const LIGHT=[-0.55,-0.84];   // fixed sun, world-space, so form reads while you orbit
+const LEVEL_NAME=f=>f===1?'GROUND':'LEVEL '+(f-1);
+const flr=n=>n.floor||1, base=n=>(flr(n)-1)*LEVEL, vis=n=>show.has(flr(n));
+const roof=n=>base(n)+(HGT[n.type]||36);   // not `top`: that shadows window.top
 
 function project(x,y,z){
   const dx=x-CX, dy=y-CY;
   const ca=Math.cos(cam.yaw), sa=Math.sin(cam.yaw);
   const rx=dx*ca-dy*sa, ry=dx*sa+dy*ca;
   const cp=Math.cos(cam.pitch), sp=Math.sin(cam.pitch);
-  return [ VW/2+cam.ox+rx*cam.scale,
-           VH/2+cam.oy+(ry*sp-z*cp)*cam.scale,
-           ry*cp+z*sp ];
+  return [VW/2+cam.ox+rx*cam.scale, VH/2+cam.oy+(ry*sp-z*cp)*cam.scale, ry*cp+z*sp];
 }
-const avgz = p => p.reduce((s,q)=>s+q[2],0)/p.length;
-const pts  = p => p.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join(' ');
+const avgz=p=>p.reduce((s,q)=>s+q[2],0)/p.length;
 
-function palette(n){
-  if(!n.passable)                    return {s:'#ff4d6d', f:'rgba(255,77,109,', t:.30};
-  if(ROUTE && ROUTE.includes(n.id))  return {s:'#22d3ee', f:'rgba(34,211,238,',  t:.34};
-  return {s:'#5eead4', f:'rgba(94,234,212,', t:.16};
+// Frame the whole model at the aimed orientation. A two-storey terminus and a
+// seven-storey block need very different zoom, so this is measured, not guessed.
+function fitView(){
+  if(!ST) return;
+  const ca=Math.cos(aim.yaw), sa=Math.sin(aim.yaw);
+  const cp=Math.cos(aim.pitch), sp=Math.sin(aim.pitch);
+  const flat=(x,y,z)=>{const dx=x-CX, dy=y-CY;
+    return [dx*ca-dy*sa, (dx*sa+dy*ca)*sp - z*cp]};
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9, any=false;
+  for(const n of ST.nodes){
+    if(!vis(n)) continue;
+    any=true;
+    const r=n.svg_rect;
+    for(const [px,py] of [[r[0],r[1]],[r[0]+r[2],r[1]],[r[0]+r[2],r[1]+r[3]],[r[0],r[1]+r[3]]])
+      for(const z of [base(n), roof(n)]){
+        const q=flat(px,py,z);
+        if(q[0]<x0)x0=q[0]; if(q[0]>x1)x1=q[0];
+        if(q[1]<y0)y0=q[1]; if(q[1]>y1)y1=q[1];
+      }
+  }
+  if(!any) return;
+  const sc=Math.min(VW*0.80/Math.max(1,x1-x0), VH*0.80/Math.max(1,y1-y0));
+  aim.scale=Math.max(0.12,Math.min(2.6,sc));
+  aim.ox=-((x0+x1)/2)*aim.scale;
+  aim.oy=-((y0+y1)/2)*aim.scale;
+}
+const pts=p=>p.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join(' ');
+
+/* ---- the damped camera. Everything about "smoother" lives in these 8 lines ---- */
+const SNAP=0.18;
+function tick(){
+  let moved=false;
+  for(const k of ['yaw','pitch','scale','ox','oy']){
+    const d=aim[k]-cam[k];
+    if(Math.abs(d)>1e-4){cam[k]+=d*SNAP; moved=true} else cam[k]=aim[k];
+  }
+  if(moved||dirty){dirty=false; render(); readout(); drawCube()}
+  requestAnimationFrame(tick);
+}
+function readout(){
+  const deg=(-cam.yaw*180/Math.PI+360)%360;
+  $('oYaw').textContent=deg.toFixed(0).padStart(3,'0')+'°';
+  $('oPit').textContent=(cam.pitch*180/Math.PI).toFixed(0)+'°';
+  $('oZm').textContent=cam.scale.toFixed(2)+'×';
+}
+
+/* ---- paint ---- */
+function tone(n){
+  if(!n.passable)                     return {s:'#ff3b5c',f:'rgba(255,59,92,',t:.26};
+  if(ROUTE&&ROUTE.includes(n.id))     return {s:'#00e5ff',f:'rgba(0,229,255,',t:.24};
+  if(n.id===HOVER||n.id===FROM||n.id===TO)
+                                      return {s:'#e9eef3',f:'rgba(233,238,243,',t:.16};
+  return {s:'#8fa3ae',f:'rgba(143,163,174,',t:.07};
 }
 
 function render(){
   if(!ST) return;
   while(svg.firstChild) svg.removeChild(svg.firstChild);
-  const [,,vw,vh] = ST.svg_viewbox;
-  const floors = [...new Set(ST.nodes.map(flr))].sort();
+  const [,,vw,vh]=ST.svg_viewbox;
+  const floors=[...new Set(ST.nodes.map(flr))].sort((a,b)=>a-b);
+  const seen=floors.filter(f=>show.has(f));
 
-  // one ground grid per level, fainter as you go up
-  for(const f of floors){
-    if(!(show==='all'||String(f)===show)) continue;
-    const z=(f-1)*LEVEL, g=el('g',{opacity:f===1?'.28':'.15'});
-    for(let x=0;x<=vw;x+=100){ const a=project(x,0,z), b=project(x,vh,z);
-      g.appendChild(el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#125561','stroke-width':1})); }
-    for(let y=0;y<=vh;y+=100){ const a=project(0,y,z), b=project(vw,y,z);
-      g.appendChild(el('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#125561','stroke-width':1})); }
-    svg.appendChild(g);
-  }
+  // Painting is grouped BY DECK, not by one global depth sort. A deck is a huge
+  // plane and a room is a small box sitting on it; comparing their centroids
+  // makes tiles swallow rooms at some angles. Physically the order is fixed:
+  // deck N, then everything standing on deck N, then deck N+1. Only the
+  // direction flips when the camera drops below the building.
+  const decks={}, above={}, orphan=[];
+  for(const f of seen){decks[f]=[]; above[f]=[]}
+  // Anything belonging to a hidden deck lands in `orphan` and is painted last.
+  // That keeps the traced route continuous across floors you have switched off
+  // instead of it vanishing mid-climb.
+  const onDeck=(f,z,e)=>{ (above[f]||orphan).push({z,e}) };
 
-  // stair / lift shafts: any edge whose endpoints sit on different levels
-  if(show==='all') for(const e of ST.edges){
-    const a=BY[e.a], b=BY[e.b];
-    if(!a||!b||flr(a)===flr(b)) continue;
-    const lo=flr(a)<flr(b)?a:b, hi=lo===a?b:a;
-    const p1=project(lo.xy[0],lo.xy[1],base(lo)+(HGT[lo.type]||40));
-    const p2=project(hi.xy[0],hi.xy[1],base(hi));
-    svg.appendChild(el('line',{x1:p1[0],y1:p1[1],x2:p2[0],y2:p2[1],
-      stroke:e.accessible?'#22d3ee':'#7dd3fc','stroke-width':2.2,
-      'stroke-dasharray':e.accessible?'none':'7 5','stroke-opacity':e.passable?.75:.2}));
-  }
-
-  // every face of every visible volume, painter-sorted
-  const faces=[];
-  for(const n of ST.nodes){
-    if(!vis(n)) continue;
-    const [x,y,w,h]=n.svg_rect, z1=base(n), z2=z1+(HGT[n.type]||40);
-    const c=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]];
-    faces.push({p:c.map(q=>project(q[0],q[1],z2)), n, top:true});
-    for(let i=0;i<4;i++){
-      const a=c[i], b=c[(i+1)%4];
-      faces.push({p:[project(a[0],a[1],z1),project(b[0],b[1],z1),project(b[0],b[1],z2),project(a[0],a[1],z2)], n, top:false});
+  const TILE=200;
+  for(const f of seen){
+    const z=(f-1)*LEVEL, fill=f===1?'#0a1015':'#0c141b';
+    for(let x=0;x<vw;x+=TILE) for(let y=0;y<vh;y+=TILE){
+      const w=Math.min(TILE,vw-x), h=Math.min(TILE,vh-y);
+      const q=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]].map(c=>project(c[0],c[1],z));
+      decks[f].push({z:avgz(q),e:el('polygon',{points:pts(q),fill,'fill-opacity':f===1?.92:.34,
+        stroke:'#16212a','stroke-width':1,'pointer-events':'none'})});
+    }
+    if(f>1&&show.has(f-1)) for(const c of [[0,0],[vw,0],[vw,vh],[0,vh]]){
+      const p1=project(c[0],c[1],z), p2=project(c[0],c[1],(f-2)*LEVEL);
+      decks[f].push({z:Math.min(p1[2],p2[2]),e:el('line',{x1:p1[0],y1:p1[1],x2:p2[0],y2:p2[1],
+        stroke:'#16212a','stroke-width':1,'pointer-events':'none'})});
     }
   }
-  faces.sort((a,b)=>avgz(a.p)-avgz(b.p));
-  for(const f of faces){
-    const c=palette(f.n), op=f.top?c.t:c.t*0.45;
-    svg.appendChild(el('polygon',{points:pts(f.p), fill:c.f+op+')', stroke:c.s,
-      'stroke-width':f.top?1.6:0.9, 'stroke-opacity':f.top?0.95:0.5,
-      class: f.n.passable?'':'pulse'}));
+
+  for(const e of ST.edges){
+    const m=BY[e.a],n=BY[e.b]; if(!m||!n||flr(m)===flr(n)) continue;
+    if(!vis(m)||!vis(n)) continue;
+    const lo=flr(m)<flr(n)?m:n, hi=lo===m?n:m;
+    const p1=project(lo.xy[0],lo.xy[1],roof(lo)), p2=project(hi.xy[0],hi.xy[1],base(hi));
+    onDeck(flr(lo),(p1[2]+p2[2])/2,el('line',{x1:p1[0],y1:p1[1],x2:p2[0],y2:p2[1],stroke:'#26333d',
+      'stroke-width':1.4,'stroke-dasharray':'5 5','stroke-opacity':e.passable?.9:.25,
+      'pointer-events':'none'}));
   }
 
-  // route floats above the volumes, drawn in full even when a level is filtered out
-  if(ROUTE && ROUTE.length>1){
-    const rp = ROUTE.map(id=>{const n=BY[id]; return project(n.xy[0],n.xy[1],base(n)+(HGT[n.type]||40)+16)});
-    svg.appendChild(el('polyline',{points:pts(rp),fill:'none',stroke:'#0e7490','stroke-width':9,
-      'stroke-linejoin':'round','stroke-linecap':'round','stroke-opacity':.5}));
-    svg.appendChild(el('polyline',{points:pts(rp),fill:'none',stroke:'#67e8f9','stroke-width':3.5,
-      'stroke-dasharray':'14 8','stroke-linejoin':'round','stroke-linecap':'round',class:'route'}));
-    rp.forEach((q,i)=>svg.appendChild(el('circle',{cx:q[0],cy:q[1],r:i===0||i===rp.length-1?7:4,
-      fill:i===0?'#4ade80':i===rp.length-1?'#67e8f9':'#0e7490',stroke:'#03080e','stroke-width':2})));
+  const RZ=id=>roof(BY[id])+16;
+
+  if(ROUTE&&ROUTE.length>1) for(let i=1;i<ROUTE.length;i++){
+    const m=BY[ROUTE[i-1]], n=BY[ROUTE[i]];
+    if(flr(m)!==flr(n)||!vis(m)||!vis(n)) continue;
+    const z=(flr(n)-1)*LEVEL;
+    const p=project(m.xy[0],m.xy[1],z), q=project(n.xy[0],n.xy[1],z);
+    onDeck(flr(n),(p[2]+q[2])/2,el('line',{x1:p[0],y1:p[1],x2:q[0],y2:q[1],stroke:'#00e5ff',
+      'stroke-width':2,'stroke-opacity':.16,'pointer-events':'none'}));
   }
 
-  // screen-aligned labels last
   for(const n of ST.nodes){
     if(!vis(n)) continue;
-    const [x,y,w,h]=n.svg_rect, z=base(n)+(HGT[n.type]||40)+8;
-    const q=project(x+w/2,y+h/2,z);
-    svg.appendChild(el('text',{x:q[0],y:q[1],'text-anchor':'middle','font-size':15,
-      fill:n.passable?'#dff7f4':'#ff90a4','font-weight':600}, n.name));
+    const r=n.svg_rect, x=r[0], y=r[1], w=r[2], h=r[3], z1=base(n), z2=roof(n), f=flr(n);
+    const c=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]];
+    // A fixed world-space light. Without it every wall carries the identical tint
+    // and the eye is free to flip the solid inside-out (Necker cube).
+    const face=(p,isTop,lit)=>{
+      const t=tone(n), op=isTop?t.t*1.25:t.t*lit;
+      onDeck(f,avgz(p),el('polygon',{points:pts(p),fill:t.f+op.toFixed(3)+')',stroke:t.s,
+        'stroke-width':isTop?1.2:.7,'stroke-opacity':isTop?.95:.30+lit*.5,'data-id':n.id}));
+    };
+    const lid=c.map(q=>project(q[0],q[1],z2));
+    face(lid,true,1);
+    for(let i=0;i<4;i++){
+      const p0=c[i], p1=c[(i+1)%4];
+      const ex=p1[0]-p0[0], ey=p1[1]-p0[1], len=Math.hypot(ex,ey)||1;
+      const nx=ey/len, ny=-ex/len;                       // outward wall normal, in plan
+      const lit=.30+.70*Math.max(0,nx*LIGHT[0]+ny*LIGHT[1]);
+      face([project(p0[0],p0[1],z1),project(p1[0],p1[1],z1),
+            project(p1[0],p1[1],z2),project(p0[0],p0[1],z2)],false,lit);
+    }
+    // stairs get treads, lifts get a car: recognisable at a glance on the deck
+    if(n.type==='stairs'||n.type==='lift'){
+      const t=tone(n), mark=el('g',{'pointer-events':'none'});
+      if(n.type==='stairs'){
+        const long=w>=h;
+        for(let k=1;k<5;k++){
+          const g=k/5;
+          const p=long?project(x+w*g,y,z2):project(x,y+h*g,z2);
+          const q=long?project(x+w*g,y+h,z2):project(x+w,y+h*g,z2);
+          mark.appendChild(el('line',{x1:p[0],y1:p[1],x2:q[0],y2:q[1],
+            stroke:t.s,'stroke-width':.9,'stroke-opacity':.75}));
+        }
+      }else{
+        const car=[[x+w*.28,y+h*.28],[x+w*.72,y+h*.28],[x+w*.72,y+h*.72],[x+w*.28,y+h*.72]]
+          .map(q=>project(q[0],q[1],z2));
+        mark.appendChild(el('polygon',{points:pts(car),fill:'none',
+          stroke:t.s,'stroke-width':1,'stroke-opacity':.8}));
+      }
+      onDeck(f,avgz(lid)+.01,mark);
+    }
+  }
+
+  if(ROUTE&&ROUTE.length>1){
+    for(let i=1;i<ROUTE.length;i++){
+      let m=BY[ROUTE[i-1]], n=BY[ROUTE[i]];
+      let za=RZ(ROUTE[i-1]), zb=RZ(ROUTE[i]);
+      const climb=flr(m)!==flr(n);
+      if(climb&&flr(m)>flr(n)){const t1=m;m=n;n=t1;const t2=za;za=zb;zb=t2}   // always draw upward
+      const lift=climb&&(m.type==='lift'||n.type==='lift');
+      const seg=el('g',{'pointer-events':'none'});
+      let shape;
+      if(climb&&!lift){
+        const N=6, P=[];
+        const at=(t,zt)=>[m.xy[0]+(n.xy[0]-m.xy[0])*t, m.xy[1]+(n.xy[1]-m.xy[1])*t, za+(zb-za)*zt];
+        for(let k=0;k<N;k++){P.push(at(k/N,k/N)); P.push(at((k+1)/N,k/N)); P.push(at((k+1)/N,(k+1)/N))}
+        shape=P.map(v=>project(v[0],v[1],v[2]));
+      }else shape=[project(m.xy[0],m.xy[1],za), project(n.xy[0],n.xy[1],zb)];
+      const d=pts(shape);
+      seg.appendChild(el('polyline',{points:d,fill:'none',stroke:'#04222a',
+        'stroke-width':7,'stroke-linecap':'round','stroke-linejoin':'round'}));
+      seg.appendChild(el('polyline',{points:d,fill:'none',stroke:'#00e5ff',
+        'stroke-width':lift?2.2:2.6,'stroke-linecap':'round','stroke-linejoin':'round',
+        'stroke-dasharray':lift?'9 120':climb?'5 5':'11 7',
+        class:lift?'hoist':climb?'climb':'route'}));
+      if(lift) seg.appendChild(el('polyline',{points:d,fill:'none',stroke:'#00e5ff',
+        'stroke-width':1,'stroke-opacity':.28,'stroke-dasharray':'1 4'}));
+      onDeck(Math.max(flr(m),flr(n)),avgz(shape),seg);   // a climb belongs to the deck it lands on
+    }
+    ROUTE.forEach((id,i)=>{
+      const n=BY[id];
+      const q=project(n.xy[0],n.xy[1],RZ(id)), foot=project(n.xy[0],n.xy[1],(flr(n)-1)*LEVEL);
+      const end=i===0||i===ROUTE.length-1, g=el('g',{'pointer-events':'none'});
+      if(vis(n)) g.appendChild(el('line',{x1:q[0],y1:q[1],x2:foot[0],y2:foot[1],stroke:'#00e5ff',
+        'stroke-width':1,'stroke-opacity':.3,'stroke-dasharray':'2 3'}));   // height post
+      g.appendChild(el('circle',{cx:q[0],cy:q[1],r:end?5:2.6,
+        fill:i===0?'#07090c':'#00e5ff',stroke:'#00e5ff','stroke-width':end?1.6:0}));
+      onDeck(flr(n),q[2],g);
+    });
+  }
+
+  const order = cam.pitch>=0 ? seen : seen.slice().reverse();   // from below, stack the other way
+  for(const f of order){
+    decks[f].sort((m,n)=>m.z-n.z).forEach(o=>svg.appendChild(o.e));
+    above[f].sort((m,n)=>m.z-n.z).forEach(o=>svg.appendChild(o.e));
+  }
+  orphan.sort((m,n)=>m.z-n.z).forEach(o=>svg.appendChild(o.e));
+
+  // annotations ride above the sort so they stay readable
+  // deck tags on the far corner, away from the legend in the bottom-left
+  for(const f of seen){
+    const tag=project(vw,0,(f-1)*LEVEL);
+    if(tag[0]<40||tag[0]>VW-40||tag[1]<14||tag[1]>VH-14) continue;
+    svg.appendChild(el('text',{x:tag[0]+10,y:tag[1]+4,'text-anchor':'start','font-size':11,
+      'font-weight':600,fill:'#4d6270','letter-spacing':'.16em',
+      stroke:'#07090c','stroke-width':4,'paint-order':'stroke'},LEVEL_NAME(f)));
+  }
+  const hops=[];
+  (ROUTE||[]).forEach((id,i)=>{
+    const n=BY[id]; if(!n||(n.type!=='stairs'&&n.type!=='lift')) return;
+    const prev=i>0?BY[ROUTE[i-1]]:null;
+    if(!prev||prev.type!==n.type) hops.push(id);   // climbing seven floors is still one staircase
+  });
+  for(const id of new Set([HOVER,FROM,TO].concat(hops).filter(Boolean))){
+    const n=BY[id]; if(!n) continue;
+    const onRoute=ROUTE&&ROUTE.includes(id);
+    if(!vis(n)&&!onRoute) continue;      // a route label survives its deck being hidden
+    const r=n.svg_rect, q=project(r[0]+r[2]/2,r[1]+r[3]/2,roof(n)+26);
+    const on=ROUTE&&ROUTE.includes(id), me=id===HOVER||id===FROM||id===TO;
+    svg.appendChild(el('text',{x:q[0],y:q[1],'text-anchor':'middle','font-size':12.5,
+      'font-weight':500,fill:!n.passable?'#ff8fa3':on?'#00e5ff':'#e9eef3',
+      stroke:'#07090c','stroke-width':4,'paint-order':'stroke','letter-spacing':'.04em'},
+      n.name+(me?'  '+LEVEL_NAME(flr(n)):'')));
   }
 }
 
-function panel(r){
-  const o=document.getElementById('out');
-  if(!r){o.innerHTML='<p style="color:#4f818b">Pick a start and destination below.</p>';return}
-  if(!r.path.length){o.innerHTML='<div class="reason">'+(r.reason||'No route.')+'</div>';return}
-  const lv=[...new Set(r.path.map(id=>flr(BY[id])))].sort();
-  o.innerHTML='<div class="dist">'+r.distance_m+' m</div>'+
-    '<p class="via">'+(lv.length>1?'crosses level '+lv.join(' → '):'level '+lv[0])+'</p><ol>'+
+/* ---- view cube ------------------------------------------------------------
+   Modelled on the Fusion/123D cube. Each face is a 3x3 grid: the centre cell is
+   that face, edge cells are the 12 edges, corner cells the 8 corners — 26
+   orientations in all. Clicking a corner lands on a true isometric because the
+   pitch falls out of the geometry: atan2(1, sqrt2) = 35.26 degrees.
+   It shares project()'s rotation maths, so it can never disagree with the scene. */
+const CUBE=$('cube'), CH=30, FACE_NAME={'0+':'E','0-':'W','1+':'S','1-':'N','2+':'TOP','2-':'BTM'};
+let CELLS=null;
+// top bright, sides mid, underside near-black - the cube's own light
+const SHADE=c=>{
+  const [ax,sg]=[c.face[0]|0, c.face[1]==='+'?1:-1];
+  const a = ax===2 ? (sg>0?.30:.03) : ax===1 ? (sg>0?.15:.11) : (sg>0?.09:.06);
+  return 'rgba(0,229,255,'+a+')';
+};
+
+function buildCells(){                              // local-space geometry, built once
+  const out=[];
+  for(let axis=0;axis<3;axis++) for(const sign of [1,-1]){
+    const u=(axis+1)%3, v=(axis+2)%3;
+    const nrm=[0,0,0]; nrm[axis]=sign;
+    for(let i=-1;i<=1;i++) for(let j=-1;j<=1;j++){
+      const cu=i*(2/3), cv=j*(2/3), h=1/3;
+      const poly=[[cu-h,cv-h],[cu+h,cv-h],[cu+h,cv+h],[cu-h,cv+h]].map(([pu,pv])=>{
+        const q=[0,0,0]; q[axis]=sign; q[u]=pu; q[v]=pv; return q;
+      });
+      const dir=[0,0,0]; dir[axis]=sign; dir[u]=i; dir[v]=j;
+      out.push({poly,dir,nrm,face:axis+(sign>0?'+':'-'),centre:i===0&&j===0});
+    }
+  }
+  return out;
+}
+function cubeProject(x,y,z){                        // project() minus centring and zoom
+  const ca=Math.cos(cam.yaw), sa=Math.sin(cam.yaw);
+  const rx=x*ca-y*sa, ry=x*sa+y*ca;
+  const cp=Math.cos(cam.pitch), sp=Math.sin(cam.pitch);
+  return [rx*CH, (ry*sp-z*cp)*CH, ry*cp+z*sp];
+}
+const nearYaw=t=>{let v=t; while(v-cam.yaw>Math.PI)v-=2*Math.PI;
+                            while(v-cam.yaw<-Math.PI)v+=2*Math.PI; return v};
+function flyTo(dir){
+  const h=Math.hypot(dir[0],dir[1]);
+  aim.yaw = h<1e-6 ? aim.yaw : nearYaw(Math.atan2(-dir[0],-dir[1]));
+  aim.pitch = Math.max(-1.45, Math.min(1.52, Math.atan2(dir[2],h)));
+}
+function drawCube(){
+  if(!CELLS) CELLS=buildCells();
+  while(CUBE.firstChild) CUBE.removeChild(CUBE.firstChild);
+  // a face shows only when its outward normal leans toward the camera
+  const vis=CELLS.filter(c=>cubeProject(...c.nrm)[2]>0.02)
+                 .map(c=>{const p=c.poly.map(q=>cubeProject(...q));return {c,p,z:avgz(p)}})
+                 .sort((m,n)=>m.z-n.z);          // depth grows toward the camera: near paints last
+  for(const {c,p} of vis){
+    const rest=SHADE(c);            // each face a different value, so the cube cannot flip
+    const cell=el('polygon',{points:pts(p),fill:rest,
+      stroke:'#1d2831','stroke-width':.6,'stroke-linejoin':'round'});
+    cell.onpointerenter=()=>{cell.setAttribute('fill','rgba(0,229,255,.42)');
+                             cell.setAttribute('stroke','#00e5ff')};
+    cell.onpointerleave=()=>{cell.setAttribute('fill',rest);
+                             cell.setAttribute('stroke','#1d2831')};
+    cell.onclick=()=>flyTo(c.dir);
+    CUBE.appendChild(cell);
+  }
+  // face outlines drawn over the cells so the cube still reads as a solid
+  for(const axis of [0,1,2]) for(const sign of [1,-1]){
+    const nrm=[0,0,0]; nrm[axis]=sign;
+    if(cubeProject(...nrm)[2]<=0.02) continue;
+    const u=(axis+1)%3, v=(axis+2)%3;
+    const quad=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([pu,pv])=>{
+      const q=[0,0,0]; q[axis]=sign; q[u]=pu; q[v]=pv; return cubeProject(...q);
+    });
+    CUBE.appendChild(el('polygon',{points:pts(quad),fill:'none',stroke:'#00e5ff',
+      'stroke-width':1.1,'stroke-linejoin':'round','pointer-events':'none'}));
+    const m=cubeProject(...nrm.map(x=>x*1.02));
+    CUBE.appendChild(el('text',{x:m[0],y:m[1]+3.4,'text-anchor':'middle','font-size':9,
+      'font-weight':600,fill:'#00e5ff','letter-spacing':'.12em','pointer-events':'none'},
+      FACE_NAME[axis+(sign>0?'+':'-')]));
+  }
+}
+
+/* ---- readout ---- */
+function readRoute(r){
+  const b=$('read');
+  b.innerHTML='<p class="k">Route</p>';
+  if(!r){b.insertAdjacentHTML('beforeend','<p class="void">No route traced.</p>');return}
+  if(!r.path.length){
+    b.insertAdjacentHTML('beforeend','<div class="err">'+esc(r.reason||'No passable path.')+'</div>');return}
+
+  const cum=walked(r.path), lv=r.path.map(id=>flr(BY[id])), span=[...new Set(lv)].sort();
+  b.insertAdjacentHTML('beforeend',
+    '<div class="hdr"><span class="dist">'+r.distance_m+'<s>M</s></span>'+
+    '<span class="meta">'+r.steps.length+' steps · '+
+      (span.length>2?LEVEL_NAME(span[0])+' → '+LEVEL_NAME(span[span.length-1])
+        :span.length>1?LEVEL_NAME(span[0])+' → '+LEVEL_NAME(span[1])
+        :LEVEL_NAME(span[0]))+'</span></div>'+
+    profile(cum,lv,span)+
     r.steps.map((s,i)=>{
-      const t=BY[r.path[i]] ? BY[r.path[i]].type : '';
-      const up=(t==='stairs'||t==='lift');
-      return '<li class="'+(up?'up':'')+'">'+s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</li>';
-    }).join('')+'</ol>';
+      const n=BY[r.path[i]], t=n?n.type:'', last=i===r.steps.length-1;
+      const climb=i>0&&lv[i]!==lv[i-1];
+      return '<div class="stp'+(climb?' up':'')+(last?' end':'')+'" data-t="'+t+'">'+
+             '<span class="g"><i></i></span><span>'+esc(s)+'</span>'+
+             '<span class="at">'+(last?r.distance_m+' m':cum[i]?cum[i]+' m':'start')+'</span></div>';
+    }).join(''));
   const bl=ST.nodes.filter(n=>!n.passable);
-  if(bl.length) o.innerHTML+='<p class="k">Blocked</p>'+bl.map(n=>'<div class="blocked">✕ '+n.name+'</div>').join('');
+  if(bl.length) b.insertAdjacentHTML('beforeend',
+    bl.map(n=>'<div class="blk">✕ '+esc(n.name)+' blocked</div>').join(''));
 }
 
-async function loadState(){
-  ST = await (await fetch(API.state)).json();
-  BY = Object.fromEntries(ST.nodes.map(n=>[n.id,n]));
-  const [,,vw,vh]=ST.svg_viewbox; CX=vw/2; CY=vh/2;
-  const floors=[...new Set(ST.nodes.map(flr))].sort();
-  document.getElementById('bld').textContent =
-    ST.building+' · level'+(floors.length>1?'s '+floors[0]+'–'+floors[floors.length-1]:' '+floors[0])+
-    ' · '+ST.nodes.length+' spaces';
-  const lvl=document.getElementById('lvl');
-  lvl.innerHTML=''; lvl.appendChild(new Option('all','all'));
-  floors.forEach(f=>lvl.appendChild(new Option('level '+f,String(f))));
-  lvl.value=show;
-  for(const id of ['from','to','blk']){
-    const s=document.getElementById(id); s.innerHTML='';
-    ST.nodes.forEach(n=>s.appendChild(new Option(n.name+'  (L'+flr(n)+')',n.id)));
+// cumulative metres at each node, read off the same edge list the server routed over
+function walked(path){
+  const out=[0];
+  for(let i=1;i<path.length;i++){
+    const e=ST.edges.find(e=>(e.a===path[i-1]&&e.b===path[i])||(e.b===path[i-1]&&e.a===path[i]));
+    out.push(out[i-1]+(e?e.distance:0));
   }
-  document.getElementById('from').value='entrance_porch';
-  document.getElementById('to').value='gm_office';
-  render();
+  return out;
 }
 
-async function doRoute(){
-  const q=new URLSearchParams({from:document.getElementById('from').value,
-    to:document.getElementById('to').value, accessible:document.getElementById('acc').checked});
+function profile(cum,lv,span){
+  const W=320, H=span.length>3?72:54, L=23, R=W-8, total=cum[cum.length-1]||1;
+  const lo=span[0], hi=span[span.length-1];
+  const yOf=f=>span.length<2?H/2:H-14-((f-lo)/(hi-lo))*(H-30);
+  const xOf=d=>L+(d/total)*(R-L);
+  let g='';
+  for(const f of span){                       // one hairline per level, labelled
+    const y=yOf(f);
+    g+='<line x1="'+L+'" y1="'+y+'" x2="'+R+'" y2="'+y+'" stroke="#18222b" stroke-width="1"/>'+
+       '<text x="1" y="'+(y+3)+'" fill="#3f4e58" font-size="7.5" letter-spacing=".06em">'+(f===1?'G':'L'+(f-1))+'</text>';
+  }
+  const pts=cum.map((d,i)=>xOf(d).toFixed(1)+','+yOf(lv[i]).toFixed(1)).join(' ');
+  g+='<polyline points="'+pts+'" fill="none" stroke="#00e5ff" stroke-width="1.6" '+
+     'stroke-linejoin="round" stroke-linecap="round"/>';
+  cum.forEach((d,i)=>{
+    const x=xOf(d), y=yOf(lv[i]), end=i===0||i===cum.length-1;
+    g+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(end?3.2:1.7)+'" '+
+       'fill="'+(i===0?'#07090c':'#00e5ff')+'" stroke="#00e5ff" stroke-width="'+(end?1.4:0)+'"/>';
+  });
+  return '<svg class="prof" height="'+H+'" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+g+'</svg>';
+}
+
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+/* ---- data ---- */
+async function loadState(){
+  ST=await (await fetch(API.state)).json();
+  BY=Object.fromEntries(ST.nodes.map(n=>[n.id,n]));
+  const [,,vw,vh]=ST.svg_viewbox; CX=vw/2; CY=vh/2;
+  const floors=[...new Set(ST.nodes.map(flr))].sort((a,b)=>a-b);
+  // seven decks at two-storey spacing would not fit the frame
+  LEVEL = floors.length<=2 ? 340 : Math.max(110, Math.round(1150/floors.length));
+  $('bld').textContent=ST.building.toUpperCase()+'  ·  L'+floors.join('/')+'  ·  '+ST.nodes.length+' SPACES';
+  for(const id of ['from','to','blk']){
+    const s=$(id), keep=s.value;
+    s.innerHTML='';
+    if(id!=='blk') s.appendChild(new Option('— none —',''));
+    ST.nodes.forEach(n=>s.appendChild(new Option(n.name+' · L'+flr(n),n.id)));
+    if(keep&&BY[keep]) s.value=keep;
+    else if(id!=='blk'&&keep==='') s.value='';   // blk has no blank option to fall back to
+  }
+  if(!seeded){
+    const ent=ST.nodes.find(n=>n.type==='entrance')||ST.nodes[0];
+    // "toilets on the first floor" is a poor thing to greet someone with
+    const good=ST.nodes.filter(n=>n.type==='room'&&!DULL.test(n.name));
+    const far=good.slice().sort((a,b)=>flr(b)-flr(a))[0]||ST.nodes[ST.nodes.length-1];
+    FROM=ent.id; TO=far.id; $('from').value=FROM; $('to').value=TO; seeded=true;
+  }
+  if(!show.size) floors.forEach(f=>show.add(f));
+  const seg=$('lvl');
+  if(!seg.children.length){
+    seg.appendChild(mkSeg('All','all'));
+    floors.forEach(f=>seg.appendChild(mkSeg(f===1?'G':'L'+(f-1),String(f))));
+    markSeg();
+  }
+  dirty=true;
+}
+function mkSeg(label,v){
+  const b=document.createElement('button'); b.textContent=label; b.dataset.v=v;
+  b.title = v==='all' ? 'Show every deck' : 'Toggle this deck';
+  b.onclick=e=>{
+    const floors=[...new Set(ST.nodes.map(flr))];
+    if(v==='all'){
+      // "All" is a shortcut, not a mode: on unless everything is already on
+      if(show.size===floors.length) return;
+      floors.forEach(f=>show.add(f));
+    }else{
+      const f=+v;
+      // alt/ctrl-click isolates one deck; a plain click just flips it
+      if(e.altKey||e.ctrlKey||e.metaKey){ show=new Set([f]) }
+      else if(show.has(f)){ if(show.size===1) return; show.delete(f) }   // never blank the view
+      else show.add(f);
+    }
+    markSeg(); fitView(); dirty=true;
+  };
+  return b;
+}
+function markSeg(){
+  const floors=[...new Set(ST.nodes.map(flr))];
+  for(const b of $('lvl').children)
+    b.classList.toggle('on', b.dataset.v==='all' ? show.size===floors.length : show.has(+b.dataset.v));
+}
+
+async function trace(from,to,acc){
+  const q=new URLSearchParams({from,to,accessible:!!acc});
   const r=await (await fetch(API.route+'?'+q)).json();
-  ROUTE=r.path; panel(r); render();
+  LASTR={from,to,accessible:!!acc};
+  ROUTE=r.path; readRoute(r); dirty=true;
+  return r;
 }
-async function setBlock(p){
-  const n=document.getElementById('blk').value;
-  await fetch(API.block+'?node='+encodeURIComponent(n)+'&passable='+p,{method:'POST'});
+const accOn=()=>$('acc').dataset.on==='1';
+
+$('go').onclick=()=>{
+  FROM=$('from').value; TO=$('to').value;
+  if(!FROM||!TO){ $('read').innerHTML='<p class="k">Route</p>'+
+    '<p class="void">Pick a start and a destination — or click two spaces on the model.</p>'; return }
+  trace(FROM,TO,accOn());
+};
+$('swap').onclick=()=>{const a=$('from').value;$('from').value=$('to').value;$('to').value=a;
+  FROM=$('from').value;TO=$('to').value;dirty=true};
+$('acc').onclick=e=>{const on=e.target.dataset.on==='1';e.target.dataset.on=on?'0':'1';
+  e.target.classList.toggle('on',!on)};
+$('from').onchange=e=>{FROM=e.target.value;dirty=true};
+$('to').onchange=e=>{TO=e.target.value;dirty=true};
+async function setPassable(ids, passable){
+  for(const id of ids)
+    await fetch(API.block+'?node='+encodeURIComponent(id)+'&passable='+passable,{method:'POST'});
   await loadState();
-  if(ROUTE) await doRoute(); else render();
+  if(LASTR) await trace(LASTR.from,LASTR.to,LASTR.accessible); else dirty=true;
+}
+function note(msg){                      // Block and Clear used to change things in silence
+  const b=$('read'), p=document.createElement('p');
+  p.className='void'; p.textContent=msg;
+  const old=b.querySelector('.note'); if(old) old.remove();
+  p.classList.add('note'); b.appendChild(p);
+}
+$('block').onclick=async()=>{
+  const id=$('blk').value; if(!id) return;
+  await setPassable([id], false);
+  note(BY[id].name+' is now blocked.');
+};
+// Clear lifts EVERY blockage. Scoping it to the dropdown meant it silently did
+// nothing unless you had re-selected the exact space you blocked.
+$('clear').onclick=async()=>{
+  const blocked=ST.nodes.filter(n=>!n.passable).map(n=>n.id);
+  if(!blocked.length){ note('Nothing is blocked.'); return }
+  await setPassable(blocked, true);
+  note(blocked.length===1 ? 'Cleared 1 blockage.' : 'Cleared '+blocked.length+' blockages.');
+};
+
+/* ---- camera input ---- */
+$('home').onclick=()=>{aim.yaw=ISO.yaw; aim.pitch=ISO.pitch; fitView()};
+// a cube only ever shows three faces; these reach the other three, exactly as
+// the rotate arrows do in Fusion/123D
+$('rotL').onclick=()=>{aim.yaw-=Math.PI/2};
+$('rotR').onclick=()=>{aim.yaw+=Math.PI/2};
+
+let drag=null;
+stage.addEventListener('pointerdown',e=>{
+  // HUD controls sit inside the stage: capturing the pointer here stole their
+  // click, which is why the view buttons looked dead.
+  if(e.target.closest('.hud')) return;
+  drag={x:e.clientX,y:e.clientY,sh:e.shiftKey,moved:0,id:e.target.dataset&&e.target.dataset.id};
+  stage.classList.add('drag'); stage.setPointerCapture(e.pointerId);
+});
+stage.addEventListener('pointermove',e=>{
+  // if the pointerup went missing (alt-tab, pointer left the window) the drag
+  // would otherwise stick and the camera would orbit on every later move
+  if(drag&&e.buttons===0){drag=null; stage.classList.remove('drag')}
+  if(!drag){
+    const id=e.target.dataset&&e.target.dataset.id||null;
+    if(id!==HOVER){HOVER=id; stage.classList.toggle('hot',!!id); dirty=true;
+      $('prompt').textContent=id?BY[id].name.toUpperCase()+'  ·  click to set '+PICK:HINT}
+    return;
+  }
+  const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
+  drag.x=e.clientX; drag.y=e.clientY; drag.moved+=Math.abs(dx)+Math.abs(dy);
+  if(drag.sh){aim.ox+=dx; aim.oy+=dy}
+  else{aim.yaw+=dx*0.007; aim.pitch=Math.max(-1.45,Math.min(1.52,aim.pitch-dy*0.006))}
+});
+addEventListener('pointercancel',()=>{drag=null;stage.classList.remove('drag')});
+addEventListener('pointerup',()=>{
+  if(drag&&drag.moved<5&&drag.id) pickNode(drag.id);
+  drag=null; stage.classList.remove('drag');
+});
+stage.addEventListener('wheel',e=>{e.preventDefault();
+  aim.scale=Math.max(0.35,Math.min(2.6,aim.scale*(1-e.deltaY*0.0013)))},{passive:false});
+
+function pickNode(id){
+  if(PICK==='from'){FROM=id; $('from').value=id; PICK='to'}
+  else{TO=id; $('to').value=id; PICK='from'; trace(FROM,TO,accOn())}
+  $('prompt').textContent=BY[id].name.toUpperCase()+'  ·  click to set '+PICK;
+  dirty=true;
 }
 
-document.getElementById('go').onclick=doRoute;
-document.getElementById('block').onclick=()=>setBlock(false);
-document.getElementById('unblock').onclick=()=>setBlock(true);
-document.getElementById('lvl').onchange=e=>{show=e.target.value;render()};
-document.getElementById('reset').onclick=()=>{cam={...DEFCAM};render()};
+/* ---- chat ---- */
+const log=$('log'), input=$('ci'), chips=$('chips');
+let HINTS=[];   // written from the loaded building, so they never name another site
+let TURNS=[], busy=false;
 
-const stage=document.getElementById('stage');
-let drag=null;
-stage.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,sh:e.shiftKey};stage.classList.add('drag');stage.setPointerCapture(e.pointerId)});
-stage.addEventListener('pointermove',e=>{
-  if(!drag)return;
-  const dx=e.clientX-drag.x, dy=e.clientY-drag.y; drag.x=e.clientX; drag.y=e.clientY;
-  if(drag.sh){ cam.ox+=dx; cam.oy+=dy; }
-  else { cam.yaw+=dx*0.006; cam.pitch=Math.max(0.16,Math.min(1.50,cam.pitch-dy*0.005)); }
-  render();
+function say(who,text,cls){
+  const d=document.createElement('div');
+  d.className='msg '+(who==='you'?'u':'a')+(cls?' '+cls:'');
+  d.textContent=text; log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
+}
+
+async function ask(text){
+  text=text.trim(); if(!text||busy) return;
+  busy=true; input.value=''; chips.hidden=true;
+  say('you',text); TURNS.push('visitor: '+text);
+  const wait=say('bot','reading the model…','wait');
+  let r;
+  try{
+    const res=await fetch(API.chat,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({message:text,history:TURNS.slice(-7,-1).join('\n')})});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    r=await res.json();
+  }catch(err){wait.remove(); say('bot','Could not reach the building service — '+err.message,'err');
+    busy=false; return}
+  wait.remove();
+
+  if(r.req){LASTR=r.req; FROM=r.req.from; TO=r.req.to;
+    $('from').value=r.req.from; $('to').value=r.req.to;
+    $('acc').dataset.on=r.req.accessible?'1':'0';
+    $('acc').classList.toggle('on',!!r.req.accessible)}
+  if(r.route){ROUTE=r.route.path; readRoute(r.route)}
+  if(r.level){   // "show me level 2" isolates it; "show everything" turns them all on
+    const floors=[...new Set(ST.nodes.map(flr))];
+    show = r.level==='all' ? new Set(floors) : new Set([+r.level]);
+    markSeg(); fitView();
+  }
+  if(r.action==='reset_view'){aim.yaw=ISO.yaw; aim.pitch=ISO.pitch; fitView()}
+  if(r.changed&&r.changed.length){await loadState(); if(LASTR) await trace(LASTR.from,LASTR.to,LASTR.accessible)}
+  dirty=true;
+  say('bot',r.reply); TURNS.push('system: '+r.reply);
+  busy=false;
+}
+$('cf').onsubmit=e=>{e.preventDefault();ask(input.value)};
+
+const HINT='drag to orbit · scroll to zoom · shift-drag to pan';
+addEventListener('keydown',e=>{
+  if(e.key!=='Escape') return;
+  // mid-sentence in the chat box, Escape belongs to the sentence
+  if(document.activeElement===input&&input.value){input.value=''; return}
+  ROUTE=null; LASTR=null; FROM=null; TO=null; PICK='from'; HOVER=null;
+  $('from').value=''; $('to').value='';
+  readRoute(null);
+  $('prompt').textContent=HINT;
+  stage.classList.remove('hot');
+  dirty=true;
 });
-addEventListener('pointerup',()=>{drag=null;stage.classList.remove('drag')});
-stage.addEventListener('wheel',e=>{e.preventDefault();
-  cam.scale=Math.max(0.35,Math.min(2.4,cam.scale*(1-e.deltaY*0.0012)));render()},{passive:false});
+function buildHints(){
+  const pick=(f,skip)=>ST.nodes.find(n=>f(n)&&n.name!==skip);
+  const fine=n=>n.type==='room'&&!DULL.test(n.name);
+  const up  = ST.nodes.filter(fine).sort((a,b)=>flr(b)-flr(a))[0] || pick(n=>n.type==='room');
+  const room= pick(n=>fine(n)&&flr(n)===1, up&&up.name) || pick(fine, up&&up.name);
+  const ent = pick(n=>n.type==='entrance') || ST.nodes[0];
+  const way = pick(n=>n.type==='stairs'||n.type==='lift');
+  HINTS=[
+    up   && 'Take me to the '+up.name+', step-free',
+    room && ent && 'How do I reach the '+room.name+' from the '+ent.name+'?',
+    way  && 'The '+way.name+' is shut for repairs',
+  ].filter(Boolean);
+  chips.textContent='';
+  HINTS.forEach(h=>{const b=document.createElement('button');
+    b.type='button'; b.className='chip'; b.textContent=h; b.onclick=()=>ask(h); chips.appendChild(b)});
+}
+say('bot','Ask where you want to go, or tell me a space is blocked.');
 
-loadState();
+// the server says which twins are mounted, so no guessing and no 404 probe
+(async()=>{
+  let list=[]; try{ list=await (await fetch('/twins')).json() }catch{ return }
+  const other=list.find(t=>t.prefix!==BASE);
+  if(!other) return;
+  const a=$('alt'); a.href=other.prefix;
+  const short=n=>{
+    const p=n.match(/\(([A-Z][A-Z0-9]{1,7})\)/); if(p) return p[1];
+    const w=n.replace(/\(.*?\)/g,'').split(/[\s,]+/).filter(x=>/^[A-Za-z]/.test(x));
+    if(w[0]&&/^[A-Z0-9]{3,8}$/.test(w[0])) return w[0];        // "KJSSE Bhaskaracharya..." -> KJSSE
+    return w.length>=3 ? w.map(x=>x[0].toUpperCase()).join('').slice(0,5) : w.join(' ').slice(0,12);
+  };
+  a.textContent=short(other.name);
+  a.title='Switch to '+other.name; a.hidden=false;
+})();
+
+loadState().then(()=>{buildHints(); fitView(); cam={...aim}; tick()});
 </script>

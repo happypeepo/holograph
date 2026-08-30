@@ -1,0 +1,5236 @@
+{
+ "building": "KJSSE Bhaskaracharya Building, Vidyavihar",
+ "floor": 1,
+ "svg_viewbox": [
+  0,
+  0,
+  1500,
+  900
+ ],
+ "nodes": [
+  {
+   "id": "corr_n_f1",
+   "name": "North Corridor Ground Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    276.0
+   ],
+   "svg_rect": [
+    340,
+    256,
+    670,
+    40
+   ],
+   "floor": 1,
+   "visual_signature": "North corridor running the length of the lab wing, escape arrows pointing east",
+   "attributes": {}
+  },
+  {
+   "id": "corr_s_f1",
+   "name": "South Corridor Ground Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    500.0
+   ],
+   "svg_rect": [
+    340,
+    480,
+    670,
+    40
+   ],
+   "floor": 1,
+   "visual_signature": "South corridor along the lecture-hall side of the atrium",
+   "attributes": {}
+  },
+  {
+   "id": "corr_w_f1",
+   "name": "West Corridor Ground Floor",
+   "type": "corridor",
+   "xy": [
+    360.0,
+    388.0
+   ],
+   "svg_rect": [
+    340,
+    296,
+    40,
+    184
+   ],
+   "floor": 1,
+   "visual_signature": "West corridor at the atrium's blind end, beside the fire staircase",
+   "attributes": {}
+  },
+  {
+   "id": "corr_e_f1",
+   "name": "East Corridor Ground Floor",
+   "type": "corridor",
+   "xy": [
+    840.0,
+    388.0
+   ],
+   "svg_rect": [
+    820,
+    296,
+    40,
+    184
+   ],
+   "floor": 1,
+   "visual_signature": "East corridor where the atrium loop meets the link to the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "stair1_f1",
+   "name": "Staircase-1 Ground Floor",
+   "type": "stairs",
+   "xy": [
+    1079.0,
+    156.0
+   ],
+   "svg_rect": [
+    1040,
+    130,
+    78,
+    52
+   ],
+   "floor": 1,
+   "visual_signature": "Enclosed fire staircase at the north-east corner, red FIRE EXIT sign over the door, beside the covered link to the library block",
+   "attributes": {}
+  },
+  {
+   "id": "stair2_f1",
+   "name": "Staircase-2 Ground Floor",
+   "type": "stairs",
+   "xy": [
+    779.0,
+    378.0
+   ],
+   "svg_rect": [
+    742,
+    330,
+    74,
+    96
+   ],
+   "floor": 1,
+   "visual_signature": "Fire staircase at the east end of the central atrium, red FIRE EXIT sign, fire hydrant and hose reel on the corridor wall alongside",
+   "attributes": {}
+  },
+  {
+   "id": "stair3_f1",
+   "name": "Staircase-3 Ground Floor",
+   "type": "stairs",
+   "xy": [
+    423.0,
+    378.0
+   ],
+   "svg_rect": [
+    386,
+    330,
+    74,
+    96
+   ],
+   "floor": 1,
+   "visual_signature": "Fire staircase at the west end of the central atrium, red FIRE EXIT sign, manual call point beside the door",
+   "attributes": {}
+  },
+  {
+   "id": "lift_w_f1",
+   "name": "West Lift Ground Floor",
+   "type": "lift",
+   "xy": [
+    318.0,
+    402.0
+   ],
+   "svg_rect": [
+    300,
+    372,
+    36,
+    60
+   ],
+   "floor": 1,
+   "visual_signature": "Lift car on the western corridor, call panel beside the doors",
+   "attributes": {}
+  },
+  {
+   "id": "lift_e_f1",
+   "name": "East Lift Ground Floor",
+   "type": "lift",
+   "xy": [
+    1167.0,
+    325.0
+   ],
+   "svg_rect": [
+    1150,
+    296,
+    34,
+    58
+   ],
+   "floor": 1,
+   "visual_signature": "Lift lobby off the east link, beside the toilets",
+   "attributes": {}
+  },
+  {
+   "id": "lobby_e_f1",
+   "name": "East Link Lobby Ground Floor",
+   "type": "corridor",
+   "xy": [
+    1090.0,
+    325.0
+   ],
+   "svg_rect": [
+    1030,
+    250,
+    120,
+    150
+   ],
+   "floor": 1,
+   "visual_signature": "East link lobby joining the main block to the library, escape route arrows on the floor, YOU ARE HERE board on the wall",
+   "attributes": {}
+  },
+  {
+   "id": "toilets_f1",
+   "name": "Toilets Ground Floor",
+   "type": "room",
+   "xy": [
+    1090.0,
+    217.0
+   ],
+   "svg_rect": [
+    1030,
+    190,
+    120,
+    54
+   ],
+   "floor": 1,
+   "visual_signature": "Gents and ladies toilets off the east link lobby",
+   "attributes": {}
+  },
+  {
+   "id": "dynamics_of_machinery_lab_f1",
+   "name": "Dynamics of Machinery Lab",
+   "type": "room",
+   "xy": [
+    448.4,
+    177.5
+   ],
+   "svg_rect": [
+    340.0,
+    105,
+    216.7,
+    145
+   ],
+   "floor": 1,
+   "visual_signature": "Lab/classroom off the north corridor of the ground floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "fluid_mechanics_fluid_machinery_lab_10_f1",
+   "name": "Fluid Mechanics & Fluid Machinery Lab 10",
+   "type": "room",
+   "xy": [
+    675.1,
+    177.5
+   ],
+   "svg_rect": [
+    566.7,
+    105,
+    216.7,
+    145
+   ],
+   "floor": 1,
+   "visual_signature": "Lab/classroom off the north corridor of the ground floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "metrology_measurement_lab_f1",
+   "name": "Metrology & Measurement Lab",
+   "type": "room",
+   "xy": [
+    901.6,
+    177.5
+   ],
+   "svg_rect": [
+    793.3,
+    105,
+    216.7,
+    145
+   ],
+   "floor": 1,
+   "visual_signature": "Lab/classroom off the north corridor of the ground floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "machine_room_f1",
+   "name": "Machine Room",
+   "type": "room",
+   "xy": [
+    185.0,
+    252.5
+   ],
+   "svg_rect": [
+    70,
+    120.0,
+    230,
+    265.0
+   ],
+   "floor": 1,
+   "visual_signature": "Room in the west wing of the ground floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "cnc_lab_f1",
+   "name": "CNC Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    527.5
+   ],
+   "svg_rect": [
+    70,
+    395.0,
+    230,
+    265.0
+   ],
+   "floor": 1,
+   "visual_signature": "Room in the west wing of the ground floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "fitting_shop_f1",
+   "name": "Fitting Shop",
+   "type": "room",
+   "xy": [
+    407.5,
+    653.0
+   ],
+   "svg_rect": [
+    345.0,
+    573,
+    125.0,
+    160
+   ],
+   "floor": 1,
+   "visual_signature": "Angled hall in the south wing of the ground floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "carpentry_shop_f1",
+   "name": "Carpentry Shop",
+   "type": "room",
+   "xy": [
+    542.5,
+    646.0
+   ],
+   "svg_rect": [
+    480.0,
+    566,
+    125.0,
+    160
+   ],
+   "floor": 1,
+   "visual_signature": "Angled hall in the south wing of the ground floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "welding_shop_f1",
+   "name": "Welding Shop",
+   "type": "room",
+   "xy": [
+    677.5,
+    639.0
+   ],
+   "svg_rect": [
+    615.0,
+    559,
+    125.0,
+    160
+   ],
+   "floor": 1,
+   "visual_signature": "Angled hall in the south wing of the ground floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "test_office_f1",
+   "name": "Test Office",
+   "type": "room",
+   "xy": [
+    812.5,
+    632.0
+   ],
+   "svg_rect": [
+    750.0,
+    552,
+    125.0,
+    160
+   ],
+   "floor": 1,
+   "visual_signature": "Angled hall in the south wing of the ground floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "computing_centre_f1",
+   "name": "Computing Centre",
+   "type": "room",
+   "xy": [
+    947.5,
+    625.0
+   ],
+   "svg_rect": [
+    885.0,
+    545,
+    125.0,
+    160
+   ],
+   "floor": 1,
+   "visual_signature": "Angled hall in the south wing of the ground floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "i_c_engine_lab_f1",
+   "name": "I.C. Engine Lab",
+   "type": "room",
+   "xy": [
+    1325.0,
+    220.0
+   ],
+   "svg_rect": [
+    1200,
+    110,
+    250,
+    220
+   ],
+   "floor": 1,
+   "visual_signature": "The library block east of the main building, reached over the covered link from the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "copying_facility_f1",
+   "name": "Copying Facility",
+   "type": "room",
+   "xy": [
+    918.0,
+    328.0
+   ],
+   "svg_rect": [
+    868,
+    300,
+    100,
+    56
+   ],
+   "floor": 1,
+   "visual_signature": "Off the corr s on the ground floor",
+   "attributes": {}
+  },
+  {
+   "id": "corr_n_f2",
+   "name": "North Corridor First Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    276.0
+   ],
+   "svg_rect": [
+    340,
+    256,
+    670,
+    40
+   ],
+   "floor": 2,
+   "visual_signature": "North corridor running the length of the lab wing, escape arrows pointing east",
+   "attributes": {}
+  },
+  {
+   "id": "corr_s_f2",
+   "name": "South Corridor First Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    500.0
+   ],
+   "svg_rect": [
+    340,
+    480,
+    670,
+    40
+   ],
+   "floor": 2,
+   "visual_signature": "South corridor along the lecture-hall side of the atrium",
+   "attributes": {}
+  },
+  {
+   "id": "corr_w_f2",
+   "name": "West Corridor First Floor",
+   "type": "corridor",
+   "xy": [
+    360.0,
+    388.0
+   ],
+   "svg_rect": [
+    340,
+    296,
+    40,
+    184
+   ],
+   "floor": 2,
+   "visual_signature": "West corridor at the atrium's blind end, beside the fire staircase",
+   "attributes": {}
+  },
+  {
+   "id": "corr_e_f2",
+   "name": "East Corridor First Floor",
+   "type": "corridor",
+   "xy": [
+    840.0,
+    388.0
+   ],
+   "svg_rect": [
+    820,
+    296,
+    40,
+    184
+   ],
+   "floor": 2,
+   "visual_signature": "East corridor where the atrium loop meets the link to the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "stair1_f2",
+   "name": "Staircase-1 First Floor",
+   "type": "stairs",
+   "xy": [
+    1079.0,
+    156.0
+   ],
+   "svg_rect": [
+    1040,
+    130,
+    78,
+    52
+   ],
+   "floor": 2,
+   "visual_signature": "Enclosed fire staircase at the north-east corner, red FIRE EXIT sign over the door, beside the covered link to the library block",
+   "attributes": {}
+  },
+  {
+   "id": "stair2_f2",
+   "name": "Staircase-2 First Floor",
+   "type": "stairs",
+   "xy": [
+    779.0,
+    378.0
+   ],
+   "svg_rect": [
+    742,
+    330,
+    74,
+    96
+   ],
+   "floor": 2,
+   "visual_signature": "Fire staircase at the east end of the central atrium, red FIRE EXIT sign, fire hydrant and hose reel on the corridor wall alongside",
+   "attributes": {}
+  },
+  {
+   "id": "stair3_f2",
+   "name": "Staircase-3 First Floor",
+   "type": "stairs",
+   "xy": [
+    423.0,
+    378.0
+   ],
+   "svg_rect": [
+    386,
+    330,
+    74,
+    96
+   ],
+   "floor": 2,
+   "visual_signature": "Fire staircase at the west end of the central atrium, red FIRE EXIT sign, manual call point beside the door",
+   "attributes": {}
+  },
+  {
+   "id": "lift_w_f2",
+   "name": "West Lift First Floor",
+   "type": "lift",
+   "xy": [
+    318.0,
+    402.0
+   ],
+   "svg_rect": [
+    300,
+    372,
+    36,
+    60
+   ],
+   "floor": 2,
+   "visual_signature": "Lift car on the western corridor, call panel beside the doors",
+   "attributes": {}
+  },
+  {
+   "id": "lift_e_f2",
+   "name": "East Lift First Floor",
+   "type": "lift",
+   "xy": [
+    1167.0,
+    325.0
+   ],
+   "svg_rect": [
+    1150,
+    296,
+    34,
+    58
+   ],
+   "floor": 2,
+   "visual_signature": "Lift lobby off the east link, beside the toilets",
+   "attributes": {}
+  },
+  {
+   "id": "lobby_e_f2",
+   "name": "East Link Lobby First Floor",
+   "type": "corridor",
+   "xy": [
+    1090.0,
+    325.0
+   ],
+   "svg_rect": [
+    1030,
+    250,
+    120,
+    150
+   ],
+   "floor": 2,
+   "visual_signature": "East link lobby joining the main block to the library, escape route arrows on the floor, YOU ARE HERE board on the wall",
+   "attributes": {}
+  },
+  {
+   "id": "toilets_f2",
+   "name": "Toilets First Floor",
+   "type": "room",
+   "xy": [
+    1090.0,
+    217.0
+   ],
+   "svg_rect": [
+    1030,
+    190,
+    120,
+    54
+   ],
+   "floor": 2,
+   "visual_signature": "Gents and ladies toilets off the east link lobby",
+   "attributes": {}
+  },
+  {
+   "id": "tutorial_room_f2",
+   "name": "Tutorial Room",
+   "type": "room",
+   "xy": [
+    391.6,
+    177.5
+   ],
+   "svg_rect": [
+    340.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 2,
+   "visual_signature": "Lab/classroom off the north corridor of the first floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "pg_seminar_hall_112_f2",
+   "name": "PG Seminar Hall 112",
+   "type": "room",
+   "xy": [
+    504.9,
+    177.5
+   ],
+   "svg_rect": [
+    453.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 2,
+   "visual_signature": "Lab/classroom off the north corridor of the first floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "ug_seminar_hall_114_f2",
+   "name": "UG Seminar Hall 114",
+   "type": "room",
+   "xy": [
+    618.4,
+    177.5
+   ],
+   "svg_rect": [
+    566.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 2,
+   "visual_signature": "Lab/classroom off the north corridor of the first floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "web_technology_lab_115_f2",
+   "name": "Web Technology Lab 115",
+   "type": "room",
+   "xy": [
+    731.6,
+    177.5
+   ],
+   "svg_rect": [
+    680.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 2,
+   "visual_signature": "Lab/classroom off the north corridor of the first floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "database_management_system_lab_116_f2",
+   "name": "Database Management System Lab 116",
+   "type": "room",
+   "xy": [
+    844.9,
+    177.5
+   ],
+   "svg_rect": [
+    793.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 2,
+   "visual_signature": "Lab/classroom off the north corridor of the first floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "multimedia_system_lab_117_f2",
+   "name": "Multimedia System Lab 117",
+   "type": "room",
+   "xy": [
+    958.4,
+    177.5
+   ],
+   "svg_rect": [
+    906.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 2,
+   "visual_signature": "Lab/classroom off the north corridor of the first floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "comp_programming_lab_f2",
+   "name": "Comp. Programming Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    183.8
+   ],
+   "svg_rect": [
+    70,
+    120.0,
+    230,
+    127.5
+   ],
+   "floor": 2,
+   "visual_signature": "Room in the west wing of the first floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "object_oriented_analysis_design_lab_f2",
+   "name": "Object Oriented Analysis & Design Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    321.2
+   ],
+   "svg_rect": [
+    70,
+    257.5,
+    230,
+    127.5
+   ],
+   "floor": 2,
+   "visual_signature": "Room in the west wing of the first floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "faculty_office_f2",
+   "name": "Faculty Office",
+   "type": "room",
+   "xy": [
+    185.0,
+    458.8
+   ],
+   "svg_rect": [
+    70,
+    395.0,
+    230,
+    127.5
+   ],
+   "floor": 2,
+   "visual_signature": "Room in the west wing of the first floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "devices_communication_lab_f2",
+   "name": "Devices & Communication Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    596.2
+   ],
+   "svg_rect": [
+    70,
+    532.5,
+    230,
+    127.5
+   ],
+   "floor": 2,
+   "visual_signature": "Room in the west wing of the first floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_105_f2",
+   "name": "Lecture Hall 105",
+   "type": "room",
+   "xy": [
+    407.5,
+    653.0
+   ],
+   "svg_rect": [
+    345.0,
+    573,
+    125.0,
+    160
+   ],
+   "floor": 2,
+   "visual_signature": "Angled hall in the south wing of the first floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_104_f2",
+   "name": "Lecture Hall 104",
+   "type": "room",
+   "xy": [
+    542.5,
+    646.0
+   ],
+   "svg_rect": [
+    480.0,
+    566,
+    125.0,
+    160
+   ],
+   "floor": 2,
+   "visual_signature": "Angled hall in the south wing of the first floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_103_f2",
+   "name": "Lecture Hall 103",
+   "type": "room",
+   "xy": [
+    677.5,
+    639.0
+   ],
+   "svg_rect": [
+    615.0,
+    559,
+    125.0,
+    160
+   ],
+   "floor": 2,
+   "visual_signature": "Angled hall in the south wing of the first floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_102_f2",
+   "name": "Lecture Hall 102",
+   "type": "room",
+   "xy": [
+    812.5,
+    632.0
+   ],
+   "svg_rect": [
+    750.0,
+    552,
+    125.0,
+    160
+   ],
+   "floor": 2,
+   "visual_signature": "Angled hall in the south wing of the first floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_101_f2",
+   "name": "Lecture Hall 101",
+   "type": "room",
+   "xy": [
+    947.5,
+    625.0
+   ],
+   "svg_rect": [
+    885.0,
+    545,
+    125.0,
+    160
+   ],
+   "floor": 2,
+   "visual_signature": "Angled hall in the south wing of the first floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "library_reading_room_f2",
+   "name": "Library — Reading Room",
+   "type": "room",
+   "xy": [
+    1325.0,
+    220.0
+   ],
+   "svg_rect": [
+    1200,
+    110,
+    250,
+    220
+   ],
+   "floor": 2,
+   "visual_signature": "The library block east of the main building, reached over the covered link from the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "research_centre_f2",
+   "name": "Research Centre",
+   "type": "room",
+   "xy": [
+    918.0,
+    328.0
+   ],
+   "svg_rect": [
+    868,
+    300,
+    100,
+    56
+   ],
+   "floor": 2,
+   "visual_signature": "Off the corr e on the first floor",
+   "attributes": {}
+  },
+  {
+   "id": "ladies_common_room_f2",
+   "name": "Ladies Common Room",
+   "type": "room",
+   "xy": [
+    918.0,
+    394.0
+   ],
+   "svg_rect": [
+    868,
+    366,
+    100,
+    56
+   ],
+   "floor": 2,
+   "visual_signature": "Off the lobby e on the first floor",
+   "attributes": {}
+  },
+  {
+   "id": "corr_n_f3",
+   "name": "North Corridor Second Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    276.0
+   ],
+   "svg_rect": [
+    340,
+    256,
+    670,
+    40
+   ],
+   "floor": 3,
+   "visual_signature": "North corridor running the length of the lab wing, escape arrows pointing east",
+   "attributes": {}
+  },
+  {
+   "id": "corr_s_f3",
+   "name": "South Corridor Second Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    500.0
+   ],
+   "svg_rect": [
+    340,
+    480,
+    670,
+    40
+   ],
+   "floor": 3,
+   "visual_signature": "South corridor along the lecture-hall side of the atrium",
+   "attributes": {}
+  },
+  {
+   "id": "corr_w_f3",
+   "name": "West Corridor Second Floor",
+   "type": "corridor",
+   "xy": [
+    360.0,
+    388.0
+   ],
+   "svg_rect": [
+    340,
+    296,
+    40,
+    184
+   ],
+   "floor": 3,
+   "visual_signature": "West corridor at the atrium's blind end, beside the fire staircase",
+   "attributes": {}
+  },
+  {
+   "id": "corr_e_f3",
+   "name": "East Corridor Second Floor",
+   "type": "corridor",
+   "xy": [
+    840.0,
+    388.0
+   ],
+   "svg_rect": [
+    820,
+    296,
+    40,
+    184
+   ],
+   "floor": 3,
+   "visual_signature": "East corridor where the atrium loop meets the link to the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "stair1_f3",
+   "name": "Staircase-1 Second Floor",
+   "type": "stairs",
+   "xy": [
+    1079.0,
+    156.0
+   ],
+   "svg_rect": [
+    1040,
+    130,
+    78,
+    52
+   ],
+   "floor": 3,
+   "visual_signature": "Enclosed fire staircase at the north-east corner, red FIRE EXIT sign over the door, beside the covered link to the library block",
+   "attributes": {}
+  },
+  {
+   "id": "stair2_f3",
+   "name": "Staircase-2 Second Floor",
+   "type": "stairs",
+   "xy": [
+    779.0,
+    378.0
+   ],
+   "svg_rect": [
+    742,
+    330,
+    74,
+    96
+   ],
+   "floor": 3,
+   "visual_signature": "Fire staircase at the east end of the central atrium, red FIRE EXIT sign, fire hydrant and hose reel on the corridor wall alongside",
+   "attributes": {}
+  },
+  {
+   "id": "stair3_f3",
+   "name": "Staircase-3 Second Floor",
+   "type": "stairs",
+   "xy": [
+    423.0,
+    378.0
+   ],
+   "svg_rect": [
+    386,
+    330,
+    74,
+    96
+   ],
+   "floor": 3,
+   "visual_signature": "Fire staircase at the west end of the central atrium, red FIRE EXIT sign, manual call point beside the door",
+   "attributes": {}
+  },
+  {
+   "id": "lift_w_f3",
+   "name": "West Lift Second Floor",
+   "type": "lift",
+   "xy": [
+    318.0,
+    402.0
+   ],
+   "svg_rect": [
+    300,
+    372,
+    36,
+    60
+   ],
+   "floor": 3,
+   "visual_signature": "Lift car on the western corridor, call panel beside the doors",
+   "attributes": {}
+  },
+  {
+   "id": "lift_e_f3",
+   "name": "East Lift Second Floor",
+   "type": "lift",
+   "xy": [
+    1167.0,
+    325.0
+   ],
+   "svg_rect": [
+    1150,
+    296,
+    34,
+    58
+   ],
+   "floor": 3,
+   "visual_signature": "Lift lobby off the east link, beside the toilets",
+   "attributes": {}
+  },
+  {
+   "id": "lobby_e_f3",
+   "name": "East Link Lobby Second Floor",
+   "type": "corridor",
+   "xy": [
+    1090.0,
+    325.0
+   ],
+   "svg_rect": [
+    1030,
+    250,
+    120,
+    150
+   ],
+   "floor": 3,
+   "visual_signature": "East link lobby joining the main block to the library, escape route arrows on the floor, YOU ARE HERE board on the wall",
+   "attributes": {}
+  },
+  {
+   "id": "toilets_f3",
+   "name": "Toilets Second Floor",
+   "type": "room",
+   "xy": [
+    1090.0,
+    217.0
+   ],
+   "svg_rect": [
+    1030,
+    190,
+    120,
+    54
+   ],
+   "floor": 3,
+   "visual_signature": "Gents and ladies toilets off the east link lobby",
+   "attributes": {}
+  },
+  {
+   "id": "embedded_system_lab_f3",
+   "name": "Embedded System Lab",
+   "type": "room",
+   "xy": [
+    391.6,
+    177.5
+   ],
+   "svg_rect": [
+    340.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 3,
+   "visual_signature": "Lab/classroom off the north corridor of the second floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "software_engineering_lab_213_f3",
+   "name": "Software Engineering Lab 213",
+   "type": "room",
+   "xy": [
+    504.9,
+    177.5
+   ],
+   "svg_rect": [
+    453.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 3,
+   "visual_signature": "Lab/classroom off the north corridor of the second floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "modeling_simulation_lab_214_f3",
+   "name": "Modeling & Simulation Lab 214",
+   "type": "room",
+   "xy": [
+    618.4,
+    177.5
+   ],
+   "svg_rect": [
+    566.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 3,
+   "visual_signature": "Lab/classroom off the north corridor of the second floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "analysis_algorithms_lab_215_f3",
+   "name": "Analysis & Algorithms Lab 215",
+   "type": "room",
+   "xy": [
+    731.6,
+    177.5
+   ],
+   "svg_rect": [
+    680.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 3,
+   "visual_signature": "Lab/classroom off the north corridor of the second floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "artificial_intelligence_robotics_lab_216_f3",
+   "name": "Artificial Intelligence & Robotics Lab 216",
+   "type": "room",
+   "xy": [
+    844.9,
+    177.5
+   ],
+   "svg_rect": [
+    793.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 3,
+   "visual_signature": "Lab/classroom off the north corridor of the second floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "computer_comm_networking_lab_217_f3",
+   "name": "Computer Comm. & Networking Lab 217",
+   "type": "room",
+   "xy": [
+    958.4,
+    177.5
+   ],
+   "svg_rect": [
+    906.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 3,
+   "visual_signature": "Lab/classroom off the north corridor of the second floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "pg_computer_centre_f3",
+   "name": "PG Computer Centre",
+   "type": "room",
+   "xy": [
+    185.0,
+    170.0
+   ],
+   "svg_rect": [
+    70,
+    120.0,
+    230,
+    100.0
+   ],
+   "floor": 3,
+   "visual_signature": "Room in the west wing of the second floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "project_laboratory_f3",
+   "name": "Project Laboratory",
+   "type": "room",
+   "xy": [
+    185.0,
+    280.0
+   ],
+   "svg_rect": [
+    70,
+    230.0,
+    230,
+    100.0
+   ],
+   "floor": 3,
+   "visual_signature": "Room in the west wing of the second floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "system_security_lab_f3",
+   "name": "System Security Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    390.0
+   ],
+   "svg_rect": [
+    70,
+    340.0,
+    230,
+    100.0
+   ],
+   "floor": 3,
+   "visual_signature": "Room in the west wing of the second floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "faculty_office_f3",
+   "name": "Faculty Office",
+   "type": "room",
+   "xy": [
+    185.0,
+    500.0
+   ],
+   "svg_rect": [
+    70,
+    450.0,
+    230,
+    100.0
+   ],
+   "floor": 3,
+   "visual_signature": "Room in the west wing of the second floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "microprocessor_lab_f3",
+   "name": "Microprocessor Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    610.0
+   ],
+   "svg_rect": [
+    70,
+    560.0,
+    230,
+    100.0
+   ],
+   "floor": 3,
+   "visual_signature": "Room in the west wing of the second floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_205_f3",
+   "name": "Lecture Hall 205",
+   "type": "room",
+   "xy": [
+    407.5,
+    653.0
+   ],
+   "svg_rect": [
+    345.0,
+    573,
+    125.0,
+    160
+   ],
+   "floor": 3,
+   "visual_signature": "Angled hall in the south wing of the second floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_204_f3",
+   "name": "Lecture Hall 204",
+   "type": "room",
+   "xy": [
+    542.5,
+    646.0
+   ],
+   "svg_rect": [
+    480.0,
+    566,
+    125.0,
+    160
+   ],
+   "floor": 3,
+   "visual_signature": "Angled hall in the south wing of the second floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_203_f3",
+   "name": "Lecture Hall 203",
+   "type": "room",
+   "xy": [
+    677.5,
+    639.0
+   ],
+   "svg_rect": [
+    615.0,
+    559,
+    125.0,
+    160
+   ],
+   "floor": 3,
+   "visual_signature": "Angled hall in the south wing of the second floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_202_f3",
+   "name": "Lecture Hall 202",
+   "type": "room",
+   "xy": [
+    812.5,
+    632.0
+   ],
+   "svg_rect": [
+    750.0,
+    552,
+    125.0,
+    160
+   ],
+   "floor": 3,
+   "visual_signature": "Angled hall in the south wing of the second floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_201_f3",
+   "name": "Lecture Hall 201",
+   "type": "room",
+   "xy": [
+    947.5,
+    625.0
+   ],
+   "svg_rect": [
+    885.0,
+    545,
+    125.0,
+    160
+   ],
+   "floor": 3,
+   "visual_signature": "Angled hall in the south wing of the second floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "library_home_issue_section_f3",
+   "name": "Library — Home Issue Section",
+   "type": "room",
+   "xy": [
+    1325.0,
+    220.0
+   ],
+   "svg_rect": [
+    1200,
+    110,
+    250,
+    220
+   ],
+   "floor": 3,
+   "visual_signature": "The library block east of the main building, reached over the covered link from the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "data_centre_f3",
+   "name": "Data Centre",
+   "type": "room",
+   "xy": [
+    918.0,
+    328.0
+   ],
+   "svg_rect": [
+    868,
+    300,
+    100,
+    56
+   ],
+   "floor": 3,
+   "visual_signature": "Off the corr e on the second floor",
+   "attributes": {}
+  },
+  {
+   "id": "office_of_hod_f3",
+   "name": "Office of HOD",
+   "type": "room",
+   "xy": [
+    918.0,
+    394.0
+   ],
+   "svg_rect": [
+    868,
+    366,
+    100,
+    56
+   ],
+   "floor": 3,
+   "visual_signature": "Off the lobby e on the second floor",
+   "attributes": {}
+  },
+  {
+   "id": "corr_n_f4",
+   "name": "North Corridor Third Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    276.0
+   ],
+   "svg_rect": [
+    340,
+    256,
+    670,
+    40
+   ],
+   "floor": 4,
+   "visual_signature": "North corridor running the length of the lab wing, escape arrows pointing east",
+   "attributes": {}
+  },
+  {
+   "id": "corr_s_f4",
+   "name": "South Corridor Third Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    500.0
+   ],
+   "svg_rect": [
+    340,
+    480,
+    670,
+    40
+   ],
+   "floor": 4,
+   "visual_signature": "South corridor along the lecture-hall side of the atrium",
+   "attributes": {}
+  },
+  {
+   "id": "corr_w_f4",
+   "name": "West Corridor Third Floor",
+   "type": "corridor",
+   "xy": [
+    360.0,
+    388.0
+   ],
+   "svg_rect": [
+    340,
+    296,
+    40,
+    184
+   ],
+   "floor": 4,
+   "visual_signature": "West corridor at the atrium's blind end, beside the fire staircase",
+   "attributes": {}
+  },
+  {
+   "id": "corr_e_f4",
+   "name": "East Corridor Third Floor",
+   "type": "corridor",
+   "xy": [
+    840.0,
+    388.0
+   ],
+   "svg_rect": [
+    820,
+    296,
+    40,
+    184
+   ],
+   "floor": 4,
+   "visual_signature": "East corridor where the atrium loop meets the link to the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "stair1_f4",
+   "name": "Staircase-1 Third Floor",
+   "type": "stairs",
+   "xy": [
+    1079.0,
+    156.0
+   ],
+   "svg_rect": [
+    1040,
+    130,
+    78,
+    52
+   ],
+   "floor": 4,
+   "visual_signature": "Enclosed fire staircase at the north-east corner, red FIRE EXIT sign over the door, beside the covered link to the library block",
+   "attributes": {}
+  },
+  {
+   "id": "stair2_f4",
+   "name": "Staircase-2 Third Floor",
+   "type": "stairs",
+   "xy": [
+    779.0,
+    378.0
+   ],
+   "svg_rect": [
+    742,
+    330,
+    74,
+    96
+   ],
+   "floor": 4,
+   "visual_signature": "Fire staircase at the east end of the central atrium, red FIRE EXIT sign, fire hydrant and hose reel on the corridor wall alongside",
+   "attributes": {}
+  },
+  {
+   "id": "stair3_f4",
+   "name": "Staircase-3 Third Floor",
+   "type": "stairs",
+   "xy": [
+    423.0,
+    378.0
+   ],
+   "svg_rect": [
+    386,
+    330,
+    74,
+    96
+   ],
+   "floor": 4,
+   "visual_signature": "Fire staircase at the west end of the central atrium, red FIRE EXIT sign, manual call point beside the door",
+   "attributes": {}
+  },
+  {
+   "id": "lift_w_f4",
+   "name": "West Lift Third Floor",
+   "type": "lift",
+   "xy": [
+    318.0,
+    402.0
+   ],
+   "svg_rect": [
+    300,
+    372,
+    36,
+    60
+   ],
+   "floor": 4,
+   "visual_signature": "Lift car on the western corridor, call panel beside the doors",
+   "attributes": {}
+  },
+  {
+   "id": "lift_e_f4",
+   "name": "East Lift Third Floor",
+   "type": "lift",
+   "xy": [
+    1167.0,
+    325.0
+   ],
+   "svg_rect": [
+    1150,
+    296,
+    34,
+    58
+   ],
+   "floor": 4,
+   "visual_signature": "Lift lobby off the east link, beside the toilets",
+   "attributes": {}
+  },
+  {
+   "id": "lobby_e_f4",
+   "name": "East Link Lobby Third Floor",
+   "type": "corridor",
+   "xy": [
+    1090.0,
+    325.0
+   ],
+   "svg_rect": [
+    1030,
+    250,
+    120,
+    150
+   ],
+   "floor": 4,
+   "visual_signature": "East link lobby joining the main block to the library, escape route arrows on the floor, YOU ARE HERE board on the wall",
+   "attributes": {}
+  },
+  {
+   "id": "toilets_f4",
+   "name": "Toilets Third Floor",
+   "type": "room",
+   "xy": [
+    1090.0,
+    217.0
+   ],
+   "svg_rect": [
+    1030,
+    190,
+    120,
+    54
+   ],
+   "floor": 4,
+   "visual_signature": "Gents and ladies toilets off the east link lobby",
+   "attributes": {}
+  },
+  {
+   "id": "tutorial_room_1_311_f4",
+   "name": "Tutorial Room-1 311",
+   "type": "room",
+   "xy": [
+    383.6,
+    177.5
+   ],
+   "svg_rect": [
+    340.0,
+    105,
+    87.1,
+    145
+   ],
+   "floor": 4,
+   "visual_signature": "Lab/classroom off the north corridor of the third floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "pg_seminar_hall_312_f4",
+   "name": "PG Seminar Hall 312",
+   "type": "room",
+   "xy": [
+    480.7,
+    177.5
+   ],
+   "svg_rect": [
+    437.1,
+    105,
+    87.1,
+    145
+   ],
+   "floor": 4,
+   "visual_signature": "Lab/classroom off the north corridor of the third floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "high_performance_computer_lab_313_f4",
+   "name": "High Performance Computer Lab 313",
+   "type": "room",
+   "xy": [
+    577.8,
+    177.5
+   ],
+   "svg_rect": [
+    534.3,
+    105,
+    87.1,
+    145
+   ],
+   "floor": 4,
+   "visual_signature": "Lab/classroom off the north corridor of the third floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "advance_database_management_system_314_f4",
+   "name": "Advance Database Management System 314",
+   "type": "room",
+   "xy": [
+    674.9,
+    177.5
+   ],
+   "svg_rect": [
+    631.4,
+    105,
+    87.1,
+    145
+   ],
+   "floor": 4,
+   "visual_signature": "Lab/classroom off the north corridor of the third floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "analysis_design_lab_315_f4",
+   "name": "Analysis & Design Lab 315",
+   "type": "room",
+   "xy": [
+    772.1,
+    177.5
+   ],
+   "svg_rect": [
+    728.6,
+    105,
+    87.1,
+    145
+   ],
+   "floor": 4,
+   "visual_signature": "Lab/classroom off the north corridor of the third floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "image_processing_lab_316_f4",
+   "name": "Image Processing Lab 316",
+   "type": "room",
+   "xy": [
+    869.2,
+    177.5
+   ],
+   "svg_rect": [
+    825.7,
+    105,
+    87.1,
+    145
+   ],
+   "floor": 4,
+   "visual_signature": "Lab/classroom off the north corridor of the third floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "operating_system_lab_317_f4",
+   "name": "Operating System Lab 317",
+   "type": "room",
+   "xy": [
+    966.4,
+    177.5
+   ],
+   "svg_rect": [
+    922.9,
+    105,
+    87.1,
+    145
+   ],
+   "floor": 4,
+   "visual_signature": "Lab/classroom off the north corridor of the third floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "project_laboratory_department_store_310_f4",
+   "name": "Project Laboratory / Department Store 310",
+   "type": "room",
+   "xy": [
+    185.0,
+    206.7
+   ],
+   "svg_rect": [
+    70,
+    120.0,
+    230,
+    173.3
+   ],
+   "floor": 4,
+   "visual_signature": "Room in the west wing of the third floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "information_security_lab_f4",
+   "name": "Information Security Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    390.0
+   ],
+   "svg_rect": [
+    70,
+    303.3,
+    230,
+    173.3
+   ],
+   "floor": 4,
+   "visual_signature": "Room in the west wing of the third floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "faculty_office_f4",
+   "name": "Faculty Office",
+   "type": "room",
+   "xy": [
+    185.0,
+    573.4
+   ],
+   "svg_rect": [
+    70,
+    486.7,
+    230,
+    173.3
+   ],
+   "floor": 4,
+   "visual_signature": "Room in the west wing of the third floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_305_f4",
+   "name": "Lecture Hall 305",
+   "type": "room",
+   "xy": [
+    407.5,
+    653.0
+   ],
+   "svg_rect": [
+    345.0,
+    573,
+    125.0,
+    160
+   ],
+   "floor": 4,
+   "visual_signature": "Angled hall in the south wing of the third floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_304_f4",
+   "name": "Lecture Hall 304",
+   "type": "room",
+   "xy": [
+    542.5,
+    646.0
+   ],
+   "svg_rect": [
+    480.0,
+    566,
+    125.0,
+    160
+   ],
+   "floor": 4,
+   "visual_signature": "Angled hall in the south wing of the third floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_303_f4",
+   "name": "Lecture Hall 303",
+   "type": "room",
+   "xy": [
+    677.5,
+    639.0
+   ],
+   "svg_rect": [
+    615.0,
+    559,
+    125.0,
+    160
+   ],
+   "floor": 4,
+   "visual_signature": "Angled hall in the south wing of the third floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_302_f4",
+   "name": "Lecture Hall 302",
+   "type": "room",
+   "xy": [
+    812.5,
+    632.0
+   ],
+   "svg_rect": [
+    750.0,
+    552,
+    125.0,
+    160
+   ],
+   "floor": 4,
+   "visual_signature": "Angled hall in the south wing of the third floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_301_f4",
+   "name": "Lecture Hall 301",
+   "type": "room",
+   "xy": [
+    947.5,
+    625.0
+   ],
+   "svg_rect": [
+    885.0,
+    545,
+    125.0,
+    160
+   ],
+   "floor": 4,
+   "visual_signature": "Angled hall in the south wing of the third floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "library_reference_section_f4",
+   "name": "Library — Reference Section",
+   "type": "room",
+   "xy": [
+    1325.0,
+    220.0
+   ],
+   "svg_rect": [
+    1200,
+    110,
+    250,
+    220
+   ],
+   "floor": 4,
+   "visual_signature": "The library block east of the main building, reached over the covered link from the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "office_of_hod_f4",
+   "name": "Office of HOD",
+   "type": "room",
+   "xy": [
+    918.0,
+    328.0
+   ],
+   "svg_rect": [
+    868,
+    300,
+    100,
+    56
+   ],
+   "floor": 4,
+   "visual_signature": "Off the lobby e on the third floor",
+   "attributes": {}
+  },
+  {
+   "id": "corr_n_f5",
+   "name": "North Corridor Fourth Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    276.0
+   ],
+   "svg_rect": [
+    340,
+    256,
+    670,
+    40
+   ],
+   "floor": 5,
+   "visual_signature": "North corridor running the length of the lab wing, escape arrows pointing east",
+   "attributes": {}
+  },
+  {
+   "id": "corr_s_f5",
+   "name": "South Corridor Fourth Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    500.0
+   ],
+   "svg_rect": [
+    340,
+    480,
+    670,
+    40
+   ],
+   "floor": 5,
+   "visual_signature": "South corridor along the lecture-hall side of the atrium",
+   "attributes": {}
+  },
+  {
+   "id": "corr_w_f5",
+   "name": "West Corridor Fourth Floor",
+   "type": "corridor",
+   "xy": [
+    360.0,
+    388.0
+   ],
+   "svg_rect": [
+    340,
+    296,
+    40,
+    184
+   ],
+   "floor": 5,
+   "visual_signature": "West corridor at the atrium's blind end, beside the fire staircase",
+   "attributes": {}
+  },
+  {
+   "id": "corr_e_f5",
+   "name": "East Corridor Fourth Floor",
+   "type": "corridor",
+   "xy": [
+    840.0,
+    388.0
+   ],
+   "svg_rect": [
+    820,
+    296,
+    40,
+    184
+   ],
+   "floor": 5,
+   "visual_signature": "East corridor where the atrium loop meets the link to the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "stair1_f5",
+   "name": "Staircase-1 Fourth Floor",
+   "type": "stairs",
+   "xy": [
+    1079.0,
+    156.0
+   ],
+   "svg_rect": [
+    1040,
+    130,
+    78,
+    52
+   ],
+   "floor": 5,
+   "visual_signature": "Enclosed fire staircase at the north-east corner, red FIRE EXIT sign over the door, beside the covered link to the library block",
+   "attributes": {}
+  },
+  {
+   "id": "stair2_f5",
+   "name": "Staircase-2 Fourth Floor",
+   "type": "stairs",
+   "xy": [
+    779.0,
+    378.0
+   ],
+   "svg_rect": [
+    742,
+    330,
+    74,
+    96
+   ],
+   "floor": 5,
+   "visual_signature": "Fire staircase at the east end of the central atrium, red FIRE EXIT sign, fire hydrant and hose reel on the corridor wall alongside",
+   "attributes": {}
+  },
+  {
+   "id": "stair3_f5",
+   "name": "Staircase-3 Fourth Floor",
+   "type": "stairs",
+   "xy": [
+    423.0,
+    378.0
+   ],
+   "svg_rect": [
+    386,
+    330,
+    74,
+    96
+   ],
+   "floor": 5,
+   "visual_signature": "Fire staircase at the west end of the central atrium, red FIRE EXIT sign, manual call point beside the door",
+   "attributes": {}
+  },
+  {
+   "id": "lift_w_f5",
+   "name": "West Lift Fourth Floor",
+   "type": "lift",
+   "xy": [
+    318.0,
+    402.0
+   ],
+   "svg_rect": [
+    300,
+    372,
+    36,
+    60
+   ],
+   "floor": 5,
+   "visual_signature": "Lift car on the western corridor, call panel beside the doors",
+   "attributes": {}
+  },
+  {
+   "id": "lift_e_f5",
+   "name": "East Lift Fourth Floor",
+   "type": "lift",
+   "xy": [
+    1167.0,
+    325.0
+   ],
+   "svg_rect": [
+    1150,
+    296,
+    34,
+    58
+   ],
+   "floor": 5,
+   "visual_signature": "Lift lobby off the east link, beside the toilets",
+   "attributes": {}
+  },
+  {
+   "id": "lobby_e_f5",
+   "name": "East Link Lobby Fourth Floor",
+   "type": "corridor",
+   "xy": [
+    1090.0,
+    325.0
+   ],
+   "svg_rect": [
+    1030,
+    250,
+    120,
+    150
+   ],
+   "floor": 5,
+   "visual_signature": "East link lobby joining the main block to the library, escape route arrows on the floor, YOU ARE HERE board on the wall",
+   "attributes": {}
+  },
+  {
+   "id": "toilets_f5",
+   "name": "Toilets Fourth Floor",
+   "type": "room",
+   "xy": [
+    1090.0,
+    217.0
+   ],
+   "svg_rect": [
+    1030,
+    190,
+    120,
+    54
+   ],
+   "floor": 5,
+   "visual_signature": "Gents and ladies toilets off the east link lobby",
+   "attributes": {}
+  },
+  {
+   "id": "tutorial_room_f5",
+   "name": "Tutorial Room",
+   "type": "room",
+   "xy": [
+    391.6,
+    177.5
+   ],
+   "svg_rect": [
+    340.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 5,
+   "visual_signature": "Lab/classroom off the north corridor of the fourth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "pg_seminar_hall_f5",
+   "name": "PG Seminar Hall",
+   "type": "room",
+   "xy": [
+    504.9,
+    177.5
+   ],
+   "svg_rect": [
+    453.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 5,
+   "visual_signature": "Lab/classroom off the north corridor of the fourth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "dept_computer_centre_design_development_lab_f5",
+   "name": "Dept. Computer Centre & Design & Development Lab",
+   "type": "room",
+   "xy": [
+    618.4,
+    177.5
+   ],
+   "svg_rect": [
+    566.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 5,
+   "visual_signature": "Lab/classroom off the north corridor of the fourth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "vlsi_laboratory_f5",
+   "name": "VLSI Laboratory",
+   "type": "room",
+   "xy": [
+    731.6,
+    177.5
+   ],
+   "svg_rect": [
+    680.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 5,
+   "visual_signature": "Lab/classroom off the north corridor of the fourth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "image_processing_lab_f5",
+   "name": "Image Processing Lab",
+   "type": "room",
+   "xy": [
+    844.9,
+    177.5
+   ],
+   "svg_rect": [
+    793.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 5,
+   "visual_signature": "Lab/classroom off the north corridor of the fourth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "signal_processing_lab_f5",
+   "name": "Signal Processing Lab",
+   "type": "room",
+   "xy": [
+    958.4,
+    177.5
+   ],
+   "svg_rect": [
+    906.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 5,
+   "visual_signature": "Lab/classroom off the north corridor of the fourth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "digital_design_lab_f5",
+   "name": "Digital Design Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    183.8
+   ],
+   "svg_rect": [
+    70,
+    120.0,
+    230,
+    127.5
+   ],
+   "floor": 5,
+   "visual_signature": "Room in the west wing of the fourth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "project_lab_f5",
+   "name": "Project Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    321.2
+   ],
+   "svg_rect": [
+    70,
+    257.5,
+    230,
+    127.5
+   ],
+   "floor": 5,
+   "visual_signature": "Room in the west wing of the fourth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "department_store_f5",
+   "name": "Department Store",
+   "type": "room",
+   "xy": [
+    185.0,
+    458.8
+   ],
+   "svg_rect": [
+    70,
+    395.0,
+    230,
+    127.5
+   ],
+   "floor": 5,
+   "visual_signature": "Room in the west wing of the fourth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "power_electronics_lab_f5",
+   "name": "Power Electronics Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    596.2
+   ],
+   "svg_rect": [
+    70,
+    532.5,
+    230,
+    127.5
+   ],
+   "floor": 5,
+   "visual_signature": "Room in the west wing of the fourth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_4f_5_f5",
+   "name": "Lecture Hall (4F) 5",
+   "type": "room",
+   "xy": [
+    407.5,
+    653.0
+   ],
+   "svg_rect": [
+    345.0,
+    573,
+    125.0,
+    160
+   ],
+   "floor": 5,
+   "visual_signature": "Angled hall in the south wing of the fourth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_4f_4_f5",
+   "name": "Lecture Hall (4F) 4",
+   "type": "room",
+   "xy": [
+    542.5,
+    646.0
+   ],
+   "svg_rect": [
+    480.0,
+    566,
+    125.0,
+    160
+   ],
+   "floor": 5,
+   "visual_signature": "Angled hall in the south wing of the fourth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_4f_3_f5",
+   "name": "Lecture Hall (4F) 3",
+   "type": "room",
+   "xy": [
+    677.5,
+    639.0
+   ],
+   "svg_rect": [
+    615.0,
+    559,
+    125.0,
+    160
+   ],
+   "floor": 5,
+   "visual_signature": "Angled hall in the south wing of the fourth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_4f_2_f5",
+   "name": "Lecture Hall (4F) 2",
+   "type": "room",
+   "xy": [
+    812.5,
+    632.0
+   ],
+   "svg_rect": [
+    750.0,
+    552,
+    125.0,
+    160
+   ],
+   "floor": 5,
+   "visual_signature": "Angled hall in the south wing of the fourth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_4f_1_f5",
+   "name": "Lecture Hall (4F) 1",
+   "type": "room",
+   "xy": [
+    947.5,
+    625.0
+   ],
+   "svg_rect": [
+    885.0,
+    545,
+    125.0,
+    160
+   ],
+   "floor": 5,
+   "visual_signature": "Angled hall in the south wing of the fourth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "library_f5",
+   "name": "Library",
+   "type": "room",
+   "xy": [
+    1325.0,
+    220.0
+   ],
+   "svg_rect": [
+    1200,
+    110,
+    250,
+    220
+   ],
+   "floor": 5,
+   "visual_signature": "The library block east of the main building, reached over the covered link from the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "department_library_f5",
+   "name": "Department Library",
+   "type": "room",
+   "xy": [
+    918.0,
+    328.0
+   ],
+   "svg_rect": [
+    868,
+    300,
+    100,
+    56
+   ],
+   "floor": 5,
+   "visual_signature": "Off the corr e on the fourth floor",
+   "attributes": {}
+  },
+  {
+   "id": "office_of_hod_f5",
+   "name": "Office of HOD",
+   "type": "room",
+   "xy": [
+    918.0,
+    394.0
+   ],
+   "svg_rect": [
+    868,
+    366,
+    100,
+    56
+   ],
+   "floor": 5,
+   "visual_signature": "Off the lobby e on the fourth floor",
+   "attributes": {}
+  },
+  {
+   "id": "corr_n_f6",
+   "name": "North Corridor Fifth Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    276.0
+   ],
+   "svg_rect": [
+    340,
+    256,
+    670,
+    40
+   ],
+   "floor": 6,
+   "visual_signature": "North corridor running the length of the lab wing, escape arrows pointing east",
+   "attributes": {}
+  },
+  {
+   "id": "corr_s_f6",
+   "name": "South Corridor Fifth Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    500.0
+   ],
+   "svg_rect": [
+    340,
+    480,
+    670,
+    40
+   ],
+   "floor": 6,
+   "visual_signature": "South corridor along the lecture-hall side of the atrium",
+   "attributes": {}
+  },
+  {
+   "id": "corr_w_f6",
+   "name": "West Corridor Fifth Floor",
+   "type": "corridor",
+   "xy": [
+    360.0,
+    388.0
+   ],
+   "svg_rect": [
+    340,
+    296,
+    40,
+    184
+   ],
+   "floor": 6,
+   "visual_signature": "West corridor at the atrium's blind end, beside the fire staircase",
+   "attributes": {}
+  },
+  {
+   "id": "corr_e_f6",
+   "name": "East Corridor Fifth Floor",
+   "type": "corridor",
+   "xy": [
+    840.0,
+    388.0
+   ],
+   "svg_rect": [
+    820,
+    296,
+    40,
+    184
+   ],
+   "floor": 6,
+   "visual_signature": "East corridor where the atrium loop meets the link to the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "stair1_f6",
+   "name": "Staircase-1 Fifth Floor",
+   "type": "stairs",
+   "xy": [
+    1079.0,
+    156.0
+   ],
+   "svg_rect": [
+    1040,
+    130,
+    78,
+    52
+   ],
+   "floor": 6,
+   "visual_signature": "Enclosed fire staircase at the north-east corner, red FIRE EXIT sign over the door, beside the covered link to the library block",
+   "attributes": {}
+  },
+  {
+   "id": "stair2_f6",
+   "name": "Staircase-2 Fifth Floor",
+   "type": "stairs",
+   "xy": [
+    779.0,
+    378.0
+   ],
+   "svg_rect": [
+    742,
+    330,
+    74,
+    96
+   ],
+   "floor": 6,
+   "visual_signature": "Fire staircase at the east end of the central atrium, red FIRE EXIT sign, fire hydrant and hose reel on the corridor wall alongside",
+   "attributes": {}
+  },
+  {
+   "id": "stair3_f6",
+   "name": "Staircase-3 Fifth Floor",
+   "type": "stairs",
+   "xy": [
+    423.0,
+    378.0
+   ],
+   "svg_rect": [
+    386,
+    330,
+    74,
+    96
+   ],
+   "floor": 6,
+   "visual_signature": "Fire staircase at the west end of the central atrium, red FIRE EXIT sign, manual call point beside the door",
+   "attributes": {}
+  },
+  {
+   "id": "lift_w_f6",
+   "name": "West Lift Fifth Floor",
+   "type": "lift",
+   "xy": [
+    318.0,
+    402.0
+   ],
+   "svg_rect": [
+    300,
+    372,
+    36,
+    60
+   ],
+   "floor": 6,
+   "visual_signature": "Lift car on the western corridor, call panel beside the doors",
+   "attributes": {}
+  },
+  {
+   "id": "lift_e_f6",
+   "name": "East Lift Fifth Floor",
+   "type": "lift",
+   "xy": [
+    1167.0,
+    325.0
+   ],
+   "svg_rect": [
+    1150,
+    296,
+    34,
+    58
+   ],
+   "floor": 6,
+   "visual_signature": "Lift lobby off the east link, beside the toilets",
+   "attributes": {}
+  },
+  {
+   "id": "lobby_e_f6",
+   "name": "East Link Lobby Fifth Floor",
+   "type": "corridor",
+   "xy": [
+    1090.0,
+    325.0
+   ],
+   "svg_rect": [
+    1030,
+    250,
+    120,
+    150
+   ],
+   "floor": 6,
+   "visual_signature": "East link lobby joining the main block to the library, escape route arrows on the floor, YOU ARE HERE board on the wall",
+   "attributes": {}
+  },
+  {
+   "id": "toilets_f6",
+   "name": "Toilets Fifth Floor",
+   "type": "room",
+   "xy": [
+    1090.0,
+    217.0
+   ],
+   "svg_rect": [
+    1030,
+    190,
+    120,
+    54
+   ],
+   "floor": 6,
+   "visual_signature": "Gents and ladies toilets off the east link lobby",
+   "attributes": {}
+  },
+  {
+   "id": "research_centre_511_512_f6",
+   "name": "Research Centre 511-512",
+   "type": "room",
+   "xy": [
+    391.6,
+    177.5
+   ],
+   "svg_rect": [
+    340.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 6,
+   "visual_signature": "Lab/classroom off the north corridor of the fifth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "ni_academy_513_f6",
+   "name": "NI Academy 513",
+   "type": "room",
+   "xy": [
+    504.9,
+    177.5
+   ],
+   "svg_rect": [
+    453.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 6,
+   "visual_signature": "Lab/classroom off the north corridor of the fifth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "basic_communication_lab_514_f6",
+   "name": "Basic Communication Lab 514",
+   "type": "room",
+   "xy": [
+    618.4,
+    177.5
+   ],
+   "svg_rect": [
+    566.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 6,
+   "visual_signature": "Lab/classroom off the north corridor of the fifth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "robotics_lab_515_f6",
+   "name": "Robotics Lab 515",
+   "type": "room",
+   "xy": [
+    731.6,
+    177.5
+   ],
+   "svg_rect": [
+    680.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 6,
+   "visual_signature": "Lab/classroom off the north corridor of the fifth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "microprocessor_lab_516_f6",
+   "name": "Microprocessor Lab 516",
+   "type": "room",
+   "xy": [
+    844.9,
+    177.5
+   ],
+   "svg_rect": [
+    793.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 6,
+   "visual_signature": "Lab/classroom off the north corridor of the fifth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "studio_classroom_2_517_f6",
+   "name": "Studio Classroom-2 517",
+   "type": "room",
+   "xy": [
+    958.4,
+    177.5
+   ],
+   "svg_rect": [
+    906.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 6,
+   "visual_signature": "Lab/classroom off the north corridor of the fifth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "circuit_laboratory_510_f6",
+   "name": "Circuit Laboratory 510",
+   "type": "room",
+   "xy": [
+    185.0,
+    206.7
+   ],
+   "svg_rect": [
+    70,
+    120.0,
+    230,
+    173.3
+   ],
+   "floor": 6,
+   "visual_signature": "Room in the west wing of the fifth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "control_instrument_lab_f6",
+   "name": "Control & Instrument Lab",
+   "type": "room",
+   "xy": [
+    185.0,
+    390.0
+   ],
+   "svg_rect": [
+    70,
+    303.3,
+    230,
+    173.3
+   ],
+   "floor": 6,
+   "visual_signature": "Room in the west wing of the fifth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "ug_seminar_hall_f6",
+   "name": "UG Seminar Hall",
+   "type": "room",
+   "xy": [
+    185.0,
+    573.4
+   ],
+   "svg_rect": [
+    70,
+    486.7,
+    230,
+    173.3
+   ],
+   "floor": 6,
+   "visual_signature": "Room in the west wing of the fifth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_505_f6",
+   "name": "Lecture Hall 505",
+   "type": "room",
+   "xy": [
+    407.5,
+    653.0
+   ],
+   "svg_rect": [
+    345.0,
+    573,
+    125.0,
+    160
+   ],
+   "floor": 6,
+   "visual_signature": "Angled hall in the south wing of the fifth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_504_f6",
+   "name": "Lecture Hall 504",
+   "type": "room",
+   "xy": [
+    542.5,
+    646.0
+   ],
+   "svg_rect": [
+    480.0,
+    566,
+    125.0,
+    160
+   ],
+   "floor": 6,
+   "visual_signature": "Angled hall in the south wing of the fifth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_503_f6",
+   "name": "Lecture Hall 503",
+   "type": "room",
+   "xy": [
+    677.5,
+    639.0
+   ],
+   "svg_rect": [
+    615.0,
+    559,
+    125.0,
+    160
+   ],
+   "floor": 6,
+   "visual_signature": "Angled hall in the south wing of the fifth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_502_f6",
+   "name": "Lecture Hall 502",
+   "type": "room",
+   "xy": [
+    812.5,
+    632.0
+   ],
+   "svg_rect": [
+    750.0,
+    552,
+    125.0,
+    160
+   ],
+   "floor": 6,
+   "visual_signature": "Angled hall in the south wing of the fifth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_501_f6",
+   "name": "Lecture Hall 501",
+   "type": "room",
+   "xy": [
+    947.5,
+    625.0
+   ],
+   "svg_rect": [
+    885.0,
+    545,
+    125.0,
+    160
+   ],
+   "floor": 6,
+   "visual_signature": "Angled hall in the south wing of the fifth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "library_f6",
+   "name": "Library",
+   "type": "room",
+   "xy": [
+    1325.0,
+    220.0
+   ],
+   "svg_rect": [
+    1200,
+    110,
+    250,
+    220
+   ],
+   "floor": 6,
+   "visual_signature": "The library block east of the main building, reached over the covered link from the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "pcb_lab_518_f6",
+   "name": "PCB Lab 518",
+   "type": "room",
+   "xy": [
+    918.0,
+    328.0
+   ],
+   "svg_rect": [
+    868,
+    300,
+    100,
+    56
+   ],
+   "floor": 6,
+   "visual_signature": "Off the corr e on the fifth floor",
+   "attributes": {}
+  },
+  {
+   "id": "room_519_f6",
+   "name": "Room 519",
+   "type": "room",
+   "xy": [
+    918.0,
+    394.0
+   ],
+   "svg_rect": [
+    868,
+    366,
+    100,
+    56
+   ],
+   "floor": 6,
+   "visual_signature": "Off the corr e on the fifth floor",
+   "attributes": {}
+  },
+  {
+   "id": "corr_n_f7",
+   "name": "North Corridor Sixth Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    276.0
+   ],
+   "svg_rect": [
+    340,
+    256,
+    670,
+    40
+   ],
+   "floor": 7,
+   "visual_signature": "North corridor running the length of the lab wing, escape arrows pointing east",
+   "attributes": {}
+  },
+  {
+   "id": "corr_s_f7",
+   "name": "South Corridor Sixth Floor",
+   "type": "corridor",
+   "xy": [
+    675.0,
+    500.0
+   ],
+   "svg_rect": [
+    340,
+    480,
+    670,
+    40
+   ],
+   "floor": 7,
+   "visual_signature": "South corridor along the lecture-hall side of the atrium",
+   "attributes": {}
+  },
+  {
+   "id": "corr_w_f7",
+   "name": "West Corridor Sixth Floor",
+   "type": "corridor",
+   "xy": [
+    360.0,
+    388.0
+   ],
+   "svg_rect": [
+    340,
+    296,
+    40,
+    184
+   ],
+   "floor": 7,
+   "visual_signature": "West corridor at the atrium's blind end, beside the fire staircase",
+   "attributes": {}
+  },
+  {
+   "id": "corr_e_f7",
+   "name": "East Corridor Sixth Floor",
+   "type": "corridor",
+   "xy": [
+    840.0,
+    388.0
+   ],
+   "svg_rect": [
+    820,
+    296,
+    40,
+    184
+   ],
+   "floor": 7,
+   "visual_signature": "East corridor where the atrium loop meets the link to the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "stair1_f7",
+   "name": "Staircase-1 Sixth Floor",
+   "type": "stairs",
+   "xy": [
+    1079.0,
+    156.0
+   ],
+   "svg_rect": [
+    1040,
+    130,
+    78,
+    52
+   ],
+   "floor": 7,
+   "visual_signature": "Enclosed fire staircase at the north-east corner, red FIRE EXIT sign over the door, beside the covered link to the library block",
+   "attributes": {}
+  },
+  {
+   "id": "stair2_f7",
+   "name": "Staircase-2 Sixth Floor",
+   "type": "stairs",
+   "xy": [
+    779.0,
+    378.0
+   ],
+   "svg_rect": [
+    742,
+    330,
+    74,
+    96
+   ],
+   "floor": 7,
+   "visual_signature": "Fire staircase at the east end of the central atrium, red FIRE EXIT sign, fire hydrant and hose reel on the corridor wall alongside",
+   "attributes": {}
+  },
+  {
+   "id": "stair3_f7",
+   "name": "Staircase-3 Sixth Floor",
+   "type": "stairs",
+   "xy": [
+    423.0,
+    378.0
+   ],
+   "svg_rect": [
+    386,
+    330,
+    74,
+    96
+   ],
+   "floor": 7,
+   "visual_signature": "Fire staircase at the west end of the central atrium, red FIRE EXIT sign, manual call point beside the door",
+   "attributes": {}
+  },
+  {
+   "id": "lift_w_f7",
+   "name": "West Lift Sixth Floor",
+   "type": "lift",
+   "xy": [
+    318.0,
+    402.0
+   ],
+   "svg_rect": [
+    300,
+    372,
+    36,
+    60
+   ],
+   "floor": 7,
+   "visual_signature": "Lift car on the western corridor, call panel beside the doors",
+   "attributes": {}
+  },
+  {
+   "id": "lift_e_f7",
+   "name": "East Lift Sixth Floor",
+   "type": "lift",
+   "xy": [
+    1167.0,
+    325.0
+   ],
+   "svg_rect": [
+    1150,
+    296,
+    34,
+    58
+   ],
+   "floor": 7,
+   "visual_signature": "Lift lobby off the east link, beside the toilets",
+   "attributes": {}
+  },
+  {
+   "id": "lobby_e_f7",
+   "name": "East Link Lobby Sixth Floor",
+   "type": "corridor",
+   "xy": [
+    1090.0,
+    325.0
+   ],
+   "svg_rect": [
+    1030,
+    250,
+    120,
+    150
+   ],
+   "floor": 7,
+   "visual_signature": "East link lobby joining the main block to the library, escape route arrows on the floor, YOU ARE HERE board on the wall",
+   "attributes": {}
+  },
+  {
+   "id": "toilets_f7",
+   "name": "Toilets Sixth Floor",
+   "type": "room",
+   "xy": [
+    1090.0,
+    217.0
+   ],
+   "svg_rect": [
+    1030,
+    190,
+    120,
+    54
+   ],
+   "floor": 7,
+   "visual_signature": "Gents and ladies toilets off the east link lobby",
+   "attributes": {}
+  },
+  {
+   "id": "computer_lab_4_f7",
+   "name": "Computer Lab-4",
+   "type": "room",
+   "xy": [
+    391.6,
+    177.5
+   ],
+   "svg_rect": [
+    340.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 7,
+   "visual_signature": "Lab/classroom off the north corridor of the sixth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "computer_lab_3_f7",
+   "name": "Computer Lab-3",
+   "type": "room",
+   "xy": [
+    504.9,
+    177.5
+   ],
+   "svg_rect": [
+    453.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 7,
+   "visual_signature": "Lab/classroom off the north corridor of the sixth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "computer_lab_2_f7",
+   "name": "Computer Lab-2",
+   "type": "room",
+   "xy": [
+    618.4,
+    177.5
+   ],
+   "svg_rect": [
+    566.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 7,
+   "visual_signature": "Lab/classroom off the north corridor of the sixth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "bio_technology_lab_f7",
+   "name": "Bio Technology Lab",
+   "type": "room",
+   "xy": [
+    731.6,
+    177.5
+   ],
+   "svg_rect": [
+    680.0,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 7,
+   "visual_signature": "Lab/classroom off the north corridor of the sixth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "neutraceutical_chemical_lab_f7",
+   "name": "Neutraceutical Chemical Lab",
+   "type": "room",
+   "xy": [
+    844.9,
+    177.5
+   ],
+   "svg_rect": [
+    793.3,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 7,
+   "visual_signature": "Lab/classroom off the north corridor of the sixth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "central_lab_f7",
+   "name": "Central Lab",
+   "type": "room",
+   "xy": [
+    958.4,
+    177.5
+   ],
+   "svg_rect": [
+    906.7,
+    105,
+    103.3,
+    145
+   ],
+   "floor": 7,
+   "visual_signature": "Lab/classroom off the north corridor of the sixth floor, door opening south onto the escape route",
+   "attributes": {}
+  },
+  {
+   "id": "lab_610_f7",
+   "name": "Lab 610",
+   "type": "room",
+   "xy": [
+    185.0,
+    183.8
+   ],
+   "svg_rect": [
+    70,
+    120.0,
+    230,
+    127.5
+   ],
+   "floor": 7,
+   "visual_signature": "Room in the west wing of the sixth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lab_611_f7",
+   "name": "Lab 611",
+   "type": "room",
+   "xy": [
+    185.0,
+    321.2
+   ],
+   "svg_rect": [
+    70,
+    257.5,
+    230,
+    127.5
+   ],
+   "floor": 7,
+   "visual_signature": "Room in the west wing of the sixth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lab_612_f7",
+   "name": "Lab 612",
+   "type": "room",
+   "xy": [
+    185.0,
+    458.8
+   ],
+   "svg_rect": [
+    70,
+    395.0,
+    230,
+    127.5
+   ],
+   "floor": 7,
+   "visual_signature": "Room in the west wing of the sixth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lab_613_f7",
+   "name": "Lab 613",
+   "type": "room",
+   "xy": [
+    185.0,
+    596.2
+   ],
+   "svg_rect": [
+    70,
+    532.5,
+    230,
+    127.5
+   ],
+   "floor": 7,
+   "visual_signature": "Room in the west wing of the sixth floor, reached from the western corridor",
+   "attributes": {}
+  },
+  {
+   "id": "lecture_hall_609_f7",
+   "name": "Lecture Hall 609",
+   "type": "room",
+   "xy": [
+    377.5,
+    681.0
+   ],
+   "svg_rect": [
+    345.0,
+    601,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "class_room_608_f7",
+   "name": "Class Room 608",
+   "type": "room",
+   "xy": [
+    452.5,
+    674.0
+   ],
+   "svg_rect": [
+    420.0,
+    594,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "class_room_607_f7",
+   "name": "Class Room 607",
+   "type": "room",
+   "xy": [
+    527.5,
+    667.0
+   ],
+   "svg_rect": [
+    495.0,
+    587,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "class_room_606_f7",
+   "name": "Class Room 606",
+   "type": "room",
+   "xy": [
+    602.5,
+    660.0
+   ],
+   "svg_rect": [
+    570.0,
+    580,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "class_room_605_f7",
+   "name": "Class Room 605",
+   "type": "room",
+   "xy": [
+    677.5,
+    653.0
+   ],
+   "svg_rect": [
+    645.0,
+    573,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "class_room_604_f7",
+   "name": "Class Room 604",
+   "type": "room",
+   "xy": [
+    752.5,
+    646.0
+   ],
+   "svg_rect": [
+    720.0,
+    566,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "class_room_603_f7",
+   "name": "Class Room 603",
+   "type": "room",
+   "xy": [
+    827.5,
+    639.0
+   ],
+   "svg_rect": [
+    795.0,
+    559,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "class_room_602_f7",
+   "name": "Class Room 602",
+   "type": "room",
+   "xy": [
+    902.5,
+    632.0
+   ],
+   "svg_rect": [
+    870.0,
+    552,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "class_room_601_f7",
+   "name": "Class Room 601",
+   "type": "room",
+   "xy": [
+    977.5,
+    625.0
+   ],
+   "svg_rect": [
+    945.0,
+    545,
+    65.0,
+    160
+   ],
+   "floor": 7,
+   "visual_signature": "Angled hall in the south wing of the sixth floor, entered from the south corridor",
+   "attributes": {}
+  },
+  {
+   "id": "library_f7",
+   "name": "Library",
+   "type": "room",
+   "xy": [
+    1325.0,
+    220.0
+   ],
+   "svg_rect": [
+    1200,
+    110,
+    250,
+    220
+   ],
+   "floor": 7,
+   "visual_signature": "The library block east of the main building, reached over the covered link from the lobby",
+   "attributes": {}
+  },
+  {
+   "id": "main_entrance",
+   "name": "Main Entrance",
+   "type": "entrance",
+   "xy": [
+    1085.0,
+    461.0
+   ],
+   "svg_rect": [
+    1020,
+    430,
+    130,
+    62
+   ],
+   "floor": 1,
+   "visual_signature": "Main exit doors at the south-east of the ground floor, green MAIN EXIT sign overhead, emergency assembly point beyond",
+   "attributes": {}
+  }
+ ],
+ "edges": [
+  {
+   "a": "corr_n_f1",
+   "b": "corr_w_f1",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f1",
+   "b": "corr_s_f1",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "corr_e_f1",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f1",
+   "b": "corr_n_f1",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f1",
+   "b": "lobby_e_f1",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f1",
+   "b": "toilets_f1",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f1",
+   "b": "stair1_f1",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f1",
+   "b": "lift_e_f1",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f1",
+   "b": "stair2_f1",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f1",
+   "b": "stair3_f1",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f1",
+   "b": "lift_w_f1",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f1",
+   "b": "dynamics_of_machinery_lab_f1",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f1",
+   "b": "fluid_mechanics_fluid_machinery_lab_10_f1",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f1",
+   "b": "metrology_measurement_lab_f1",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f1",
+   "b": "machine_room_f1",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f1",
+   "b": "cnc_lab_f1",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "fitting_shop_f1",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "carpentry_shop_f1",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "welding_shop_f1",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "test_office_f1",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "computing_centre_f1",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f1",
+   "b": "i_c_engine_lab_f1",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "copying_facility_f1",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f2",
+   "b": "corr_w_f2",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f2",
+   "b": "corr_s_f2",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f2",
+   "b": "corr_e_f2",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f2",
+   "b": "corr_n_f2",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f2",
+   "b": "lobby_e_f2",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f2",
+   "b": "toilets_f2",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f2",
+   "b": "stair1_f2",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f2",
+   "b": "lift_e_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f2",
+   "b": "stair2_f2",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f2",
+   "b": "stair3_f2",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f2",
+   "b": "lift_w_f2",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f2",
+   "b": "tutorial_room_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f2",
+   "b": "pg_seminar_hall_112_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f2",
+   "b": "ug_seminar_hall_114_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f2",
+   "b": "web_technology_lab_115_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f2",
+   "b": "database_management_system_lab_116_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f2",
+   "b": "multimedia_system_lab_117_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f2",
+   "b": "comp_programming_lab_f2",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f2",
+   "b": "object_oriented_analysis_design_lab_f2",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f2",
+   "b": "faculty_office_f2",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f2",
+   "b": "devices_communication_lab_f2",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f2",
+   "b": "lecture_hall_105_f2",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f2",
+   "b": "lecture_hall_104_f2",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f2",
+   "b": "lecture_hall_103_f2",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f2",
+   "b": "lecture_hall_102_f2",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f2",
+   "b": "lecture_hall_101_f2",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f2",
+   "b": "library_reading_room_f2",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f2",
+   "b": "research_centre_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f2",
+   "b": "ladies_common_room_f2",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f3",
+   "b": "corr_w_f3",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f3",
+   "b": "corr_s_f3",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f3",
+   "b": "corr_e_f3",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f3",
+   "b": "corr_n_f3",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f3",
+   "b": "lobby_e_f3",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f3",
+   "b": "toilets_f3",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f3",
+   "b": "stair1_f3",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f3",
+   "b": "lift_e_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f3",
+   "b": "stair2_f3",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f3",
+   "b": "stair3_f3",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f3",
+   "b": "lift_w_f3",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f3",
+   "b": "embedded_system_lab_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f3",
+   "b": "software_engineering_lab_213_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f3",
+   "b": "modeling_simulation_lab_214_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f3",
+   "b": "analysis_algorithms_lab_215_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f3",
+   "b": "artificial_intelligence_robotics_lab_216_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f3",
+   "b": "computer_comm_networking_lab_217_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f3",
+   "b": "pg_computer_centre_f3",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f3",
+   "b": "project_laboratory_f3",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f3",
+   "b": "system_security_lab_f3",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f3",
+   "b": "faculty_office_f3",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f3",
+   "b": "microprocessor_lab_f3",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f3",
+   "b": "lecture_hall_205_f3",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f3",
+   "b": "lecture_hall_204_f3",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f3",
+   "b": "lecture_hall_203_f3",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f3",
+   "b": "lecture_hall_202_f3",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f3",
+   "b": "lecture_hall_201_f3",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f3",
+   "b": "library_home_issue_section_f3",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f3",
+   "b": "data_centre_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f3",
+   "b": "office_of_hod_f3",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f4",
+   "b": "corr_w_f4",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f4",
+   "b": "corr_s_f4",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f4",
+   "b": "corr_e_f4",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f4",
+   "b": "corr_n_f4",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f4",
+   "b": "lobby_e_f4",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f4",
+   "b": "toilets_f4",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f4",
+   "b": "stair1_f4",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f4",
+   "b": "lift_e_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f4",
+   "b": "stair2_f4",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f4",
+   "b": "stair3_f4",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f4",
+   "b": "lift_w_f4",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f4",
+   "b": "tutorial_room_1_311_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f4",
+   "b": "pg_seminar_hall_312_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f4",
+   "b": "high_performance_computer_lab_313_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f4",
+   "b": "advance_database_management_system_314_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f4",
+   "b": "analysis_design_lab_315_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f4",
+   "b": "image_processing_lab_316_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f4",
+   "b": "operating_system_lab_317_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f4",
+   "b": "project_laboratory_department_store_310_f4",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f4",
+   "b": "information_security_lab_f4",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f4",
+   "b": "faculty_office_f4",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f4",
+   "b": "lecture_hall_305_f4",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f4",
+   "b": "lecture_hall_304_f4",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f4",
+   "b": "lecture_hall_303_f4",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f4",
+   "b": "lecture_hall_302_f4",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f4",
+   "b": "lecture_hall_301_f4",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f4",
+   "b": "library_reference_section_f4",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f4",
+   "b": "office_of_hod_f4",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f5",
+   "b": "corr_w_f5",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f5",
+   "b": "corr_s_f5",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f5",
+   "b": "corr_e_f5",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f5",
+   "b": "corr_n_f5",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f5",
+   "b": "lobby_e_f5",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f5",
+   "b": "toilets_f5",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f5",
+   "b": "stair1_f5",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f5",
+   "b": "lift_e_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f5",
+   "b": "stair2_f5",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f5",
+   "b": "stair3_f5",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f5",
+   "b": "lift_w_f5",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f5",
+   "b": "tutorial_room_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f5",
+   "b": "pg_seminar_hall_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f5",
+   "b": "dept_computer_centre_design_development_lab_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f5",
+   "b": "vlsi_laboratory_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f5",
+   "b": "image_processing_lab_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f5",
+   "b": "signal_processing_lab_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f5",
+   "b": "digital_design_lab_f5",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f5",
+   "b": "project_lab_f5",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f5",
+   "b": "department_store_f5",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f5",
+   "b": "power_electronics_lab_f5",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f5",
+   "b": "lecture_hall_4f_5_f5",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f5",
+   "b": "lecture_hall_4f_4_f5",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f5",
+   "b": "lecture_hall_4f_3_f5",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f5",
+   "b": "lecture_hall_4f_2_f5",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f5",
+   "b": "lecture_hall_4f_1_f5",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f5",
+   "b": "library_f5",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f5",
+   "b": "department_library_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f5",
+   "b": "office_of_hod_f5",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f6",
+   "b": "corr_w_f6",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f6",
+   "b": "corr_s_f6",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f6",
+   "b": "corr_e_f6",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f6",
+   "b": "corr_n_f6",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f6",
+   "b": "lobby_e_f6",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f6",
+   "b": "toilets_f6",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f6",
+   "b": "stair1_f6",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f6",
+   "b": "lift_e_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f6",
+   "b": "stair2_f6",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f6",
+   "b": "stair3_f6",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f6",
+   "b": "lift_w_f6",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f6",
+   "b": "research_centre_511_512_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f6",
+   "b": "ni_academy_513_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f6",
+   "b": "basic_communication_lab_514_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f6",
+   "b": "robotics_lab_515_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f6",
+   "b": "microprocessor_lab_516_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f6",
+   "b": "studio_classroom_2_517_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f6",
+   "b": "circuit_laboratory_510_f6",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f6",
+   "b": "control_instrument_lab_f6",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f6",
+   "b": "ug_seminar_hall_f6",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f6",
+   "b": "lecture_hall_505_f6",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f6",
+   "b": "lecture_hall_504_f6",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f6",
+   "b": "lecture_hall_503_f6",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f6",
+   "b": "lecture_hall_502_f6",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f6",
+   "b": "lecture_hall_501_f6",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f6",
+   "b": "library_f6",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f6",
+   "b": "pcb_lab_518_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f6",
+   "b": "room_519_f6",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f7",
+   "b": "corr_w_f7",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f7",
+   "b": "corr_s_f7",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "corr_e_f7",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f7",
+   "b": "corr_n_f7",
+   "distance": 9,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f7",
+   "b": "lobby_e_f7",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f7",
+   "b": "toilets_f7",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f7",
+   "b": "stair1_f7",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f7",
+   "b": "lift_e_f7",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_e_f7",
+   "b": "stair2_f7",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f7",
+   "b": "stair3_f7",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f7",
+   "b": "lift_w_f7",
+   "distance": 5,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f7",
+   "b": "computer_lab_4_f7",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f7",
+   "b": "computer_lab_3_f7",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f7",
+   "b": "computer_lab_2_f7",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f7",
+   "b": "bio_technology_lab_f7",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f7",
+   "b": "neutraceutical_chemical_lab_f7",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_n_f7",
+   "b": "central_lab_f7",
+   "distance": 6,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f7",
+   "b": "lab_610_f7",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f7",
+   "b": "lab_611_f7",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f7",
+   "b": "lab_612_f7",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_w_f7",
+   "b": "lab_613_f7",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "lecture_hall_609_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "class_room_608_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "class_room_607_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "class_room_606_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "class_room_605_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "class_room_604_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "class_room_603_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "class_room_602_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f7",
+   "b": "class_room_601_f7",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lobby_e_f7",
+   "b": "library_f7",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "stair1_f1",
+   "b": "stair1_f2",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair2_f1",
+   "b": "stair2_f2",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair3_f1",
+   "b": "stair3_f2",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "lift_w_f1",
+   "b": "lift_w_f2",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lift_e_f1",
+   "b": "lift_e_f2",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "stair1_f2",
+   "b": "stair1_f3",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair2_f2",
+   "b": "stair2_f3",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair3_f2",
+   "b": "stair3_f3",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "lift_w_f2",
+   "b": "lift_w_f3",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lift_e_f2",
+   "b": "lift_e_f3",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "stair1_f3",
+   "b": "stair1_f4",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair2_f3",
+   "b": "stair2_f4",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair3_f3",
+   "b": "stair3_f4",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "lift_w_f3",
+   "b": "lift_w_f4",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lift_e_f3",
+   "b": "lift_e_f4",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "stair1_f4",
+   "b": "stair1_f5",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair2_f4",
+   "b": "stair2_f5",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair3_f4",
+   "b": "stair3_f5",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "lift_w_f4",
+   "b": "lift_w_f5",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lift_e_f4",
+   "b": "lift_e_f5",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "stair1_f5",
+   "b": "stair1_f6",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair2_f5",
+   "b": "stair2_f6",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair3_f5",
+   "b": "stair3_f6",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "lift_w_f5",
+   "b": "lift_w_f6",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lift_e_f5",
+   "b": "lift_e_f6",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "stair1_f6",
+   "b": "stair1_f7",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair2_f6",
+   "b": "stair2_f7",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "stair3_f6",
+   "b": "stair3_f7",
+   "distance": 5,
+   "accessible": false,
+   "passable": true
+  },
+  {
+   "a": "lift_w_f6",
+   "b": "lift_w_f7",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "lift_e_f6",
+   "b": "lift_e_f7",
+   "distance": 12,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "main_entrance",
+   "b": "lobby_e_f1",
+   "distance": 8,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "main_entrance",
+   "b": "corr_s_f1",
+   "distance": 14,
+   "accessible": true,
+   "passable": true
+  }
+ ],
+ "equipment": [
+  {
+   "id": "opac_terminal",
+   "name": "OPAC Catalogue Terminal",
+   "node": "library_reading_room_f2",
+   "visual_signature": "Public catalogue terminal on a stand just inside the reading room door",
+   "manual_snippet": "Search by title, author or accession number. Home-issue loans are handled on the second floor."
+  },
+  {
+   "id": "cnc_machine",
+   "name": "CNC Milling Machine",
+   "node": "cnc_lab_f1",
+   "visual_signature": "Enclosed CNC mill with a yellow guard door, in the CNC lab off the ground-floor south wing",
+   "manual_snippet": "Do not operate without a workshop supervisor present. Guard door must be closed before spindle start."
+  },
+  {
+   "id": "server_rack_dc",
+   "name": "Data Centre Server Rack",
+   "node": "data_centre_f3",
+   "visual_signature": "Black 42U rack behind a glass door in the second-floor data centre",
+   "manual_snippet": "Access is logged. Do not power-cycle without a change request from the network team."
+  },
+  {
+   "id": "fire_hydrant_s2",
+   "name": "Fire Hydrant & Hose Reel",
+   "node": "stair2_f1",
+   "visual_signature": "Red hydrant and hose reel cabinet on the corridor wall beside Staircase-2",
+   "manual_snippet": "Break glass, pull hose fully clear before opening the valve. Report any use to security on 7045368137."
+  }
+ ]
+}
