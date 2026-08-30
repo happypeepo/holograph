@@ -1,0 +1,18 @@
+{
+  "updates": [
+    {
+      "node_id": "corridor_c_mid",
+      "node_name": "Corridor C Middle",
+      "passable": false,
+      "confidence": 0.91,
+      "evidence": "Three stacked chairs and a folded banquet table block the full width of the corridor outside the lift lobby; the fire hose reel cabinet is visible behind them."
+    },
+    {
+      "node_id": "corridor_c_east",
+      "node_name": "Corridor C East",
+      "passable": true,
+      "confidence": 0.74,
+      "evidence": "The east stretch of the corridor is clear end to end, with the grilled window visible at the far wall and nothing on the floor."
+    }
+  ]
+}

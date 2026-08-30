@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Indoor Spatial Twin</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070b10;--panel:#101821;--line:#2b3c4e;--ink:#eef4fb;--dim:#94aac0;
+      --acc:#22d3ee;--loc:#fbbf24;--bad:#ff4d4d;--ok:#4ade80}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);overflow:hidden;display:flex;flex-direction:column;
+     font:16px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{display:flex;align-items:center;gap:22px;padding:12px 22px;border-bottom:1px solid var(--line);background:#0b1219}
+h1{font-size:26px;letter-spacing:.4px;white-space:nowrap}
+#bld{font-size:15px;color:var(--dim);white-space:nowrap}
+#mode{font-size:12px;letter-spacing:2px;color:#0a0f14;background:var(--loc);padding:4px 9px;border-radius:4px;font-weight:700}
+.acts{margin-left:auto;display:flex;gap:10px}
+.btn{font:600 17px/1 inherit;color:var(--ink);background:#1a2836;border:1px solid var(--line);
+     border-radius:8px;padding:14px 18px;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#24384b;border-color:#4f6d8b}
+main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(380px,1fr);gap:14px;padding:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-height:0;display:flex;flex-direction:column}
+#planwrap{padding:12px 14px}
+#bar{display:flex;align-items:center;gap:10px;font-size:15px;color:var(--dim);padding-bottom:10px}
+select{font:600 16px/1 inherit;color:var(--ink);background:#1a2836;border:1px solid var(--line);border-radius:7px;padding:10px}
+label.chk{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--ink)}
+#plan{flex:1;min-height:0;width:100%}
+#steps{border-top:1px solid var(--line);padding-top:11px;margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.step{background:#16232f;border:1px solid var(--line);border-radius:20px;padding:8px 14px;font-size:16px}
+.step b{color:var(--acc);margin-right:6px}
+.dist{background:var(--acc);color:#04222a;font-weight:800;font-size:17px;border-radius:20px;padding:8px 15px}
+.hint{color:var(--dim);font-size:16px}
+.fail{color:var(--bad);font-weight:700;font-size:17px}
+#panel{padding:18px 20px;overflow-y:auto;display:block}
+.kicker{font-size:13px;letter-spacing:2.5px;color:var(--dim);margin-bottom:14px}
+.sec{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.sec:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.title{font-size:29px;font-weight:700;line-height:1.15}
+.sub{font-size:15px;color:var(--dim);font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:3px}
+.badge{display:inline-block;font-size:13px;letter-spacing:2px;font-weight:800;padding:5px 10px;border-radius:4px;margin-top:9px}
+.badge.ok{background:var(--ok);color:#062812}.badge.bad{background:var(--bad);color:#2b0000}
+.confrow{display:flex;align-items:center;gap:12px;margin:12px 0 4px}
+.bar{flex:1;height:18px;background:#1a2836;border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#22d3ee,#4ade80)}
+.confnum{font-size:23px;font-weight:800;font-variant-numeric:tabular-nums}
+.ev{list-style:none;margin-top:10px}
+.ev li{font-size:17px;line-height:1.5;padding:10px 13px;margin-bottom:8px;background:#0c151e;
+       border-left:3px solid var(--acc);border-radius:0 6px 6px 0;white-space:pre-wrap}
+.alts{font-size:15px;color:var(--dim);margin-top:8px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.room{fill:#16212d;stroke:#5d7e9c}.corridor{fill:#0d1720;stroke:#41576c}
+.stairs{fill:#1c2237;stroke:#9a9ae0}.lift{fill:#0e2430;stroke:#3fb6c9}.entrance{fill:#10261a;stroke:#4ade80}
+.n{stroke-width:2.5}.n.blocked{fill:#4a1113;stroke:var(--bad);stroke-width:4}
+.tread{stroke:#9a9ae0;stroke-width:1.5;opacity:.55}.car{fill:none;stroke:#3fb6c9;stroke-width:2}
+.lbl,.tag{paint-order:stroke fill;stroke:#070b10;stroke-width:5;stroke-linejoin:round;text-anchor:middle}
+.lbl{fill:#eef4fb;font-size:20px;font-weight:700}
+.tag{fill:#94aac0;font-size:14px;letter-spacing:2px;font-weight:700;stroke-width:4}
+.tag.bad{fill:var(--bad)}
+.edge{stroke:#33475c;stroke-width:2;stroke-dasharray:4 5}
+.edge.cut{stroke:var(--bad);stroke-width:3.5;stroke-dasharray:7 6}
+.cutdot{fill:#070b10;stroke:var(--bad);stroke-width:2.5}
+.cutx{stroke:var(--bad);stroke-width:4;stroke-linecap:round}
+.locked{fill:none;stroke:var(--loc);stroke-width:4}
+.halo{fill:none;stroke:var(--loc);stroke-width:5;transform-box:fill-box;transform-origin:center;animation:halo 1.5s ease-out infinite}
+@keyframes halo{0%{transform:scale(1);opacity:.95}100%{transform:scale(1.16);opacity:0}}
+.rline{fill:none;stroke:#062d36;stroke-width:12;stroke-linecap:round;stroke-linejoin:round}
+.rmain{fill:none;stroke:var(--acc);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.rflow{fill:none;stroke:#f2ffff;stroke-width:4;stroke-linecap:round;stroke-dasharray:10 24;animation:ants 1s linear infinite}
+@keyframes ants{to{stroke-dashoffset:-34}}
+.wp{fill:#04222a;stroke:var(--acc);stroke-width:3}
+.rend{fill:var(--acc)}.rstart{fill:var(--ok)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Indoor Spatial Twin</h1><span id="bld">loading…</span><span id="mode"></span>
+  <div class="acts">
+    <button class="btn" data-for="f-locate">Where am I?</button>
+    <button class="btn" data-for="f-identify">What is this?</button>
+    <button class="btn" data-for="f-observe">Upload camera footage</button>
+  </div>
+  <input type="file" id="f-locate"   data-kind="locate"   accept="image/*" hidden>
+  <input type="file" id="f-identify" data-kind="identify" accept="image/*" hidden>
+  <input type="file" id="f-observe"  data-kind="observe"  accept="video/*" hidden>
+</header>
+<main>
+  <section class="card" id="planwrap">
+    <div id="bar">
+      From <select id="from"></select> to <select id="to"></select>
+      <label class="chk"><input type="checkbox" id="acc"> step-free</label>
+      <button class="btn" id="go" style="padding:10px 16px">Route</button>
+    </div>
+    <svg id="plan" preserveAspectRatio="xMidYMid meet">
+      <g id="gEdges"></g><g id="gNodes"></g><g id="gCut"></g>
+      <g id="gRoute"></g><g id="gMark"></g><g id="gLabels"></g>
+    </svg>
+    <div id="steps"></div>
+  </section>
+  <aside class="card" id="panel"></aside>
+</main>
+<script>
+/* ---- config: flip USE_FIXTURES to false to run against the live FastAPI backend ---- */
+const USE_FIXTURES = true;
+const API     = {base:'', locate:'/locate', identify:'/identify', observe:'/observe', state:'/state', route:'/route'};
+const FIXTURE = {locate:'fixtures/mock_locate.json', identify:'fixtures/mock_identify.json',
+                 observe:'fixtures/mock_observe.json', state:'fixtures/mock_state.json', route:'fixtures/mock_route.json'};
+
+const $=s=>document.querySelector(s), NS='http://www.w3.org/2000/svg';
+const el=(t,a,tx)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(tx!=null)e.textContent=tx;return e};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const evLines=v=>Array.isArray(v)?v:(v==null||v===''?[]:[String(v)]);
+let STATE=null, ROUTE=null, LOCATED=null, BY={};
+
+async function json(u,o){const r=await fetch(u,o);if(!r.ok)throw new Error(u+' -> HTTP '+r.status);return r.json()}
+async function send(kind,file){
+  if(USE_FIXTURES) return json(FIXTURE[kind]);
+  const fd=new FormData(); fd.append('file',file,file.name);
+  return json(API.base+API[kind],{method:'POST',body:fd});
+}
+const getState=()=>json(USE_FIXTURES?FIXTURE.state:API.base+API.state);
+const getRoute=(from,to,acc)=>USE_FIXTURES?json(FIXTURE.route)
+  :json(API.base+API.route+'?'+new URLSearchParams({from,to,accessible:String(!!acc)}));
+
+/* ---------------- floor plan ---------------- */
+function wrap(s,max){const o=[];let c='';for(const w of s.split(' ')){const t=c?c+' '+w:w;
+  if(t.length>max&&c){o.push(c);c=w}else c=t} if(c)o.push(c); return o}
+
+function draw(){
+  const svg=$('#plan'); svg.setAttribute('viewBox',STATE.svg_viewbox.join(' '));
+  BY={}; STATE.nodes.forEach(n=>BY[n.id]=n);
+  const E=$('#gEdges'), N=$('#gNodes'), C=$('#gCut'), L=$('#gLabels');
+  E.textContent=''; N.textContent=''; C.textContent=''; L.textContent=''; $('#gMark').textContent='';
+  for(const e of STATE.edges){const a=BY[e.a],b=BY[e.b]; if(!a||!b)continue;
+    const cut=e.passable===false;
+    E.appendChild(el('line',{x1:a.xy[0],y1:a.xy[1],x2:b.xy[0],y2:b.xy[1],class:'edge'+(cut?' cut':'')}));
+    if(cut){const mx=(a.xy[0]+b.xy[0])/2, my=(a.xy[1]+b.xy[1])/2;
+      C.appendChild(el('circle',{cx:mx,cy:my,r:13,class:'cutdot'}));
+      C.appendChild(el('line',{x1:mx-6,y1:my-6,x2:mx+6,y2:my+6,class:'cutx'}));
+      C.appendChild(el('line',{x1:mx+6,y1:my-6,x2:mx-6,y2:my+6,class:'cutx'}));}}
+  for(const n of STATE.nodes){
+    const [x,y,w,h]=n.svg_rect, blocked=n.passable===false, g=el('g',{});
+    g.appendChild(el('rect',{x,y,width:w,height:h,rx:7,class:'n '+n.type+(blocked?' blocked':'')}));
+    if(n.type==='stairs') for(let i=1;i<5;i++) g.appendChild(el('line',{x1:x+9,y1:y+h*i/5,x2:x+w-9,y2:y+h*i/5,class:'tread'}));
+    if(n.type==='lift') g.appendChild(el('rect',{x:x+w/2-17,y:y+9,width:34,height:23,rx:3,class:'car'}));
+    N.appendChild(g);
+    const lines=wrap(n.name,Math.max(6,Math.floor(w/11.5)));
+    const tag=blocked?'BLOCKED':(n.type==='room'||n.type==='corridor'?'':n.type.toUpperCase());
+    let ty=y+h/2-(lines.length*23+(tag?19:0))/2+19;
+    for(const t of lines){L.appendChild(el('text',{x:x+w/2,y:ty,class:'lbl'},t)); ty+=23}
+    if(tag) L.appendChild(el('text',{x:x+w/2,y:ty+3,class:'tag'+(blocked?' bad':'')},tag));
+  }
+  if(LOCATED&&BY[LOCATED]){const [x,y,w,h]=BY[LOCATED].svg_rect, M=$('#gMark');
+    const box={x:x-6,y:y-6,width:w+12,height:h+12,rx:10};
+    M.appendChild(el('rect',Object.assign({class:'halo'},box)));
+    M.appendChild(el('rect',Object.assign({class:'locked'},box)));}
+  drawRoute();
+}
+
+function drawRoute(){
+  const R=$('#gRoute'); R.textContent='';
+  if(!ROUTE||!ROUTE.path||!ROUTE.path.length) return;
+  const ns=ROUTE.path.map(id=>BY[id]).filter(Boolean); if(ns.length<2) return;
+  const pts=ns.map(n=>n.xy.join(',')).join(' ');
+  R.appendChild(el('polyline',{points:pts,class:'rline'}));
+  const main=el('polyline',{points:pts,class:'rmain'}); R.appendChild(main);
+  const flow=el('polyline',{points:pts,class:'rflow'}); R.appendChild(flow);
+  ns.slice(1,-1).forEach(n=>R.appendChild(el('circle',{cx:n.xy[0],cy:n.xy[1],r:8,class:'wp'})));
+  R.appendChild(el('circle',{cx:ns[0].xy[0],cy:ns[0].xy[1],r:11,class:'rstart'}));
+  const last=ns[ns.length-1];
+  R.appendChild(el('circle',{cx:last.xy[0],cy:last.xy[1],r:13,class:'rend'}));
+  const L=main.getTotalLength();
+  main.style.strokeDasharray=L; main.style.strokeDashoffset=L; flow.style.opacity=0;
+  requestAnimationFrame(()=>{main.style.transition='stroke-dashoffset .9s ease-out'; main.style.strokeDashoffset=0;
+    setTimeout(()=>{flow.style.transition='opacity .35s'; flow.style.opacity=1},520)});
+}
+
+function renderSteps(){
+  const b=$('#steps');
+  if(!ROUTE){b.innerHTML='<span class="hint">Pick a start and a destination, then press Route.</span>';return}
+  if(!ROUTE.path||!ROUTE.path.length){
+    b.innerHTML='<span class="fail">NO ROUTE — '+esc(ROUTE.reason||'no passable path exists')+'</span>';return}
+  b.innerHTML='<span class="dist">'+esc(ROUTE.distance_m)+' m</span>'+
+    (ROUTE.steps||[]).map((s,i)=>'<span class="step"><b>'+(i+1)+'</b>'+esc(s)+'</span>').join('');
+}
+
+/* ---------------- evidence panel ---------------- */
+function renderPanel(kicker,secs,foot){
+  const p=$('#panel'); p.textContent='';
+  const k=document.createElement('div'); k.className='kicker'; k.textContent=kicker; p.appendChild(k);
+  for(const s of secs){
+    const d=document.createElement('div'); d.className='sec';
+    const t=document.createElement('div'); t.className='title'; t.textContent=s.title; d.appendChild(t);
+    if(s.sub){const u=document.createElement('div');u.className='sub';u.textContent=s.sub;d.appendChild(u)}
+    if(s.badge){const b=document.createElement('div');b.className='badge '+s.badge.cls;b.textContent=s.badge.text;d.appendChild(b)}
+    if(s.conf!=null){
+      const r=document.createElement('div'); r.className='confrow';
+      const bar=document.createElement('div'); bar.className='bar';
+      const fill=document.createElement('i'); fill.style.width=Math.round(s.conf*100)+'%'; bar.appendChild(fill);
+      const num=document.createElement('span'); num.className='confnum'; num.textContent=Math.round(s.conf*100)+'%';
+      r.appendChild(bar); r.appendChild(num); d.appendChild(r);
+    }
+    const ul=document.createElement('ul'); ul.className='ev';
+    for(const line of s.lines){const li=document.createElement('li'); li.textContent=line; ul.appendChild(li)}
+    d.appendChild(ul); p.appendChild(d);
+  }
+  if(foot){const f=document.createElement('div'); f.className='alts'; f.textContent=foot; p.appendChild(f)}
+}
+
+/* ---------------- actions ---------------- */
+async function act(kind,file){
+  try{
+    const r=await send(kind,file);
+    if(kind==='locate'){
+      LOCATED=r.node_id;
+      renderPanel('WHERE AM I?',[{title:r.node_name||r.node_id,sub:r.node_id,conf:r.confidence,lines:evLines(r.evidence)}],
+        (r.alternatives&&r.alternatives.length)?'alternatives: '+r.alternatives.join(', '):'');
+      if(BY[r.node_id]) $('#from').value=r.node_id;
+      draw();
+    }else if(kind==='identify'){
+      const at=BY[r.node]?BY[r.node].name:r.node;
+      renderPanel('WHAT IS THIS?',[{title:r.name||r.equipment_id,sub:r.equipment_id+'  ·  in '+at,
+        conf:r.confidence,lines:evLines(r.manual_snippet)}]);
+    }else{
+      const ups=r.updates||[];
+      renderPanel('UPLOAD CAMERA FOOTAGE',ups.map(u=>({title:u.node_name||u.node_id,sub:u.node_id,conf:u.confidence,
+        badge:{text:u.passable?'PASSABLE':'BLOCKED',cls:u.passable?'ok':'bad'},lines:evLines(u.evidence)})));
+      STATE=await getState(); draw();
+      const hit=ups.filter(u=>u.passable===false).map(u=>u.node_id);
+      if(ROUTE&&ROUTE.path&&ROUTE.path.some(id=>hit.includes(id))){
+        $('#steps').innerHTML='<span class="fail">Route crosses a newly blocked node — recomputing…</span>';
+        ROUTE=await getRoute($('#from').value,$('#to').value,$('#acc').checked);
+        renderSteps(); drawRoute();
+      }
+    }
+  }catch(e){renderPanel('ERROR',[{title:'Request failed',lines:[String(e.message||e)]}])}
+}
+
+document.querySelectorAll('header .btn').forEach(b=>b.onclick=()=>$('#'+b.dataset.for).click());
+document.querySelectorAll('input[type=file]').forEach(i=>i.addEventListener('change',e=>{
+  const f=e.target.files[0]; if(f) act(i.dataset.kind,f); e.target.value='';}));
+$('#go').onclick=async()=>{
+  try{ROUTE=await getRoute($('#from').value,$('#to').value,$('#acc').checked)}
+  catch(e){ROUTE={path:[],distance_m:null,steps:[],reason:String(e.message||e)}}
+  renderSteps(); drawRoute();
+};
+
+(async function init(){
+  $('#mode').textContent=USE_FIXTURES?'FIXTURES':'LIVE';
+  try{ STATE=await getState(); }
+  catch(e){ renderPanel('ERROR',[{title:'Could not load state',lines:[String(e.message||e)]}]); return }
+  $('#bld').textContent=STATE.building+' · Floor '+STATE.floor+' · '+STATE.nodes.length+' nodes';
+  const opts=STATE.nodes.map(n=>'<option value="'+esc(n.id)+'">'+esc(n.name)+'</option>').join('');
+  $('#from').innerHTML=opts; $('#to').innerHTML=opts;
+  $('#from').value='entrance'; $('#to').value='faculty_room';
+  draw(); renderSteps();
+  const obs=STATE.observations||[];
+  if(obs.length) renderPanel('STANDING OBSERVATIONS',obs.map(o=>({title:o.node_name||o.node_id,sub:o.node_id,
+    conf:o.confidence,badge:{text:o.passable?'PASSABLE':'BLOCKED',cls:o.passable?'ok':'bad'},lines:evLines(o.evidence)})));
+  else renderPanel('EVIDENCE',[{title:'No observations yet',lines:['Use one of the three actions above.']}]);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "node_id": "corridor_c_mid",
+  "node_name": "Corridor C Middle",
+  "confidence": 0.82,
+  "evidence": [
+    "Stainless steel lift doors are directly ahead on the north side of the corridor, with a floor indicator above them.",
+    "A red fire hose reel cabinet is mounted on the wall to the right of the lift doors.",
+    "A ceiling fan hangs at the corridor junction directly overhead.",
+    "The grey door on the left has a white sheet taped to its glass panel, but the text on it is not legible at this resolution."
+  ],
+  "alternatives": ["corridor_c_west"]
+}

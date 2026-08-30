@@ -1,0 +1,11 @@
+{
+  "path": ["entrance", "corridor_c_west", "stairs_north", "corridor_n", "faculty_room"],
+  "distance_m": 22,
+  "steps": [
+    "Leave Floor 3 Landing",
+    "Follow Corridor C West",
+    "Take the stairs at North Stairs",
+    "Follow North Gallery",
+    "Arrive at Faculty Room 3A"
+  ]
+}

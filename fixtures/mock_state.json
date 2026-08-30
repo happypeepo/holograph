@@ -1,0 +1,406 @@
+{
+  "building": "Main Block",
+  "floor": 3,
+  "svg_viewbox": [
+    0,
+    0,
+    1000,
+    600
+  ],
+  "nodes": [
+    {
+      "id": "entrance",
+      "name": "Floor 3 Landing",
+      "type": "entrance",
+      "xy": [
+        80,
+        367
+      ],
+      "svg_rect": [
+        30,
+        330,
+        100,
+        75
+      ],
+      "visual_signature": "Wide glass-panelled double door at the top of the main staircase, brass 'MAIN BLOCK - FLOOR 3' plate on the left jamb, green running-man fire exit sign overhead, notice board covered in orange flyers immediately inside",
+      "attributes": {
+        "accessible": true
+      },
+      "passable": true
+    },
+    {
+      "id": "corridor_c_west",
+      "name": "Corridor C West",
+      "type": "corridor",
+      "xy": [
+        245,
+        367
+      ],
+      "svg_rect": [
+        130,
+        340,
+        230,
+        55
+      ],
+      "visual_signature": "Corridor with cream walls and a red terrazzo stripe down the middle of the floor, blue steel lockers along the right wall, a short flight of steps rising to the north stair landing on the left, Lab 302 door on the right",
+      "attributes": {
+        "width_m": 2.4,
+        "accessible": true
+      },
+      "passable": true
+    },
+    {
+      "id": "corridor_c_mid",
+      "name": "Corridor C Middle",
+      "type": "corridor",
+      "xy": [
+        475,
+        367
+      ],
+      "svg_rect": [
+        360,
+        340,
+        230,
+        55
+      ],
+      "visual_signature": "Corridor junction directly outside the lift lobby, stainless steel lift doors on the north side, red fire hose reel cabinet mounted on the wall between Lab 303 and the lift, ceiling fan hanging at the junction",
+      "attributes": {
+        "width_m": 2.4,
+        "accessible": true
+      },
+      "passable": false
+    },
+    {
+      "id": "corridor_c_east",
+      "name": "Corridor C East",
+      "type": "corridor",
+      "xy": [
+        705,
+        367
+      ],
+      "svg_rect": [
+        590,
+        340,
+        230,
+        55
+      ],
+      "visual_signature": "East end of the corridor with a tall grilled window at the far wall looking onto the parking lot, heavy wooden Seminar Hall doors on the right, ramp with a yellow painted handrail rising to the north gallery on the left",
+      "attributes": {
+        "width_m": 2.4,
+        "accessible": true
+      },
+      "passable": true
+    },
+    {
+      "id": "corridor_n",
+      "name": "North Gallery",
+      "type": "corridor",
+      "xy": [
+        470,
+        197
+      ],
+      "svg_rect": [
+        180,
+        170,
+        580,
+        55
+      ],
+      "visual_signature": "Half-level gallery running behind the lift shaft, open railing on one side looking down onto Corridor C, framed convocation photographs in a row along the opposite wall, tube lights end to end",
+      "attributes": {
+        "width_m": 2.0,
+        "accessible": true
+      },
+      "passable": true
+    },
+    {
+      "id": "stairs_north",
+      "name": "North Stairs",
+      "type": "stairs",
+      "xy": [
+        245,
+        287
+      ],
+      "svg_rect": [
+        200,
+        245,
+        90,
+        85
+      ],
+      "visual_signature": "Short flight of eight steps with chipped granite nosings and a painted iron handrail, 'NO PARKING OF CYCLES' stencilled in black on the side wall, landing turns right toward the north gallery",
+      "attributes": {
+        "steps": 8,
+        "handrail": true,
+        "accessible": false
+      },
+      "passable": true
+    },
+    {
+      "id": "lift_a",
+      "name": "Lift A",
+      "type": "lift",
+      "xy": [
+        470,
+        287
+      ],
+      "svg_rect": [
+        430,
+        245,
+        80,
+        85
+      ],
+      "visual_signature": "Single stainless steel lift door with a scratched call panel and one lit call button, floor indicator showing 3 in red seven-segment digits, blue plate above the door reading 'LIFT A - 6 PERSONS / 408 KG'",
+      "attributes": {
+        "capacity_kg": 408,
+        "accessible": true
+      },
+      "passable": true
+    },
+    {
+      "id": "lab_302",
+      "name": "Lab 302",
+      "type": "room",
+      "xy": [
+        230,
+        475
+      ],
+      "svg_rect": [
+        150,
+        415,
+        160,
+        120
+      ],
+      "visual_signature": "Blue double door, 'LAB 302' sign on the right at head height, fire extinguisher on the left wall, lift visible about 15m down the corridor",
+      "attributes": {
+        "seats": 30,
+        "projector": true,
+        "accessible": true
+      },
+      "passable": true
+    },
+    {
+      "id": "lab_303",
+      "name": "Lab 303",
+      "type": "room",
+      "xy": [
+        410,
+        475
+      ],
+      "svg_rect": [
+        330,
+        415,
+        160,
+        120
+      ],
+      "visual_signature": "Grey single door usually propped open with a wooden wedge, an A4 sheet reading 'LAB 303 - NETWORKS' taped to the glass panel, rows of beige desktop monitors visible inside, whiteboard with a faded network diagram on the back wall",
+      "attributes": {
+        "seats": 24,
+        "projector": false,
+        "accessible": true
+      },
+      "passable": true
+    },
+    {
+      "id": "seminar_hall",
+      "name": "Seminar Hall",
+      "type": "room",
+      "xy": [
+        620,
+        485
+      ],
+      "svg_rect": [
+        510,
+        415,
+        220,
+        140
+      ],
+      "visual_signature": "Pair of heavy teak doors with round brass handles, maroon curtain visible through the gap between them, 'SEMINAR HALL' in gold letters on a dark green board above the frame, tiered seating and a ceiling mounted projector inside",
+      "attributes": {
+        "seats": 120,
+        "projector": true,
+        "accessible": true
+      },
+      "passable": true
+    },
+    {
+      "id": "washroom",
+      "name": "North Washroom",
+      "type": "room",
+      "xy": [
+        260,
+        97
+      ],
+      "svg_rect": [
+        200,
+        45,
+        120,
+        105
+      ],
+      "visual_signature": "Recessed doorway off the north gallery with a blue and white pictogram sign screwed to the wall beside it, white glazed wall tiles visible through the doorway, floor mop and bucket usually parked to the left of the entrance",
+      "attributes": {
+        "accessible": false
+      },
+      "passable": true
+    },
+    {
+      "id": "faculty_room",
+      "name": "Faculty Room 3A",
+      "type": "room",
+      "xy": [
+        420,
+        97
+      ],
+      "svg_rect": [
+        340,
+        45,
+        160,
+        105
+      ],
+      "visual_signature": "Brown laminated door with a frosted glass panel, a printed strip beside the handle listing four faculty names, a 'PLEASE KNOCK' card taped below it, potted money plant on a wooden stool outside",
+      "attributes": {
+        "seats": 8,
+        "projector": false,
+        "accessible": true
+      },
+      "passable": true
+    }
+  ],
+  "edges": [
+    {
+      "a": "entrance",
+      "b": "corridor_c_west",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_c_west",
+      "b": "corridor_c_mid",
+      "distance": 12,
+      "accessible": true,
+      "passable": false
+    },
+    {
+      "a": "corridor_c_mid",
+      "b": "corridor_c_east",
+      "distance": 12,
+      "accessible": true,
+      "passable": false
+    },
+    {
+      "a": "corridor_c_west",
+      "b": "lab_302",
+      "distance": 4,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_c_mid",
+      "b": "lab_303",
+      "distance": 4,
+      "accessible": true,
+      "passable": false
+    },
+    {
+      "a": "corridor_c_mid",
+      "b": "seminar_hall",
+      "distance": 8,
+      "accessible": true,
+      "passable": false
+    },
+    {
+      "a": "corridor_c_east",
+      "b": "seminar_hall",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_c_west",
+      "b": "stairs_north",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "stairs_north",
+      "b": "corridor_n",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "corridor_c_mid",
+      "b": "lift_a",
+      "distance": 5,
+      "accessible": true,
+      "passable": false
+    },
+    {
+      "a": "lift_a",
+      "b": "corridor_n",
+      "distance": 5,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_c_east",
+      "b": "corridor_n",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_n",
+      "b": "washroom",
+      "distance": 5,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_n",
+      "b": "faculty_room",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    }
+  ],
+  "equipment": [
+    {
+      "id": "gpu_ws_7",
+      "name": "GPU Workstation 7",
+      "node": "lab_302",
+      "visual_signature": "black tower PC with orange fans, on the bench nearest the window",
+      "manual_snippet": "Before use: log in with your lab ID. Check GPU temperature is under 60C. Do not run jobs longer than 4h without booking."
+    },
+    {
+      "id": "rack_switch_b",
+      "name": "Core Switch Rack B",
+      "node": "lab_303",
+      "visual_signature": "half height grey 9U rack against the back wall, bundle of yellow patch cables looping out of the top, row of green link LEDs",
+      "manual_snippet": "Do not unplug uplink ports 23 and 24 - they carry the department VLAN. Console access is via the blue rollover cable on the shelf. Log any port change in the register kept on top of the rack."
+    },
+    {
+      "id": "projector_sh",
+      "name": "Seminar Hall Projector",
+      "node": "seminar_hall",
+      "visual_signature": "white ceiling mounted projector on a black drop pole above the third row of seats, HDMI wall plate on the pillar below it",
+      "manual_snippet": "Input select is on the wall plate, not the remote. Allow 90 seconds for lamp warm up. Always power down through the remote and wait for the fan to stop before switching off the mains."
+    }
+  ],
+  "observations": [
+    {
+      "node_id": "corridor_c_mid",
+      "node_name": "Corridor C Middle",
+      "passable": false,
+      "confidence": 0.91,
+      "evidence": "Three stacked chairs and a folded banquet table block the full width of the corridor outside the lift lobby; the fire hose reel cabinet is visible behind them."
+    },
+    {
+      "node_id": "corridor_c_east",
+      "node_name": "Corridor C East",
+      "passable": true,
+      "confidence": 0.74,
+      "evidence": "The east stretch of the corridor is clear end to end, with the grilled window visible at the far wall and nothing on the floor."
+    }
+  ]
+}

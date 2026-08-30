@@ -1,0 +1,7 @@
+{
+  "equipment_id": "gpu_ws_7",
+  "name": "GPU Workstation 7",
+  "confidence": 0.76,
+  "node": "lab_302",
+  "manual_snippet": "Before use: log in with your lab ID. Check GPU temperature is under 60C. Do not run jobs longer than 4h without booking."
+}
