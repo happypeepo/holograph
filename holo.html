@@ -45,7 +45,7 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
        -webkit-user-select:none;user-select:none}
 #stage.drag{cursor:grabbing}
 #stage.hot{cursor:pointer}
-svg{width:100%;height:100%;display:block}
+#svg{width:100%;height:100%;display:block}
 /* corner ticks: the frame reads as an instrument viewport, four 1px marks total */
 .tick{position:absolute;width:14px;height:14px;pointer-events:none;border:0 solid var(--rule2)}
 .tick.tl{top:12px;left:12px;border-top-width:1px;border-left-width:1px}
@@ -115,7 +115,7 @@ select:hover{border-color:var(--dim)}
 .meta{font:400 10px/1 var(--mono);letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
 /* route profile: x is distance walked, y is which level you are on, so a climb
    is a visible riser rather than a word buried in a list */
-.prof{width:100%;display:block;margin-bottom:12px;overflow:visible}
+.prof{display:block;max-width:100%;height:auto;margin-bottom:12px;overflow:visible}
 
 /* the spine. Marker shape encodes node type; the rail is one continuous line so
    a level change reads as a break in a journey, not as row 5 of a table. */
@@ -603,7 +603,7 @@ function readRoute(r){
       (span.length>2?LEVEL_NAME(span[0])+' → '+LEVEL_NAME(span[span.length-1])
         :span.length>1?LEVEL_NAME(span[0])+' → '+LEVEL_NAME(span[1])
         :LEVEL_NAME(span[0]))+'</span></div>'+
-    profile(cum,lv,span)+
+    profile(cum,lv,span,Math.max(220,Math.round(b.clientWidth-36)))+
     r.steps.map((s,i)=>{
       const n=BY[r.path[i]], t=n?n.type:'', last=i===r.steps.length-1;
       const climb=i>0&&lv[i]!==lv[i-1];
@@ -626,8 +626,8 @@ function walked(path){
   return out;
 }
 
-function profile(cum,lv,span){
-  const W=320, H=span.length>3?72:54, L=23, R=W-8, total=cum[cum.length-1]||1;
+function profile(cum,lv,span,W){
+  const H=span.length>3?72:54, L=23, R=W-8, total=cum[cum.length-1]||1;
   const lo=span[0], hi=span[span.length-1];
   const yOf=f=>span.length<2?H/2:H-14-((f-lo)/(hi-lo))*(H-30);
   const xOf=d=>L+(d/total)*(R-L);
@@ -645,7 +645,8 @@ function profile(cum,lv,span){
     g+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="'+(end?3.2:1.7)+'" '+
        'fill="'+(i===0?'#07090c':'#00e5ff')+'" stroke="#00e5ff" stroke-width="'+(end?1.4:0)+'"/>';
   });
-  return '<svg class="prof" height="'+H+'" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none">'+g+'</svg>';
+  // viewBox matches the rendered box, so nothing is scaled and the type stays sharp
+  return '<svg class="prof" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">'+g+'</svg>';
 }
 
 const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
