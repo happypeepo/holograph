@@ -1,299 +1,121 @@
 <!doctype html>
-<html lang="en">
-<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Indoor Spatial Twin</title>
+<title>Spatial Twin</title>
 <style>
-/* Same system as /3d: monochrome building, and colour only where the twin is
-   asserting something. cyan = a route it computed. amber = something it
-   visually identified. red = blocked. Nothing is coloured for decoration. */
+/* ---------------------------------------------------------------------------
+   Same system as holo.html. White is the voice of the building, cyan is the
+   voice of the system - so cyan appears only on a live reading pulled from
+   /state, never as decoration. Monospace is the instrument layer, sans is the
+   human one. Hairlines and corner ticks, no radius, no gradients, no lift.
+--------------------------------------------------------------------------- */
 :root{
   --void:#07090c; --plate:#0b0f14; --sunk:#080b0f;
   --rule:#18222b; --rule2:#26333d;
   --ink:#e9eef3; --dim:#6d808c; --dimmer:#3f4e58;
-  --live:#00e5ff; --loc:#ffb01f; --halt:#ff3b5c; --ok:#5ef2a8;
+  --live:#00e5ff;
   --mono:ui-monospace,"SF Mono","Cascadia Mono","Segoe UI Mono",Consolas,monospace;
   --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 html,body{height:100%}
-body{background:var(--void);color:var(--ink);font:14px/1.5 var(--sans);
-     overflow:hidden;display:flex;flex-direction:column}
+body{margin:0;background:var(--void);color:var(--ink);font:14px/1.5 var(--sans);
+     display:grid;grid-template-rows:auto 1fr}
 
 header{display:flex;align-items:center;gap:20px;padding:0 20px;height:52px;
        border-bottom:1px solid var(--rule);background:var(--plate)}
-h1{font:600 13px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;white-space:nowrap}
-#bld{font:400 12px/1 var(--mono);color:var(--dim);letter-spacing:.06em;white-space:nowrap;
-     overflow:hidden;text-overflow:ellipsis}
-#mode{font:600 9px/1 var(--mono);letter-spacing:.2em;color:var(--void);background:var(--live);padding:5px 7px}
-.acts{margin-left:auto;display:flex;gap:7px}
-.btn{font:500 10px/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--dim);
-     background:transparent;border:1px solid var(--rule2);padding:10px 13px;cursor:pointer;white-space:nowrap}
-.btn:hover{color:var(--ink);border-color:var(--dim)}
+.mark{font:600 13px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase}
+.mark i{color:var(--live);font-style:normal}
+.grow{flex:1}
+.disc{font:400 10px/1 var(--mono);color:var(--dimmer);letter-spacing:.1em;text-transform:uppercase}
 
-main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(360px,1fr)}
-.card{min-height:0;display:flex;flex-direction:column}
-#planwrap{padding:14px 18px;border-right:1px solid var(--rule)}
-#bar{display:flex;align-items:center;gap:9px;padding-bottom:12px;
-     font:400 10px/1 var(--mono);letter-spacing:.15em;color:var(--dimmer);text-transform:uppercase}
-select{background:var(--sunk);color:var(--ink);border:1px solid var(--rule2);
-       padding:9px 10px;font:400 12.5px/1 var(--mono);border-radius:0;appearance:none;max-width:210px}
-select:hover{border-color:var(--dim)}
-select:focus{outline:none;border-color:var(--live)}
-label.chk{display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--dim);letter-spacing:.15em}
-input[type=checkbox]{width:14px;height:14px;accent-color:var(--live)}
-#go{color:var(--void);background:var(--live);border-color:var(--live);font-weight:600}
-#go:hover{background:#4af1ff;border-color:#4af1ff;color:var(--void)}
-#plan{flex:1;min-height:0;width:100%;-webkit-user-select:none;user-select:none}
-#steps{border-top:1px solid var(--rule);padding-top:12px;margin-top:10px;
-       display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.step{font:400 12px/1 var(--mono);color:#c3ced7;border:1px solid var(--rule2);padding:7px 10px}
-.step b{color:var(--dimmer);margin-right:7px;font-weight:400}
-.dist{font:500 12px/1 var(--mono);letter-spacing:.1em;background:var(--live);color:var(--void);padding:7px 11px}
-.hint,.fail{font:400 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.hint{color:var(--dimmer)}
-.fail{color:var(--halt)}
+#stage{position:relative;display:grid;place-content:center;padding:40px;min-height:0}
+.tick{position:absolute;width:14px;height:14px;pointer-events:none;border:0 solid var(--rule2)}
+.tick.tl{top:12px;left:12px;border-top-width:1px;border-left-width:1px}
+.tick.tr{top:12px;right:12px;border-top-width:1px;border-right-width:1px}
+.tick.bl{bottom:12px;left:12px;border-bottom-width:1px;border-left-width:1px}
+.tick.br{bottom:12px;right:12px;border-bottom-width:1px;border-right-width:1px}
 
-#panel{padding:16px 18px;overflow-y:auto;display:block}
-.kicker{font:500 10px/1 var(--mono);letter-spacing:.22em;color:var(--dimmer);text-transform:uppercase;
-        margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.kicker::after{content:"";flex:1;height:1px;background:var(--rule)}
-.sec{border-top:1px solid var(--rule);padding-top:15px;margin-top:15px}
-.sec:first-of-type{border-top:0;padding-top:0;margin-top:0}
-.title{font:400 23px/1.2 var(--sans);letter-spacing:-.01em}
-.sub{font:400 11px/1 var(--mono);color:var(--dimmer);letter-spacing:.08em;margin-top:6px}
-.badge{display:inline-block;font:600 9px/1 var(--mono);letter-spacing:.2em;padding:6px 8px;margin-top:10px}
-.badge.ok{background:var(--ok);color:#04220f}.badge.bad{background:var(--halt);color:#2b0008}
-.confrow{display:flex;align-items:center;gap:11px;margin:14px 0 4px}
-.bar{flex:1;height:3px;background:var(--rule2)}
-.bar i{display:block;height:100%;background:var(--live)}
-.confnum{font:300 22px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--live)}
-.ev{list-style:none;margin-top:12px}
-.ev li{font-size:13.5px;line-height:1.55;color:#c3ced7;padding:9px 12px;margin-bottom:7px;
-       background:var(--sunk);border-left:2px solid var(--rule2);white-space:pre-wrap}
-.alts{font:400 11px/1.6 var(--mono);color:var(--dimmer);letter-spacing:.06em;margin-top:10px}
+.k{font:500 10px/1 var(--mono);letter-spacing:.22em;color:var(--dimmer);text-transform:uppercase;
+   margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.k::after{content:"";flex:1;height:1px;background:var(--rule)}
 
-/* --- plan --- */
-.room,.corridor,.stairs,.lift,.entrance{fill:rgba(143,163,174,.05);stroke:#54666f}
-.entrance{stroke:#7d8f99}
-.n{stroke-width:1.2}
-.n.blocked{fill:rgba(255,59,92,.14);stroke:var(--halt);stroke-width:1.8}
-.tread{stroke:#54666f;stroke-width:1;opacity:.5}
-.car{fill:none;stroke:#54666f;stroke-width:1.2}
-.lbl,.tag{paint-order:stroke fill;stroke:var(--void);stroke-width:4;stroke-linejoin:round;
-          text-anchor:middle;font-family:var(--mono)}
-.lbl{fill:var(--ink);font-size:14px;font-weight:500}
-.tag{fill:var(--dimmer);font-size:9px;letter-spacing:.2em;font-weight:500;stroke-width:3}
-.tag.bad{fill:var(--halt)}
-.edge{stroke:var(--rule2);stroke-width:1;stroke-dasharray:3 5}
-.edge.cut{stroke:var(--halt);stroke-width:1.4;stroke-dasharray:4 4;opacity:.7}
-.cutdot{fill:var(--void);stroke:var(--halt);stroke-width:1.4}
-.cutx{stroke:var(--halt);stroke-width:2;stroke-linecap:round}
-.locked{fill:none;stroke:var(--loc);stroke-width:1.6}
-.halo{fill:none;stroke:var(--loc);stroke-width:1.6;transform-box:fill-box;transform-origin:center;
-      animation:halo 1.8s ease-out infinite}
-@keyframes halo{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.2);opacity:0}}
-.rline{fill:none;stroke:var(--live);stroke-opacity:.13;stroke-width:11;stroke-linecap:round;stroke-linejoin:round}
-.rmain{fill:none;stroke:var(--live);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.rflow{fill:none;stroke:var(--live);stroke-width:2;stroke-linecap:round;stroke-dasharray:9 20;
-       animation:ants 1.1s linear infinite}
-@keyframes ants{to{stroke-dashoffset:-29}}
-.wp{fill:var(--void);stroke:var(--live);stroke-width:1.4}
-.rend{fill:var(--live);stroke:none}.rstart{fill:var(--void);stroke:var(--live);stroke-width:1.8}
-@media (prefers-reduced-motion:reduce){.rflow,.halo{animation:none}}
-:focus-visible{outline:1px solid var(--live);outline-offset:2px}
-::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:var(--rule2)}
-::-webkit-scrollbar-track{background:transparent}
+.twins{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;
+       background:var(--rule);border:1px solid var(--rule);min-width:min(600px,86vw)}
+a.twin{display:block;background:var(--plate);padding:26px 24px 22px;text-decoration:none;color:inherit;
+       border-left:2px solid transparent}
+a.twin:hover,a.twin:focus-visible{background:var(--sunk);border-left-color:var(--live);outline:none}
+a.twin .idx{font:500 10px/1 var(--mono);letter-spacing:.2em;color:var(--dimmer)}
+a.twin .name{display:block;margin:12px 0 0;font:600 25px/1.1 var(--sans);letter-spacing:-.01em;color:var(--ink)}
+a.twin .sub{display:block;margin-top:4px;font:400 11px/1 var(--mono);letter-spacing:.12em;
+            color:var(--dim);text-transform:uppercase}
+a.twin .read{display:block;margin-top:18px;font:400 11px/1 var(--mono);letter-spacing:.13em;
+             color:var(--live);text-transform:uppercase;min-height:11px}
+a.twin .go{display:flex;align-items:center;gap:8px;margin-top:18px;padding-top:14px;
+           border-top:1px solid var(--rule);font:500 10px/1 var(--mono);letter-spacing:.18em;
+           color:var(--dim);text-transform:uppercase}
+a.twin:hover .go{color:var(--ink)}
+a.twin .go s{flex:1;height:0;border-top:1px solid var(--rule2);text-decoration:none}
+
+.hud{position:absolute;bottom:26px;left:26px;font:400 10px/1.7 var(--mono);letter-spacing:.11em;
+     color:var(--dim);text-transform:uppercase;pointer-events:none}
+.hud b{color:var(--ink);font-weight:500}
+.hud .cy{color:var(--live)}
+.hud.br{left:auto;right:26px;text-align:right}
 </style>
-</head>
-<body>
+
 <header>
-  <h1>Indoor&middot;Spatial&middot;Twin</h1><span id="bld">connecting…</span><span id="mode"></span>
-  <div class="acts">
-    <button class="btn" data-for="f-locate">Where am I?</button>
-    <button class="btn" data-for="f-identify">What is this?</button>
-    <button class="btn" data-for="f-observe">Upload camera footage</button>
-  </div>
-  <input type="file" id="f-locate"   data-kind="locate"   accept="image/*" hidden>
-  <input type="file" id="f-identify" data-kind="identify" accept="image/*" hidden>
-  <input type="file" id="f-observe"  data-kind="observe"  accept="video/*" hidden>
+  <span class="mark">Spatial<i>&middot;</i>Twin</span>
+  <span class="grow"></span>
+  <span class="disc">Illustrative approximation</span>
 </header>
-<main>
-  <section class="card" id="planwrap">
-    <div id="bar">
-      From <select id="from"></select> to <select id="to"></select>
-      <label class="chk"><input type="checkbox" id="acc"> step-free</label>
-      <button class="btn" id="go">Route</button>
-    </div>
-    <svg id="plan" preserveAspectRatio="xMidYMid meet">
-      <g id="gEdges"></g><g id="gNodes"></g><g id="gCut"></g>
-      <g id="gRoute"></g><g id="gMark"></g><g id="gLabels"></g>
-    </svg>
-    <div id="steps"></div>
-  </section>
-  <aside class="card" id="panel"></aside>
-</main>
+
+<div id="stage">
+  <span class="tick tl"></span><span class="tick tr"></span>
+  <span class="tick bl"></span><span class="tick br"></span>
+
+  <div>
+    <p class="k">Select a twin</p>
+    <nav class="twins">
+      <a class="twin" href="/aryabhatta">
+        <span class="idx">01</span>
+        <span class="name">Aryabhatta</span>
+        <span class="sub">KJSSE &middot; Vidyavihar</span>
+        <span class="read" id="r-aryabhatta"></span>
+        <span class="go">Open twin <s></s> &rarr;</span>
+      </a>
+      <a class="twin" href="/bhaskaracharya">
+        <span class="idx">02</span>
+        <span class="name">Bhaskaracharya</span>
+        <span class="sub">KJSSE &middot; Vidyavihar</span>
+        <span class="read" id="r-bhaskaracharya"></span>
+        <span class="go">Open twin <s></s> &rarr;</span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="hud" id="hud">link &middot; <b>querying</b></div>
+  <div class="hud br">modelled from emergency escape route boards</div>
+</div>
+
 <script>
-/* ---- config: flip USE_FIXTURES to false to run against the live FastAPI backend ---- */
-const USE_FIXTURES = false;
-const API     = {base:'', locate:'/locate', identify:'/identify', observe:'/observe', state:'/state', route:'/route'};
-const FIXTURE = {locate:'fixtures/mock_locate.json', identify:'fixtures/mock_identify.json',
-                 observe:'fixtures/mock_observe.json', state:'fixtures/mock_state.json', route:'fixtures/mock_route.json'};
+// cyan is reserved for what the system is asserting, so these readings stay blank
+// until /state actually answers - nothing is claimed that the server hasn't served
+const KEYS = ['aryabhatta', 'bhaskaracharya'];
+let spaces = 0, live = 0;
 
-const $=s=>document.querySelector(s), NS='http://www.w3.org/2000/svg';
-const el=(t,a,tx)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(tx!=null)e.textContent=tx;return e};
-const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-const evLines=v=>Array.isArray(v)?v:(v==null||v===''?[]:[String(v)]);
-let STATE=null, ROUTE=null, LOCATED=null, BY={};
-
-async function json(u,o){const r=await fetch(u,o);if(!r.ok)throw new Error(u+' -> HTTP '+r.status);return r.json()}
-async function send(kind,file){
-  if(USE_FIXTURES) return json(FIXTURE[kind]);
-  const fd=new FormData(); fd.append('file',file,file.name);
-  return json(API.base+API[kind],{method:'POST',body:fd});
-}
-const getState=()=>json(USE_FIXTURES?FIXTURE.state:API.base+API.state);
-const getRoute=(from,to,acc)=>USE_FIXTURES?json(FIXTURE.route)
-  :json(API.base+API.route+'?'+new URLSearchParams({from,to,accessible:String(!!acc)}));
-
-/* ---------------- floor plan ---------------- */
-function wrap(s,max){const o=[];let c='';for(const w of s.split(' ')){const t=c?c+' '+w:w;
-  if(t.length>max&&c){o.push(c);c=w}else c=t} if(c)o.push(c); return o}
-
-function draw(){
-  const svg=$('#plan'); svg.setAttribute('viewBox',STATE.svg_viewbox.join(' '));
-  BY={}; STATE.nodes.forEach(n=>BY[n.id]=n);
-  const E=$('#gEdges'), N=$('#gNodes'), C=$('#gCut'), L=$('#gLabels');
-  E.textContent=''; N.textContent=''; C.textContent=''; L.textContent=''; $('#gMark').textContent='';
-  for(const e of STATE.edges){const a=BY[e.a],b=BY[e.b]; if(!a||!b)continue;
-    const cut=e.passable===false;
-    E.appendChild(el('line',{x1:a.xy[0],y1:a.xy[1],x2:b.xy[0],y2:b.xy[1],class:'edge'+(cut?' cut':'')}));
-    if(cut){const mx=(a.xy[0]+b.xy[0])/2, my=(a.xy[1]+b.xy[1])/2;
-      C.appendChild(el('circle',{cx:mx,cy:my,r:13,class:'cutdot'}));
-      C.appendChild(el('line',{x1:mx-6,y1:my-6,x2:mx+6,y2:my+6,class:'cutx'}));
-      C.appendChild(el('line',{x1:mx+6,y1:my-6,x2:mx-6,y2:my+6,class:'cutx'}));}}
-  for(const n of STATE.nodes){
-    const [x,y,w,h]=n.svg_rect, blocked=n.passable===false, g=el('g',{});
-    g.appendChild(el('rect',{x,y,width:w,height:h,rx:7,class:'n '+n.type+(blocked?' blocked':'')}));
-    if(n.type==='stairs') for(let i=1;i<5;i++) g.appendChild(el('line',{x1:x+9,y1:y+h*i/5,x2:x+w-9,y2:y+h*i/5,class:'tread'}));
-    if(n.type==='lift') g.appendChild(el('rect',{x:x+w/2-17,y:y+9,width:34,height:23,rx:3,class:'car'}));
-    N.appendChild(g);
-    const lines=wrap(n.name,Math.max(6,Math.floor(w/11.5)));
-    const tag=blocked?'BLOCKED':(n.type==='room'||n.type==='corridor'?'':n.type.toUpperCase());
-    let ty=y+h/2-(lines.length*23+(tag?19:0))/2+19;
-    for(const t of lines){L.appendChild(el('text',{x:x+w/2,y:ty,class:'lbl'},t)); ty+=23}
-    if(tag) L.appendChild(el('text',{x:x+w/2,y:ty+3,class:'tag'+(blocked?' bad':'')},tag));
-  }
-  if(LOCATED&&BY[LOCATED]){const [x,y,w,h]=BY[LOCATED].svg_rect, M=$('#gMark');
-    const box={x:x-6,y:y-6,width:w+12,height:h+12,rx:10};
-    M.appendChild(el('rect',Object.assign({class:'halo'},box)));
-    M.appendChild(el('rect',Object.assign({class:'locked'},box)));}
-  drawRoute();
-}
-
-function drawRoute(){
-  const R=$('#gRoute'); R.textContent='';
-  if(!ROUTE||!ROUTE.path||!ROUTE.path.length) return;
-  const ns=ROUTE.path.map(id=>BY[id]).filter(Boolean); if(ns.length<2) return;
-  const pts=ns.map(n=>n.xy.join(',')).join(' ');
-  R.appendChild(el('polyline',{points:pts,class:'rline'}));
-  const main=el('polyline',{points:pts,class:'rmain'}); R.appendChild(main);
-  const flow=el('polyline',{points:pts,class:'rflow'}); R.appendChild(flow);
-  ns.slice(1,-1).forEach(n=>R.appendChild(el('circle',{cx:n.xy[0],cy:n.xy[1],r:8,class:'wp'})));
-  R.appendChild(el('circle',{cx:ns[0].xy[0],cy:ns[0].xy[1],r:11,class:'rstart'}));
-  const last=ns[ns.length-1];
-  R.appendChild(el('circle',{cx:last.xy[0],cy:last.xy[1],r:13,class:'rend'}));
-  const L=main.getTotalLength();
-  main.style.strokeDasharray=L; main.style.strokeDashoffset=L; flow.style.opacity=0;
-  requestAnimationFrame(()=>{main.style.transition='stroke-dashoffset .9s ease-out'; main.style.strokeDashoffset=0;
-    setTimeout(()=>{flow.style.transition='opacity .35s'; flow.style.opacity=1},520)});
-}
-
-function renderSteps(){
-  const b=$('#steps');
-  if(!ROUTE){b.innerHTML='<span class="hint">Pick a start and a destination, then press Route.</span>';return}
-  if(!ROUTE.path||!ROUTE.path.length){
-    b.innerHTML='<span class="fail">NO ROUTE — '+esc(ROUTE.reason||'no passable path exists')+'</span>';return}
-  b.innerHTML='<span class="dist">'+esc(ROUTE.distance_m)+' m</span>'+
-    (ROUTE.steps||[]).map((s,i)=>'<span class="step"><b>'+(i+1)+'</b>'+esc(s)+'</span>').join('');
-}
-
-/* ---------------- evidence panel ---------------- */
-function renderPanel(kicker,secs,foot){
-  const p=$('#panel'); p.textContent='';
-  const k=document.createElement('div'); k.className='kicker'; k.textContent=kicker; p.appendChild(k);
-  for(const s of secs){
-    const d=document.createElement('div'); d.className='sec';
-    const t=document.createElement('div'); t.className='title'; t.textContent=s.title; d.appendChild(t);
-    if(s.sub){const u=document.createElement('div');u.className='sub';u.textContent=s.sub;d.appendChild(u)}
-    if(s.badge){const b=document.createElement('div');b.className='badge '+s.badge.cls;b.textContent=s.badge.text;d.appendChild(b)}
-    if(s.conf!=null){
-      const r=document.createElement('div'); r.className='confrow';
-      const bar=document.createElement('div'); bar.className='bar';
-      const fill=document.createElement('i'); fill.style.width=Math.round(s.conf*100)+'%'; bar.appendChild(fill);
-      const num=document.createElement('span'); num.className='confnum'; num.textContent=Math.round(s.conf*100)+'%';
-      r.appendChild(bar); r.appendChild(num); d.appendChild(r);
-    }
-    const ul=document.createElement('ul'); ul.className='ev';
-    for(const line of s.lines){const li=document.createElement('li'); li.textContent=line; ul.appendChild(li)}
-    d.appendChild(ul); p.appendChild(d);
-  }
-  if(foot){const f=document.createElement('div'); f.className='alts'; f.textContent=foot; p.appendChild(f)}
-}
-
-/* ---------------- actions ---------------- */
-async function act(kind,file){
-  try{
-    const r=await send(kind,file);
-    if(kind==='locate'){
-      LOCATED=r.node_id;
-      renderPanel('WHERE AM I?',[{title:r.node_name||r.node_id,sub:r.node_id,conf:r.confidence,lines:evLines(r.evidence)}],
-        (r.alternatives&&r.alternatives.length)?'alternatives: '+r.alternatives.join(', '):'');
-      if(BY[r.node_id]) $('#from').value=r.node_id;
-      draw();
-    }else if(kind==='identify'){
-      const at=BY[r.node]?BY[r.node].name:r.node;
-      renderPanel('WHAT IS THIS?',[{title:r.name||r.equipment_id,sub:r.equipment_id+'  ·  in '+at,
-        conf:r.confidence,lines:evLines(r.manual_snippet)}]);
-    }else{
-      const ups=r.updates||[];
-      renderPanel('UPLOAD CAMERA FOOTAGE',ups.map(u=>({title:u.node_name||u.node_id,sub:u.node_id,conf:u.confidence,
-        badge:{text:u.passable?'PASSABLE':'BLOCKED',cls:u.passable?'ok':'bad'},lines:evLines(u.evidence)})));
-      STATE=await getState(); draw();
-      const hit=ups.filter(u=>u.passable===false).map(u=>u.node_id);
-      if(ROUTE&&ROUTE.path&&ROUTE.path.some(id=>hit.includes(id))){
-        $('#steps').innerHTML='<span class="fail">Route crosses a newly blocked node — recomputing…</span>';
-        ROUTE=await getRoute($('#from').value,$('#to').value,$('#acc').checked);
-        renderSteps(); drawRoute();
-      }
-    }
-  }catch(e){renderPanel('ERROR',[{title:'Request failed',lines:[String(e.message||e)]}])}
-}
-
-document.querySelectorAll('header .btn').forEach(b=>b.onclick=()=>$('#'+b.dataset.for).click());
-document.querySelectorAll('input[type=file]').forEach(i=>i.addEventListener('change',e=>{
-  const f=e.target.files[0]; if(f) act(i.dataset.kind,f); e.target.value='';}));
-$('#go').onclick=async()=>{
-  try{ROUTE=await getRoute($('#from').value,$('#to').value,$('#acc').checked)}
-  catch(e){ROUTE={path:[],distance_m:null,steps:[],reason:String(e.message||e)}}
-  renderSteps(); drawRoute();
-};
-
-(async function init(){
-  $('#mode').textContent=USE_FIXTURES?'FIXTURES':'LIVE';
-  try{ STATE=await getState(); }
-  catch(e){ renderPanel('ERROR',[{title:'Could not load state',lines:[String(e.message||e)]}]); return }
-  $('#bld').textContent=STATE.building+' · Floor '+STATE.floor+' · '+STATE.nodes.length+' nodes';
-  const opts=STATE.nodes.map(n=>'<option value="'+esc(n.id)+'">'+esc(n.name)+'</option>').join('');
-  $('#from').innerHTML=opts; $('#to').innerHTML=opts;
-  $('#from').value='entrance'; $('#to').value='faculty_room';
-  draw(); renderSteps();
-  const obs=STATE.observations||[];
-  if(obs.length) renderPanel('STANDING OBSERVATIONS',obs.map(o=>({title:o.node_name||o.node_id,sub:o.node_id,
-    conf:o.confidence,badge:{text:o.passable?'PASSABLE':'BLOCKED',cls:o.passable?'ok':'bad'},lines:evLines(o.evidence)})));
-  else renderPanel('EVIDENCE',[{title:'No observations yet',lines:['Use one of the three actions above.']}]);
-})();
+Promise.all(KEYS.map(k =>
+  fetch('/' + k + '/state')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(d => {
+      const levels = new Set(d.nodes.map(n => n.floor || 1)).size;
+      document.getElementById('r-' + k).textContent =
+        d.nodes.length + ' spaces / ' + levels + ' levels';
+      spaces += d.nodes.length; live++;
+    })
+    .catch(() => { document.getElementById('r-' + k).textContent = 'offline'; })
+)).then(() => {
+  document.getElementById('hud').innerHTML = live
+    ? 'link <b class="cy">ok</b> &middot; twins <b>' + live + '</b> &middot; spaces <b>' + spaces + '</b>'
+    : 'link <b>down</b>';
+});
 </script>
-</body>
-</html>

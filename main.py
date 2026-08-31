@@ -3,7 +3,6 @@ import os
 
 from fastapi import FastAPI, File, Query, UploadFile
 from fastapi.responses import FileResponse
-from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 import gemini
@@ -13,17 +12,17 @@ BUILDING = "building.json" if os.path.exists("building.json") else "fixtures/bui
 w = world.load(BUILDING)
 print(f"loaded {BUILDING}: {len(w.nodes)} nodes, {len(w.equipment)} equipment")
 
-# second, read-only world behind /3d — the holographic landmark view. Does not touch the world above.
-csmt = world.load("fixtures/building.csmt.json")
 
 app = FastAPI()
-# so the page still works in USE_FIXTURES mode when served from here
-app.mount("/fixtures", StaticFiles(directory="fixtures"), name="fixtures")
+
+
+# no-store so an edited page never comes back from the browser cache mid-demo
+NO_CACHE = {"Cache-Control": "no-store, must-revalidate"}
 
 
 @app.get("/")
 def index():
-    return FileResponse("index.html")
+    return FileResponse("index.html", headers=NO_CACHE)
 
 
 @app.post("/locate")
@@ -91,7 +90,7 @@ def mount_twin(prefix, w):
 
     @app.get(prefix)
     def holo():
-        return FileResponse("holo.html")
+        return FileResponse("holo.html", headers=NO_CACHE)
 
     @app.get(prefix + "/state")
     def holo_state():
@@ -165,10 +164,15 @@ def twins():
     return TWINS
 
 
-mount_twin("/3d", csmt)
 
 # the Bhaskaracharya block, modelled from its seven Emergency Escape Route boards
 if os.path.exists("fixtures/building.bhaskaracharya.json"):
     bhaskar = world.load("fixtures/building.bhaskaracharya.json")
-    mount_twin("/3d/bhaskaracharya", bhaskar)
+    mount_twin("/bhaskaracharya", bhaskar)
     print(f"loaded bhaskaracharya: {len(bhaskar.nodes)} nodes, {len(bhaskar.equipment)} equipment")
+
+# the Aryabhatta block opposite it, modelled from its five Emergency Escape Route boards
+if os.path.exists("fixtures/building.aryabhatta.json"):
+    aryabhatta = world.load("fixtures/building.aryabhatta.json")
+    mount_twin("/aryabhatta", aryabhatta)
+    print(f"loaded aryabhatta: {len(aryabhatta.nodes)} nodes, {len(aryabhatta.equipment)} equipment")

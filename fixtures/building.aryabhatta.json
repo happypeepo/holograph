@@ -1,0 +1,6443 @@
+{
+  "building": "KJSSE Aryabhatta Building, Vidyavihar",
+  "floor": 1,
+  "svg_viewbox": [
+    0,
+    0,
+    1200,
+    1200
+  ],
+  "nodes": [
+    {
+      "id": "corr_n_f1",
+      "name": "North Corridor Ground Floor",
+      "type": "corridor",
+      "xy": [
+        546.0,
+        382.6
+      ],
+      "svg_rect": [
+        400,
+        366,
+        293,
+        34
+      ],
+      "floor": 1,
+      "visual_signature": "North corridor of the ground floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_s_f1",
+      "name": "South Corridor Ground Floor",
+      "type": "corridor",
+      "xy": [
+        546.0,
+        747.8
+      ],
+      "svg_rect": [
+        400,
+        731,
+        293,
+        34
+      ],
+      "floor": 1,
+      "visual_signature": "South corridor of the ground floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_w_f1",
+      "name": "West Corridor Ground Floor",
+      "type": "corridor",
+      "xy": [
+        382.6,
+        565.2
+      ],
+      "svg_rect": [
+        366,
+        366,
+        34,
+        399
+      ],
+      "floor": 1,
+      "visual_signature": "West corridor of the ground floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_e_f1",
+      "name": "East Corridor Ground Floor",
+      "type": "corridor",
+      "xy": [
+        709.4,
+        565.2
+      ],
+      "svg_rect": [
+        692,
+        366,
+        34,
+        399
+      ],
+      "floor": 1,
+      "visual_signature": "East corridor of the ground floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "applied_chemistry_lab_f1",
+      "name": "Applied Chemistry Lab",
+      "type": "room",
+      "xy": [
+        221.4,
+        105.0
+      ],
+      "svg_rect": [
+        152,
+        8,
+        138,
+        193
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'APPLIED CHEMISTRY LAB' on the ground floor, near BASIC ELECTRONICS & ELECTRICITY and FACULTY OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "basic_electronics_electricity_f1",
+      "name": "Basic Electronics & Electricity",
+      "type": "room",
+      "xy": [
+        358.8,
+        110.4
+      ],
+      "svg_rect": [
+        290,
+        14,
+        137,
+        192
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'BASIC ELECTRONICS & ELECTRICITY' on the ground floor, near FACULTY OFFICE and APPLIED CHEMISTRY LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_f1",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        400.2,
+        178.8
+      ],
+      "svg_rect": [
+        377,
+        152,
+        47,
+        53
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the ground floor, near BASIC ELECTRONICS & ELECTRICITY and STRENGTH OF MATERIAL LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "non_teaching_rm_f1",
+      "name": "Non Teaching Rm",
+      "type": "room",
+      "xy": [
+        376.8,
+        277.8
+      ],
+      "svg_rect": [
+        330,
+        252,
+        94,
+        52
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'NON TEACHING RM' on the ground floor, near FACULTY OFFICE and GENTS TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "staff_toi_f1",
+      "name": "Staff Toi",
+      "type": "room",
+      "xy": [
+        127.2,
+        296.4
+      ],
+      "svg_rect": [
+        104,
+        248,
+        46,
+        96
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'STAFF TOI' on the ground floor, near CABIN and CABIN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "gents_toilet_f1",
+      "name": "Gents Toilet",
+      "type": "room",
+      "xy": [
+        255.6,
+        298.2
+      ],
+      "svg_rect": [
+        223,
+        250,
+        65,
+        97
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'GENTS TOILET' on the ground floor, near CABIN and NON TEACHING RM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "cabin_f1",
+      "name": "Cabin",
+      "type": "room",
+      "xy": [
+        132.0,
+        371.4
+      ],
+      "svg_rect": [
+        108,
+        347,
+        48,
+        49
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'CABIN' on the ground floor, near STAFF TOI and CABIN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "cabin_2_f1",
+      "name": "Cabin",
+      "type": "room",
+      "xy": [
+        217.8,
+        372.0
+      ],
+      "svg_rect": [
+        197,
+        347,
+        42,
+        50
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'CABIN' on the ground floor, near INTERVIEW & GD ROOM and GENTS TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "interview_gd_room_f1",
+      "name": "Interview & Gd Room",
+      "type": "room",
+      "xy": [
+        193.2,
+        432.0
+      ],
+      "svg_rect": [
+        106,
+        408,
+        175,
+        48
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'INTERVIEW & GD ROOM' on the ground floor, near CABIN and CABIN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "room_meter_elect_f1",
+      "name": "Room Meter Elect",
+      "type": "room",
+      "xy": [
+        307.2,
+        430.8
+      ],
+      "svg_rect": [
+        280,
+        406,
+        55,
+        50
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'ROOM METER ELECT' on the ground floor, near ELECT. METER ROOM and CABIN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "strength_of_material_lab_f1",
+      "name": "Strength Of Material Lab",
+      "type": "room",
+      "xy": [
+        494.4,
+        156.6
+      ],
+      "svg_rect": [
+        428,
+        11,
+        132,
+        292
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'STRENGTH OF MATERIAL LAB' on the ground floor, near FACULTY OFFICE and FACULTY OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_2_f1",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        513.0,
+        230.4
+      ],
+      "svg_rect": [
+        469,
+        205,
+        88,
+        50
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the ground floor, near STRENGTH OF MATERIAL LAB and HOD OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "applied_physics_lab_f1",
+      "name": "Applied Physics Lab",
+      "type": "room",
+      "xy": [
+        631.8,
+        111.0
+      ],
+      "svg_rect": [
+        562,
+        12,
+        140,
+        198
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'APPLIED PHYSICS LAB' on the ground floor, near OFFICE SECTION and OFFICE SECTION",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "hod_office_f1",
+      "name": "Hod Office",
+      "type": "room",
+      "xy": [
+        630.6,
+        234.0
+      ],
+      "svg_rect": [
+        606,
+        210,
+        49,
+        48
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'HOD OFFICE' on the ground floor, near FACULTY OFFICE and OFFICE SECTION",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "office_section_f1",
+      "name": "Office Section",
+      "type": "room",
+      "xy": [
+        724.8,
+        67.2
+      ],
+      "svg_rect": [
+        701,
+        19,
+        48,
+        96
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'OFFICE SECTION' on the ground floor, near PG COMPUTER LABORATORY and OFFICE SECTION",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "office_section_2_f1",
+      "name": "Office Section",
+      "type": "room",
+      "xy": [
+        723.6,
+        160.8
+      ],
+      "svg_rect": [
+        700,
+        112,
+        48,
+        98
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'OFFICE SECTION' on the ground floor, near PG COMPUTER LABORATORY and OFFICE SECTION (unit 2)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_computer_laboratory_f1",
+      "name": "Pg Computer Laboratory",
+      "type": "room",
+      "xy": [
+        793.8,
+        112.8
+      ],
+      "svg_rect": [
+        746,
+        16,
+        95,
+        194
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'PG COMPUTER LABORATORY' on the ground floor, near OFFICE SECTION and OFFICE SECTION",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_3_f1",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        746.4,
+        260.4
+      ],
+      "svg_rect": [
+        697,
+        211,
+        98,
+        98
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the ground floor, near OFFICE and OFFICE SECTION",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "office_f1",
+      "name": "Office",
+      "type": "room",
+      "xy": [
+        769.8,
+        258.6
+      ],
+      "svg_rect": [
+        744,
+        208,
+        52,
+        102
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'OFFICE' on the ground floor, near FACULTY OFFICE and OFFICE SECTION",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "staff_room_boys_common_room_f1",
+      "name": "Staff Room / Boys Common Room",
+      "type": "room",
+      "xy": [
+        882.0,
+        263.4
+      ],
+      "svg_rect": [
+        836,
+        212,
+        91,
+        102
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'STAFF ROOM / BOYS COMMON ROOM' on the ground floor, near OFFICE and FACULTY OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "mega_project_room_f1",
+      "name": "Mega Project Room",
+      "type": "room",
+      "xy": [
+        898.8,
+        403.2
+      ],
+      "svg_rect": [
+        782,
+        353,
+        233,
+        101
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'MEGA PROJECT ROOM' on the ground floor, near STAFF ROOM / BOYS COMMON ROOM and OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "indoor_badminton_court_f1",
+      "name": "Indoor Badminton Court",
+      "type": "room",
+      "xy": [
+        168.0,
+        639.6
+      ],
+      "svg_rect": [
+        5,
+        540,
+        326,
+        199
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'INDOOR BADMINTON COURT' on the ground floor, near LIFT and INTERVIEW & GD ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "elect_meter_room_f1",
+      "name": "Elect. Meter Room",
+      "type": "room",
+      "xy": [
+        304.2,
+        432.0
+      ],
+      "svg_rect": [
+        282,
+        412,
+        44,
+        41
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'ELECT. METER ROOM' on the ground floor, near ROOM METER ELECT and CABIN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lift_f1",
+      "name": "LIFT",
+      "type": "lift",
+      "xy": [
+        423.0,
+        426.0
+      ],
+      "svg_rect": [
+        390,
+        400,
+        66,
+        53
+      ],
+      "floor": 1,
+      "visual_signature": "LIFT on the ground floor, lift doors with the floor indicator reading 0, call panel on the reveal",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "staircase_1_f1",
+      "name": "STAIRCASE - 1",
+      "type": "stairs",
+      "xy": [
+        500.4,
+        477.0
+      ],
+      "svg_rect": [
+        449,
+        422,
+        103,
+        109
+      ],
+      "floor": 1,
+      "visual_signature": "STAIRCASE - 1 on the ground floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "staircase_3_f1",
+      "name": "STAIRCASE - 3",
+      "type": "stairs",
+      "xy": [
+        714.0,
+        535.2
+      ],
+      "svg_rect": [
+        690,
+        400,
+        48,
+        271
+      ],
+      "floor": 1,
+      "visual_signature": "STAIRCASE - 3 on the ground floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "machine_room_f1",
+      "name": "Machine Room",
+      "type": "room",
+      "xy": [
+        529.2,
+        821.4
+      ],
+      "svg_rect": [
+        502,
+        787,
+        55,
+        68
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'MACHINE ROOM' on the ground floor, near CREDIT SOC. OFF and STAIRCASE-3",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "sens_off_f1",
+      "name": "Sens Off",
+      "type": "room",
+      "xy": [
+        807.0,
+        625.8
+      ],
+      "svg_rect": [
+        781,
+        604,
+        52,
+        44
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'SENS OFF' on the ground floor, near SENR OFF and PEON",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "peon_f1",
+      "name": "Peon",
+      "type": "room",
+      "xy": [
+        805.8,
+        673.8
+      ],
+      "svg_rect": [
+        781,
+        648,
+        49,
+        52
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'PEON' on the ground floor, near SENS OFF and SENR OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "table_tennis_room_f1",
+      "name": "Table Tennis Room",
+      "type": "room",
+      "xy": [
+        919.8,
+        648.0
+      ],
+      "svg_rect": [
+        829,
+        548,
+        181,
+        199
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'TABLE TENNIS ROOM' on the ground floor, near SENS OFF and SENR OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "senr_off_f1",
+      "name": "Senr Off",
+      "type": "room",
+      "xy": [
+        807.0,
+        625.8
+      ],
+      "svg_rect": [
+        782,
+        604,
+        49,
+        44
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'SENR OFF' on the ground floor, near SENR OFF and PEON",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "canteen_f1",
+      "name": "Canteen",
+      "type": "room",
+      "xy": [
+        297.6,
+        1051.8
+      ],
+      "svg_rect": [
+        188,
+        932,
+        218,
+        239
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'CANTEEN' on the ground floor, near MEDICAL CENTRE NO and PASSAGE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "medical_centre_no_f1",
+      "name": "Medical Centre No",
+      "type": "room",
+      "xy": [
+        274.2,
+        903.0
+      ],
+      "svg_rect": [
+        226,
+        874,
+        97,
+        59
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'MEDICAL CENTRE NO' on the ground floor, near CANTEEN and LIFT",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "staircase_3_2_f1",
+      "name": "STAIRCASE-3",
+      "type": "stairs",
+      "xy": [
+        394.2,
+        789.6
+      ],
+      "svg_rect": [
+        365,
+        744,
+        59,
+        91
+      ],
+      "floor": 1,
+      "visual_signature": "STAIRCASE-3 on the ground floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "passage_f1",
+      "name": "PASSAGE",
+      "type": "corridor",
+      "xy": [
+        144.6,
+        1014.6
+      ],
+      "svg_rect": [
+        97,
+        924,
+        95,
+        181
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'PASSAGE' on the ground floor, near CANTEEN and MEDICAL CENTRE NO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lift_2_f1",
+      "name": "LIFT",
+      "type": "lift",
+      "xy": [
+        166.2,
+        786.6
+      ],
+      "svg_rect": [
+        98,
+        744,
+        136,
+        85
+      ],
+      "floor": 1,
+      "visual_signature": "LIFT on the ground floor, lift doors with the floor indicator reading 0, call panel on the reveal (unit 2)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "credit_soc_off_f1",
+      "name": "Credit Soc. Off",
+      "type": "room",
+      "xy": [
+        504.0,
+        907.8
+      ],
+      "svg_rect": [
+        455,
+        883,
+        98,
+        49
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'CREDIT SOC. OFF' on the ground floor, near MACHINE ROOM and CANTEEN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "auditorium_f1",
+      "name": "Auditorium",
+      "type": "room",
+      "xy": [
+        690.6,
+        933.0
+      ],
+      "svg_rect": [
+        552,
+        787,
+        277,
+        292
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'AUDITORIUM' on the ground floor, near CREDIT SOC. OFF and MACHINE ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "canteen_2_f1",
+      "name": "Canteen",
+      "type": "room",
+      "xy": [
+        480.6,
+        1025.4
+      ],
+      "svg_rect": [
+        408,
+        929,
+        145,
+        193
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'CANTEEN' on the ground floor, near CREDIT SOC. OFF and GREEN RM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "green_rm_f1",
+      "name": "Green Rm",
+      "type": "room",
+      "xy": [
+        574.2,
+        1160.4
+      ],
+      "svg_rect": [
+        547,
+        1126,
+        54,
+        70
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'GREEN RM' on the ground floor, near TOILET and STAGE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "toilet_f1",
+      "name": "Toilet",
+      "type": "room",
+      "xy": [
+        609.6,
+        1175.4
+      ],
+      "svg_rect": [
+        586,
+        1154,
+        48,
+        42
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'TOILET' on the ground floor, near GREEN RM and STAGE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "stage_f1",
+      "name": "Stage",
+      "type": "room",
+      "xy": [
+        683.4,
+        1130.4
+      ],
+      "svg_rect": [
+        587,
+        1079,
+        193,
+        103
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'STAGE' on the ground floor, near TOILET and GREEN RM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "green_rm_2_f1",
+      "name": "Green Rm",
+      "type": "room",
+      "xy": [
+        794.4,
+        1161.0
+      ],
+      "svg_rect": [
+        766,
+        1124,
+        58,
+        73
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'GREEN RM' on the ground floor, near STAGE and TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "common_computer_facility_language_lab_f1",
+      "name": "Common Computer Facility / Language Lab",
+      "type": "room",
+      "xy": [
+        930.0,
+        878.4
+      ],
+      "svg_rect": [
+        829,
+        792,
+        202,
+        173
+      ],
+      "floor": 1,
+      "visual_signature": "Door plate reading 'COMMON COMPUTER FACILITY / LANGUAGE LAB' on the ground floor, near TABLE TENNIS ROOM and PEON",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "corr_n_f2",
+      "name": "North Corridor First Floor",
+      "type": "corridor",
+      "xy": [
+        540.0,
+        382.6
+      ],
+      "svg_rect": [
+        400,
+        366,
+        281,
+        34
+      ],
+      "floor": 2,
+      "visual_signature": "North corridor of the first floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_s_f2",
+      "name": "South Corridor First Floor",
+      "type": "corridor",
+      "xy": [
+        540.0,
+        735.8
+      ],
+      "svg_rect": [
+        400,
+        719,
+        281,
+        34
+      ],
+      "floor": 2,
+      "visual_signature": "South corridor of the first floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_w_f2",
+      "name": "West Corridor First Floor",
+      "type": "corridor",
+      "xy": [
+        382.6,
+        559.2
+      ],
+      "svg_rect": [
+        366,
+        366,
+        34,
+        387
+      ],
+      "floor": 2,
+      "visual_signature": "West corridor of the first floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_e_f2",
+      "name": "East Corridor First Floor",
+      "type": "corridor",
+      "xy": [
+        697.4,
+        559.2
+      ],
+      "svg_rect": [
+        680,
+        366,
+        34,
+        387
+      ],
+      "floor": 2,
+      "visual_signature": "East corridor of the first floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "coe_office_f2",
+      "name": "Coe Office",
+      "type": "room",
+      "xy": [
+        127.8,
+        47.4
+      ],
+      "svg_rect": [
+        104,
+        26,
+        47,
+        42
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'COE OFFICE' on the first floor, near OFFICE and EXAMINATION CELL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "office_f2",
+      "name": "Office",
+      "type": "room",
+      "xy": [
+        127.8,
+        112.8
+      ],
+      "svg_rect": [
+        104,
+        68,
+        47,
+        89
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'OFFICE' on the first floor, near COE OFFICE and EXAMINATION CELL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "examination_cell_f2",
+      "name": "Examination Cell",
+      "type": "room",
+      "xy": [
+        215.4,
+        91.2
+      ],
+      "svg_rect": [
+        150,
+        26,
+        131,
+        130
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'EXAMINATION CELL' on the first floor, near OFFICE and DATA CENTER",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "examination_cell_2_f2",
+      "name": "Examination Cell",
+      "type": "room",
+      "xy": [
+        346.8,
+        87.6
+      ],
+      "svg_rect": [
+        282,
+        22,
+        130,
+        132
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'EXAMINATION CELL' on the first floor, near CONFIDENTIAL ROOM (PRINTING AREA) and PG LE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_le_f2",
+      "name": "Pg Le",
+      "type": "room",
+      "xy": [
+        477.0,
+        86.4
+      ],
+      "svg_rect": [
+        409,
+        22,
+        136,
+        130
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PG LE' on the first floor, near REGISTRAR OFFICE and EXAMINATION CELL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "data_center_f2",
+      "name": "Data Center",
+      "type": "room",
+      "xy": [
+        203.4,
+        183.0
+      ],
+      "svg_rect": [
+        146,
+        156,
+        114,
+        54
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'DATA CENTER' on the first floor, near STAFF TOILET and EXAMINATION CELL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "confidential_room_printing_area_f2",
+      "name": "Confidential Room (Printing Area)",
+      "type": "room",
+      "xy": [
+        353.4,
+        181.2
+      ],
+      "svg_rect": [
+        295,
+        154,
+        116,
+        55
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'CONFIDENTIAL ROOM (PRINTING AREA)' on the first floor, near F&AD OFFICE and EXAMINATION CELL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "f_ad_office_f2",
+      "name": "F&Ad Office",
+      "type": "room",
+      "xy": [
+        392.4,
+        231.6
+      ],
+      "svg_rect": [
+        373,
+        206,
+        38,
+        50
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'F&AD OFFICE' on the first floor, near ACCOUNTS OFFICE and CONFIDENTIAL ROOM (PRINTING AREA)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "accounts_office_f2",
+      "name": "Accounts Office",
+      "type": "room",
+      "xy": [
+        346.8,
+        276.0
+      ],
+      "svg_rect": [
+        320,
+        252,
+        53,
+        48
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'ACCOUNTS OFFICE' on the first floor, near F&AD OFFICE and CONFIDENTIAL ROOM (PRINTING AREA)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "store_f2",
+      "name": "Store",
+      "type": "room",
+      "xy": [
+        125.4,
+        256.8
+      ],
+      "svg_rect": [
+        103,
+        211,
+        44,
+        91
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'STORE' on the first floor, near TOILET and STAFF TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "toilet_f2",
+      "name": "Toilet",
+      "type": "room",
+      "xy": [
+        123.6,
+        325.2
+      ],
+      "svg_rect": [
+        102,
+        302,
+        43,
+        46
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'TOILET' on the first floor, near STORE and PRINCIPAL OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "staff_toilet_f2",
+      "name": "Staff Toilet",
+      "type": "room",
+      "xy": [
+        210.6,
+        239.4
+      ],
+      "svg_rect": [
+        187,
+        227,
+        47,
+        25
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'STAFF TOILET' on the first floor, near DATA CENTER and LADIES TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ladies_toilet_f2",
+      "name": "Ladies Toilet",
+      "type": "room",
+      "xy": [
+        246.6,
+        299.4
+      ],
+      "svg_rect": [
+        214,
+        252,
+        66,
+        95
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'LADIES TOILET' on the first floor, near STAFF TOILET and VISITOR ROOM PA TO PRINCIPAL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "principal_office_f2",
+      "name": "Principal Office",
+      "type": "room",
+      "xy": [
+        147.6,
+        394.8
+      ],
+      "svg_rect": [
+        103,
+        349,
+        89,
+        91
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PRINCIPAL OFFICE' on the first floor, near OFFICE and TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "visitor_room_pa_to_principal_f2",
+      "name": "Visitor Room Pa To Principal",
+      "type": "room",
+      "xy": [
+        255.6,
+        392.4
+      ],
+      "svg_rect": [
+        190,
+        346,
+        132,
+        94
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'VISITOR ROOM PA TO PRINCIPAL' on the first floor, near LADIES TOILET and MEETING ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_lecture_hall_f2",
+      "name": " / Pg Lecture Hall",
+      "type": "room",
+      "xy": [
+        613.8,
+        60.6
+      ],
+      "svg_rect": [
+        546,
+        13,
+        136,
+        95
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading ' / PG LECTURE HALL' on the first floor, near PG COMPUTER CENTRE and CABIN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_lecture_hall_2_f2",
+      "name": "Pg Lecture Hall",
+      "type": "room",
+      "xy": [
+        750.6,
+        58.8
+      ],
+      "svg_rect": [
+        682,
+        11,
+        138,
+        96
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PG LECTURE HALL' on the first floor, near TURE HALL and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_computer_centre_f2",
+      "name": "Pg Computer Centre",
+      "type": "room",
+      "xy": [
+        628.2,
+        134.4
+      ],
+      "svg_rect": [
+        574,
+        107,
+        109,
+        55
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PG COMPUTER CENTRE' on the first floor, near  / PG LECTURE HALL and CABIN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "cabin_f2",
+      "name": "Cabin",
+      "type": "room",
+      "xy": [
+        710.4,
+        133.8
+      ],
+      "svg_rect": [
+        685,
+        107,
+        50,
+        54
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'CABIN' on the first floor, near FO and PG COMPUTER CENTRE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fo_f2",
+      "name": "Fo",
+      "type": "room",
+      "xy": [
+        754.2,
+        129.0
+      ],
+      "svg_rect": [
+        738,
+        106,
+        32,
+        47
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'FO' on the first floor, near CABIN and PG COMPUTER CENTRE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_computer_centre_2_f2",
+      "name": "Pg Computer Centre",
+      "type": "room",
+      "xy": [
+        751.2,
+        180.0
+      ],
+      "svg_rect": [
+        685,
+        158,
+        132,
+        43
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PG COMPUTER CENTRE' on the first floor, near PUTER CENTRE and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "registrar_office_f2",
+      "name": "Registrar Office",
+      "type": "room",
+      "xy": [
+        523.2,
+        206.4
+      ],
+      "svg_rect": [
+        502,
+        191,
+        43,
+        31
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'REGISTRAR OFFICE' on the first floor, near AO OFFICE and ROOM-NQJ15 ADMINISTRATIVE OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ao_office_f2",
+      "name": "Ao Office",
+      "type": "room",
+      "xy": [
+        522.0,
+        243.6
+      ],
+      "svg_rect": [
+        500,
+        222,
+        43,
+        43
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'AO OFFICE' on the first floor, near REGISTRAR OFFICE and ROOM-NQJ15 ADMINISTRATIVE OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "room_nqj15_administrative_off_f2",
+      "name": "Room-Nqj15 Administrative Off",
+      "type": "room",
+      "xy": [
+        477.0,
+        225.0
+      ],
+      "svg_rect": [
+        409,
+        151,
+        136,
+        148
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'ROOM-NQJ15 ADMINISTRATIVE OFF' on the first floor, near AO OFFICE and REGISTRAR OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "store_2_f2",
+      "name": "Store",
+      "type": "room",
+      "xy": [
+        603.6,
+        226.8
+      ],
+      "svg_rect": [
+        571,
+        203,
+        65,
+        48
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'STORE' on the first floor, near DEAN OFF (R&D) and REGISTRAR OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "store_3_f2",
+      "name": "Store",
+      "type": "room",
+      "xy": [
+        715.8,
+        226.8
+      ],
+      "svg_rect": [
+        636,
+        203,
+        160,
+        48
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'STORE' on the first floor, near DEAN OFF (AP) and PG COMPUTER CENTRE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "dean_off_r_d_f2",
+      "name": "Dean Off (R&D)",
+      "type": "room",
+      "xy": [
+        604.2,
+        273.6
+      ],
+      "svg_rect": [
+        571,
+        250,
+        66,
+        48
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'DEAN OFF (R&D)' on the first floor, near STORE and DEAN OFF (AP)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "dean_off_ap_f2",
+      "name": "Dean Off (Ap)",
+      "type": "room",
+      "xy": [
+        682.2,
+        273.0
+      ],
+      "svg_rect": [
+        637,
+        248,
+        90,
+        49
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'DEAN OFF (AP)' on the first floor, near STORE and DEAN OFF (R&D)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "rim_f2",
+      "name": "Rim",
+      "type": "room",
+      "xy": [
+        761.4,
+        273.0
+      ],
+      "svg_rect": [
+        727,
+        248,
+        68,
+        49
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'RIM' on the first floor, near STORE and DEAN OFF (AP)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ture_hall_f2",
+      "name": "Ture Hall",
+      "type": "room",
+      "xy": [
+        780.6,
+        58.2
+      ],
+      "svg_rect": [
+        744,
+        11,
+        73,
+        95
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'TURE HALL' on the first floor, near PG LECTURE HALL and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "puter_centre_f2",
+      "name": "Puter Centre",
+      "type": "room",
+      "xy": [
+        780.6,
+        178.8
+      ],
+      "svg_rect": [
+        744,
+        156,
+        73,
+        46
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PUTER CENTRE' on the first floor, near PG COMPUTER CENTRE and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_seminar_hall_f2",
+      "name": "Pg Seminar Hall",
+      "type": "room",
+      "xy": [
+        864.0,
+        153.6
+      ],
+      "svg_rect": [
+        818,
+        104,
+        91,
+        98
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PG SEMINAR HALL' on the first floor, near PUTER CENTRE and PG COMP CENT",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_comp_cent_f2",
+      "name": "Pg Comp Cent",
+      "type": "room",
+      "xy": [
+        886.2,
+        252.6
+      ],
+      "svg_rect": [
+        863,
+        203,
+        47,
+        100
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PG COMP CENT' on the first floor, near PG LECTURE HALL and PG SEMINAR HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "pg_lecture_hall_3_f2",
+      "name": "Pg Lecture Hall",
+      "type": "room",
+      "xy": [
+        956.4,
+        268.2
+      ],
+      "svg_rect": [
+        908,
+        198,
+        96,
+        140
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PG LECTURE HALL' on the first floor, near PG COMP CENT and ADMISSION OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "admission_office_f2",
+      "name": "Admission Office",
+      "type": "room",
+      "xy": [
+        1044.6,
+        363.0
+      ],
+      "svg_rect": [
+        1001,
+        336,
+        88,
+        54
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'ADMISSION OFFICE' on the first floor, near PG LECTURE HALL and PG COMP CENT",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "board_room_f2",
+      "name": "Board Room",
+      "type": "room",
+      "xy": [
+        169.8,
+        490.2
+      ],
+      "svg_rect": [
+        104,
+        442,
+        131,
+        97
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'BOARD ROOM' on the first floor, near OFFICE and PRINCIPAL OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "meeting_room_f2",
+      "name": "Meeting Room",
+      "type": "room",
+      "xy": [
+        278.4,
+        487.2
+      ],
+      "svg_rect": [
+        235,
+        438,
+        86,
+        98
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'MEETING ROOM' on the first floor, near VISITOR ROOM PA TO PRINCIPAL and BOARD ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "badminton_court_f2",
+      "name": "Badminton Court",
+      "type": "room",
+      "xy": [
+        163.8,
+        635.4
+      ],
+      "svg_rect": [
+        6,
+        539,
+        316,
+        193
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'BADMINTON COURT' on the first floor, near GENTS TOILE and BOARD ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "gents_toile_f2",
+      "name": "Gents Toile",
+      "type": "room",
+      "xy": [
+        183.6,
+        778.2
+      ],
+      "svg_rect": [
+        136,
+        730,
+        96,
+        97
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'GENTS TOILE' on the first floor, near PG LECTURE HALL and CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "office_2_f2",
+      "name": "Office",
+      "type": "room",
+      "xy": [
+        147.0,
+        420.6
+      ],
+      "svg_rect": [
+        101,
+        400,
+        92,
+        42
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'OFFICE' on the first floor, near PRINCIPAL OFFICE and BOARD ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "staircase_3_f2",
+      "name": "STAIRCASE - 3",
+      "type": "stairs",
+      "xy": [
+        341.4,
+        843.0
+      ],
+      "svg_rect": [
+        314,
+        830,
+        54,
+        25
+      ],
+      "floor": 2,
+      "visual_signature": "STAIRCASE - 3 on the first floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "fire_exit_staircase_1_f2",
+      "name": "FIRE EXIT STAIRCASE - 1",
+      "type": "stairs",
+      "xy": [
+        470.4,
+        462.0
+      ],
+      "svg_rect": [
+        400,
+        400,
+        142,
+        125
+      ],
+      "floor": 2,
+      "visual_signature": "FIRE EXIT STAIRCASE - 1 on the first floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "fire_exit_staircase_2_f2",
+      "name": "FIRE EXIT STAIRCASE - 2",
+      "type": "stairs",
+      "xy": [
+        681.6,
+        558.0
+      ],
+      "svg_rect": [
+        637,
+        400,
+        89,
+        317
+      ],
+      "floor": 2,
+      "visual_signature": "FIRE EXIT STAIRCASE - 2 on the first floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "inquiry_counter_f2",
+      "name": "Inquiry Counter",
+      "type": "room",
+      "xy": [
+        798.0,
+        555.6
+      ],
+      "svg_rect": [
+        772,
+        523,
+        53,
+        65
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'INQUIRY COUNTER' on the first floor, near FIRE EXIT STAIRCASE - 2 and UP / DN DN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "admission_cell_room_no_123_f2",
+      "name": "Admission Cell Room No.123",
+      "type": "room",
+      "xy": [
+        937.8,
+        586.8
+      ],
+      "svg_rect": [
+        773,
+        445,
+        330,
+        283
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'ADMISSION CELL ROOM NO.123' on the first floor, near UP / DN DN and INQUIRY COUNTER",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "admission_office_2_f2",
+      "name": "Admission Office",
+      "type": "room",
+      "xy": [
+        1050.6,
+        705.0
+      ],
+      "svg_rect": [
+        1006,
+        677,
+        90,
+        56
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'ADMISSION OFFICE' on the first floor, near ADMISSION CELL ROOM NO.123 and ANCE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "up_dn_dn_f2",
+      "name": "UP / DN DN",
+      "type": "stairs",
+      "xy": [
+        916.2,
+        507.6
+      ],
+      "svg_rect": [
+        866,
+        485,
+        100,
+        46
+      ],
+      "floor": 2,
+      "visual_signature": "UP / DN DN on the first floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "pg_lecture_hall_4_f2",
+      "name": "Pg Lecture Hall",
+      "type": "room",
+      "xy": [
+        162.6,
+        874.2
+      ],
+      "svg_rect": [
+        94,
+        827,
+        138,
+        95
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'PG LECTURE HALL' on the first floor, near P G LECTURE HALL and GENTS TOILE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "p_g_lecture_hall_f2",
+      "name": "P G Lecture Hall",
+      "type": "room",
+      "xy": [
+        162.0,
+        970.8
+      ],
+      "svg_rect": [
+        94,
+        922,
+        137,
+        98
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'P G LECTURE HALL' on the first floor, near PG LECTURE HALL and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "corridor_f2",
+      "name": "CORRIDOR",
+      "type": "corridor",
+      "xy": [
+        275.4,
+        880.2
+      ],
+      "svg_rect": [
+        230,
+        744,
+        90,
+        272
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'CORRIDOR' on the first floor, near STAIRCASE - 3 and PG LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_f2",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        203.4,
+        1100.4
+      ],
+      "svg_rect": [
+        134,
+        1015,
+        138,
+        170
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the first floor, near LECTURE HALL and P G LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_2_f2",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        339.0,
+        1102.8
+      ],
+      "svg_rect": [
+        271,
+        1015,
+        136,
+        175
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the first floor, near LECT and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lect_f2",
+      "name": "Lect",
+      "type": "room",
+      "xy": [
+        474.6,
+        1104.6
+      ],
+      "svg_rect": [
+        404,
+        1015,
+        140,
+        179
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'LECT' on the first floor, near LECTURE HALL and OFFICE VICE PRINCIPAL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "office_vice_principal_f2",
+      "name": "Office Vice Principal",
+      "type": "room",
+      "xy": [
+        499.2,
+        946.2
+      ],
+      "svg_rect": [
+        452,
+        874,
+        94,
+        145
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'OFFICE VICE PRINCIPAL' on the first floor, near TOILET and LECT",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "toilet_2_f2",
+      "name": "Toilet",
+      "type": "room",
+      "xy": [
+        430.2,
+        946.8
+      ],
+      "svg_rect": [
+        406,
+        920,
+        49,
+        53
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'TOILET' on the first floor, near OFFICE VICE PRINCIPAL and STAIRCASE - 3",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ance_f2",
+      "name": "ANCE",
+      "type": "corridor",
+      "xy": [
+        915.6,
+        833.4
+      ],
+      "svg_rect": [
+        827,
+        744,
+        178,
+        179
+      ],
+      "floor": 2,
+      "visual_signature": "Door plate reading 'ANCE' on the first floor, near ADMISSION OFFICE and ADMISSION CELL ROOM NO.123",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "corr_n_f3",
+      "name": "North Corridor Second Floor",
+      "type": "corridor",
+      "xy": [
+        601.8,
+        382.6
+      ],
+      "svg_rect": [
+        409,
+        366,
+        385,
+        34
+      ],
+      "floor": 3,
+      "visual_signature": "North corridor of the second floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_s_f3",
+      "name": "South Corridor Second Floor",
+      "type": "corridor",
+      "xy": [
+        601.8,
+        740.6
+      ],
+      "svg_rect": [
+        409,
+        724,
+        385,
+        34
+      ],
+      "floor": 3,
+      "visual_signature": "South corridor of the second floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_w_f3",
+      "name": "West Corridor Second Floor",
+      "type": "corridor",
+      "xy": [
+        392.2,
+        561.6
+      ],
+      "svg_rect": [
+        375,
+        366,
+        34,
+        392
+      ],
+      "floor": 3,
+      "visual_signature": "West corridor of the second floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_e_f3",
+      "name": "East Corridor Second Floor",
+      "type": "corridor",
+      "xy": [
+        811.4,
+        561.6
+      ],
+      "svg_rect": [
+        794,
+        366,
+        34,
+        392
+      ],
+      "floor": 3,
+      "visual_signature": "East corridor of the second floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "cam_la_f3",
+      "name": "& Cam La",
+      "type": "room",
+      "xy": [
+        234.0,
+        68.4
+      ],
+      "svg_rect": [
+        160,
+        0,
+        149,
+        137
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading '& CAM LA' on the second floor, near FACULTY and MECHATRONICS LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "mechatronics_lab_f3",
+      "name": "Mechatronics Lab",
+      "type": "room",
+      "xy": [
+        381.6,
+        97.2
+      ],
+      "svg_rect": [
+        310,
+        0,
+        144,
+        194
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'MECHATRONICS LAB' on the second floor, near CS LAB and FACULTY OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_f3",
+      "name": "Faculty",
+      "type": "room",
+      "xy": [
+        259.8,
+        166.2
+      ],
+      "svg_rect": [
+        214,
+        137,
+        92,
+        59
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FACULTY' on the second floor, near CORRIDOR and TERMWORK RM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "termwork_rm_f3",
+      "name": "Termwork Rm",
+      "type": "room",
+      "xy": [
+        208.2,
+        219.0
+      ],
+      "svg_rect": [
+        160,
+        197,
+        97,
+        44
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'TERMWORK RM' on the second floor, near CORRIDOR and FACULTY",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "corridor_f3",
+      "name": "CORRIDOR",
+      "type": "corridor",
+      "xy": [
+        282.0,
+        219.0
+      ],
+      "svg_rect": [
+        257,
+        197,
+        50,
+        44
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'CORRIDOR' on the second floor, near FACULTY and 2.74M.W. CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "gents_toilet_f3",
+      "name": "Gents Toilet",
+      "type": "room",
+      "xy": [
+        256.8,
+        289.2
+      ],
+      "svg_rect": [
+        208,
+        241,
+        98,
+        96
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'GENTS TOILET' on the second floor, near CORRIDOR and 2.74M.W. CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "2_74m_w_corridor_f3",
+      "name": "2.74M.W. CORRIDOR",
+      "type": "corridor",
+      "xy": [
+        331.2,
+        267.0
+      ],
+      "svg_rect": [
+        306,
+        198,
+        50,
+        138
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading '2.74M.W. CORRIDOR' on the second floor, near CORRIDOR and GENTS TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_f3",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        403.2,
+        220.2
+      ],
+      "svg_rect": [
+        353,
+        200,
+        101,
+        40
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the second floor, near Y OFFICE and 2.74M.W. CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fo_f3",
+      "name": "Fo",
+      "type": "room",
+      "xy": [
+        141.0,
+        363.6
+      ],
+      "svg_rect": [
+        116,
+        340,
+        49,
+        48
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FO' on the second floor, near ENGINEERING MECHANICS LAB.-II and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "engineering_mechanics_lab_ii_f3",
+      "name": "Engineering Mechanics Lab.-Ii",
+      "type": "room",
+      "xy": [
+        231.6,
+        387.6
+      ],
+      "svg_rect": [
+        108,
+        338,
+        247,
+        98
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'ENGINEERING MECHANICS LAB.-II' on the second floor, near FO and RESEARCH CENTER",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "cs_lab_f3",
+      "name": "Cs Lab",
+      "type": "room",
+      "xy": [
+        427.8,
+        97.2
+      ],
+      "svg_rect": [
+        400,
+        0,
+        56,
+        194
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'CS LAB' on the second floor, near MECHATRONICS LAB and INTEGRATED CIRCUITS LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "integrated_circuits_lab_f3",
+      "name": "Integrated Circuits Lab",
+      "type": "room",
+      "xy": [
+        528.0,
+        97.8
+      ],
+      "svg_rect": [
+        454,
+        0,
+        149,
+        196
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'INTEGRATED CIRCUITS LAB' on the second floor, near CS LAB and FACULTY OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "optical_fibre_communication_lab_f3",
+      "name": "Optical Fibre Communication Lab",
+      "type": "room",
+      "xy": [
+        681.0,
+        98.4
+      ],
+      "svg_rect": [
+        606,
+        0,
+        150,
+        197
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'OPTICAL FIBRE COMMUNICATION LAB' on the second floor, near FACULTY OFFICE and ANTENNA LABO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "antenna_labo_f3",
+      "name": "Antenna Labo",
+      "type": "room",
+      "xy": [
+        826.8,
+        98.4
+      ],
+      "svg_rect": [
+        751,
+        0,
+        151,
+        197
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'ANTENNA LABO' on the second floor, near TERM WORK ROOM and HOD OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "y_office_f3",
+      "name": "Y Office",
+      "type": "room",
+      "xy": [
+        426.6,
+        219.0
+      ],
+      "svg_rect": [
+        400,
+        196,
+        54,
+        47
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'Y OFFICE' on the second floor, near FACULTY OFFICE and 2.74M.W. CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_2_f3",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        551.4,
+        219.0
+      ],
+      "svg_rect": [
+        502,
+        196,
+        100,
+        47
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the second floor, near FACULTY OFFICE and INTEGRATED CIRCUITS LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_3_f3",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        657.0,
+        219.0
+      ],
+      "svg_rect": [
+        607,
+        196,
+        100,
+        47
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the second floor, near FACULTY OFFICE and OPTICAL FIBRE COMMUNICATION LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "term_work_room_f3",
+      "name": "Term Work Room",
+      "type": "room",
+      "xy": [
+        805.8,
+        219.6
+      ],
+      "svg_rect": [
+        756,
+        197,
+        100,
+        46
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'TERM WORK ROOM' on the second floor, near FACULTY OFFICE and ANTENNA LABO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_4_f3",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        805.8,
+        267.6
+      ],
+      "svg_rect": [
+        756,
+        242,
+        100,
+        50
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the second floor, near TERM WORK ROOM and FACULTY OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lift_f3",
+      "name": "LIFT",
+      "type": "lift",
+      "xy": [
+        454.2,
+        404.4
+      ],
+      "svg_rect": [
+        424,
+        372,
+        61,
+        65
+      ],
+      "floor": 3,
+      "visual_signature": "LIFT on the second floor, lift doors with the floor indicator reading 2, call panel on the reveal",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "hod_office_f3",
+      "name": "Hod Office",
+      "type": "room",
+      "xy": [
+        952.8,
+        149.4
+      ],
+      "svg_rect": [
+        902,
+        97,
+        101,
+        104
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'HOD OFFICE' on the second floor, near DEPARTMENTAL LIB / COMPUTER CENTRE and ANTENNA LABO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "departmental_lib_computer_centre_f3",
+      "name": "Departmental Lib / Computer Centre",
+      "type": "room",
+      "xy": [
+        1000.2,
+        247.2
+      ],
+      "svg_rect": [
+        949,
+        200,
+        102,
+        94
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'DEPARTMENTAL LIB / COMPUTER CENTRE' on the second floor, near STUDENTS ACTIVITY and HOD OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "students_activity_f3",
+      "name": "Students Activity",
+      "type": "room",
+      "xy": [
+        1076.4,
+        270.6
+      ],
+      "svg_rect": [
+        1050,
+        200,
+        53,
+        140
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'STUDENTS ACTIVITY' on the second floor, near DEPARTMENTAL LIB / COMPUTER CENTRE and COMM. ENGG. LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_off_f3",
+      "name": "Faculty Off",
+      "type": "room",
+      "xy": [
+        900.0,
+        378.0
+      ],
+      "svg_rect": [
+        850,
+        337,
+        101,
+        82
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FACULTY OFF' on the second floor, near FACULTY OF and COMM. ENGG. LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "comm_engg_lab_f3",
+      "name": "Comm. Engg. Lab",
+      "type": "room",
+      "xy": [
+        1025.4,
+        397.2
+      ],
+      "svg_rect": [
+        948,
+        338,
+        155,
+        118
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'COMM. ENGG. LAB' on the second floor, near WIRELESS COMM. LAB and FACULTY OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fo_2_f3",
+      "name": "Fo",
+      "type": "room",
+      "xy": [
+        139.2,
+        458.4
+      ],
+      "svg_rect": [
+        113,
+        436,
+        53,
+        46
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FO' on the second floor, near FO and ENGINEERING MECHANICS LAB.-II",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "research_center_f3",
+      "name": "Research Center",
+      "type": "room",
+      "xy": [
+        258.0,
+        483.0
+      ],
+      "svg_rect": [
+        163,
+        436,
+        190,
+        95
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'RESEARCH CENTER' on the second floor, near ENGINEERING MECHANICS LAB.-II and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ladies_toile_f3",
+      "name": "Ladies Toile",
+      "type": "room",
+      "xy": [
+        177.0,
+        780.6
+      ],
+      "svg_rect": [
+        100,
+        731,
+        155,
+        100
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'LADIES TOILE' on the second floor, near LECTURE HALL and CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fire_exit_f3",
+      "name": "FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        375.0,
+        816.6
+      ],
+      "svg_rect": [
+        346,
+        780,
+        59,
+        73
+      ],
+      "floor": 3,
+      "visual_signature": "FIRE EXIT on the second floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "fire_exit_staircase_1_f3",
+      "name": "FIRE EXIT STAIRCASE - 1",
+      "type": "stairs",
+      "xy": [
+        539.4,
+        460.8
+      ],
+      "svg_rect": [
+        482,
+        400,
+        114,
+        122
+      ],
+      "floor": 3,
+      "visual_signature": "FIRE EXIT STAIRCASE - 1 on the second floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "fire_exit_staircase_3_f3",
+      "name": "FIRE EXIT STAIRCASE - 3",
+      "type": "stairs",
+      "xy": [
+        750.0,
+        693.6
+      ],
+      "svg_rect": [
+        702,
+        661,
+        96,
+        65
+      ],
+      "floor": 3,
+      "visual_signature": "FIRE EXIT STAIRCASE - 3 on the second floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "faculty_of_f3",
+      "name": "Faculty Of",
+      "type": "room",
+      "xy": [
+        897.0,
+        497.4
+      ],
+      "svg_rect": [
+        848,
+        461,
+        97,
+        73
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FACULTY OF' on the second floor, near FACULTY OFF and WIRELESS COMM. LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "wireless_comm_lab_f3",
+      "name": "Wireless Comm. Lab",
+      "type": "room",
+      "xy": [
+        1023.6,
+        487.2
+      ],
+      "svg_rect": [
+        946,
+        440,
+        156,
+        94
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'WIRELESS COMM. LAB' on the second floor, near COMM. ENGG. LAB and CABIN",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "cabin_f3",
+      "name": "Cabin",
+      "type": "room",
+      "xy": [
+        1077.6,
+        560.4
+      ],
+      "svg_rect": [
+        1054,
+        534,
+        48,
+        53
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'CABIN' on the second floor, near WIRELESS COMM. LAB and UG SEMINAR HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ug_seminar_hall_f3",
+      "name": "Ug Seminar Hall",
+      "type": "room",
+      "xy": [
+        975.0,
+        636.0
+      ],
+      "svg_rect": [
+        848,
+        534,
+        253,
+        204
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'UG SEMINAR HALL' on the second floor, near CABIN and WIRELESS COMM. LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_f3",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        175.8,
+        901.8
+      ],
+      "svg_rect": [
+        98,
+        828,
+        155,
+        148
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the second floor, near LADIES TOILE and CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_2_f3",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        222.0,
+        1060.8
+      ],
+      "svg_rect": [
+        145,
+        974,
+        154,
+        173
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the second floor, near LECTURE HALL and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_3_f3",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        375.0,
+        1060.8
+      ],
+      "svg_rect": [
+        298,
+        973,
+        155,
+        175
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the second floor, near ALL and EINSTEIN MULTIMEDIA HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "corridor_2_f3",
+      "name": "CORRIDOR",
+      "type": "corridor",
+      "xy": [
+        300.6,
+        858.6
+      ],
+      "svg_rect": [
+        251,
+        744,
+        100,
+        229
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'CORRIDOR' on the second floor, near FIRE EXIT and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_5_f3",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        547.2,
+        927.6
+      ],
+      "svg_rect": [
+        496,
+        880,
+        103,
+        96
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the second floor, near EINSTEIN MULTIMEDIA HALL and ALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "einstein_multimedia_hall_f3",
+      "name": "Einstein Multimedia Hall",
+      "type": "room",
+      "xy": [
+        523.8,
+        1061.4
+      ],
+      "svg_rect": [
+        449,
+        976,
+        150,
+        172
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'EINSTEIN MULTIMEDIA HALL' on the second floor, near ALL and FACULTY OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "all_f3",
+      "name": "All",
+      "type": "room",
+      "xy": [
+        423.6,
+        1059.6
+      ],
+      "svg_rect": [
+        400,
+        974,
+        48,
+        170
+      ],
+      "floor": 3,
+      "visual_signature": "Door plate reading 'ALL' on the second floor, near LECTURE HALL and EINSTEIN MULTIMEDIA HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "corr_n_f4",
+      "name": "North Corridor Third Floor",
+      "type": "corridor",
+      "xy": [
+        602.4,
+        454.6
+      ],
+      "svg_rect": [
+        409,
+        438,
+        386,
+        34
+      ],
+      "floor": 4,
+      "visual_signature": "North corridor of the third floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_s_f4",
+      "name": "South Corridor Third Floor",
+      "type": "corridor",
+      "xy": [
+        602.4,
+        749.0
+      ],
+      "svg_rect": [
+        409,
+        732,
+        386,
+        34
+      ],
+      "floor": 4,
+      "visual_signature": "South corridor of the third floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_w_f4",
+      "name": "West Corridor Third Floor",
+      "type": "corridor",
+      "xy": [
+        392.2,
+        601.8
+      ],
+      "svg_rect": [
+        375,
+        438,
+        34,
+        328
+      ],
+      "floor": 4,
+      "visual_signature": "West corridor of the third floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_e_f4",
+      "name": "East Corridor Third Floor",
+      "type": "corridor",
+      "xy": [
+        812.6,
+        601.8
+      ],
+      "svg_rect": [
+        796,
+        438,
+        34,
+        328
+      ],
+      "floor": 4,
+      "visual_signature": "East corridor of the third floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "eat_mass_trans_f4",
+      "name": "Eat Mass Trans",
+      "type": "room",
+      "xy": [
+        267.6,
+        169.8
+      ],
+      "svg_rect": [
+        218,
+        101,
+        98,
+        138
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'EAT MASS TRANS' on the third floor, near GENTS TOILET and REFRIGERATOR & AIR COND LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "refrigerator_air_cond_lab_f4",
+      "name": "Refrigerator & Air Cond Lab",
+      "type": "room",
+      "xy": [
+        384.6,
+        199.8
+      ],
+      "svg_rect": [
+        314,
+        101,
+        140,
+        198
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'REFRIGERATOR & AIR COND LAB' on the third floor, near TOR & LAB and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "gents_toilet_f4",
+      "name": "Gents Toilet",
+      "type": "room",
+      "xy": [
+        262.2,
+        283.8
+      ],
+      "svg_rect": [
+        212,
+        241,
+        100,
+        85
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'GENTS TOILET' on the third floor, near LADIES TOILET and EAT MASS TRANS",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ladies_toilet_f4",
+      "name": "Ladies Toilet",
+      "type": "room",
+      "xy": [
+        263.4,
+        329.4
+      ],
+      "svg_rect": [
+        215,
+        317,
+        97,
+        25
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'LADIES TOILET' on the third floor, near GENTS TOILET and DRAWING HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "electric_du_f4",
+      "name": "Electric Du",
+      "type": "room",
+      "xy": [
+        405.6,
+        399.0
+      ],
+      "svg_rect": [
+        355,
+        342,
+        101,
+        114
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'ELECTRIC DU' on the third floor, near STAIRCASE - 1 FIRE EXIT and LADIES TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fo_f4",
+      "name": "Fo",
+      "type": "room",
+      "xy": [
+        436.8,
+        134.4
+      ],
+      "svg_rect": [
+        414,
+        112,
+        46,
+        46
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'FO' on the third floor, near TOR & LAB and REFRIGERATOR & AIR COND LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "tor_lab_f4",
+      "name": "Tor & Lab",
+      "type": "room",
+      "xy": [
+        430.2,
+        204.0
+      ],
+      "svg_rect": [
+        400,
+        112,
+        61,
+        185
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'TOR & LAB' on the third floor, near REFRIGERATOR & AIR COND LAB and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_f4",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        534.6,
+        205.8
+      ],
+      "svg_rect": [
+        460,
+        112,
+        150,
+        188
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the third floor, near TOR & LAB and FO",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "renewable_energy_lab_f4",
+      "name": "Renewable Energy Lab",
+      "type": "room",
+      "xy": [
+        686.4,
+        208.2
+      ],
+      "svg_rect": [
+        612,
+        113,
+        149,
+        191
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'RENEWABLE ENERGY LAB' on the third floor, near FACULTY OFFICE and FACULTY OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_f4",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        785.4,
+        159.6
+      ],
+      "svg_rect": [
+        757,
+        118,
+        56,
+        84
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the third floor, near HOD and FACULTY OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_2_f4",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        787.2,
+        245.4
+      ],
+      "svg_rect": [
+        762,
+        202,
+        50,
+        88
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the third floor, near FACULTY OFFICE and TERM WORK ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "hod_f4",
+      "name": "Hod",
+      "type": "room",
+      "xy": [
+        834.0,
+        148.2
+      ],
+      "svg_rect": [
+        812,
+        120,
+        43,
+        56
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'HOD' on the third floor, near FACULTY OFFICE and COMPUTING CENTER",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "computing_center_f4",
+      "name": "Computing Center",
+      "type": "room",
+      "xy": [
+        885.0,
+        146.4
+      ],
+      "svg_rect": [
+        860,
+        115,
+        49,
+        62
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'COMPUTING CENTER' on the third floor, near HOD OFFICE and HOD",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "hod_office_f4",
+      "name": "Hod Office",
+      "type": "room",
+      "xy": [
+        933.0,
+        162.0
+      ],
+      "svg_rect": [
+        858,
+        116,
+        150,
+        91
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'HOD OFFICE' on the third floor, near COMPUTING CENTER and HOD",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "term_work_room_f4",
+      "name": "Term Work Room",
+      "type": "room",
+      "xy": [
+        881.4,
+        256.2
+      ],
+      "svg_rect": [
+        852,
+        204,
+        59,
+        104
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'TERM WORK ROOM' on the third floor, near FACULTY OFFICE and HOD OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "department_of_mechanical_engg_f4",
+      "name": "Department Of Mechanical Engg",
+      "type": "room",
+      "xy": [
+        1004.4,
+        283.8
+      ],
+      "svg_rect": [
+        904,
+        210,
+        202,
+        148
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'DEPARTMENT OF MECHANICAL ENGG' on the third floor, near FO and TERM WORK ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fo_2_f4",
+      "name": "Fo",
+      "type": "room",
+      "xy": [
+        1027.8,
+        244.8
+      ],
+      "svg_rect": [
+        1002,
+        220,
+        52,
+        50
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'FO' on the third floor, near DEPARTMENT OF MECHANICAL ENGG and HOD OFFICE",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "drawing_hall_f4",
+      "name": "Drawing Hall",
+      "type": "room",
+      "xy": [
+        259.8,
+        468.0
+      ],
+      "svg_rect": [
+        163,
+        400,
+        193,
+        137
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'DRAWING HALL' on the third floor, near LADIES TOILET and ELECTRIC DU",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "gents_toilet_2_f4",
+      "name": "Gents Toilet",
+      "type": "room",
+      "xy": [
+        204.6,
+        753.0
+      ],
+      "svg_rect": [
+        154,
+        727,
+        102,
+        52
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'GENTS TOILET' on the third floor, near LADIES TOILET and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ladies_toilet_2_f4",
+      "name": "Ladies Toilet",
+      "type": "room",
+      "xy": [
+        203.4,
+        802.8
+      ],
+      "svg_rect": [
+        151,
+        779,
+        104,
+        48
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'LADIES TOILET' on the third floor, near GENTS TOILET and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fire_exit_f4",
+      "name": "FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        375.0,
+        814.8
+      ],
+      "svg_rect": [
+        346,
+        776,
+        59,
+        77
+      ],
+      "floor": 4,
+      "visual_signature": "FIRE EXIT on the third floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "staircase_1_fire_exit_f4",
+      "name": "STAIRCASE - 1 FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        541.8,
+        471.6
+      ],
+      "svg_rect": [
+        485,
+        414,
+        114,
+        115
+      ],
+      "floor": 4,
+      "visual_signature": "STAIRCASE - 1 FIRE EXIT on the third floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "staircase_2_fire_exit_f4",
+      "name": "STAIRCASE - 2 FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        744.6,
+        699.0
+      ],
+      "svg_rect": [
+        700,
+        668,
+        90,
+        61
+      ],
+      "floor": 4,
+      "visual_signature": "STAIRCASE - 2 FIRE EXIT on the third floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "computer_graphics_lab_f4",
+      "name": "Computer Graphics Lab",
+      "type": "room",
+      "xy": [
+        976.2,
+        478.2
+      ],
+      "svg_rect": [
+        850,
+        400,
+        253,
+        157
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'COMPUTER GRAPHICS LAB' on the third floor, near UG SEMINAR HALL and DEPARTMENT OF MECHANICAL ENGG",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ug_seminar_hall_f4",
+      "name": "Ug Seminar Hall",
+      "type": "room",
+      "xy": [
+        973.8,
+        651.6
+      ],
+      "svg_rect": [
+        850,
+        554,
+        248,
+        194
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'UG SEMINAR HALL' on the third floor, near CABIN and FACULTY OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_off_f4",
+      "name": "Faculty Off",
+      "type": "room",
+      "xy": [
+        870.6,
+        772.8
+      ],
+      "svg_rect": [
+        845,
+        745,
+        52,
+        55
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'FACULTY OFF' on the third floor, near CABIN and FIRE EXIT",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "cabin_f4",
+      "name": "Cabin",
+      "type": "room",
+      "xy": [
+        871.2,
+        720.0
+      ],
+      "svg_rect": [
+        850,
+        701,
+        43,
+        38
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'CABIN' on the third floor, near FACULTY OFF and FIRE EXIT",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fire_exit_2_f4",
+      "name": "FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        766.8,
+        702.6
+      ],
+      "svg_rect": [
+        744,
+        671,
+        46,
+        64
+      ],
+      "floor": 4,
+      "visual_signature": "FIRE EXIT on the third floor, enclosed fire staircase, red FIRE EXIT sign over the door (unit 2)",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "lecture_hall_2_f4",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        180.0,
+        895.8
+      ],
+      "svg_rect": [
+        107,
+        824,
+        146,
+        143
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the third floor, near LADIES TOILET and GENTS TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_3_f4",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        222.6,
+        1050.6
+      ],
+      "svg_rect": [
+        146,
+        967,
+        152,
+        167
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the third floor, near LECTURE HALL and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_4_f4",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        371.4,
+        1053.0
+      ],
+      "svg_rect": [
+        294,
+        967,
+        155,
+        172
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the third floor, near LECTURE HALL and LECTURE HALL (unit 2)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_office_3_f4",
+      "name": "Faculty Office",
+      "type": "room",
+      "xy": [
+        542.4,
+        925.2
+      ],
+      "svg_rect": [
+        492,
+        876,
+        101,
+        98
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'FACULTY OFFICE' on the third floor, near LECTURE HALL and FIRE EXIT",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_5_f4",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        518.4,
+        1057.2
+      ],
+      "svg_rect": [
+        444,
+        971,
+        149,
+        173
+      ],
+      "floor": 4,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the third floor, near FACULTY OFFICE and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "corr_n_f5",
+      "name": "North Corridor Fourth Floor",
+      "type": "corridor",
+      "xy": [
+        600.0,
+        382.6
+      ],
+      "svg_rect": [
+        408,
+        366,
+        384,
+        34
+      ],
+      "floor": 5,
+      "visual_signature": "North corridor of the fourth floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_s_f5",
+      "name": "South Corridor Fourth Floor",
+      "type": "corridor",
+      "xy": [
+        600.0,
+        743.0
+      ],
+      "svg_rect": [
+        408,
+        726,
+        384,
+        34
+      ],
+      "floor": 5,
+      "visual_signature": "South corridor of the fourth floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_w_f5",
+      "name": "West Corridor Fourth Floor",
+      "type": "corridor",
+      "xy": [
+        391.0,
+        562.8
+      ],
+      "svg_rect": [
+        374,
+        366,
+        34,
+        394
+      ],
+      "floor": 5,
+      "visual_signature": "West corridor of the fourth floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "corr_e_f5",
+      "name": "East Corridor Fourth Floor",
+      "type": "corridor",
+      "xy": [
+        809.0,
+        562.8
+      ],
+      "svg_rect": [
+        792,
+        366,
+        34,
+        394
+      ],
+      "floor": 5,
+      "visual_signature": "East corridor of the fourth floor, courtyard railing along one side, escape-route arrows stencilled on the floor",
+      "attributes": {}
+    },
+    {
+      "id": "software_simulation_lab_f5",
+      "name": "Software Simulation Lab",
+      "type": "room",
+      "xy": [
+        199.8,
+        175.8
+      ],
+      "svg_rect": [
+        151,
+        108,
+        97,
+        136
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'SOFTWARE SIMULATION LAB' on the fourth floor, near FACULTY and GENTS TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_f5",
+      "name": "Faculty",
+      "type": "room",
+      "xy": [
+        273.0,
+        175.2
+      ],
+      "svg_rect": [
+        248,
+        108,
+        49,
+        134
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FACULTY' on the fourth floor, near SOFTWARE SIMULATION LAB and GENTS TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "project_lab_f5",
+      "name": "Project Lab",
+      "type": "room",
+      "xy": [
+        396.6,
+        175.2
+      ],
+      "svg_rect": [
+        349,
+        108,
+        95,
+        134
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'PROJECT LAB' on the fourth floor, near ET LAB and FACULTY",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "gents_toilet_f5",
+      "name": "Gents Toilet",
+      "type": "room",
+      "xy": [
+        247.2,
+        283.8
+      ],
+      "svg_rect": [
+        198,
+        246,
+        98,
+        76
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'GENTS TOILET' on the fourth floor, near LADIES TOILET and DARK ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_2_f5",
+      "name": "Faculty",
+      "type": "room",
+      "xy": [
+        349.8,
+        270.0
+      ],
+      "svg_rect": [
+        298,
+        246,
+        104,
+        48
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FACULTY' on the fourth floor, near GENTS TOILET and PROJECT LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ladies_toilet_f5",
+      "name": "Ladies Toilet",
+      "type": "room",
+      "xy": [
+        248.4,
+        332.4
+      ],
+      "svg_rect": [
+        198,
+        322,
+        101,
+        22
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'LADIES TOILET' on the fourth floor, near DARK ROOM and GENTS TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "dark_room_f5",
+      "name": "Dark Room",
+      "type": "room",
+      "xy": [
+        274.8,
+        366.0
+      ],
+      "svg_rect": [
+        202,
+        343,
+        146,
+        46
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'DARK ROOM' on the fourth floor, near LADIES TOILET and PRINTED CIRCUIT BOARD LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "printed_circuit_board_lab_f5",
+      "name": "Printed Circuit Board Lab",
+      "type": "room",
+      "xy": [
+        253.2,
+        421.8
+      ],
+      "svg_rect": [
+        156,
+        389,
+        194,
+        66
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'PRINTED CIRCUIT BOARD LAB' on the fourth floor, near LECTURE HALL and DARK ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_f5",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        520.2,
+        196.8
+      ],
+      "svg_rect": [
+        443,
+        101,
+        155,
+        192
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the fourth floor, near ET LAB and PROJECT LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_2_f5",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        673.2,
+        196.8
+      ],
+      "svg_rect": [
+        598,
+        101,
+        151,
+        192
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the fourth floor, near FO and FACULTY OFFI",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fo_f5",
+      "name": "Fo",
+      "type": "room",
+      "xy": [
+        773.4,
+        145.8
+      ],
+      "svg_rect": [
+        746,
+        102,
+        54,
+        88
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FO' on the fourth floor, near FACULTY OFFI and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_offi_f5",
+      "name": "Faculty Offi",
+      "type": "room",
+      "xy": [
+        823.2,
+        193.2
+      ],
+      "svg_rect": [
+        749,
+        96,
+        149,
+        194
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FACULTY OFFI' on the fourth floor, near FO and PG SEMINAR HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "et_lab_f5",
+      "name": "Et Lab",
+      "type": "room",
+      "xy": [
+        423.0,
+        174.6
+      ],
+      "svg_rect": [
+        400,
+        101,
+        47,
+        148
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'ET LAB' on the fourth floor, near PROJECT LAB and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lift_f5",
+      "name": "LIFT",
+      "type": "lift",
+      "xy": [
+        448.8,
+        402.6
+      ],
+      "svg_rect": [
+        418,
+        371,
+        62,
+        64
+      ],
+      "floor": 5,
+      "visual_signature": "LIFT on the fourth floor, lift doors with the floor indicator reading 4, call panel on the reveal",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "stairs_f5",
+      "name": "STAIRS",
+      "type": "stairs",
+      "xy": [
+        529.2,
+        433.8
+      ],
+      "svg_rect": [
+        499,
+        412,
+        60,
+        44
+      ],
+      "floor": 5,
+      "visual_signature": "STAIRS on the fourth floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "pg_seminar_hall_f5",
+      "name": "Pg Seminar Hall",
+      "type": "room",
+      "xy": [
+        946.2,
+        142.8
+      ],
+      "svg_rect": [
+        895,
+        97,
+        102,
+        91
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'PG SEMINAR HALL' on the fourth floor, near ELECT. ENGR. LAB and FACULTY OFFI",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "elect_engr_lab_f5",
+      "name": "Elect. Engr. Lab",
+      "type": "room",
+      "xy": [
+        973.8,
+        261.6
+      ],
+      "svg_rect": [
+        850,
+        188,
+        248,
+        146
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'ELECT. ENGR. LAB' on the fourth floor, near PG SEMINAR HALL and FACULTY OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_off_f5",
+      "name": "Faculty Off",
+      "type": "room",
+      "xy": [
+        895.8,
+        372.6
+      ],
+      "svg_rect": [
+        848,
+        336,
+        95,
+        73
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FACULTY OFF' on the fourth floor, near FACULTY OFF and INSTRUMENTATION & CONROL LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "instrumentation_conrol_lab_f5",
+      "name": "Instrumentation & Conrol Lab",
+      "type": "room",
+      "xy": [
+        1021.2,
+        393.0
+      ],
+      "svg_rect": [
+        942,
+        334,
+        158,
+        119
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'INSTRUMENTATION & CONROL LAB' on the fourth floor, near DIGITAL SIGNAL PROCESSING LAB and FACULTY OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_3_f5",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        252.0,
+        467.4
+      ],
+      "svg_rect": [
+        154,
+        400,
+        197,
+        136
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the fourth floor, near PRINTED CIRCUIT BOARD LAB and DARK ROOM",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "gents_f5",
+      "name": "Gents",
+      "type": "room",
+      "xy": [
+        202.2,
+        763.2
+      ],
+      "svg_rect": [
+        150,
+        734,
+        104,
+        58
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'GENTS' on the fourth floor, near LADIES TOILET and CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "ladies_toilet_2_f5",
+      "name": "Ladies Toilet",
+      "type": "room",
+      "xy": [
+        201.6,
+        813.6
+      ],
+      "svg_rect": [
+        149,
+        792,
+        106,
+        43
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'LADIES TOILET' on the fourth floor, near GENTS and LECTURE HALL",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "corridor_f5",
+      "name": "CORRIDOR",
+      "type": "corridor",
+      "xy": [
+        301.2,
+        795.0
+      ],
+      "svg_rect": [
+        253,
+        734,
+        96,
+        121
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'CORRIDOR' on the fourth floor, near FIRE EXIT and LADIES TOILET",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "fire_exit_f5",
+      "name": "FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        375.0,
+        816.6
+      ],
+      "svg_rect": [
+        346,
+        778,
+        59,
+        78
+      ],
+      "floor": 5,
+      "visual_signature": "FIRE EXIT on the fourth floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "staircase_1_fire_exit_f5",
+      "name": "STAIRCASE - 1 FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        530.4,
+        461.4
+      ],
+      "svg_rect": [
+        468,
+        400,
+        125,
+        124
+      ],
+      "floor": 5,
+      "visual_signature": "STAIRCASE - 1 FIRE EXIT on the fourth floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "staircase_2_fire_exit_f5",
+      "name": "STAIRCASE - 2 FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        748.2,
+        688.8
+      ],
+      "svg_rect": [
+        702,
+        658,
+        92,
+        62
+      ],
+      "floor": 5,
+      "visual_signature": "STAIRCASE - 2 FIRE EXIT on the fourth floor, enclosed fire staircase, red FIRE EXIT sign over the door",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "fire_exit_2_f5",
+      "name": "FIRE EXIT",
+      "type": "stairs",
+      "xy": [
+        769.2,
+        692.4
+      ],
+      "svg_rect": [
+        744,
+        659,
+        50,
+        67
+      ],
+      "floor": 5,
+      "visual_signature": "FIRE EXIT on the fourth floor, enclosed fire staircase, red FIRE EXIT sign over the door (unit 2)",
+      "attributes": {
+        "accessible": false
+      }
+    },
+    {
+      "id": "faculty_off_2_f5",
+      "name": "Faculty Off",
+      "type": "room",
+      "xy": [
+        897.6,
+        493.2
+      ],
+      "svg_rect": [
+        851,
+        456,
+        94,
+        74
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FACULTY OFF' on the fourth floor, near FACULTY OFF and FACULTY OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_off_3_f5",
+      "name": "Faculty Off",
+      "type": "room",
+      "xy": [
+        898.8,
+        572.4
+      ],
+      "svg_rect": [
+        851,
+        535,
+        96,
+        74
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FACULTY OFF' on the fourth floor, near FACULTY OFF and FACULTY OFF (unit 2)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_off_4_f5",
+      "name": "Faculty Off",
+      "type": "room",
+      "xy": [
+        900.0,
+        693.0
+      ],
+      "svg_rect": [
+        853,
+        655,
+        94,
+        76
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FACULTY OFF' on the fourth floor, near FACULTY OFF and FACULTY OFF (unit 3)",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "digital_signal_processing_lab_f5",
+      "name": "Digital Signal Processing Lab",
+      "type": "room",
+      "xy": [
+        1023.6,
+        481.2
+      ],
+      "svg_rect": [
+        946,
+        432,
+        156,
+        98
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'DIGITAL SIGNAL PROCESSING LAB' on the fourth floor, near INSTRUMENTATION & CONROL LAB and CIRCUITS LABORATORY",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "circuits_laboratory_f5",
+      "name": "Circuits Laboratory",
+      "type": "room",
+      "xy": [
+        1023.6,
+        583.2
+      ],
+      "svg_rect": [
+        946,
+        534,
+        156,
+        98
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'CIRCUITS LABORATORY' on the fourth floor, near MICROPROCESSOR LAB and DIGITAL SIGNAL PROCESSING LAB",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "microprocessor_lab_f5",
+      "name": "Microprocessor Lab",
+      "type": "room",
+      "xy": [
+        1024.2,
+        681.6
+      ],
+      "svg_rect": [
+        947,
+        632,
+        155,
+        98
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'MICROPROCESSOR LAB' on the fourth floor, near CIRCUITS LABORATORY and FACULTY OFF",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lecture_hall_4_f5",
+      "name": "Lecture Hall",
+      "type": "room",
+      "xy": [
+        181.8,
+        907.2
+      ],
+      "svg_rect": [
+        108,
+        834,
+        148,
+        146
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'LECTURE HALL' on the fourth floor, near LADIES TOILET and GENTS",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "tutorial_hall_f5",
+      "name": "Tutorial Hall",
+      "type": "room",
+      "xy": [
+        526.2,
+        958.2
+      ],
+      "svg_rect": [
+        449,
+        877,
+        155,
+        162
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'TUTORIAL HALL' on the fourth floor, near FIRE EXIT and CORRIDOR",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "faculty_off_5_f5",
+      "name": "Faculty Off",
+      "type": "room",
+      "xy": [
+        879.6,
+        768.0
+      ],
+      "svg_rect": [
+        852,
+        744,
+        55,
+        48
+      ],
+      "floor": 5,
+      "visual_signature": "Door plate reading 'FACULTY OFF' on the fourth floor, near FACULTY OFF and FIRE EXIT",
+      "attributes": {
+        "accessible": true
+      }
+    },
+    {
+      "id": "lift_bank_f2",
+      "name": "Lift Bank First Floor",
+      "type": "lift",
+      "xy": [
+        448.8,
+        426.0
+      ],
+      "svg_rect": [
+        416,
+        393,
+        66,
+        66
+      ],
+      "floor": 2,
+      "visual_signature": "Lift bank on the first floor, floor indicator reading 1, call panel beside the electric duct (position interpolated from the other boards)",
+      "attributes": {
+        "accessible": true,
+        "interpolated": true
+      }
+    },
+    {
+      "id": "lift_bank_f4",
+      "name": "Lift Bank Third Floor",
+      "type": "lift",
+      "xy": [
+        448.8,
+        426.0
+      ],
+      "svg_rect": [
+        416,
+        393,
+        66,
+        66
+      ],
+      "floor": 4,
+      "visual_signature": "Lift bank on the third floor, floor indicator reading 3, call panel beside the electric duct (position interpolated from the other boards)",
+      "attributes": {
+        "accessible": true,
+        "interpolated": true
+      }
+    },
+    {
+      "id": "main_entrance",
+      "name": "Main Entrance",
+      "type": "entrance",
+      "xy": [
+        647.0,
+        1198.0
+      ],
+      "svg_rect": [
+        552,
+        1158,
+        190,
+        80
+      ],
+      "floor": 1,
+      "visual_signature": "Entrance foyer at the front of Aryabhatta, broad flight of steps up to glazed doors, the EMERGENCY ESCAPE ROUTE PLAN board mounted on the wall inside",
+      "attributes": {
+        "accessible": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "a": "corr_n_f1",
+      "b": "corr_w_f1",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_w_f1",
+      "b": "corr_s_f1",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_s_f1",
+      "b": "corr_e_f1",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_e_f1",
+      "b": "corr_n_f1",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "applied_chemistry_lab_f1",
+      "b": "corr_n_f1",
+      "distance": 27,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "basic_electronics_electricity_f1",
+      "b": "corr_n_f1",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_f1",
+      "b": "corr_n_f1",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "non_teaching_rm_f1",
+      "b": "corr_n_f1",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staff_toi_f1",
+      "b": "corr_w_f1",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "gents_toilet_f1",
+      "b": "corr_w_f1",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "cabin_f1",
+      "b": "corr_w_f1",
+      "distance": 20,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "cabin_2_f1",
+      "b": "corr_w_f1",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "interview_gd_room_f1",
+      "b": "corr_w_f1",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "room_meter_elect_f1",
+      "b": "corr_w_f1",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "strength_of_material_lab_f1",
+      "b": "corr_n_f1",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_2_f1",
+      "b": "corr_n_f1",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "applied_physics_lab_f1",
+      "b": "corr_n_f1",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "hod_office_f1",
+      "b": "corr_n_f1",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "office_section_f1",
+      "b": "corr_n_f1",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "office_section_2_f1",
+      "b": "corr_n_f1",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_computer_laboratory_f1",
+      "b": "corr_n_f1",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_3_f1",
+      "b": "corr_n_f1",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "office_f1",
+      "b": "corr_n_f1",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staff_room_boys_common_room_f1",
+      "b": "corr_e_f1",
+      "distance": 22,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "mega_project_room_f1",
+      "b": "corr_e_f1",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "indoor_badminton_court_f1",
+      "b": "corr_w_f1",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "elect_meter_room_f1",
+      "b": "corr_w_f1",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_f1",
+      "b": "corr_n_f1",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_1_f1",
+      "b": "corr_n_f1",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_3_f1",
+      "b": "corr_e_f1",
+      "distance": 4,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "machine_room_f1",
+      "b": "corr_s_f1",
+      "distance": 5,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "sens_off_f1",
+      "b": "corr_e_f1",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "peon_f1",
+      "b": "corr_e_f1",
+      "distance": 9,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "table_tennis_room_f1",
+      "b": "corr_e_f1",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "senr_off_f1",
+      "b": "corr_e_f1",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "canteen_f1",
+      "b": "corr_s_f1",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "medical_centre_no_f1",
+      "b": "corr_s_f1",
+      "distance": 20,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_3_2_f1",
+      "b": "corr_s_f1",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "passage_f1",
+      "b": "corr_s_f1",
+      "distance": 30,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_2_f1",
+      "b": "corr_w_f1",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "credit_soc_off_f1",
+      "b": "corr_s_f1",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "auditorium_f1",
+      "b": "corr_s_f1",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "canteen_2_f1",
+      "b": "corr_s_f1",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "green_rm_f1",
+      "b": "corr_s_f1",
+      "distance": 26,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "toilet_f1",
+      "b": "corr_s_f1",
+      "distance": 27,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "stage_f1",
+      "b": "corr_s_f1",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "green_rm_2_f1",
+      "b": "corr_s_f1",
+      "distance": 30,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "common_computer_facility_language_lab_f1",
+      "b": "corr_e_f1",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_n_f2",
+      "b": "corr_w_f2",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_w_f2",
+      "b": "corr_s_f2",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_s_f2",
+      "b": "corr_e_f2",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_e_f2",
+      "b": "corr_n_f2",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "coe_office_f2",
+      "b": "corr_n_f2",
+      "distance": 33,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "office_f2",
+      "b": "corr_n_f2",
+      "distance": 31,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "examination_cell_f2",
+      "b": "corr_n_f2",
+      "distance": 27,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "examination_cell_2_f2",
+      "b": "corr_n_f2",
+      "distance": 22,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_le_f2",
+      "b": "corr_n_f2",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "data_center_f2",
+      "b": "corr_n_f2",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "confidential_room_printing_area_f2",
+      "b": "corr_n_f2",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "f_ad_office_f2",
+      "b": "corr_n_f2",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "accounts_office_f2",
+      "b": "corr_n_f2",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "store_f2",
+      "b": "corr_w_f2",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "toilet_f2",
+      "b": "corr_w_f2",
+      "distance": 22,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staff_toilet_f2",
+      "b": "corr_n_f2",
+      "distance": 22,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ladies_toilet_f2",
+      "b": "corr_w_f2",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "principal_office_f2",
+      "b": "corr_w_f2",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "visitor_room_pa_to_principal_f2",
+      "b": "corr_w_f2",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_lecture_hall_f2",
+      "b": "corr_n_f2",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_lecture_hall_2_f2",
+      "b": "corr_n_f2",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_computer_centre_f2",
+      "b": "corr_n_f2",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "cabin_f2",
+      "b": "corr_n_f2",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fo_f2",
+      "b": "corr_n_f2",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_computer_centre_2_f2",
+      "b": "corr_n_f2",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "registrar_office_f2",
+      "b": "corr_n_f2",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ao_office_f2",
+      "b": "corr_n_f2",
+      "distance": 9,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "room_nqj15_administrative_off_f2",
+      "b": "corr_n_f2",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "store_2_f2",
+      "b": "corr_n_f2",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "store_3_f2",
+      "b": "corr_n_f2",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "dean_off_r_d_f2",
+      "b": "corr_n_f2",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "dean_off_ap_f2",
+      "b": "corr_n_f2",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "rim_f2",
+      "b": "corr_n_f2",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ture_hall_f2",
+      "b": "corr_n_f2",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "puter_centre_f2",
+      "b": "corr_n_f2",
+      "distance": 20,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_seminar_hall_f2",
+      "b": "corr_n_f2",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_comp_cent_f2",
+      "b": "corr_e_f2",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_lecture_hall_3_f2",
+      "b": "corr_e_f2",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "admission_office_f2",
+      "b": "corr_e_f2",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "board_room_f2",
+      "b": "corr_w_f2",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "meeting_room_f2",
+      "b": "corr_w_f2",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "badminton_court_f2",
+      "b": "corr_w_f2",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "gents_toile_f2",
+      "b": "corr_w_f2",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "office_2_f2",
+      "b": "corr_w_f2",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_3_f2",
+      "b": "corr_s_f2",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_staircase_1_f2",
+      "b": "corr_n_f2",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_staircase_2_f2",
+      "b": "corr_e_f2",
+      "distance": 4,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "inquiry_counter_f2",
+      "b": "corr_e_f2",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "admission_cell_room_no_123_f2",
+      "b": "corr_e_f2",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "admission_office_2_f2",
+      "b": "corr_e_f2",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "up_dn_dn_f2",
+      "b": "corr_e_f2",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_lecture_hall_4_f2",
+      "b": "corr_w_f2",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "p_g_lecture_hall_f2",
+      "b": "corr_s_f2",
+      "distance": 28,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_f2",
+      "b": "corr_s_f2",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_f2",
+      "b": "corr_s_f2",
+      "distance": 31,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_2_f2",
+      "b": "corr_s_f2",
+      "distance": 26,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lect_f2",
+      "b": "corr_s_f2",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "office_vice_principal_f2",
+      "b": "corr_s_f2",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "toilet_2_f2",
+      "b": "corr_s_f2",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ance_f2",
+      "b": "corr_e_f2",
+      "distance": 22,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_n_f3",
+      "b": "corr_w_f3",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_w_f3",
+      "b": "corr_s_f3",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_s_f3",
+      "b": "corr_e_f3",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_e_f3",
+      "b": "corr_n_f3",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "cam_la_f3",
+      "b": "corr_n_f3",
+      "distance": 30,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "mechatronics_lab_f3",
+      "b": "corr_n_f3",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_f3",
+      "b": "corr_n_f3",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "termwork_rm_f3",
+      "b": "corr_w_f3",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_f3",
+      "b": "corr_n_f3",
+      "distance": 22,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "gents_toilet_f3",
+      "b": "corr_w_f3",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "2_74m_w_corridor_f3",
+      "b": "corr_n_f3",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_f3",
+      "b": "corr_n_f3",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fo_f3",
+      "b": "corr_w_f3",
+      "distance": 20,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "engineering_mechanics_lab_ii_f3",
+      "b": "corr_w_f3",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "cs_lab_f3",
+      "b": "corr_n_f3",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "integrated_circuits_lab_f3",
+      "b": "corr_n_f3",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "optical_fibre_communication_lab_f3",
+      "b": "corr_n_f3",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "antenna_labo_f3",
+      "b": "corr_n_f3",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "y_office_f3",
+      "b": "corr_n_f3",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_2_f3",
+      "b": "corr_n_f3",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_3_f3",
+      "b": "corr_n_f3",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "term_work_room_f3",
+      "b": "corr_n_f3",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_4_f3",
+      "b": "corr_n_f3",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_f3",
+      "b": "corr_n_f3",
+      "distance": 9,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "hod_office_f3",
+      "b": "corr_n_f3",
+      "distance": 26,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "departmental_lib_computer_centre_f3",
+      "b": "corr_e_f3",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "students_activity_f3",
+      "b": "corr_e_f3",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_off_f3",
+      "b": "corr_e_f3",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "comm_engg_lab_f3",
+      "b": "corr_e_f3",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fo_2_f3",
+      "b": "corr_w_f3",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "research_center_f3",
+      "b": "corr_w_f3",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ladies_toile_f3",
+      "b": "corr_w_f3",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_f3",
+      "b": "corr_s_f3",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_staircase_1_f3",
+      "b": "corr_n_f3",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_staircase_3_f3",
+      "b": "corr_e_f3",
+      "distance": 9,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_of_f3",
+      "b": "corr_e_f3",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "wireless_comm_lab_f3",
+      "b": "corr_e_f3",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "cabin_f3",
+      "b": "corr_e_f3",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ug_seminar_hall_f3",
+      "b": "corr_e_f3",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_f3",
+      "b": "corr_w_f3",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_2_f3",
+      "b": "corr_s_f3",
+      "distance": 31,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_3_f3",
+      "b": "corr_s_f3",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_2_f3",
+      "b": "corr_w_f3",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_5_f3",
+      "b": "corr_s_f3",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "einstein_multimedia_hall_f3",
+      "b": "corr_s_f3",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "all_f3",
+      "b": "corr_s_f3",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_n_f4",
+      "b": "corr_w_f4",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_w_f4",
+      "b": "corr_s_f4",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_s_f4",
+      "b": "corr_e_f4",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_e_f4",
+      "b": "corr_n_f4",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "eat_mass_trans_f4",
+      "b": "corr_n_f4",
+      "distance": 27,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "refrigerator_air_cond_lab_f4",
+      "b": "corr_n_f4",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "gents_toilet_f4",
+      "b": "corr_w_f4",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ladies_toilet_f4",
+      "b": "corr_w_f4",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "electric_du_f4",
+      "b": "corr_w_f4",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fo_f4",
+      "b": "corr_n_f4",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "tor_lab_f4",
+      "b": "corr_n_f4",
+      "distance": 19,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_f4",
+      "b": "corr_n_f4",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "renewable_energy_lab_f4",
+      "b": "corr_n_f4",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_f4",
+      "b": "corr_n_f4",
+      "distance": 22,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_2_f4",
+      "b": "corr_n_f4",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "hod_f4",
+      "b": "corr_n_f4",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "computing_center_f4",
+      "b": "corr_n_f4",
+      "distance": 26,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "hod_office_f4",
+      "b": "corr_n_f4",
+      "distance": 28,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "term_work_room_f4",
+      "b": "corr_n_f4",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "department_of_mechanical_engg_f4",
+      "b": "corr_e_f4",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fo_2_f4",
+      "b": "corr_e_f4",
+      "distance": 26,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "drawing_hall_f4",
+      "b": "corr_w_f4",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "gents_toilet_2_f4",
+      "b": "corr_w_f4",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ladies_toilet_2_f4",
+      "b": "corr_w_f4",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_f4",
+      "b": "corr_w_f4",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_1_fire_exit_f4",
+      "b": "corr_n_f4",
+      "distance": 4,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_2_fire_exit_f4",
+      "b": "corr_e_f4",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "computer_graphics_lab_f4",
+      "b": "corr_e_f4",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ug_seminar_hall_f4",
+      "b": "corr_e_f4",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_off_f4",
+      "b": "corr_e_f4",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "cabin_f4",
+      "b": "corr_e_f4",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_2_f4",
+      "b": "corr_e_f4",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_2_f4",
+      "b": "corr_w_f4",
+      "distance": 23,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_3_f4",
+      "b": "corr_w_f4",
+      "distance": 30,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_4_f4",
+      "b": "corr_s_f4",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_office_3_f4",
+      "b": "corr_s_f4",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_5_f4",
+      "b": "corr_s_f4",
+      "distance": 20,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_n_f5",
+      "b": "corr_w_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_w_f5",
+      "b": "corr_s_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_s_f5",
+      "b": "corr_e_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corr_e_f5",
+      "b": "corr_n_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "software_simulation_lab_f5",
+      "b": "corr_w_f5",
+      "distance": 27,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_f5",
+      "b": "corr_n_f5",
+      "distance": 24,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "project_lab_f5",
+      "b": "corr_n_f5",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "gents_toilet_f5",
+      "b": "corr_w_f5",
+      "distance": 20,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_2_f5",
+      "b": "corr_n_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ladies_toilet_f5",
+      "b": "corr_w_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "dark_room_f5",
+      "b": "corr_w_f5",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "printed_circuit_board_lab_f5",
+      "b": "corr_w_f5",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_f5",
+      "b": "corr_n_f5",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_2_f5",
+      "b": "corr_n_f5",
+      "distance": 12,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fo_f5",
+      "b": "corr_n_f5",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_offi_f5",
+      "b": "corr_n_f5",
+      "distance": 18,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "et_lab_f5",
+      "b": "corr_n_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_f5",
+      "b": "corr_n_f5",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "stairs_f5",
+      "b": "corr_n_f5",
+      "distance": 5,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "pg_seminar_hall_f5",
+      "b": "corr_n_f5",
+      "distance": 26,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "elect_engr_lab_f5",
+      "b": "corr_e_f5",
+      "distance": 21,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_off_f5",
+      "b": "corr_e_f5",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "instrumentation_conrol_lab_f5",
+      "b": "corr_e_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_3_f5",
+      "b": "corr_w_f5",
+      "distance": 11,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "gents_f5",
+      "b": "corr_w_f5",
+      "distance": 17,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "ladies_toilet_2_f5",
+      "b": "corr_w_f5",
+      "distance": 20,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "corridor_f5",
+      "b": "corr_w_f5",
+      "distance": 16,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_f5",
+      "b": "corr_s_f5",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_1_fire_exit_f5",
+      "b": "corr_n_f5",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_2_fire_exit_f5",
+      "b": "corr_e_f5",
+      "distance": 9,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_2_f5",
+      "b": "corr_e_f5",
+      "distance": 8,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_off_2_f5",
+      "b": "corr_e_f5",
+      "distance": 7,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_off_3_f5",
+      "b": "corr_e_f5",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_off_4_f5",
+      "b": "corr_e_f5",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "digital_signal_processing_lab_f5",
+      "b": "corr_e_f5",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "circuits_laboratory_f5",
+      "b": "corr_e_f5",
+      "distance": 13,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "microprocessor_lab_f5",
+      "b": "corr_e_f5",
+      "distance": 15,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lecture_hall_4_f5",
+      "b": "corr_w_f5",
+      "distance": 25,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "tutorial_hall_f5",
+      "b": "corr_s_f5",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "faculty_off_5_f5",
+      "b": "corr_e_f5",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_bank_f2",
+      "b": "corr_n_f2",
+      "distance": 6,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_bank_f4",
+      "b": "corr_n_f4",
+      "distance": 10,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_f1",
+      "b": "lift_bank_f2",
+      "distance": 5,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "staircase_1_f1",
+      "b": "fire_exit_staircase_1_f2",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "staircase_3_f1",
+      "b": "fire_exit_staircase_2_f2",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "staircase_3_2_f1",
+      "b": "staircase_3_f2",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "staircase_3_f2",
+      "b": "fire_exit_f3",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_staircase_1_f2",
+      "b": "fire_exit_staircase_1_f3",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_staircase_2_f2",
+      "b": "fire_exit_staircase_3_f3",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "lift_bank_f2",
+      "b": "lift_f3",
+      "distance": 5,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "lift_f3",
+      "b": "lift_bank_f4",
+      "distance": 5,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_f3",
+      "b": "fire_exit_f4",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_staircase_1_f3",
+      "b": "staircase_1_fire_exit_f4",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_staircase_3_f3",
+      "b": "staircase_2_fire_exit_f4",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_f4",
+      "b": "fire_exit_f5",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "staircase_1_fire_exit_f4",
+      "b": "staircase_1_fire_exit_f5",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "staircase_2_fire_exit_f4",
+      "b": "staircase_2_fire_exit_f5",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "fire_exit_2_f4",
+      "b": "fire_exit_2_f5",
+      "distance": 5,
+      "accessible": false,
+      "passable": true
+    },
+    {
+      "a": "lift_bank_f4",
+      "b": "lift_f5",
+      "distance": 5,
+      "accessible": true,
+      "passable": true
+    },
+    {
+      "a": "main_entrance",
+      "b": "corr_s_f1",
+      "distance": 14,
+      "accessible": true,
+      "passable": true
+    }
+  ],
+  "equipment": [
+    {
+      "id": "hose_reel_n_f1",
+      "name": "Fire Hydrant & Hose Reel, Ground North",
+      "node": "corr_n_f1",
+      "visual_signature": "red hose reel drum in a glass-fronted wall cabinet, canvas hose coiled on the drum",
+      "manual_snippet": "Break glass, pull the full length of hose out before opening the valve. Not for live electrical fires."
+    },
+    {
+      "id": "mcp_s_f2",
+      "name": "Manual Call Point, First Floor South",
+      "node": "corr_s_f2",
+      "visual_signature": "small red square call point at shoulder height beside the staircase door, hinged cover over the button",
+      "manual_snippet": "Press only on confirmed fire. Activation sounds the building alarm and notifies the gate. Reset needs the security key."
+    },
+    {
+      "id": "extinguisher_e_f4",
+      "name": "Fire Extinguisher, Third Floor East",
+      "node": "corr_e_f4",
+      "visual_signature": "red cylindrical extinguisher on a wall bracket, pressure gauge on the neck, service tag on the handle",
+      "manual_snippet": "Check the gauge is in the green band. PASS: pull pin, aim at the base, squeeze, sweep."
+    },
+    {
+      "id": "sand_bucket_f1",
+      "name": "Fire Sand Bucket, Ground Floor",
+      "node": "corr_e_f1",
+      "visual_signature": "conical red bucket on a wall-mounted stand, filled with dry sand, stencilled FIRE in white",
+      "manual_snippet": "For small liquid or metal fires only. Keep the sand dry."
+    }
+  ]
+}

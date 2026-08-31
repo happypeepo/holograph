@@ -184,7 +184,7 @@ text{font-family:var(--mono);pointer-events:none}
   <span class="grow"></span>
   <span class="disc">illustrative approximation</span>
   <a class="exit" id="alt" hidden>—</a>
-  <a class="exit" href="/">2D plan</a>
+  <a class="exit" href="/">Home</a>
 </header>
 
 <main>
@@ -885,7 +885,9 @@ say('bot','Ask where you want to go, or tell me a space is blocked.');
   const short=n=>{
     const p=n.match(/\(([A-Z][A-Z0-9]{1,7})\)/); if(p) return p[1];
     const w=n.replace(/\(.*?\)/g,'').split(/[\s,]+/).filter(x=>/^[A-Za-z]/.test(x));
-    if(w[0]&&/^[A-Z0-9]{3,8}$/.test(w[0])) return w[0];        // "KJSSE Bhaskaracharya..." -> KJSSE
+    // both buildings start "KJSSE", so an all-caps leading org word is not the name
+    if(w[0]&&/^[A-Z0-9]{3,8}$/.test(w[0])&&w[1]) return w[1];  // "KJSSE Bhaskaracharya..." -> Bhaskaracharya
+    if(w[0]&&/^[A-Z0-9]{3,8}$/.test(w[0])) return w[0];
     return w.length>=3 ? w.map(x=>x[0].toUpperCase()).join('').slice(0,5) : w.join(' ').slice(0,12);
   };
   a.textContent=short(other.name);
