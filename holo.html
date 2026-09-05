@@ -1,5 +1,15 @@
 <!doctype html>
 <meta charset="utf-8">
+<!-- no user-scalable=no: #stage already claims its own gestures via touch-action, and
+     blocking page zoom everywhere else only takes the chat text away from anyone who
+     needs to enlarge it -->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07090c">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon-192.png">
 <title>Spatial Twin — Holographic View</title>
 <style>
 /* ---------------------------------------------------------------------------
@@ -19,18 +29,28 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%}
+/* the column is explicit because an implicit grid column is max-content sized: the
+   header's nowrap building name was stretching it to 805px inside a 390px body, and
+   every row inherited that width. */
 body{margin:0;background:var(--void);color:var(--ink);font:14px/1.5 var(--sans);
-     overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+     overflow:hidden;display:grid;grid-template-rows:auto 1fr;grid-template-columns:minmax(0,1fr)}
 
 /* ---- header: one hairline, no chrome ---- */
 header{display:flex;align-items:center;gap:20px;padding:0 20px;height:52px;
        border-bottom:1px solid var(--rule);background:var(--plate)}
 .mark{font:600 13px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase}
 .mark i{color:var(--live);font-style:normal}
-.bld{font:400 12px/1 var(--mono);color:var(--dim);letter-spacing:.06em;
+/* min-width:0 is the missing half of the ellipsis idiom: without it a flex item
+   refuses to shrink below its nowrap content, and this one line was widening the
+   whole page to 805px on a 390px phone. */
+.bld{font:400 12px/1 var(--mono);color:var(--dim);letter-spacing:.06em;min-width:0;
      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .grow{flex:1}
 .disc{font:400 10px/1 var(--mono);color:var(--dimmer);letter-spacing:.1em;text-transform:uppercase}
+/* the map is cached and the routing is not, so offline is a real, partial state and
+   has to be visible — otherwise a dead Send button just looks broken */
+.net{flex:0 0 auto;font:500 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+     color:var(--halt);border:1px solid var(--halt);padding:5px 8px}
 a.exit{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
        text-decoration:none;border:1px solid var(--rule2);padding:8px 12px}
 a.exit:hover{color:var(--ink);border-color:var(--dim)}
@@ -101,6 +121,9 @@ select:focus,input:focus{outline:none;border-color:var(--live)}
 select:hover{border-color:var(--dim)}
 .row{display:flex;gap:7px;align-items:center;margin-top:8px}
 .seg{display:flex;flex:1}
+/* was an inline style; as CSS the phone block can override it. Inline, it read as a
+   108px *height* once #tog became a column and gave the toggle a 108px-tall box. */
+#accseg{flex:0 0 108px}
 .seg button{flex:1;font:500 10px/1 var(--mono);letter-spacing:.12em;color:var(--dim);background:var(--sunk);
   border:1px solid var(--rule2);border-right:0;padding:9px 4px;cursor:pointer;text-transform:uppercase}
 .seg button:last-child{border-right:1px solid var(--rule2)}
@@ -183,12 +206,174 @@ text{font-family:var(--mono);pointer-events:none}
 .climb{animation:climb .8s steps(6,end) infinite}
 .hoist{animation:hoist 2s cubic-bezier(.5,0,.5,1) infinite}
 @media (prefers-reduced-motion:reduce){.route,.climb,.hoist{animation:none}}
+
+/* ===========================================================================
+   PHONE. Everything below 900px. Nothing scrolls — the map is full-bleed under
+   a fixed bar, and the chat is an overlay that covers the model rather than a
+   pane that competes with it for height. See .claude/PWA.md.
+   Desktop is reached by none of this.
+=========================================================================== */
+#mbar{display:none}
+@media (max-width:900px){
+  /* --bar is the live height of #mbar; JS remeasures it whenever the step card
+     appears or disappears, so the toggles and the overlay never sit under it. */
+  :root{--bar:92px}
+  html,body{height:100dvh;overflow:hidden;overscroll-behavior:none}
+  body{grid-template-rows:auto 1fr}
+
+  header{height:44px;padding:0 14px;gap:10px}
+  .disc{display:none}
+  a.exit{padding:6px 9px;font-size:10px;letter-spacing:.1em}
+
+  /* one layer: the map. The sidebar becomes an overlay, the bar is fixed. */
+  main{grid-template-columns:minmax(0,1fr)}
+  #stage{padding-bottom:0}
+  .tick,.hud.bl{display:none}
+  .hud.br{bottom:auto;top:10px;left:14px;right:auto;text-align:left;max-width:58vw;font-size:9px}
+
+  /* cube stays as an orientation readout and stops being a control:
+     a tap target here would fight the one-finger orbit gesture. */
+  /* the numeric bearing/elevation/zoom line is an instrument readout for a mouse
+     user; on a phone it only collides with the gesture hint. The cube still shows
+     orientation, so nothing is actually lost. */
+  .hud.tr{top:8px;right:12px}
+  .hud.tr>div:first-child{display:none}
+  #cube{width:74px;height:74px;margin:0 0 0 auto;pointer-events:none}
+  #cube polygon{pointer-events:none;cursor:default}
+  .cubebar{display:none}
+  #home{margin-top:6px;padding:7px 10px;font-size:10px}
+
+  /* toggles are moved into #stage by JS at boot, so they survive the overlay */
+  #tog{position:absolute;left:calc(10px + env(safe-area-inset-left));
+       right:calc(10px + env(safe-area-inset-right));bottom:calc(10px + var(--bar));
+       margin:0;display:flex;flex-direction:column;align-items:stretch;gap:6px;
+       pointer-events:auto;z-index:3}
+  #tog .seg{flex:0 0 auto;overflow-x:auto;scrollbar-width:none}
+  #tog .seg::-webkit-scrollbar{height:0}
+  #tog .seg button{flex:0 0 auto;min-width:44px;padding:11px 8px;font-size:11px}
+  #accseg{flex:0 0 auto;align-self:flex-start}
+  #accseg button{min-width:126px}
+
+  /* the sidebar, now an overlay. #ctrl and #read are desktop-only affordances:
+     origin comes from the chat or from tapping a space on the model. */
+  aside{position:fixed;left:0;right:0;top:44px;bottom:var(--bar);z-index:20;
+        border-left:0;border-top:1px solid var(--rule);background:var(--plate);
+        transform:translateY(8px);opacity:0;visibility:hidden;
+        transition:opacity .16s ease,transform .16s ease,visibility .16s}
+  body.chat aside{transform:none;opacity:1;visibility:visible}
+  #ctrl,#read{display:none}
+  #chat{flex:1 1 auto;height:auto;padding:14px 16px calc(14px + env(safe-area-inset-bottom))}
+  #log{gap:10px}
+  .msg{max-width:94%;font-size:15px}
+  #ci{font-size:16px;padding:12px 12px}          /* 16px or iOS zooms the page on focus */
+  #cf button{padding:0 18px}
+  .chip{font-size:12px;padding:9px 11px}
+
+  /* ---- the bar ---- */
+  /* left/right insets matter in landscape, where the notch is beside the content
+     rather than above it. The map stays full-bleed behind it; the controls do not. */
+  #mbar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;
+        background:var(--plate);border-top:1px solid var(--rule);
+        padding:10px calc(12px + env(safe-area-inset-right))
+                calc(10px + env(safe-area-inset-bottom))
+                calc(12px + env(safe-area-inset-left))}
+  header{padding-left:calc(14px + env(safe-area-inset-left));
+         padding-right:calc(14px + env(safe-area-inset-right))}
+  #mask{width:100%;padding:16px;font:600 12px/1 var(--mono);letter-spacing:.2em;
+        text-transform:uppercase;color:var(--void);background:var(--live);
+        border:1px solid var(--live);cursor:pointer}
+  body.chat #mask{color:var(--live);background:transparent;border-color:var(--rule2)}
+  /* still tappable offline: opening the chat is how you read the honest error */
+  body.offline #mask{color:var(--halt);background:transparent;border-color:var(--halt)}
+
+  #mstep{display:none;margin-bottom:10px}
+  body.routed:not(.chat) #mstep{display:block}
+  /* untrack: the only way back to a clean map on a phone, where there is no Escape key */
+  #mclear{margin-left:auto;align-self:center;flex:0 0 auto;background:none;
+    border:1px solid var(--rule2);color:var(--dim);font:500 9px/1 var(--mono);
+    letter-spacing:.14em;text-transform:uppercase;padding:8px 10px;cursor:pointer}
+  #mclear:active{color:var(--halt);border-color:var(--halt)}
+  /* the chip reads at 27px but a finger needs ~44: grow the hit area, not the box, so
+     the route header keeps its height */
+  #mclear{position:relative}
+  #mclear::after{content:"";position:absolute;inset:-9px -8px}
+  .mhead{display:flex;align-items:baseline;gap:9px;margin-bottom:8px;
+         font:400 10px/1 var(--mono);letter-spacing:.14em;color:var(--dim);text-transform:uppercase}
+  .mhead b{font:300 22px/1 var(--mono);color:var(--live);letter-spacing:-.02em}
+  /* the rail is the other eight steps: they are dots, only the current one has words */
+  .mrail{display:flex;align-items:center;gap:3px;margin-bottom:9px}
+  .mrail i{flex:1 1 0;height:2px;background:var(--rule2);border-radius:1px}
+  .mrail i.done{background:#0b6b78}
+  .mrail i.now{background:var(--live);height:4px;animation:beat 1.3s ease-in-out infinite}
+  @keyframes beat{50%{opacity:.45}}
+  .mrow{display:flex;align-items:stretch;gap:8px}
+  .mrow button{flex:0 0 46px;background:var(--sunk);border:1px solid var(--rule2);
+    color:var(--ink);font-size:17px;cursor:pointer}
+  .mrow button:disabled{color:var(--dimmer)}
+  .mtxt{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:3px;
+        padding:9px 11px;background:var(--sunk);border:1px solid var(--rule2);
+        border-left:2px solid var(--live)}
+  .mtxt span{font:400 14px/1.32 var(--sans);color:var(--ink);
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .mtxt em{font:400 10px/1 var(--mono);letter-spacing:.14em;color:var(--dim);
+    text-transform:uppercase;font-style:normal}
+  @media (prefers-reduced-motion:reduce){.mrail i.now{animation:none}}
+
+  /* no 300ms double-tap delay on the controls. manipulation, not none: it still lets
+     the page be pinch-zoomed, which #stage separately opts out of. */
+  #mbar button,#tog button,a.exit{touch-action:manipulation}
+}
+
+/* ---- narrow: Galaxy Fold cover (~344px), older Fold (280px), Flip cover ---------
+   The floor pills already scroll horizontally, so the only real casualties are the
+   header and the step text. ---------------------------------------------------- */
+@media (max-width:380px){
+  header{gap:8px;padding:0 10px}
+  .mark{font-size:11px;letter-spacing:.16em}
+  .bld{display:none}                    /* the building name is noise at this width */
+  a.exit{padding:6px 7px;font-size:9px;letter-spacing:.08em}
+  /* must still clear the cube, which is 74px wide plus its 12px inset */
+  .hud.br{max-width:calc(100% - 108px)}
+  #mbar{padding-left:8px;padding-right:8px}
+  #mask{padding:15px 8px;font-size:11px;letter-spacing:.12em}
+  .mrow button{flex:0 0 38px;font-size:15px}
+  .mtxt{padding:8px 9px}
+  .mtxt span{font-size:13px}
+  #tog{left:8px;right:8px}
+  /* 8 pills never fit under 380px, so the strip always scrolls here — fade the right
+     edge or a Fold-cover user reads a 7-storey building as a 4-storey one. */
+  #lvl{mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent);
+       -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 24px),transparent)}
+}
+
+/* ---- short: any phone in landscape, and the Flip's 880x360 --------------------
+   Height, not width, is the scarce axis here: the resting bar plus the header was
+   eating 214px of a 360px viewport. Everything optional goes, and #tog returns to a
+   single row. The frame also flips back to landscape in applyMode(). ------------ */
+@media (max-width:900px) and (max-height:560px){
+  header{height:38px}
+  .hud.br,#cube,#home{display:none}      /* gestures still work; the readouts can wait */
+  #tog{flex-direction:row;align-items:center;gap:7px;bottom:calc(7px + var(--bar))}
+  #accseg{align-self:auto}
+  #accseg button{min-width:104px}
+  #tog .seg button{padding:8px 7px}
+  #mbar{padding:7px 10px calc(7px + env(safe-area-inset-bottom))}
+  #mask{padding:12px}
+  #mstep{margin-bottom:7px}
+  .mhead{margin-bottom:5px}
+  .mrail{display:none}                   /* the "3 / 9" counter still carries position */
+  .mtxt{padding:7px 10px}
+  .mtxt span{-webkit-line-clamp:1}
+  #chips{display:none}                   /* the chat needs every pixel of height here */
+  #chat{padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+}
 </style>
 
 <header>
   <span class="mark">Spatial<i>·</i>Twin</span>
   <span class="bld" id="bld">connecting…</span>
   <span class="grow"></span>
+  <span class="net" id="net" hidden>offline</span>
   <span class="disc">illustrative approximation</span>
   <a class="exit" id="alt" hidden>—</a>
   <a class="exit" href="/">Home</a>
@@ -228,8 +413,10 @@ text{font-family:var(--mono);pointer-events:none}
       <div class="fld"><span>From</span><select id="from"></select></div>
       <div class="fld sw"><span>To</span><select id="to"></select>
         <button class="ghost ico" id="swap" title="Swap origin and destination" aria-label="Swap origin and destination">⇅</button></div>
-      <div class="row">
-        <div class="seg" style="flex:0 0 108px"><button id="acc" data-on="0">Step-free</button></div>
+      <!-- id="tog" so the phone build can lift this one row out of the sidebar and
+           pin it over the model; on desktop it is the row it has always been -->
+      <div class="row" id="tog">
+        <div class="seg" id="accseg"><button id="acc" data-on="0" title="Route around every staircase">No stairs</button></div>
         <div class="seg" id="lvl"></div>
       </div>
       <button class="trace" id="go">Trace route</button>
@@ -254,6 +441,22 @@ text{font-family:var(--mono);pointer-events:none}
   </aside>
 </main>
 
+<!-- The phone bar. Display:none above 900px, so desktop never sees it. One step at a
+     time: the other steps are the rail dots above, only the current one has words. -->
+<div id="mbar">
+  <div id="mstep">
+    <div class="mhead"><b id="mdist">—</b><span id="mspan"></span>
+      <button id="mclear" aria-label="Clear this route and pick a new one">&#10005; Clear</button></div>
+    <div class="mrail" id="mrail"></div>
+    <div class="mrow">
+      <button id="mprev" aria-label="Previous step">&#9664;</button>
+      <div class="mtxt"><span id="mtext"></span><em id="mat"></em></div>
+      <button id="mnext" aria-label="Next step">&#9654;</button>
+    </div>
+  </div>
+  <button id="mask">Ask</button>
+</div>
+
 <script>
 // the page is served at both /3d and /3d/<building>; it talks to whichever
 // prefix it was loaded from, so one file serves every twin
@@ -261,7 +464,12 @@ const BASE=location.pathname.replace(/\/+$/,'')||'/3d';
 const API={state:BASE+'/state',route:BASE+'/route',block:BASE+'/block',chat:BASE+'/chat'};
 const HGT={room:80,corridor:24,stairs:66,lift:110,entrance:48};
 let LEVEL=340;                 // deck spacing, set from the floor count in loadState
-const VW=1400, VH=780;
+// The drawing frame. A 1400x780 landscape frame letterboxes to a ~217px band on a
+// 390px-wide phone and throws away two thirds of the viewport, so a narrow portrait
+// viewport gets a portrait frame instead. Swap the frame's aspect, not the projection —
+// every consumer (project, fitView, the label culling at VW-40/VH-14) reads these two.
+// applyMode() owns them; they are never set anywhere else. See .claude/PWA.md.
+let VW=1400, VH=780;
 const ISO={yaw:-0.50,pitch:0.90,scale:0.82,ox:0,oy:104};   // the home view; the cube covers the rest
 
 const svg=document.getElementById('svg'), stage=document.getElementById('stage');
@@ -271,6 +479,9 @@ const el=(t,a,tx)=>{const e=document.createElementNS(NS,t);for(const k in a)e.se
 const $=id=>document.getElementById(id);
 
 let ST=null, BY={}, ROUTE=null, LASTR=null;
+// RJ: the last route object readRoute() was handed. applyMode() replays it to rebuild
+// the phone pager after a fold, without re-asking the server for a route we already have.
+let RJ=null;
 let show=new Set();          // which decks are on; every floor is its own toggle
 const DULL=/toilet|corridor|lobby|lift|staircase|store|cabin/i;
 let HOVER=null, FROM=null, TO=null, PICK='from', seeded=false;   // click-to-pick walks from -> to -> from
@@ -366,6 +577,9 @@ function readout(){
 /* ---- paint ---- */
 function tone(n){
   if(!n.passable)                     return {s:'#ff3b5c',f:'rgba(255,59,92,',t:.26};
+  // the step the phone pager is currently on: same cyan, much louder, so it reads
+  // as "you are here in the instructions" against the rest of the traced route
+  if(n.id===STEPNODE)                 return {s:'#a8faff',f:'rgba(0,229,255,',t:.58};
   if(ROUTE&&ROUTE.includes(n.id))     return {s:'#00e5ff',f:'rgba(0,229,255,',t:.24};
   if(n.id===HOVER||n.id===FROM||n.id===TO)
                                       return {s:'#e9eef3',f:'rgba(233,238,243,',t:.16};
@@ -428,6 +642,11 @@ function render(){
       'stroke-width':2,'stroke-opacity':.16,'pointer-events':'none'}));
   }
 
+  // Where the camera is looking, in plan. `project` sorts by ry = dx*sin+dy*cos, so
+  // that vector IS the view direction; a wall faces you when its outward normal
+  // opposes it. Used to cull the far walls of stepped solids - see below.
+  const VX=Math.sin(cam.yaw), VY=Math.cos(cam.yaw);
+
   for(const n of ST.nodes){
     if(!vis(n)) continue;
     const r=n.svg_rect, x=r[0], y=r[1], w=r[2], h=r[3], z1=base(n), z2=roof(n), f=flr(n);
@@ -449,23 +668,53 @@ function render(){
     const rot=(n.attributes&&+n.attributes.rot)||0;
     const RCX=x+w/2, RCY=y+h/2, RA=rot*Math.PI/180, RS=Math.sin(RA), RC=Math.cos(RA);
     const spin=p=>rot?[RCX+(p[0]-RCX)*RC-(p[1]-RCY)*RS, RCY+(p[0]-RCX)*RS+(p[1]-RCY)*RC]:p;
-    const slabs=[];
-    if(nsteps>1){
+    // A slab is a plan polygon plus a floor and a ceiling, so a tread can be an L
+    // as easily as a rectangle.
+    const slabs=[], box=(bx,by,bw,bh,a,b)=>[[[bx,by],[bx+bw,by],[bx+bw,by+bh],[bx,by+bh]],a,b];
+    if(climb==='corner'&&nsteps>1){
+      // A corner flight does not run in one direction: every tread is an L mitred at
+      // 45 degrees round the outside of the head, each one a tread wider and a riser
+      // lower than the one inside it, so the steps radiate down and away on both
+      // faces at once. `run` is how far the flight marches out from the head; the
+      // head is the rect's top-left corner and the foot its bottom-right, and `rot`
+      // turns the whole thing if the building wraps a different corner.
+      const R=(+n.attributes.run)||Math.min(w,h)/2, s=R/nsteps;
+      const X1=x+w-R, Y1=y+h-R;                          // the innermost, highest tread
+      slabs.push(box(x,y,X1-x,Y1-y,z1,z2));              // the head itself: a solid plinth,
+      for(let k=0;k<nsteps;k++){                         // else the landing floats over a hole
+        const di=k*s, dou=di+s, zt=z1+(z2-z1)*(nsteps-k)/nsteps;
+        // The first two edges face uphill into the tread inside this one, so they are
+        // buried and exactly coincident with its risers. Drawn, sixteen of them stack
+        // into a moire of squares across the flight; `buried` drops them.
+        slabs.push([[[x,Y1+di],[X1+di,Y1+di],[X1+di,y],[X1+dou,y],
+                     [X1+dou,Y1+dou],[x,Y1+dou]], z1, zt, 2]);
+      }
+    } else if(nsteps>1){
       for(let k=0;k<nsteps;k++){
         const t=(k+1)/nsteps, a=k/nsteps, zt=z1+(z2-z1)*t;
-        if(climb==='-y')      slabs.push([x, y, w, h*(1-a), z1, zt]);
-        else if(climb==='+y') slabs.push([x, y+h*a, w, h*(1-a), z1, zt]);
-        else if(climb==='-x') slabs.push([x, y, w*(1-a), h, z1, zt]);
-        else                  slabs.push([x+w*a, y, w*(1-a), h, z1, zt]);
+        if(climb==='-y')      slabs.push(box(x, y, w, h*(1-a), z1, zt));
+        else if(climb==='+y') slabs.push(box(x, y+h*a, w, h*(1-a), z1, zt));
+        else if(climb==='-x') slabs.push(box(x, y, w*(1-a), h, z1, zt));
+        else                  slabs.push(box(x+w*a, y, w*(1-a), h, z1, zt));
       }
-    } else slabs.push([x,y,w,h,z1,z2]);
-    for(const [sx,sy,sw,sh,sz1,sz2] of slabs){
-      const c=[[sx,sy],[sx+sw,sy],[sx+sw,sy+sh],[sx,sy+sh]].map(spin);
+    // A room is a rectangle unless it says otherwise. `footprint` is an explicit plan
+    // polygon in svg coords - the Orion workshop is an L that wraps the auditorium's
+    // south-east corner, touching it rather than sitting inside it. Wind it clockwise
+    // (y down), like `box` does, or the wall shading comes out inside-out.
+    } else slabs.push((n.attributes&&n.attributes.footprint)
+                        ? [n.attributes.footprint, z1, z2] : box(x,y,w,h,z1,z2));
+    for(const [poly,sz1,sz2,buried] of slabs){
+      const c=poly.map(spin);
       face(c.map(q=>project(q[0],q[1],sz2)),true,1);
-      for(let i=0;i<4;i++){
-        const p0=c[i], p1=c[(i+1)%4];
+      for(let i=buried||0;i<c.length;i++){
+        const p0=c[i], p1=c[(i+1)%c.length];
         const ex=p1[0]-p0[0], ey=p1[1]-p0[1], len=Math.hypot(ex,ey)||1;
         const nx=ey/len, ny=-ex/len;                     // outward wall normal, in plan
+        // A flight is a dozen nested solids. Drawing the walls on its far side too -
+        // every one of them face-on to you, seen through the near ones - turns it into
+        // a grid of squares instead of a staircase. Rooms stay see-through; only
+        // stepped solids are culled to the walls actually facing you.
+        if(nsteps>1&&nx*VX+ny*VY>=0) continue;
         const lit=.30+.70*Math.max(0,nx*LIGHT[0]+ny*LIGHT[1]);
         face([project(p0[0],p0[1],sz1),project(p1[0],p1[1],sz1),
               project(p1[0],p1[1],sz2),project(p0[0],p0[1],sz2)],false,lit);
@@ -654,7 +903,7 @@ function drawCube(){
     (region[c.key]=region[c.key]||[]).push({cell,rest});
     cell.onpointerenter=()=>{paint(region[c.key],HILITE);
       $('prompt').textContent='VIEW FROM '+NAME(c.dir).split('–').join(' · ')};
-    cell.onpointerleave=()=>{paint(region[c.key],null); $('prompt').textContent=HINT};
+    cell.onpointerleave=()=>{paint(region[c.key],null); $('prompt').textContent=HINT()};
     cell.onclick=()=>flyTo(c.dir);
     CUBE.appendChild(cell);
   }
@@ -676,11 +925,13 @@ function drawCube(){
 
 /* ---- readout ---- */
 function readRoute(r){
+  RJ=r;
   const b=$('read');
   b.innerHTML='<p class="k">Route</p>';
-  if(!r){b.insertAdjacentHTML('beforeend','<p class="void">No route traced.</p>');return}
+  if(!r){b.insertAdjacentHTML('beforeend','<p class="void">No route traced.</p>');mstep(null);return}
   if(!r.path.length){
-    b.insertAdjacentHTML('beforeend','<div class="err">'+esc(r.reason||'No passable path.')+'</div>');return}
+    b.insertAdjacentHTML('beforeend','<div class="err">'+esc(r.reason||'No passable path.')+'</div>');
+    mstep(null);return}
 
   const cum=walked(r.path), lv=r.path.map(id=>flr(BY[id])), span=[...new Set(lv)].sort();
   b.insertAdjacentHTML('beforeend',
@@ -700,6 +951,7 @@ function readRoute(r){
   const bl=ST.nodes.filter(n=>!n.passable);
   if(bl.length) b.insertAdjacentHTML('beforeend',
     bl.map(n=>'<div class="blk">✕ '+esc(n.name)+' blocked</div>').join(''));
+  mstep(r);        // the phone bar reads this same object, so the two cannot disagree
 }
 
 // cumulative metres at each node, read off the same edge list the server routed over
@@ -795,13 +1047,30 @@ function markSeg(){
   const floors=[...new Set(ST.nodes.map(flr))];
   for(const b of $('lvl').children)
     b.classList.toggle('on', b.dataset.v==='all' ? show.size===floors.length : show.has(+b.dataset.v));
+  // On a narrow phone the strip scrolls, so a route that isolates the upper decks can
+  // leave every lit pill off to the right where nobody sees it. html/body are
+  // overflow:hidden, so the only thing this can scroll is the strip itself.
+  if(MOBILE){
+    // the LAST lit pill: the first one is usually already visible, so scrolling to it
+    // does nothing and the upper decks stay hidden off the right edge
+    const lit=[...$('lvl').children].filter(b=>b.classList.contains('on')&&b.dataset.v!=='all').pop();
+    if(lit) lit.scrollIntoView({block:'nearest',inline:'nearest'});
+  }
 }
 
 async function trace(from,to,acc){
   const q=new URLSearchParams({from,to,accessible:!!acc});
-  const r=await (await fetch(API.route+'?'+q)).json();
+  let r;
+  // offline the shell and the map come from cache but routing cannot: this used to
+  // reject unhandled and the page just sat there with no route and no explanation
+  try{ r=await (await fetch(API.route+'?'+q)).json(); netmark(true) }
+  catch(err){
+    netmark(false);
+    readRoute({path:[],reason:"Can't reach the building service. The map is cached; routing is not."});
+    return {path:[],steps:[],distance_m:0};
+  }
   LASTR={from,to,accessible:!!acc};
-  ROUTE=r.path; readRoute(r); dirty=true;
+  ROUTE=r.path; readRoute(r); dirty=true;   // readRoute -> mstep -> showStep(0) lights the origin deck
   return r;
 }
 const accOn=()=>$('acc').dataset.on==='1';
@@ -868,14 +1137,34 @@ $('invX').onclick = () => setInv('invX','holo.invertOrbit', INVX = !INVX);
 $('invY').onclick = () => setInv('invY','holo.invertPitch', INVY = !INVY);
 
 let drag=null;
+// Live pointers. ONE is the original orbit path, untouched. TWO is pinch-zoom and
+// two-finger pan — the only way to reach zoom and pan on a phone, which has neither
+// a wheel nor a shift key. Additive: the single-pointer branch below is unchanged,
+// both INVX/INVY sign factors included. See .claude/PWA.md.
+const PT=new Map(); let pinch=null;
+const span2=()=>{const [a,b]=[...PT.values()];
+  return {d:Math.hypot(a.x-b.x,a.y-b.y), cx:(a.x+b.x)/2, cy:(a.y+b.y)/2}};
+
 stage.addEventListener('pointerdown',e=>{
   // HUD controls sit inside the stage: capturing the pointer here stole their
-  // click, which is why the view buttons looked dead.
-  if(e.target.closest('.hud')) return;
+  // click, which is why the view buttons looked dead. #tog is moved into the stage
+  // on phones and needs the same exemption or the floor pills go dead the same way.
+  if(e.target.closest('.hud,#tog')) return;
+  PT.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  stage.setPointerCapture(e.pointerId);
+  if(PT.size>1){ drag=null; stage.classList.remove('drag'); if(PT.size===2) pinch=span2(); return }
   drag={x:e.clientX,y:e.clientY,sh:e.shiftKey,moved:0,id:e.target.dataset&&e.target.dataset.id};
-  stage.classList.add('drag'); stage.setPointerCapture(e.pointerId);
+  stage.classList.add('drag');
 });
 stage.addEventListener('pointermove',e=>{
+  if(PT.has(e.pointerId)) PT.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(PT.size>=2&&pinch){
+    const s=span2();
+    // same clamp the wheel uses, so pinch cannot reach a zoom the mouse could not
+    aim.scale=Math.max(0.35,Math.min(2.6,aim.scale*(s.d/(pinch.d||s.d))));
+    aim.ox+=s.cx-pinch.cx; aim.oy+=s.cy-pinch.cy;   // two-finger pan == shift-drag
+    pinch=s; return;
+  }
   // if the pointerup went missing (alt-tab, pointer left the window) the drag
   // would otherwise stick and the camera would orbit on every later move
   if(drag&&e.buttons===0){drag=null; stage.classList.remove('drag')}
@@ -883,7 +1172,7 @@ stage.addEventListener('pointermove',e=>{
     if(e.target.closest('.hud')) return;   // HUD controls write their own #prompt text
     const id=e.target.dataset&&e.target.dataset.id||null;
     if(id!==HOVER){HOVER=id; stage.classList.toggle('hot',!!id); dirty=true;
-      $('prompt').textContent=id?BY[id].name.toUpperCase()+'  ·  click to set '+PICK:HINT}
+      $('prompt').textContent=id?BY[id].name.toUpperCase()+'  ·  click to set '+PICK:HINT()}
     return;
   }
   const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
@@ -891,8 +1180,12 @@ stage.addEventListener('pointermove',e=>{
   if(drag.sh){aim.ox+=dx; aim.oy+=dy}
   else{aim.yaw+=(INVX?-1:1)*dx*0.007; aim.pitch=Math.max(-1.45,Math.min(1.52,aim.pitch-(INVY?-1:1)*dy*0.006))}
 });
-addEventListener('pointercancel',()=>{drag=null;stage.classList.remove('drag')});
-addEventListener('pointerup',()=>{
+// lifting one finger of a pinch drops pinch but does NOT resume the orbit — otherwise
+// the camera lurches from the remaining finger's position the instant you let go
+const lift=e=>{PT.delete(e.pointerId); if(PT.size<2) pinch=null};
+addEventListener('pointercancel',e=>{lift(e);drag=null;stage.classList.remove('drag')});
+addEventListener('pointerup',e=>{
+  lift(e);
   if(drag&&drag.moved<5&&drag.id) pickNode(drag.id);
   drag=null; stage.classList.remove('drag');
 });
@@ -928,9 +1221,10 @@ async function ask(text){
       body:JSON.stringify({message:text,history:TURNS.slice(-7,-1).join('\n')})});
     if(!res.ok) throw new Error('HTTP '+res.status);
     r=await res.json();
-  }catch(err){wait.remove(); say('bot','Could not reach the building service — '+err.message,'err');
+  }catch(err){wait.remove(); netmark(false);
+    say('bot','Could not reach the building service — '+err.message,'err');
     busy=false; return}
-  wait.remove();
+  wait.remove(); netmark(true);
 
   if(r.req){LASTR=r.req; FROM=r.req.from; TO=r.req.to;
     $('from').value=r.req.from; $('to').value=r.req.to;
@@ -950,18 +1244,33 @@ async function ask(text){
 }
 $('cf').onsubmit=e=>{e.preventDefault();ask(input.value)};
 
-const HINT='drag to orbit · scroll to zoom · shift-drag to pan';
+// A touch device has no wheel and no shift key, so it must not be told to use them.
+// A function, not a constant: a foldable changes mode without reloading the page.
+const HINT = () => MOBILE
+  ? 'one finger to orbit · two to pinch and pan · tap a space to pick it'
+  : 'drag to orbit · scroll to zoom · shift-drag to pan';
 addEventListener('keydown',e=>{
   if(e.key!=='Escape') return;
   // mid-sentence in the chat box, Escape belongs to the sentence
   if(document.activeElement===input&&input.value){input.value=''; return}
+  clearRoute();
+});
+
+// Forget the current route and go back to a clean map, ready for a new one. Escape does
+// this on a desktop; a phone has no Escape key, so #mclear is the only way back. One
+// function so the two can never drift apart.
+function clearRoute(){
   ROUTE=null; LASTR=null; FROM=null; TO=null; PICK='from'; HOVER=null;
   $('from').value=''; $('to').value='';
-  readRoute(null);
-  $('prompt').textContent=HINT;
+  readRoute(null);              // clears the sidebar list AND the phone pager, via mstep(null)
+  $('prompt').textContent=HINT();
   stage.classList.remove('hot');
+  // Only the phone auto-hides decks (showStep bails on desktop), so only the phone
+  // has to put them back — otherwise clearing strands you on three floors of seven with
+  // nothing drawn. Desktop keeps whatever decks the user chose by hand.
+  if(MOBILE&&ST){ show=new Set(ST.nodes.map(flr)); markSeg(); fitView() }
   dirty=true;
-});
+}
 function buildHints(){
   const pick=(f,skip)=>ST.nodes.find(n=>f(n)&&n.name!==skip);
   const fine=n=>n.type==='room'&&!DULL.test(n.name);
@@ -970,7 +1279,7 @@ function buildHints(){
   const ent = pick(n=>n.type==='entrance') || ST.nodes[0];
   const way = pick(n=>n.type==='stairs'||n.type==='lift');
   HINTS=[
-    up   && 'Take me to the '+up.name+', step-free',
+    up   && 'Take me to the '+up.name+', no stairs',
     room && ent && 'How do I reach the '+room.name+' from the '+ent.name+'?',
     way  && 'The '+way.name+' is shut for repairs',
   ].filter(Boolean);
@@ -997,6 +1306,171 @@ say('bot','Ask where you want to go, or tell me a space is blocked.');
   a.textContent=short(other.name);
   a.title='Switch to '+other.name; a.hidden=false;
 })();
+
+/* ---- phone ------------------------------------------------------------------
+   Everything here is inert on desktop: MOBILE gates the DOM move and the bar is
+   display:none above 900px. The step pager reads the SAME route object readRoute()
+   renders, so the two can never disagree about what step 3 is. .claude/PWA.md
+
+   MOBILE is a LIVE flag, never a boot-time constant. A Galaxy Fold goes from a ~344px
+   cover screen to a ~690px inner screen without reloading the page, and a Flip rotates
+   between 360x880 and 880x360 the same way. Anything that reads MOBILE must therefore
+   be re-runnable: applyMode() below is the single place that reacts, and every DOM
+   move it makes has to be reversible.
+------------------------------------------------------------------------------ */
+const MQ=matchMedia('(max-width:900px)');
+let MOBILE=MQ.matches;
+let STEPS=null, STEP=0, STEPNODE=null, STEPSRC=null;
+
+// put a node in the middle of the frame. project() is screen = VW/2 + ox + rx*scale,
+// so centring is just solving that for ox — no inverse projection needed.
+function centreOn(n){
+  if(!n) return;
+  const ca=Math.cos(aim.yaw), sa=Math.sin(aim.yaw);
+  const cp=Math.cos(aim.pitch), sp=Math.sin(aim.pitch);
+  const dx=n.xy[0]-CX, dy=n.xy[1]-CY, z=(base(n)+roof(n))/2;
+  const rx=dx*ca-dy*sa, ry=dx*sa+dy*ca;
+  aim.ox=-rx*aim.scale; aim.oy=-(ry*sp-z*cp)*aim.scale;
+}
+
+
+function mstep(r){
+  // Re-rendering the SAME route (a fold, a rotation) keeps your place in the directions;
+  // only a genuinely new route sends you back to step 1. STEPSRC is what makes those two
+  // cases distinguishable — r===RJ is always true here, since readRoute sets RJ first.
+  const keep = (r && r===STEPSRC) ? STEP : 0;
+  STEPSRC = r;
+  // desktop keeps the full list in #read, an unmoved camera and no highlighted node —
+  // so this CLEARS rather than returning early, or a fold that opens would strand
+  // body.routed and STEPNODE in their phone state.
+  STEPS = (MOBILE && r && r.path && r.path.length) ? r : null;
+  document.body.classList.toggle('routed', !!STEPS);
+  if(!STEPS){ STEPNODE=null; measureBar(); return }
+  $('mdist').textContent=r.distance_m+' M';
+  const lv=r.path.map(id=>flr(BY[id])), sp=[...new Set(lv)].sort();
+  $('mspan').textContent=r.steps.length+' steps · '+
+    (sp.length>1 ? LVL(sp[0])+' → '+LVL(sp[sp.length-1]) : LVL(sp[0]));
+  $('mrail').innerHTML=r.steps.map(()=>'<i></i>').join('');
+  showStep(keep);      // clamped inside showStep, so a shorter new route is safe
+  measureBar();
+}
+
+function showStep(i){
+  if(!STEPS) return;
+  const n=STEPS.steps.length;
+  STEP=Math.max(0,Math.min(n-1,i));
+  STEPNODE=STEPS.path[STEP]||null;
+  const cum=walked(STEPS.path);
+  $('mtext').textContent=STEPS.steps[STEP];
+  $('mat').textContent=(STEP===n-1 ? STEPS.distance_m+' m · arrive'
+                        : cum[STEP] ? cum[STEP]+' m walked' : 'start')+'  ·  '+(STEP+1)+' / '+n;
+  [...$('mrail').children].forEach((d,j)=>{
+    d.className = j<STEP ? 'done' : j===STEP ? 'now' : '';
+  });
+  $('mprev').disabled=STEP===0; $('mnext').disabled=STEP===n-1;
+  const node=BY[STEPNODE];
+  if(node){
+    // Only the deck you are standing on is lit. A "take the stairs" step's node is already
+    // on the next deck, so paging forward carries the toggle bar up on its own — there is
+    // no separate climb detection. The route line still draws across the hidden decks:
+    // render() sends those to `orphan` and paints them last, which is exactly what keeps
+    // it continuous. See .claude/context.md.
+    const f=flr(node);
+    if(!(show.size===1&&show.has(f))){ show=new Set([f]); markSeg() }
+    // centreOn, deliberately NOT fitView: reframing onto a single deck zooms in far enough
+    // to throw the rest of the route out of frame, and the line arcing up to the floors
+    // above is the thing worth seeing.
+    centreOn(node);
+  }
+  dirty=true;
+}
+
+// the bar grows when the step card appears; the toggles and the overlay both sit
+// against --bar, so it is measured rather than guessed at two fixed heights
+function measureBar(){
+  if(!MOBILE) return;
+  document.documentElement.style.setProperty('--bar',$('mbar').offsetHeight+'px');
+}
+
+const setChat=on=>{
+  document.body.classList.toggle('chat',on);
+  $('mask').textContent=on?'Close chat':MASKTEXT();
+  if(on){ log.scrollTop=log.scrollHeight; input.focus({preventScroll:true}) } else input.blur();
+};
+
+// Handlers are wired ONCE and unconditionally — they cannot be wired inside a mode
+// branch, because the mode can change later. Each checks MOBILE at call time instead.
+$('mask').onclick=()=>setChat(!document.body.classList.contains('chat'));
+$('mprev').onclick=()=>showStep(STEP-1);
+$('mnext').onclick=()=>showStep(STEP+1);
+$('mclear').onclick=clearRoute;
+// An answer is worth seeing on the model, so a reply that traced a route closes the
+// chat. Desktop must not blur the input after every send, hence the MOBILE check here.
+$('cf').addEventListener('submit',()=>{
+  if(!MOBILE) return;
+  const n=TURNS.length;
+  const t=setInterval(()=>{if(TURNS.length>n){clearInterval(t); if(ROUTE&&ROUTE.length) setChat(false)}},120);
+  setTimeout(()=>clearInterval(t),20000);
+});
+new ResizeObserver(measureBar).observe($('mbar'));
+
+/* The single reactor. Runs at boot and on every viewport change, and must be safe to
+   run repeatedly — every branch checks the current state before touching the DOM. */
+function applyMode(){
+  MOBILE=MQ.matches;
+
+  // #tog lives over the model on a phone and in the sidebar on a desktop. A fold that
+  // opens has to put it back, so this is a move in both directions, not a one-way lift.
+  const host=MOBILE?stage:$('ctrl');
+  if($('tog').parentElement!==host){
+    if(MOBILE) host.appendChild($('tog'));
+    else host.insertBefore($('tog'),$('go'));   // its original slot, above Trace route
+  }
+  if(!MOBILE) document.body.classList.remove('chat');   // the overlay does not exist here
+
+  // portrait frame only when the viewport is actually portrait AND narrow
+  const [w,h] = (MOBILE && innerHeight>=innerWidth) ? [780,1400] : [1400,780];
+  if(w!==VW||h!==VH){
+    VW=w; VH=h; svg.setAttribute('viewBox','0 0 '+VW+' '+VH);
+    if(ST) fitView();                            // reframe: the frame changed shape
+  }
+  $('prompt').textContent=HINT();
+  mstep(RJ);        // rebuilds the pager, or clears it when leaving phone mode
+  netmark();
+  measureBar();
+  dirty=true;
+}
+MQ.addEventListener('change',applyMode);
+// orientation and fold changes do not always cross the 900px query, but they do change
+// which frame aspect is right, so width alone is not enough of a trigger
+addEventListener('resize',applyMode);
+addEventListener('orientationchange',applyMode);
+
+// Offline the diagram still renders from cache but nothing can be routed or asked.
+// Saying so beats letting Send look broken. MASKTEXT is the one place the button's
+// resting label lives, so setChat and this cannot drift apart.
+// navigator.onLine only reports that SOME interface exists, not that this server is
+// reachable, so the authority here is an observed request: netmark(true|false) is
+// called from trace() and ask() with what actually happened. The events are a hint.
+let NETOK=true;
+const OFFLINE=()=>!navigator.onLine||!NETOK;
+const MASKTEXT=()=>OFFLINE()?'Offline · map only':'Ask';
+function netmark(ok){
+  if(ok!==undefined) NETOK=ok;
+  document.body.classList.toggle('offline',OFFLINE());
+  $('net').hidden=!OFFLINE();
+  if(MOBILE&&!document.body.classList.contains('chat')) $('mask').textContent=MASKTEXT();
+}
+addEventListener('online',netmark); addEventListener('offline',netmark);
+
+// First run, here rather than beside applyMode's definition: it calls netmark(), whose
+// NETOK/OFFLINE/MASKTEXT bindings are declared just above and would still be in TDZ.
+applyMode();
+
+// Best-effort: a service worker needs a secure context, so over plain LAN http this
+// throws and is swallowed. The page must behave identically either way.
+if('serviceWorker' in navigator)
+  navigator.serviceWorker.register('/sw.js').catch(e=>console.info('sw not registered:',e.message));
 
 loadState().then(()=>{buildHints(); resetView(); cam={...aim}; tick()});
 </script>
