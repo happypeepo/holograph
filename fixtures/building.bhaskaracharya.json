@@ -301,13 +301,13 @@
    "name": "Fitting Shop",
    "type": "room",
    "xy": [
-    407.9,
+    474.1,
     649.0
    ],
    "svg_rect": [
-    345,
+    418.5,
     569,
-    125.8,
+    111.1,
     160
    ],
    "floor": 1,
@@ -319,13 +319,13 @@
    "name": "Carpentry Shop",
    "type": "room",
    "xy": [
-    542.7,
+    594.1,
     643.0
    ],
    "svg_rect": [
-    479.8,
+    538.6,
     563,
-    125.8,
+    111.1,
     160
    ],
    "floor": 1,
@@ -337,13 +337,13 @@
    "name": "Welding Shop",
    "type": "room",
    "xy": [
-    677.5,
+    714.2,
     637.0
    ],
    "svg_rect": [
-    614.6,
+    658.7,
     557,
-    125.8,
+    111.1,
     160
    ],
    "floor": 1,
@@ -355,13 +355,13 @@
    "name": "Test Office",
    "type": "room",
    "xy": [
-    812.3,
+    834.3,
     631.0
    ],
    "svg_rect": [
-    749.4,
+    778.8,
     551,
-    125.8,
+    111.1,
     160
    ],
    "floor": 1,
@@ -373,13 +373,13 @@
    "name": "Computing Centre",
    "type": "room",
    "xy": [
-    947.1,
+    954.4,
     625.0
    ],
    "svg_rect": [
-    884.2,
+    898.9,
     545,
-    125.8,
+    111.1,
     160
    ],
    "floor": 1,
@@ -805,17 +805,17 @@
    "name": "Ladies Washroom",
    "type": "room",
    "xy": [
-    358.9,
-    661.0
+    262.5,
+    732.5
    ],
    "svg_rect": [
-    345,
-    581,
-    27.8,
-    160
+    230,
+    700,
+    65,
+    65
    ],
    "floor": 2,
-   "visual_signature": "Washroom past the last classroom on the first floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the first floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -823,17 +823,17 @@
    "name": "Gents Washroom",
    "type": "room",
    "xy": [
-    395.7,
-    655.0
+    377.5,
+    732.5
    ],
    "svg_rect": [
-    381.8,
-    575,
-    27.8,
-    160
+    345,
+    700,
+    65,
+    65
    ],
    "floor": 2,
-   "visual_signature": "Washroom past the last classroom on the first floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the first floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -1381,17 +1381,17 @@
    "name": "Ladies Washroom",
    "type": "room",
    "xy": [
-    358.9,
-    661.0
+    262.5,
+    732.5
    ],
    "svg_rect": [
-    345,
-    581,
-    27.8,
-    160
+    230,
+    700,
+    65,
+    65
    ],
    "floor": 3,
-   "visual_signature": "Washroom past the last classroom on the second floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the second floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -1399,17 +1399,17 @@
    "name": "Gents Washroom",
    "type": "room",
    "xy": [
-    395.7,
-    655.0
+    377.5,
+    732.5
    ],
    "svg_rect": [
-    381.8,
-    575,
-    27.8,
-    160
+    345,
+    700,
+    65,
+    65
    ],
    "floor": 3,
-   "visual_signature": "Washroom past the last classroom on the second floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the second floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -1939,17 +1939,17 @@
    "name": "Ladies Washroom",
    "type": "room",
    "xy": [
-    358.9,
-    661.0
+    262.5,
+    732.5
    ],
    "svg_rect": [
-    345,
-    581,
-    27.8,
-    160
+    230,
+    700,
+    65,
+    65
    ],
    "floor": 4,
-   "visual_signature": "Washroom past the last classroom on the third floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the third floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -1957,17 +1957,17 @@
    "name": "Gents Washroom",
    "type": "room",
    "xy": [
-    395.7,
-    655.0
+    377.5,
+    732.5
    ],
    "svg_rect": [
-    381.8,
-    575,
-    27.8,
-    160
+    345,
+    700,
+    65,
+    65
    ],
    "floor": 4,
-   "visual_signature": "Washroom past the last classroom on the third floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the third floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -2479,17 +2479,17 @@
    "name": "Ladies Washroom",
    "type": "room",
    "xy": [
-    358.9,
-    661.0
+    262.5,
+    732.5
    ],
    "svg_rect": [
-    345,
-    581,
-    27.8,
-    160
+    230,
+    700,
+    65,
+    65
    ],
    "floor": 5,
-   "visual_signature": "Washroom past the last classroom on the fourth floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the fourth floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -2497,17 +2497,17 @@
    "name": "Gents Washroom",
    "type": "room",
    "xy": [
-    395.7,
-    655.0
+    377.5,
+    732.5
    ],
    "svg_rect": [
-    381.8,
-    575,
-    27.8,
-    160
+    345,
+    700,
+    65,
+    65
    ],
    "floor": 5,
-   "visual_signature": "Washroom past the last classroom on the fourth floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the fourth floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -3019,17 +3019,17 @@
    "name": "Ladies Washroom",
    "type": "room",
    "xy": [
-    358.9,
-    661.0
+    262.5,
+    732.5
    ],
    "svg_rect": [
-    345,
-    581,
-    27.8,
-    160
+    230,
+    700,
+    65,
+    65
    ],
    "floor": 6,
-   "visual_signature": "Washroom past the last classroom on the fifth floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the fifth floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -3037,17 +3037,17 @@
    "name": "Gents Washroom",
    "type": "room",
    "xy": [
-    395.7,
-    655.0
+    377.5,
+    732.5
    ],
    "svg_rect": [
-    381.8,
-    575,
-    27.8,
-    160
+    345,
+    700,
+    65,
+    65
    ],
    "floor": 6,
-   "visual_signature": "Washroom past the last classroom on the fifth floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the fifth floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -3577,17 +3577,17 @@
    "name": "Ladies Washroom",
    "type": "room",
    "xy": [
-    358.9,
-    661.0
+    262.5,
+    732.5
    ],
    "svg_rect": [
-    345,
-    581,
-    27.8,
-    160
+    230,
+    700,
+    65,
+    65
    ],
    "floor": 7,
-   "visual_signature": "Washroom past the last classroom on the sixth floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the sixth floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -3595,17 +3595,17 @@
    "name": "Gents Washroom",
    "type": "room",
    "xy": [
-    395.7,
-    655.0
+    377.5,
+    732.5
    ],
    "svg_rect": [
-    381.8,
-    575,
-    27.8,
-    160
+    345,
+    700,
+    65,
+    65
    ],
    "floor": 7,
-   "visual_signature": "Washroom past the last classroom on the sixth floor, about a quarter the width of a classroom",
+   "visual_signature": "Squarish washroom at the south edge of the sixth floor, past the classroom row, roughly as deep as it is wide",
    "attributes": {}
   },
   {
@@ -3732,6 +3732,42 @@
    ],
    "floor": 1,
    "visual_signature": "Main exit doors at the south-east of the ground floor, green MAIN EXIT sign overhead, emergency assembly point beyond",
+   "attributes": {}
+  },
+  {
+   "id": "ladies_washroom_f1",
+   "name": "Ladies Washroom",
+   "type": "room",
+   "xy": [
+    262.5,
+    732.5
+   ],
+   "svg_rect": [
+    230,
+    700,
+    65,
+    65
+   ],
+   "floor": 1,
+   "visual_signature": "Squarish washroom at the south edge of the ground floor, past the workshop row, roughly as deep as it is wide",
+   "attributes": {}
+  },
+  {
+   "id": "gents_washroom_f1",
+   "name": "Gents Washroom",
+   "type": "room",
+   "xy": [
+    377.5,
+    732.5
+   ],
+   "svg_rect": [
+    345,
+    700,
+    65,
+    65
+   ],
+   "floor": 1,
+   "visual_signature": "Squarish washroom at the south edge of the ground floor, past the workshop row, roughly as deep as it is wide",
    "attributes": {}
   }
  ],
@@ -5399,6 +5435,20 @@
    "a": "main_entrance",
    "b": "corr_s_f1",
    "distance": 14,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "ladies_washroom_f1",
+   "distance": 7,
+   "accessible": true,
+   "passable": true
+  },
+  {
+   "a": "corr_s_f1",
+   "b": "gents_washroom_f1",
+   "distance": 7,
    "accessible": true,
    "passable": true
   }
