@@ -1,0 +1,17 @@
+.git
+.gitignore
+.DS_Store
+.claude
+.playwright-mcp
+__pycache__
+*.py[cod]
+.Python
+.env
+.env.*
+!.env.example
+venv
+.venv
+env
+dist
+build
+*.egg-info

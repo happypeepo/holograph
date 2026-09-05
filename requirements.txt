@@ -1,0 +1,5 @@
+fastapi>=0.116,<1
+uvicorn[standard]>=0.35,<1
+networkx>=3.5,<4
+google-genai>=1.31,<2
+pydantic>=2.11,<3

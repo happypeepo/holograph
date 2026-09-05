@@ -25,7 +25,7 @@ self.addEventListener('activate', e => {
     .then(() => self.clients.claim()));
 });
 
-const LIVE = /\/(chat|route|block|locate|identify|observe)$/;
+const LIVE = /\/(chat|route|block)$/;
 
 self.addEventListener('fetch', e => {
   const r = e.request;
