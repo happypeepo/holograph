@@ -283,8 +283,18 @@ const LIGHT=[-0.55,-0.84];   // fixed sun, world-space, so form reads while you 
 // floor can never come back out as "L1".
 const LEVEL_NAME=f=>f===1?'GROUND':'LEVEL '+(f-1);
 const LVL=f=>f===1?'G':'L'+(f-1);
-const flr=n=>n.floor||1, base=n=>(flr(n)-1)*LEVEL, vis=n=>show.has(flr(n));
-const roof=n=>base(n)+(HGT[n.type]||36);   // not `top`: that shadows window.top
+// a node may lift itself off its deck (z_base) and set its own extrusion (height).
+// Used for things that are not a storey tall or do not sit at storey level - the
+// entrance steps rise from the forecourt BELOW the ground floor, with the Orion
+// workshop tucked underneath them.
+const zb=n=>(n.attributes&&+n.attributes.z_base)||0;
+const hgt=n=>{const a=n.attributes||{};
+  // spans_levels is deck-relative: 1 means 'rises exactly one storey'. LEVEL is
+  // computed from the floor count, so a hardcoded height would drift per building.
+  if(a.spans_levels) return +a.spans_levels*LEVEL;
+  return (+a.height)||HGT[n.type]||36;};
+const flr=n=>n.floor||1, base=n=>(flr(n)-1)*LEVEL+zb(n), vis=n=>show.has(flr(n));
+const roof=n=>base(n)+hgt(n);   // not `top`: that shadows window.top
 
 function project(x,y,z){
   const dx=x-CX, dy=y-CY;
@@ -421,7 +431,6 @@ function render(){
   for(const n of ST.nodes){
     if(!vis(n)) continue;
     const r=n.svg_rect, x=r[0], y=r[1], w=r[2], h=r[3], z1=base(n), z2=roof(n), f=flr(n);
-    const c=[[x,y],[x+w,y],[x+w,y+h],[x,y+h]];
     // A fixed world-space light. Without it every wall carries the identical tint
     // and the eye is free to flip the solid inside-out (Necker cube).
     const face=(p,isTop,lit)=>{
@@ -429,18 +438,42 @@ function render(){
       onDeck(f,avgz(p),el('polygon',{points:pts(p),fill:t.f+op.toFixed(3)+')',stroke:t.s,
         'stroke-width':isTop?1.2:.7,'stroke-opacity':isTop?.95:.30+lit*.5,'data-id':n.id}));
     };
-    const lid=c.map(q=>project(q[0],q[1],z2));
-    face(lid,true,1);
-    for(let i=0;i<4;i++){
-      const p0=c[i], p1=c[(i+1)%4];
-      const ex=p1[0]-p0[0], ey=p1[1]-p0[1], len=Math.hypot(ex,ey)||1;
-      const nx=ey/len, ny=-ex/len;                       // outward wall normal, in plan
-      const lit=.30+.70*Math.max(0,nx*LIGHT[0]+ny*LIGHT[1]);
-      face([project(p0[0],p0[1],z1),project(p1[0],p1[1],z1),
-            project(p1[0],p1[1],z2),project(p0[0],p0[1],z2)],false,lit);
+    // A node carrying `steps` is drawn as a real stepped solid instead of one box:
+    // each tread is its own slab, running from that tread to the head of the flight,
+    // so the profile reads as stairs from any angle. `climb` says which way it rises.
+    const nsteps=(n.attributes&&+n.attributes.steps)||0;
+    const climb=(n.attributes&&n.attributes.climb)||'-y';
+    // `rot` spins the whole footprint about its centre, so a flight can run diagonally
+    // across the plan instead of being locked to the x/y axes. Slabs are built in the
+    // node's own frame and rotated together, so a stepped solid stays one structure.
+    const rot=(n.attributes&&+n.attributes.rot)||0;
+    const RCX=x+w/2, RCY=y+h/2, RA=rot*Math.PI/180, RS=Math.sin(RA), RC=Math.cos(RA);
+    const spin=p=>rot?[RCX+(p[0]-RCX)*RC-(p[1]-RCY)*RS, RCY+(p[0]-RCX)*RS+(p[1]-RCY)*RC]:p;
+    const slabs=[];
+    if(nsteps>1){
+      for(let k=0;k<nsteps;k++){
+        const t=(k+1)/nsteps, a=k/nsteps, zt=z1+(z2-z1)*t;
+        if(climb==='-y')      slabs.push([x, y, w, h*(1-a), z1, zt]);
+        else if(climb==='+y') slabs.push([x, y+h*a, w, h*(1-a), z1, zt]);
+        else if(climb==='-x') slabs.push([x, y, w*(1-a), h, z1, zt]);
+        else                  slabs.push([x+w*a, y, w*(1-a), h, z1, zt]);
+      }
+    } else slabs.push([x,y,w,h,z1,z2]);
+    for(const [sx,sy,sw,sh,sz1,sz2] of slabs){
+      const c=[[sx,sy],[sx+sw,sy],[sx+sw,sy+sh],[sx,sy+sh]].map(spin);
+      face(c.map(q=>project(q[0],q[1],sz2)),true,1);
+      for(let i=0;i<4;i++){
+        const p0=c[i], p1=c[(i+1)%4];
+        const ex=p1[0]-p0[0], ey=p1[1]-p0[1], len=Math.hypot(ex,ey)||1;
+        const nx=ey/len, ny=-ex/len;                     // outward wall normal, in plan
+        const lit=.30+.70*Math.max(0,nx*LIGHT[0]+ny*LIGHT[1]);
+        face([project(p0[0],p0[1],sz1),project(p1[0],p1[1],sz1),
+              project(p1[0],p1[1],sz2),project(p0[0],p0[1],sz2)],false,lit);
+      }
     }
-    // stairs get treads, lifts get a car: recognisable at a glance on the deck
-    if(n.type==='stairs'||n.type==='lift'){
+    // stairs get treads, lifts get a car: recognisable at a glance on the deck.
+    // A stepped solid already reads as stairs, so it skips the flat tread marks.
+    if((n.type==='stairs'&&!nsteps)||n.type==='lift'){
       const t=tone(n), mark=el('g',{'pointer-events':'none'});
       if(n.type==='stairs'){
         const long=w>=h;
@@ -457,7 +490,7 @@ function render(){
         mark.appendChild(el('polygon',{points:pts(car),fill:'none',
           stroke:t.s,'stroke-width':1,'stroke-opacity':.8}));
       }
-      onDeck(f,avgz(lid)+.01,mark);
+      onDeck(f,avgz([[0,0,z2]])+.01,mark);
     }
   }
 
