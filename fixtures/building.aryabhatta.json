@@ -445,22 +445,46 @@
       "name": "Orion F1 Racing Team Workshop",
       "type": "room",
       "xy": [
-        950,
-        1050
+        884,
+        1030
       ],
       "svg_rect": [
-        838,
-        952,
-        224,
-        196
+        778,
+        965,
+        162,
+        195
       ],
       "floor": 1,
-      "visual_signature": "Workshop of the Orion F1 racing team, in the enclosed space underneath the main entrance staircase, roller shutter opening onto the forecourt, car under a cover and tool chests along the back wall, soffit of the steps sloping overhead",
+      "visual_signature": "Orion F1 Racing Team workshop, an L-shaped bay wrapping the south-east corner of the auditorium at forecourt level, its back wall shared with the common computer facility and its west wall with the stage, shuttered in under the Gargi Plaza steps",
       "attributes": {
         "accessible": true,
         "z_base": 0,
-        "height": 150,
-        "rot": 308
+        "footprint": [
+          [
+            828,
+            965
+          ],
+          [
+            940,
+            965
+          ],
+          [
+            940,
+            1160
+          ],
+          [
+            778,
+            1160
+          ],
+          [
+            778,
+            1093
+          ],
+          [
+            828,
+            1093
+          ]
+        ]
       }
     },
     {
@@ -585,27 +609,27 @@
     },
     {
       "id": "main_entrance_f1",
-      "name": "Main Entrance Staircase",
+      "name": "Main Entrance Staircase (Gargi Plaza Steps)",
       "type": "stairs",
       "xy": [
-        950,
-        1145
+        910,
+        1120
       ],
       "svg_rect": [
-        800,
-        930,
-        300,
-        430
+        716,
+        975,
+        370,
+        316
       ],
       "floor": 1,
-      "visual_signature": "The broad main staircase of Aryabhatta, a wide flight of stone steps running diagonally up from the forecourt to the first-floor entrance, planters and bollards down each side, 'K.J. SOMAIYA COLLEGE OF ENGINEERING - ARYABHAT' on the fascia above the doors",
+      "visual_signature": "The broad main entrance staircase of Aryabhatta, commonly called the Gargi Plaza steps, a flight of wide stone steps wrapping the outside corner of the entrance plinth - each step an L that turns the corner, so the flight falls away from the doors on both the east and the south face at once, down to the forecourt; the Orion workshop is shuttered in underneath, and there is no way into the building at forecourt level: the steps only deliver you to the first-floor doors",
       "attributes": {
         "accessible": false,
         "z_base": 0,
         "spans_levels": 1,
-        "steps": 16,
-        "climb": "-y",
-        "rot": 308
+        "steps": 8,
+        "climb": "corner",
+        "run": 240
       }
     },
     {
@@ -1587,7 +1611,7 @@
         76
       ],
       "floor": 2,
-      "visual_signature": "First-floor landing at the head of the main entrance staircase, glazed doors into the admission cell lobby, the forecourt and the flight of steps falling away behind you",
+      "visual_signature": "First-floor landing at the head of the main entrance staircase, the Gargi Plaza steps, glazed doors into the admission cell lobby, the corner-wrapping steps falling away to the forecourt on two sides behind you",
       "attributes": {
         "accessible": true
       }
@@ -3719,13 +3743,6 @@
       "a": "exit_canteen_f1",
       "b": "canteen_f1",
       "distance": 12,
-      "accessible": true,
-      "passable": true
-    },
-    {
-      "a": "main_entrance_f1",
-      "b": "common_computer_facility_f1",
-      "distance": 18,
       "accessible": true,
       "passable": true
     },

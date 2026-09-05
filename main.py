@@ -1,7 +1,7 @@
 """FastAPI wiring. No logic here beyond calling world and gemini."""
 import os
 
-from fastapi import FastAPI, File, Query, UploadFile
+from fastapi import FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
@@ -23,6 +23,26 @@ NO_CACHE = {"Cache-Control": "no-store, must-revalidate"}
 @app.get("/")
 def index():
     return FileResponse("index.html", headers=NO_CACHE)
+
+
+# PWA assets. sw.js must be served from the root or its scope cannot cover /aryabhatta
+# and /bhaskaracharya. Icons are cached hard; the worker itself never is, so a new one
+# is picked up on the next navigation.
+@app.get("/manifest.webmanifest")
+def manifest():
+    return FileResponse("manifest.webmanifest", media_type="application/manifest+json")
+
+
+@app.get("/sw.js")
+def service_worker():
+    return FileResponse("sw.js", media_type="text/javascript", headers=NO_CACHE)
+
+
+@app.get("/icon-{size}.png")
+def icon(size: int):
+    if size not in (192, 512):
+        raise HTTPException(404)
+    return FileResponse(f"icon-{size}.png", media_type="image/png")
 
 
 @app.post("/locate")
