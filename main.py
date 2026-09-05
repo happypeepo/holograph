@@ -1,8 +1,9 @@
 """FastAPI wiring. No logic here beyond calling world and gemini."""
+import json
 import os
 
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from pydantic import BaseModel
 
 import gemini
@@ -24,6 +25,46 @@ def health():
 @app.get("/")
 def index():
     return FileResponse("index.html", headers=NO_CACHE)
+
+
+@app.get("/analytics.js")
+def analytics():
+    clarity_id = (
+        os.getenv("MICROSOFT_CLARITY_ID")
+        or os.getenv("CLARITY_PROJECT_ID")
+        or ""
+    ).strip()
+    vercel_src = os.getenv("VERCEL_ANALYTICS_SCRIPT_SRC", "/_vercel/insights/script.js").strip()
+    js = f"""(() => {{
+  const host = location.hostname;
+  const local = host === "localhost" || host === "127.0.0.1" || host === "";
+  if (local) return;
+
+  const vercelSrc = {json.dumps(vercel_src)};
+  if (vercelSrc) {{
+    window.va = window.va || function () {{
+      (window.vaq = window.vaq || []).push(arguments);
+    }};
+    const s = document.createElement("script");
+    s.defer = true;
+    s.src = vercelSrc;
+    document.head.appendChild(s);
+  }}
+
+  const clarityId = {json.dumps(clarity_id)};
+  if (clarityId) {{
+    (function(c, l, a, r, i, t, y) {{
+      c[a] = c[a] || function() {{ (c[a].q = c[a].q || []).push(arguments); }};
+      t = l.createElement(r);
+      t.async = 1;
+      t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t, y);
+    }})(window, document, "clarity", "script", clarityId);
+  }}
+}})();
+"""
+    return Response(js, media_type="text/javascript", headers=NO_CACHE)
 
 
 # PWA assets. sw.js must be served from the root or its scope cannot cover /aryabhatta

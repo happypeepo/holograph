@@ -1,17 +1,11 @@
+# .dockerignore has no trailing-comment support: a pattern must be alone on its line.
 .git
-.gitignore
-.DS_Store
+.github
 .claude
-.playwright-mcp
+# 15 MB of source boards the app never serves
+photos
 __pycache__
-*.py[cod]
-.Python
+*.pyc
 .env
-.env.*
-!.env.example
-venv
-.venv
-env
-dist
-build
-*.egg-info
+.env.local
+.DS_Store

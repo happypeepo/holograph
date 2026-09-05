@@ -1,5 +1,6 @@
-fastapi>=0.116,<1
-uvicorn[standard]>=0.35,<1
-networkx>=3.5,<4
-google-genai>=1.31,<2
-pydantic>=2.11,<3
+# Pinned to what the project was built and verified against.
+fastapi==0.116.1
+uvicorn==0.35.0
+networkx==3.6.1
+google-genai==2.20.0
+pydantic==2.13.5
