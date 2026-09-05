@@ -54,7 +54,10 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
 .tick.br{bottom:12px;right:12px;border-bottom-width:1px;border-right-width:1px}
 
 .hud{position:absolute;font:400 10px/1.7 var(--mono);letter-spacing:.11em;
-     color:var(--dim);pointer-events:none;text-transform:uppercase}
+     color:var(--dim);pointer-events:none;text-transform:uppercase;
+     /* #stage's grab cursor inherits in here, but pointerdown bails on .hud so
+        nothing in the HUD ever drags. The polygons and buttons set their own. */
+     cursor:default}
 .hud.tr{top:26px;right:26px;text-align:right}
 .hud.bl{bottom:26px;left:26px}
 .hud.br{bottom:26px;right:26px;text-align:right}
@@ -63,13 +66,17 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0}
 .lg{display:flex;align-items:center;gap:8px;margin-top:5px}
 .lg s{width:16px;height:0;border-top:2px solid;display:block;text-decoration:none}
 
-#cube{width:116px;height:116px;display:block;margin:6px 0 2px auto;pointer-events:auto;overflow:visible}
+#cube{width:150px;height:150px;display:block;margin:6px 0 2px auto;pointer-events:auto;overflow:visible}
 .cubebar{display:flex;gap:9px;align-items:center;justify-content:flex-end;
   pointer-events:auto;margin-top:3px}
 .cubebar button{font:500 10px/1 var(--mono);letter-spacing:.14em;color:var(--dim);
   background:none;border:0;padding:0;cursor:pointer;text-transform:uppercase}
 .cubebar button:hover{color:var(--live)}
+.cubebar button[aria-pressed=true]{color:var(--live)}
 .cubebar .arr{font-size:13px;line-height:1;letter-spacing:0;width:13px;text-align:center}
+#home{display:block;margin:7px 0 0 auto;padding:4px 9px;color:var(--live);
+  border:1px solid var(--rule2);border-radius:2px}
+#home:hover{border-color:var(--live);background:rgba(0,229,255,.08)}
 #cube polygon{cursor:pointer}
 button.lnk{background:none;border:none;padding:0;font:500 10px/1 var(--mono);letter-spacing:.14em;
   color:var(--dim);cursor:pointer;text-transform:uppercase;pointer-events:auto}
@@ -198,9 +205,11 @@ text{font-family:var(--mono);pointer-events:none}
       <svg id="cube" viewBox="-50 -50 100 100" aria-label="View orientation cube"></svg>
       <div class="cubebar">
         <button class="lnk arr" id="rotL" title="Rotate 90° left" aria-label="Rotate 90 degrees left">&#8630;</button>
-        <button class="lnk" id="home" title="Home / isometric">Iso</button>
         <button class="lnk arr" id="rotR" title="Rotate 90° right" aria-label="Rotate 90 degrees right">&#8631;</button>
+        <button class="lnk arr" id="invX" data-ax="Horizontal" aria-pressed="true" aria-label="Invert horizontal drag direction">&#8646;</button>
+        <button class="lnk arr" id="invY" data-ax="Vertical" aria-pressed="true" aria-label="Invert vertical drag direction">&#8645;</button>
       </div>
+      <button class="lnk" id="home" title="Reset view — isometric, every level">Reset view</button>
     </div>
 
     <div class="hud bl">
@@ -269,7 +278,11 @@ let CX=0, CY=0, dirty=true;
 let cam={...ISO}, aim={...ISO};        // cam chases aim: that gap is the whole feel
 
 const LIGHT=[-0.55,-0.84];   // fixed sun, world-space, so form reads while you orbit
+// `floor` in the building file is a 1-based DECK INDEX: ground is 1, not 0. Every
+// place a floor is shown to a human goes through one of these two, so the ground
+// floor can never come back out as "L1".
 const LEVEL_NAME=f=>f===1?'GROUND':'LEVEL '+(f-1);
+const LVL=f=>f===1?'G':'L'+(f-1);
 const flr=n=>n.floor||1, base=n=>(flr(n)-1)*LEVEL, vis=n=>show.has(flr(n));
 const roof=n=>base(n)+(HGT[n.type]||36);   // not `top`: that shadows window.top
 
@@ -307,6 +320,18 @@ function fitView(){
   aim.scale=Math.max(0.12,Math.min(2.6,sc));
   aim.ox=-((x0+x1)/2)*aim.scale;
   aim.oy=-((y0+y1)/2)*aim.scale;
+}
+
+// "Back to how the page opened": every deck on, isometric, framed to fit. The Iso
+// button, the chat reset_view and boot all call this, so they cannot drift apart.
+// Camera only - a drawn route and its pins are Escape's job, not this button's.
+function resetView(){
+  if(!ST) return;
+  show=new Set(ST.nodes.map(flr));   // fitView frames only visible decks, so restore them first
+  markSeg();
+  aim.yaw=ISO.yaw; aim.pitch=ISO.pitch;
+  fitView();
+  dirty=true;
 }
 const pts=p=>p.map(q=>q[0].toFixed(1)+','+q[1].toFixed(1)).join(' ');
 
@@ -510,32 +535,49 @@ function render(){
 }
 
 /* ---- view cube ------------------------------------------------------------
-   Modelled on the Fusion/123D cube. Each face is a 3x3 grid: the centre cell is
-   that face, edge cells are the 12 edges, corner cells the 8 corners — 26
-   orientations in all. Clicking a corner lands on a true isometric because the
-   pitch falls out of the geometry: atan2(1, sqrt2) = 35.26 degrees.
+   The 123D/Fusion ViewCube: a plain cube with an invisible 3x3 hit grid on
+   every face. Nothing is drawn but the six faces — the 26 regions appear only
+   on hover, which is why it still reads as a cube.
+   The trick is that a region is not a cell. The three corner cells that meet at
+   a vertex all carry the same `dir`, so hovering any one lights all three and
+   the highlight wraps the corner across all three faces; edge cells pair up the
+   same way. That is what makes a vertex a large target on a cube that has no
+   visible vertex to aim at.
+   A cell's `dir` is both its region key and the direction you fly to, so the
+   26 regions and the 26 views cannot drift apart. Clicking a corner lands on a
+   true isometric: atan2(1, sqrt2) = 35.26 degrees.
    It shares project()'s rotation maths, so it can never disagree with the scene. */
-const CUBE=$('cube'), CH=30, FACE_NAME={'0+':'E','0-':'W','1+':'S','1-':'N','2+':'TOP','2-':'BTM'};
+const CUBE=$('cube'), CH=28,
+      B=0.20,        // ponytail: band width as a fraction of the face — the one knob.
+                     // Bigger = fatter edge/corner targets, smaller centre plate.
+      FACE_NAME={'0+':'E','0-':'W','1+':'S','1-':'N','2+':'TOP','2-':'BTM'}, SG=[1,-1];
 let CELLS=null;
-// top bright, sides mid, underside near-black - the cube's own light
-const SHADE=c=>{
-  const [ax,sg]=[c.face[0]|0, c.face[1]==='+'?1:-1];
-  const a = ax===2 ? (sg>0?.30:.03) : ax===1 ? (sg>0?.15:.11) : (sg>0?.09:.06);
-  return 'rgba(0,229,255,'+a+')';
+
+// a region is named by whichever axes it leans on: "E", "E–TOP", "E–S–TOP"
+const NAME=d=>d.map((v,k)=>v?FACE_NAME[k+(v>0?'+':'-')]:null).filter(Boolean).join('–');
+// One fixed light in local space, so every face resolves to its own value and
+// the solid cannot read inside-out (Necker flip). Half-lambert keeps the
+// away-facing sides visible instead of crushing them to black.
+// Opaque, deliberately: a translucent cell stroked in its own translucent colour
+// doubles up along every shared edge and the hidden grid shows through as lines.
+const MIX=a=>'rgb('+[7+(0-7)*a, 9+(229-9)*a, 12+(255-12)*a].map(Math.round).join(',')+')';
+const SHADE=d=>{
+  const w=0.5+0.5*(d[0]*0.26+d[1]*0.43+d[2]*0.86)/Math.hypot(d[0],d[1],d[2]);
+  return MIX(0.03+0.30*w*w);
 };
+const HILITE=MIX(0.62);            // one value for every region, so a lit region reads flat
 
 function buildCells(){                              // local-space geometry, built once
-  const out=[];
-  for(let axis=0;axis<3;axis++) for(const sign of [1,-1]){
-    const u=(axis+1)%3, v=(axis+2)%3;
-    const nrm=[0,0,0]; nrm[axis]=sign;
-    for(let i=-1;i<=1;i++) for(let j=-1;j<=1;j++){
-      const cu=i*(2/3), cv=j*(2/3), h=1/3;
-      const poly=[[cu-h,cv-h],[cu+h,cv-h],[cu+h,cv+h],[cu-h,cv+h]].map(([pu,pv])=>{
-        const q=[0,0,0]; q[axis]=sign; q[u]=pu; q[v]=pv; return q;
-      });
-      const dir=[0,0,0]; dir[axis]=sign; dir[u]=i; dir[v]=j;
-      out.push({poly,dir,nrm,face:axis+(sign>0?'+':'-'),centre:i===0&&j===0});
+  const out=[], S=[-1,-1+2*B,1-2*B,1];              // the four split points along a face axis
+  for(let a=0;a<3;a++) for(const sg of SG){
+    const u=(a+1)%3, v=(a+2)%3, nrm=[0,0,0]; nrm[a]=sg;
+    for(let i=0;i<3;i++) for(let j=0;j<3;j++){
+      const poly=[[S[i],S[j]],[S[i+1],S[j]],[S[i+1],S[j+1]],[S[i],S[j+1]]]
+        .map(([pu,pv])=>{const q=[0,0,0]; q[a]=sg; q[u]=pu; q[v]=pv; return q});
+      // centre cell -> one non-zero (a face); edge cell -> two; corner cell -> three.
+      // Cells on different faces that meet at the same edge or corner agree here.
+      const dir=[0,0,0]; dir[a]=sg; dir[u]=i-1; dir[v]=j-1;
+      out.push({poly,nrm,dir,key:dir.join(',')});
     }
   }
   return out;
@@ -553,38 +595,45 @@ function flyTo(dir){
   aim.yaw = h<1e-6 ? aim.yaw : nearYaw(Math.atan2(-dir[0],-dir[1]));
   aim.pitch = Math.max(-1.45, Math.min(1.52, Math.atan2(dir[2],h)));
 }
+// light or unlight a whole region at once — this is the 123D behaviour
+const paint=(group,col)=>group.forEach(({cell,rest})=>{
+  cell.setAttribute('fill',col||rest); cell.setAttribute('stroke',col||rest)});
+
 function drawCube(){
   if(!CELLS) CELLS=buildCells();
   while(CUBE.firstChild) CUBE.removeChild(CUBE.firstChild);
+  const region={};                    // key -> every visible cell of that region
   // a face shows only when its outward normal leans toward the camera
   const vis=CELLS.filter(c=>cubeProject(...c.nrm)[2]>0.02)
                  .map(c=>{const p=c.poly.map(q=>cubeProject(...q));return {c,p,z:avgz(p)}})
                  .sort((m,n)=>m.z-n.z);          // depth grows toward the camera: near paints last
   for(const {c,p} of vis){
-    const rest=SHADE(c);            // each face a different value, so the cube cannot flip
-    const cell=el('polygon',{points:pts(p),fill:rest,
-      stroke:'#1d2831','stroke-width':.6,'stroke-linejoin':'round'});
-    cell.onpointerenter=()=>{cell.setAttribute('fill','rgba(0,229,255,.42)');
-                             cell.setAttribute('stroke','#00e5ff')};
-    cell.onpointerleave=()=>{cell.setAttribute('fill',rest);
-                             cell.setAttribute('stroke','#1d2831')};
+    const rest=SHADE(c.nrm);
+    // stroke matches fill: the grid is a hit target, not something to look at,
+    // and a hairline of its own colour hides the seam between adjacent cells
+    const cell=el('polygon',{points:pts(p),fill:rest,stroke:rest,
+      'stroke-width':.5,'stroke-linejoin':'round'});
+    cell.appendChild(el('title',{},NAME(c.dir)));   // names all 26 regions, no extra UI
+    (region[c.key]=region[c.key]||[]).push({cell,rest});
+    cell.onpointerenter=()=>{paint(region[c.key],HILITE);
+      $('prompt').textContent='VIEW FROM '+NAME(c.dir).split('–').join(' · ')};
+    cell.onpointerleave=()=>{paint(region[c.key],null); $('prompt').textContent=HINT};
     cell.onclick=()=>flyTo(c.dir);
     CUBE.appendChild(cell);
   }
-  // face outlines drawn over the cells so the cube still reads as a solid
-  for(const axis of [0,1,2]) for(const sign of [1,-1]){
-    const nrm=[0,0,0]; nrm[axis]=sign;
+  // the cube's own edges, painted over the invisible grid so it reads as a solid
+  for(let a=0;a<3;a++) for(const sg of SG){
+    const nrm=[0,0,0]; nrm[a]=sg;
     if(cubeProject(...nrm)[2]<=0.02) continue;
-    const u=(axis+1)%3, v=(axis+2)%3;
+    const u=(a+1)%3, v=(a+2)%3;
     const quad=[[-1,-1],[1,-1],[1,1],[-1,1]].map(([pu,pv])=>{
-      const q=[0,0,0]; q[axis]=sign; q[u]=pu; q[v]=pv; return cubeProject(...q);
-    });
+      const q=[0,0,0]; q[a]=sg; q[u]=pu; q[v]=pv; return cubeProject(...q)});
     CUBE.appendChild(el('polygon',{points:pts(quad),fill:'none',stroke:'#00e5ff',
       'stroke-width':1.1,'stroke-linejoin':'round','pointer-events':'none'}));
-    const m=cubeProject(...nrm.map(x=>x*1.02));
+    const m=cubeProject(...nrm);
     CUBE.appendChild(el('text',{x:m[0],y:m[1]+3.4,'text-anchor':'middle','font-size':9,
       'font-weight':600,fill:'#00e5ff','letter-spacing':'.12em','pointer-events':'none'},
-      FACE_NAME[axis+(sign>0?'+':'-')]));
+      NAME(nrm)));
   }
 }
 
@@ -635,7 +684,7 @@ function profile(cum,lv,span,W){
   for(const f of span){                       // one hairline per level, labelled
     const y=yOf(f);
     g+='<line x1="'+L+'" y1="'+y+'" x2="'+R+'" y2="'+y+'" stroke="#18222b" stroke-width="1"/>'+
-       '<text x="1" y="'+(y+3)+'" fill="#3f4e58" font-size="7.5" letter-spacing=".06em">'+(f===1?'G':'L'+(f-1))+'</text>';
+       '<text x="1" y="'+(y+3)+'" fill="#3f4e58" font-size="7.5" letter-spacing=".06em">'+LVL(f)+'</text>';
   }
   const pts=cum.map((d,i)=>xOf(d).toFixed(1)+','+yOf(lv[i]).toFixed(1)).join(' ');
   g+='<polyline points="'+pts+'" fill="none" stroke="#00e5ff" stroke-width="1.6" '+
@@ -659,12 +708,13 @@ async function loadState(){
   const floors=[...new Set(ST.nodes.map(flr))].sort((a,b)=>a-b);
   // seven decks at two-storey spacing would not fit the frame
   LEVEL = floors.length<=2 ? 340 : Math.max(110, Math.round(1150/floors.length));
-  $('bld').textContent=ST.building.toUpperCase()+'  ·  L'+floors.join('/')+'  ·  '+ST.nodes.length+' SPACES';
+  const span=floors.length>2 ? LVL(floors[0])+'–'+LVL(floors[floors.length-1]) : floors.map(LVL).join('/');
+  $('bld').textContent=ST.building.toUpperCase()+'  ·  '+span+'  ·  '+ST.nodes.length+' SPACES';
   for(const id of ['from','to','blk']){
     const s=$(id), keep=s.value;
     s.innerHTML='';
     if(id!=='blk') s.appendChild(new Option('— none —',''));
-    ST.nodes.forEach(n=>s.appendChild(new Option(n.name+' · L'+flr(n),n.id)));
+    ST.nodes.forEach(n=>s.appendChild(new Option(n.name+' · '+LVL(flr(n)),n.id)));
     if(keep&&BY[keep]) s.value=keep;
     else if(id!=='blk'&&keep==='') s.value='';   // blk has no blank option to fall back to
   }
@@ -679,7 +729,7 @@ async function loadState(){
   const seg=$('lvl');
   if(!seg.children.length){
     seg.appendChild(mkSeg('All','all'));
-    floors.forEach(f=>seg.appendChild(mkSeg(f===1?'G':'L'+(f-1),String(f))));
+    floors.forEach(f=>seg.appendChild(mkSeg(LVL(f),String(f))));
     markSeg();
   }
   dirty=true;
@@ -690,9 +740,9 @@ function mkSeg(label,v){
   b.onclick=e=>{
     const floors=[...new Set(ST.nodes.map(flr))];
     if(v==='all'){
-      // "All" is a shortcut, not a mode: on unless everything is already on
-      if(show.size===floors.length) return;
-      floors.forEach(f=>show.add(f));
+      // "All" is a real toggle: every deck on, or every deck off
+      if(show.size===floors.length) show.clear();
+      else floors.forEach(f=>show.add(f));
     }else{
       const f=+v;
       // alt/ctrl-click isolates one deck; a plain click just flips it
@@ -758,11 +808,27 @@ $('clear').onclick=async()=>{
 };
 
 /* ---- camera input ---- */
-$('home').onclick=()=>{aim.yaw=ISO.yaw; aim.pitch=ISO.pitch; fitView()};
+$('home').onclick=resetView;
 // a cube only ever shows three faces; these reach the other three, exactly as
 // the rotate arrows do in Fusion/123D
 $('rotL').onclick=()=>{aim.yaw-=Math.PI/2};
 $('rotR').onclick=()=>{aim.yaw+=Math.PI/2};
+
+// Orbit direction, one flag per axis. Default on both: the model follows the
+// cursor — drag right and the near face travels right, drag down and the roof tips
+// toward you, as if you had grabbed the building. Turning one off restores the older
+// camera-orbit feel on that axis alone.
+// ponytail: only the drag direction flips. Pitch keeps its [-1.45,1.52] clamp, so the
+// reachable range is unchanged and render()'s deck flip at cam.pitch<0 is unaffected.
+// X keeps the original storage key so an existing preference survives the split.
+let INVX = localStorage.getItem('holo.invertOrbit') !== '0';
+let INVY = localStorage.getItem('holo.invertPitch') !== '0';
+const setInv = (id, key, v) => { localStorage.setItem(key, v ? '1' : '0');
+  const b = $(id); b.setAttribute('aria-pressed', String(v));
+  b.title = b.dataset.ax + ' drag: ' + (v ? 'follows the model' : 'orbits the camera'); };
+setInv('invX','holo.invertOrbit',INVX); setInv('invY','holo.invertPitch',INVY);
+$('invX').onclick = () => setInv('invX','holo.invertOrbit', INVX = !INVX);
+$('invY').onclick = () => setInv('invY','holo.invertPitch', INVY = !INVY);
 
 let drag=null;
 stage.addEventListener('pointerdown',e=>{
@@ -777,6 +843,7 @@ stage.addEventListener('pointermove',e=>{
   // would otherwise stick and the camera would orbit on every later move
   if(drag&&e.buttons===0){drag=null; stage.classList.remove('drag')}
   if(!drag){
+    if(e.target.closest('.hud')) return;   // HUD controls write their own #prompt text
     const id=e.target.dataset&&e.target.dataset.id||null;
     if(id!==HOVER){HOVER=id; stage.classList.toggle('hot',!!id); dirty=true;
       $('prompt').textContent=id?BY[id].name.toUpperCase()+'  ·  click to set '+PICK:HINT}
@@ -785,7 +852,7 @@ stage.addEventListener('pointermove',e=>{
   const dx=e.clientX-drag.x, dy=e.clientY-drag.y;
   drag.x=e.clientX; drag.y=e.clientY; drag.moved+=Math.abs(dx)+Math.abs(dy);
   if(drag.sh){aim.ox+=dx; aim.oy+=dy}
-  else{aim.yaw+=dx*0.007; aim.pitch=Math.max(-1.45,Math.min(1.52,aim.pitch-dy*0.006))}
+  else{aim.yaw+=(INVX?-1:1)*dx*0.007; aim.pitch=Math.max(-1.45,Math.min(1.52,aim.pitch-(INVY?-1:1)*dy*0.006))}
 });
 addEventListener('pointercancel',()=>{drag=null;stage.classList.remove('drag')});
 addEventListener('pointerup',()=>{
@@ -838,7 +905,7 @@ async function ask(text){
     show = r.level==='all' ? new Set(floors) : new Set([+r.level]);
     markSeg(); fitView();
   }
-  if(r.action==='reset_view'){aim.yaw=ISO.yaw; aim.pitch=ISO.pitch; fitView()}
+  if(r.action==='reset_view') resetView();
   if(r.changed&&r.changed.length){await loadState(); if(LASTR) await trace(LASTR.from,LASTR.to,LASTR.accessible)}
   dirty=true;
   say('bot',r.reply); TURNS.push('system: '+r.reply);
@@ -894,5 +961,5 @@ say('bot','Ask where you want to go, or tell me a space is blocked.');
   a.title='Switch to '+other.name; a.hidden=false;
 })();
 
-loadState().then(()=>{buildHints(); fitView(); cam={...aim}; tick()});
+loadState().then(()=>{buildHints(); resetView(); cam={...aim}; tick()});
 </script>

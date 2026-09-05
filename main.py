@@ -88,6 +88,16 @@ def mount_twin(prefix, w):
         eq = w.equipment.get(id)
         return eq["node"] if eq else None
 
+    def offer_gate(said=""):
+        """The single reply for "that place is not in this world". The visitor may simply be
+        standing in the wrong building, and the entrance is the only useful thing left to
+        offer. A "yes" comes back as an ordinary route request to the entrance — the offer
+        sentence is in the history and names it — so this needs no pending state anywhere."""
+        said = (said or f"I can't find that in {w.building}.").strip()
+        if said[-1] not in ".!?":
+            said += "."
+        return said + f" It may not be in this building — shall I guide you to the {w.nodes[entrance]['name']}?"
+
     @app.get(prefix)
     def holo():
         return FileResponse("holo.html", headers=NO_CACHE)
@@ -117,8 +127,16 @@ def mount_twin(prefix, w):
         if c.action == "route":
             a, b = node_of(c.from_id) or entrance, node_of(c.to_id)
             if not b:
-                out["action"] = "none"
-                out["reply"] = "I couldn't tell which place you meant — try naming it as it appears on the model."
+                out["action"] = "not_found"
+                out["reply"] = offer_gate()
+                return out
+            if a == b and not node_of(c.from_id):
+                # they gave no origin, so `a` fell back to the entrance - and the entrance is
+                # also what they asked for. Routing that answers "0 m, 1 steps", which is the
+                # one useless reply. Ask where they actually are instead.
+                out["action"] = "need_origin"
+                out["reply"] = (f"Where are you now? Name the space, or click it on the model, "
+                                f"and I'll route you to the {w.nodes[b]['name']}.")
                 return out
             r = w.route(a, b, accessible=c.accessible)
             out["route"] = r
@@ -146,13 +164,25 @@ def mount_twin(prefix, w):
                             else "Nothing to change — which place did you mean?")
 
         elif c.action == "show_level":
-            levels = {str(n.get("floor", 1)) for n in w.nodes.values()}
-            out["level"] = c.level if c.level in levels or c.level == "all" else None
-            out["reply"] = (f"Showing {'every level' if out['level'] == 'all' else 'level ' + out['level']}."
-                            if out["level"] else "I only know about levels " + ", ".join(sorted(levels)) + ".")
+            # the wire still carries deck indices - the page indexes decks by them -
+            # but every word the visitor reads is phrased by gemini.level_name
+            decks = sorted({n.get("floor", 1) for n in w.nodes.values()})
+            d = gemini.deck(c.level)
+            if c.level == "all":
+                out["level"], out["reply"] = "all", "Showing every level."
+            elif d in decks:
+                out["level"] = str(d)
+                out["reply"] = f"Showing {'the ground floor' if d == 1 else gemini.level_name(d)}."
+            else:
+                out["reply"] = ("I only know about "
+                                + ", ".join(gemini.level_name(f) for f in decks) + ".")
 
         elif c.action == "reset_view":
             out["reply"] = "View reset."
+
+        elif c.action == "not_found":
+            # the model parsed a destination request but nothing in this world is that place
+            out["reply"] = offer_gate(c.reply)
 
         if not out["reply"]:
             out["reply"] = "Ask me to take you somewhere, block a space, or switch level."
