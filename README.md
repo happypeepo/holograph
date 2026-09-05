@@ -1,4 +1,6 @@
-# Spatial Twin
+# Translucent
+
+made with ❤️ by MnM
 
 Indoor wayfinding for buildings nobody will ever map commercially.
 
@@ -48,7 +50,7 @@ Open <http://127.0.0.1:8000>.
 
 | Route | What it is |
 |---|---|
-| `/` | Landing page — pick a twin |
+| `/` | Landing page — pick a building |
 | `/aryabhatta` | 188 spaces, 5 levels |
 | `/bhaskaracharya` | 209 spaces, 7 levels |
 
@@ -123,7 +125,7 @@ main.py           FastAPI wiring. No logic beyond calling world and gemini.
 world.py          Graph, Dijkstra, passable/accessible state. Zero network, zero model.
 gemini.py         ER 2 chat prompt and schema.
 index.html        Landing page.
-holo.html         Holographic 3D twin — projection, routing UI, chat.
+translucent.html  The 3D building view — projection, routing UI, chat.
 fixtures/         building.*.json — the world models.
 photos/plans/     The escape-route boards the models were built from.
 ```
@@ -133,13 +135,13 @@ network or a model.
 
 ### Endpoints
 
-Per twin, mounted at its own prefix:
+Per building, mounted at its own prefix:
 
 ```
-GET  /                  twin picker
+GET  /                  building picker
 GET  /health            service health check
-GET  /<twin>/state      GET  /<twin>/route      POST /<twin>/block      POST /<twin>/chat
-GET  /twins             what is mounted, so the frontend never has to guess
+GET  /<bldg>/state      GET  /<bldg>/route      POST /<bldg>/block      POST /<bldg>/chat
+GET  /buildings         what is mounted, so the frontend never has to guess
 ```
 
 ### The data model

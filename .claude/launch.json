@@ -1,1 +1,1 @@
-{"version":"0.0.1","configurations":[{"name":"twin","runtimeExecutable":"python3","runtimeArgs":["-m","http.server","8111"],"port":8111}]}
+{"version":"0.0.1","configurations":[{"name":"translucent","runtimeExecutable":"python3","runtimeArgs":["-m","http.server","8111"],"port":8111}]}

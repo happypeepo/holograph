@@ -1,17 +1,17 @@
-/* Spatial Twin service worker.
+/* Translucent service worker.
 
    Two caches, deliberately different strategies:
-     shell  network-first  — holo.html is served no-store and edited constantly during the
+     shell  network-first  — translucent.html is served no-store and edited constantly during the
                              hackathon. Cache-first here would serve yesterday's page and
                              cost an afternoon to diagnose.
-     state  stale-while-revalidate — ~120 KB per twin, changes only when a human edits a
+     state  stale-while-revalidate — ~120 KB per building, changes only when a human edits a
                              fixture. Serving it stale is what makes the diagram render offline.
 
    Anything that needs Gemini or networkx is never intercepted at all, so a stale route can
    never be presented as live. Offline the page says so; it does not invent an answer. */
 
-const SHELL = 'twin-shell-v1';
-const STATE = 'twin-state-v1';
+const SHELL = 'translucent-shell-v1';
+const STATE = 'translucent-state-v1';
 const PRE = ['/', '/icon-192.png', '/icon-512.png', '/manifest.webmanifest'];
 
 self.addEventListener('install', e => {
@@ -34,7 +34,7 @@ self.addEventListener('fetch', e => {
   if (u.origin !== location.origin) return;
   if (LIVE.test(u.pathname)) return;              // straight to network, uncached, unwrapped
 
-  if (u.pathname.endsWith('/state') || u.pathname === '/twins') {
+  if (u.pathname.endsWith('/state') || u.pathname === '/buildings') {
     e.respondWith(caches.open(STATE).then(async c => {
       const hit = await c.match(r);
       const net = fetch(r).then(res => { if (res.ok) c.put(r, res.clone()); return res })
