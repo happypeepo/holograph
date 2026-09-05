@@ -1,4 +1,4 @@
-"""FastAPI wiring. No logic here beyond calling world and gemini."""
+"""Translucent - FastAPI wiring. No logic here beyond calling world and gemini."""
 import json
 import os
 
@@ -92,13 +92,13 @@ class ChatIn(BaseModel):
     history: str = ""
 
 
-TWINS = []   # every mounted building, so the page can offer a switcher without guessing
+BUILDINGS = []   # every mounted building, so the page can offer a switcher without guessing
 
 
-def mount_twin(prefix, w):
-    """Serve one building's holographic view under `prefix`. Called once per
+def mount_building(prefix, w):
+    """Serve one building's Translucent view under `prefix`. Called once per
     building — the page derives its own API base from the URL it was served at."""
-    TWINS.append({"prefix": prefix, "name": w.building})
+    BUILDINGS.append({"prefix": prefix, "name": w.building})
     entrance = next((i for i, n in w.nodes.items() if n["type"] == "entrance"), next(iter(w.nodes)))
 
     def node_of(id):
@@ -119,19 +119,19 @@ def mount_twin(prefix, w):
         return said + f" It may not be in this building — shall I guide you to the {w.nodes[entrance]['name']}?"
 
     @app.get(prefix)
-    def holo():
-        return FileResponse("holo.html", headers=NO_CACHE)
+    def page():
+        return FileResponse("translucent.html", headers=NO_CACHE)
 
     @app.get(prefix + "/state")
-    def holo_state():
+    def page_state():
         return w.state()
 
     @app.get(prefix + "/route")
-    def holo_route(from_id: str = Query(..., alias="from"), to: str = Query(...), accessible: bool = False):
+    def page_route(from_id: str = Query(..., alias="from"), to: str = Query(...), accessible: bool = False):
         return w.route(from_id, to, accessible=accessible)
 
     @app.post(prefix + "/block")
-    def holo_block(node: str, passable: bool = False):
+    def page_block(node: str, passable: bool = False):
         if not w.has(node):
             return {"error": f"unknown node id '{node}'"}
         w.set_passable(node, passable)
@@ -140,7 +140,7 @@ def mount_twin(prefix, w):
     # gemini.chat only parses the sentence; every route, distance and blockage
     # below is computed here against networkx, never by the model.
     @app.post(prefix + "/chat")
-    def holo_chat(body: ChatIn):
+    def page_chat(body: ChatIn):
         c = gemini.chat(body.message, body.history, w)
         out = {"action": c.action, "reply": c.reply, "route": None, "level": None, "changed": []}
 
@@ -209,20 +209,20 @@ def mount_twin(prefix, w):
         return out
 
 
-@app.get("/twins")
-def twins():
-    return TWINS
+@app.get("/buildings")
+def buildings():
+    return BUILDINGS
 
 
 
 # the Bhaskaracharya block, modelled from its seven Emergency Escape Route boards
 if os.path.exists("fixtures/building.bhaskaracharya.json"):
     bhaskar = world.load("fixtures/building.bhaskaracharya.json")
-    mount_twin("/bhaskaracharya", bhaskar)
+    mount_building("/bhaskaracharya", bhaskar)
     print(f"loaded bhaskaracharya: {len(bhaskar.nodes)} nodes, {len(bhaskar.equipment)} equipment")
 
 # the Aryabhatta block opposite it, modelled from its five Emergency Escape Route boards
 if os.path.exists("fixtures/building.aryabhatta.json"):
     aryabhatta = world.load("fixtures/building.aryabhatta.json")
-    mount_twin("/aryabhatta", aryabhatta)
+    mount_building("/aryabhatta", aryabhatta)
     print(f"loaded aryabhatta: {len(aryabhatta.nodes)} nodes, {len(aryabhatta.equipment)} equipment")

@@ -11,11 +11,11 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <link rel="icon" href="/icon-192.png">
 <script defer src="/analytics.js"></script>
-<title>Spatial Twin — Holographic View</title>
+<title>Translucent — made with ❤️ by MnM</title>
 <style>
 /* ---------------------------------------------------------------------------
    ctOS-over-Gothic. White is the voice of the building, cyan is the voice of
-   the system: cyan appears ONLY on something the twin is currently asserting
+   the system: cyan appears ONLY on something Translucent is currently asserting
    (the traced route, the live selection, a reading). Everything else stays
    monochrome, which is what keeps the HUD at a garnish rather than a costume.
    Monospace = instrument layer. Sans = the human conversation.
@@ -34,13 +34,12 @@ html,body{height:100%}
    header's nowrap building name was stretching it to 805px inside a 390px body, and
    every row inherited that width. */
 body{margin:0;background:var(--void);color:var(--ink);font:14px/1.5 var(--sans);
-     overflow:hidden;display:grid;grid-template-rows:auto 1fr;grid-template-columns:minmax(0,1fr)}
+     overflow:hidden;display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:minmax(0,1fr)}
 
 /* ---- header: one hairline, no chrome ---- */
 header{display:flex;align-items:center;gap:20px;padding:0 20px;height:52px;
        border-bottom:1px solid var(--rule);background:var(--plate)}
-.mark{font:600 13px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase}
-.mark i{color:var(--live);font-style:normal}
+.mark{font:700 15px/1 var(--mono);letter-spacing:.34em;text-transform:uppercase;color:var(--ink)}
 /* min-width:0 is the missing half of the ellipsis idiom: without it a flex item
    refuses to shrink below its nowrap content, and this one line was widening the
    whole page to 805px on a 390px phone. */
@@ -48,6 +47,11 @@ header{display:flex;align-items:center;gap:20px;padding:0 20px;height:52px;
      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .grow{flex:1}
 .disc{font:400 10px/1 var(--mono);color:var(--dimmer);letter-spacing:.1em;text-transform:uppercase}
+/* ---- credit: one line, same hairline system as the header ---- */
+footer.credit{display:flex;align-items:center;justify-content:center;height:26px;
+       border-top:1px solid var(--rule);background:var(--plate);
+       font:400 10px/1 var(--mono);letter-spacing:.14em;color:var(--dimmer)}
+.credit.mob{display:none}
 /* the map is cached and the routing is not, so offline is a real, partial state and
    has to be visible — otherwise a dead Send button just looks broken */
 .net{flex:0 0 auto;font:500 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
@@ -224,6 +228,9 @@ text{font-family:var(--mono);pointer-events:none}
 
   header{height:44px;padding:0 14px;gap:10px}
   .disc{display:none}
+  footer.credit{display:none}
+  .credit.mob{display:block;text-align:center;padding-top:8px;
+              font:400 9px/1 var(--mono);letter-spacing:.12em;color:var(--dimmer)}
   a.exit{padding:6px 9px;font-size:10px;letter-spacing:.1em}
 
   /* one layer: the map. The sidebar becomes an overlay, the bar is fixed. */
@@ -330,7 +337,7 @@ text{font-family:var(--mono);pointer-events:none}
    header and the step text. ---------------------------------------------------- */
 @media (max-width:380px){
   header{gap:8px;padding:0 10px}
-  .mark{font-size:11px;letter-spacing:.16em}
+  .mark{font-size:12px;letter-spacing:.2em}
   .bld{display:none}                    /* the building name is noise at this width */
   a.exit{padding:6px 7px;font-size:9px;letter-spacing:.08em}
   /* must still clear the cube, which is 74px wide plus its 12px inset */
@@ -371,7 +378,7 @@ text{font-family:var(--mono);pointer-events:none}
 </style>
 
 <header>
-  <span class="mark">Spatial<i>·</i>Twin</span>
+  <span class="mark">Translucent</span>
   <span class="bld" id="bld">connecting…</span>
   <span class="grow"></span>
   <span class="net" id="net" hidden>offline</span>
@@ -442,6 +449,8 @@ text{font-family:var(--mono);pointer-events:none}
   </aside>
 </main>
 
+<footer class="credit">made with ❤️ by MnM</footer>
+
 <!-- The phone bar. Display:none above 900px, so desktop never sees it. One step at a
      time: the other steps are the rail dots above, only the current one has words. -->
 <div id="mbar">
@@ -456,11 +465,12 @@ text{font-family:var(--mono);pointer-events:none}
     </div>
   </div>
   <button id="mask">Ask</button>
+  <div class="credit mob">made with ❤️ by MnM</div>
 </div>
 
 <script>
 // the page is served at both /3d and /3d/<building>; it talks to whichever
-// prefix it was loaded from, so one file serves every twin
+// prefix it was loaded from, so one file serves every building
 const BASE=location.pathname.replace(/\/+$/,'')||'/3d';
 const API={state:BASE+'/state',route:BASE+'/route',block:BASE+'/block',chat:BASE+'/chat'};
 const HGT={room:80,corridor:24,stairs:66,lift:110,entrance:48};
@@ -1290,9 +1300,9 @@ function buildHints(){
 }
 say('bot','Ask where you want to go, or tell me a space is blocked.');
 
-// the server says which twins are mounted, so no guessing and no 404 probe
+// the server says which buildings are mounted, so no guessing and no 404 probe
 (async()=>{
-  let list=[]; try{ list=await (await fetch('/twins')).json() }catch{ return }
+  let list=[]; try{ list=await (await fetch('/buildings')).json() }catch{ return }
   const other=list.find(t=>t.prefix!==BASE);
   if(!other) return;
   const a=$('alt'); a.href=other.prefix;

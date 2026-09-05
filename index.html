@@ -8,10 +8,10 @@
 <link rel="apple-touch-icon" href="/icon-192.png">
 <link rel="icon" href="/icon-192.png">
 <script defer src="/analytics.js"></script>
-<title>Spatial Twin</title>
+<title>Translucent — made with ❤️ by MnM</title>
 <style>
 /* ---------------------------------------------------------------------------
-   Same system as holo.html. White is the voice of the building, cyan is the
+   Same system as translucent.html. White is the voice of the building, cyan is the
    voice of the system - so cyan appears only on a live reading pulled from
    /state, never as decoration. Monospace is the instrument layer, sans is the
    human one. Hairlines and corner ticks, no radius, no gradients, no lift.
@@ -27,14 +27,17 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{margin:0;background:var(--void);color:var(--ink);font:14px/1.5 var(--sans);
-     display:grid;grid-template-rows:auto 1fr}
+     display:grid;grid-template-rows:auto 1fr auto}
 
 header{display:flex;align-items:center;gap:20px;padding:0 20px;height:52px;
        border-bottom:1px solid var(--rule);background:var(--plate)}
-.mark{font:600 13px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase}
-.mark i{color:var(--live);font-style:normal}
+.mark{font:700 15px/1 var(--mono);letter-spacing:.34em;text-transform:uppercase;color:var(--ink)}
 .grow{flex:1}
 .disc{font:400 10px/1 var(--mono);color:var(--dimmer);letter-spacing:.1em;text-transform:uppercase}
+/* ---- credit: one line, same hairline system as the header ---- */
+footer.credit{display:flex;align-items:center;justify-content:center;height:26px;
+       border-top:1px solid var(--rule);background:var(--plate);
+       font:400 10px/1 var(--mono);letter-spacing:.14em;color:var(--dimmer)}
 
 #stage{position:relative;display:grid;place-content:center;padding:40px;min-height:0}
 .tick{position:absolute;width:14px;height:14px;pointer-events:none;border:0 solid var(--rule2)}
@@ -47,22 +50,22 @@ header{display:flex;align-items:center;gap:20px;padding:0 20px;height:52px;
    margin:0 0 14px;display:flex;align-items:center;gap:10px}
 .k::after{content:"";flex:1;height:1px;background:var(--rule)}
 
-.twins{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;
+.bldgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1px;
        background:var(--rule);border:1px solid var(--rule);min-width:min(600px,86vw)}
-a.twin{display:block;background:var(--plate);padding:26px 24px 22px;text-decoration:none;color:inherit;
+a.bldg{display:block;background:var(--plate);padding:26px 24px 22px;text-decoration:none;color:inherit;
        border-left:2px solid transparent}
-a.twin:hover,a.twin:focus-visible{background:var(--sunk);border-left-color:var(--live);outline:none}
-a.twin .idx{font:500 10px/1 var(--mono);letter-spacing:.2em;color:var(--dimmer)}
-a.twin .name{display:block;margin:12px 0 0;font:600 25px/1.1 var(--sans);letter-spacing:-.01em;color:var(--ink)}
-a.twin .sub{display:block;margin-top:4px;font:400 11px/1 var(--mono);letter-spacing:.12em;
+a.bldg:hover,a.bldg:focus-visible{background:var(--sunk);border-left-color:var(--live);outline:none}
+a.bldg .idx{font:500 10px/1 var(--mono);letter-spacing:.2em;color:var(--dimmer)}
+a.bldg .name{display:block;margin:12px 0 0;font:600 25px/1.1 var(--sans);letter-spacing:-.01em;color:var(--ink)}
+a.bldg .sub{display:block;margin-top:4px;font:400 11px/1 var(--mono);letter-spacing:.12em;
             color:var(--dim);text-transform:uppercase}
-a.twin .read{display:block;margin-top:18px;font:400 11px/1 var(--mono);letter-spacing:.13em;
+a.bldg .read{display:block;margin-top:18px;font:400 11px/1 var(--mono);letter-spacing:.13em;
              color:var(--live);text-transform:uppercase;min-height:11px}
-a.twin .go{display:flex;align-items:center;gap:8px;margin-top:18px;padding-top:14px;
+a.bldg .go{display:flex;align-items:center;gap:8px;margin-top:18px;padding-top:14px;
            border-top:1px solid var(--rule);font:500 10px/1 var(--mono);letter-spacing:.18em;
            color:var(--dim);text-transform:uppercase}
-a.twin:hover .go{color:var(--ink)}
-a.twin .go s{flex:1;height:0;border-top:1px solid var(--rule2);text-decoration:none}
+a.bldg:hover .go{color:var(--ink)}
+a.bldg .go s{flex:1;height:0;border-top:1px solid var(--rule2);text-decoration:none}
 
 .hud{position:absolute;bottom:26px;left:26px;font:400 10px/1.7 var(--mono);letter-spacing:.11em;
      color:var(--dim);text-transform:uppercase;pointer-events:none}
@@ -76,13 +79,14 @@ a.twin .go s{flex:1;height:0;border-top:1px solid var(--rule2);text-decoration:n
   html,body{height:100dvh;overflow:hidden}
   header{height:44px;padding:0 14px;gap:10px}
   .disc{display:none}
-  #stage{padding:16px 14px calc(14px + env(safe-area-inset-bottom));
+  #stage{padding:16px 14px 14px;
          grid-template-columns:minmax(0,1fr);place-content:center stretch}
   .tick{display:none}
-  .twins{min-width:0;width:100%;grid-template-columns:1fr}
-  a.twin{padding:18px 18px 16px}
-  a.twin .name{font-size:22px;margin-top:9px}
-  a.twin .go{margin-top:13px;padding-top:11px}
+  .bldgs{min-width:0;width:100%;grid-template-columns:1fr}
+  a.bldg{padding:18px 18px 16px}
+  a.bldg .name{font-size:22px;margin-top:9px}
+  a.bldg .go{margin-top:13px;padding-top:11px}
+  footer.credit{height:auto;padding:8px 0 calc(8px + env(safe-area-inset-bottom))}
   .hud{position:static;margin-top:16px;text-align:center}
   .hud.br{display:none}
 }
@@ -90,10 +94,10 @@ a.twin .go s{flex:1;height:0;border-top:1px solid var(--rule2);text-decoration:n
 /* Fold cover / very narrow */
 @media (max-width:380px){
   header{padding:0 10px}
-  .mark{font-size:11px;letter-spacing:.16em}
-  a.twin{padding:15px 15px 13px}
-  a.twin .name{font-size:19px}
-  a.twin .sub,a.twin .read{font-size:10px}
+  .mark{font-size:12px;letter-spacing:.2em}
+  a.bldg{padding:15px 15px 13px}
+  a.bldg .name{font-size:19px}
+  a.bldg .sub,a.bldg .read{font-size:10px}
 }
 
 /* Landscape phone / Flip 880x360: two cards side by side rather than stacked, or the
@@ -101,16 +105,16 @@ a.twin .go s{flex:1;height:0;border-top:1px solid var(--rule2);text-decoration:n
 @media (max-width:900px) and (max-height:560px){
   header{height:38px}
   #stage{padding:10px 12px calc(10px + env(safe-area-inset-bottom))}
-  .twins{grid-template-columns:1fr 1fr}
-  a.twin{padding:12px 14px}
-  a.twin .name{font-size:17px;margin-top:6px}
-  a.twin .go{margin-top:9px;padding-top:8px}
+  .bldgs{grid-template-columns:1fr 1fr}
+  a.bldg{padding:12px 14px}
+  a.bldg .name{font-size:17px;margin-top:6px}
+  a.bldg .go{margin-top:9px;padding-top:8px}
   .k{margin-bottom:8px}
   .hud{margin-top:9px}
 }</style>
 
 <header>
-  <span class="mark">Spatial<i>&middot;</i>Twin</span>
+  <span class="mark">Translucent</span>
   <span class="grow"></span>
   <span class="disc">Illustrative approximation</span>
 </header>
@@ -120,21 +124,21 @@ a.twin .go s{flex:1;height:0;border-top:1px solid var(--rule2);text-decoration:n
   <span class="tick bl"></span><span class="tick br"></span>
 
   <div>
-    <p class="k">Select a twin</p>
-    <nav class="twins">
-      <a class="twin" href="/aryabhatta">
+    <p class="k">Select a building</p>
+    <nav class="bldgs">
+      <a class="bldg" href="/aryabhatta">
         <span class="idx">01</span>
         <span class="name">Aryabhatta</span>
         <span class="sub">KJSSE &middot; Vidyavihar</span>
         <span class="read" id="r-aryabhatta"></span>
-        <span class="go">Open twin <s></s> &rarr;</span>
+        <span class="go">Open building <s></s> &rarr;</span>
       </a>
-      <a class="twin" href="/bhaskaracharya">
+      <a class="bldg" href="/bhaskaracharya">
         <span class="idx">02</span>
         <span class="name">Bhaskaracharya</span>
         <span class="sub">KJSSE &middot; Vidyavihar</span>
         <span class="read" id="r-bhaskaracharya"></span>
-        <span class="go">Open twin <s></s> &rarr;</span>
+        <span class="go">Open building <s></s> &rarr;</span>
       </a>
     </nav>
   </div>
@@ -142,6 +146,8 @@ a.twin .go s{flex:1;height:0;border-top:1px solid var(--rule2);text-decoration:n
   <div class="hud" id="hud">link &middot; <b>querying</b></div>
   <div class="hud br">modelled from emergency escape route boards</div>
 </div>
+
+<footer class="credit">made with ❤️ by MnM</footer>
 
 <script>
 // cyan is reserved for what the system is asserting, so these readings stay blank
@@ -166,7 +172,7 @@ Promise.all(KEYS.map(k =>
     .catch(() => { document.getElementById('r-' + k).textContent = 'offline'; })
 )).then(() => {
   document.getElementById('hud').innerHTML = live
-    ? 'link <b class="cy">ok</b> &middot; twins <b>' + live + '</b> &middot; spaces <b>' + spaces + '</b>'
+    ? 'link <b class="cy">ok</b> &middot; buildings <b>' + live + '</b> &middot; spaces <b>' + spaces + '</b>'
     : 'link <b>down</b>';
 });
 </script>
