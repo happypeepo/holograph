@@ -590,9 +590,13 @@ function cubeProject(x,y,z){                        // project() minus centring 
 }
 const nearYaw=t=>{let v=t; while(v-cam.yaw>Math.PI)v-=2*Math.PI;
                             while(v-cam.yaw<-Math.PI)v+=2*Math.PI; return v};
+// Put `dir` nearest the camera. project()'s depth is (x*sa+y*ca)*cp + z*sp, so the
+// direction pointing AT the camera is (sa*cp, ca*cp, sp) — match that and the facet you
+// clicked is the one facing you. Negating x and y here (as this did) lands you 180 degrees
+// away, staring at the opposite corner.
 function flyTo(dir){
   const h=Math.hypot(dir[0],dir[1]);
-  aim.yaw = h<1e-6 ? aim.yaw : nearYaw(Math.atan2(-dir[0],-dir[1]));
+  aim.yaw = h<1e-6 ? aim.yaw : nearYaw(Math.atan2(dir[0],dir[1]));
   aim.pitch = Math.max(-1.45, Math.min(1.52, Math.atan2(dir[2],h)));
 }
 // light or unlight a whole region at once — this is the 123D behaviour
